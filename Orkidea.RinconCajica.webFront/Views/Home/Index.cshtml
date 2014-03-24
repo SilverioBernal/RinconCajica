@@ -1,0 +1,194 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.HomeSlider>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Club El Rincon de Cajicá</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- [if lt IE 9]
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap-responsive.min.css" )" />
+    <link rel="stylesheet" href="@Url.Content("~/css/font-awesome.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/custom.css" )" />
+    <link rel="stylesheet" href="@Url.Content("~/css/base_schemes/light.css" )" />
+    <link rel="stylesheet" href="@Url.Content("~/css/color_schemes/yellow.css" )" />
+    <link rel="stylesheet" href="@Url.Content("~/css/responsive.css" )" />
+
+    <!-- [if IE 7]>
+		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
+		<![endif] -->
+
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <header>
+    </header>
+    <div id="body">
+        <!-- Background Slider -->
+        <div id="bg_slide">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <img src="@Url.Content(item.urlImagen)" alt="">
+                    </li>
+                    
+                }
+            </ul>
+            <div class="pattern"></div>
+        </div>
+
+        <div class="navbar navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-inner">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+                    <a class="brand" href="@Url.Action("Index", "Home")">
+                        <img src="img/logo.png" alt="Round"></a>
+                    <div class="nav-collapse">
+                        <ul class="nav pull-right">
+                            <li class="active">
+                                <a href="@Url.Action("Index", "Home")"><span style="color: white;">.</span>Inicio</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Details", "Page", new { id = "AcercaDe" })"><span style="color: white;">.</span>Acerca de</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Details", "Page", new { id = "Deportes" })"><span style="color: white;">.</span>Deportes</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Details", "Page", new { id = "Eventos" })"><span style="color: white;">.</span>Eventos</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Details", "Page", new { id = "Socios" })"><span style="color: white;">.</span>Socios</a>
+                            </li>
+                            <li>
+                                <a href="#"><span style="color: white;">.</span>Contacto</a>
+                            </li>
+                            @*<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Deportes</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="blog.html">Blog Front Page</a>
+                                    </li>
+                                    <li>
+                                        <a href="blog-single.html">Blog Single Page</a>
+                                    </li>
+                                </ul>
+                            </li>*@
+                            @*<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Our Pages</span>Pages</a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="typogrid.html">Typography and Grid</a>
+                                    </li>
+                                    <li>
+                                        <a href="404.html">404 Page</a>
+                                    </li>
+                                </ul>
+                            </li>*@
+                        </ul>
+                    </div>
+                    <!-- /.nav-collapse -->
+                </div>
+                <!-- /.navbar-inner -->
+            </div>
+            <!-- /.container -->
+            <form id="search_form">
+                <input type="text" placeholder="Type here and press enter..." />
+            </form>
+        </div>
+        <!-- /.navbar -->
+
+        <div class="default-icons clearfix">
+            <ul class="slider-nav">
+                <li>
+                    <a href="#" class="icon-angle-left rslides_nav rslides1_nav prev"></a>
+                </li>
+                <li>
+                    <a href="#" class="icon-angle-right rslides_nav rslides1_nav next"></a>
+                </li>
+            </ul>
+            <!-- /.slider-nav -->
+
+            <ul class="social-media">
+                <li class="tt" data-toggle="tooltip" data-container="body" data-placement="left" title="Find us on Facebook">
+                    <a href="#" class="icon-facebook"></a>
+                </li>
+                <li class="tt" data-toggle="tooltip" data-container="body" data-placement="left" title="Follow us on Twitter">
+                    <a href="#" class="icon-twitter"></a>
+                </li>
+                <li class="tt" data-toggle="tooltip" data-container="body" data-placement="left" title="Find us on LinkedIn">
+                    <a href="#" class="icon-linkedin"></a>
+                </li>
+            </ul>
+            <!-- /.social-media -->
+        </div>
+
+        <div class="container index">
+            <div class="row-fluid">
+                <div class="span12">
+                    <h1>
+                        @{                           
+                            string texto = "";
+
+                            foreach (var item in Model)
+                            {
+                                texto += "<mark>" + item.textoSlider;
+                                if (!string.IsNullOrEmpty(item.textoBoton1))
+                                {
+                                    texto += "<span style='padding-top: 50px;width: 500px;'><a href='" + item.urlBoton1 + "' class='work'>" + item.textoBoton1 + "</a>";
+                                    if (!string.IsNullOrEmpty(item.textoBoton2))
+                                    {
+                                        texto += " <a href='" + item.urlBoton2 + "' class='work'>" + item.textoBoton2 + "</a>";
+                                    }
+                                    texto += "</span>";
+                                }
+                                texto += "</mark>";
+
+
+                            }
+                        }
+                        @Html.Raw(texto)
+                    </h1>
+                </div>
+            </div>
+            <!-- /.row-fluid -->
+        </div>
+        <!-- /.container -->
+
+        <!-- Scripts -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>
+            window.jQuery || document.write('<script src="js/jquery.min.js">\x3C/script>')
+
+            $('.work').click(function () {
+                var lola = this;
+                window.location.href = lola.href;
+            });
+        </script>
+        <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
+        <script src="@Url.Content("~/js/responsiveslides.min.js")"></script>
+        <script src="@Url.Content("~/js/jquery.cookie.js")"></script>
+        <script src="@Url.Content("~/js/jquery.isotope.min.js")"></script>
+        <script src="@Url.Content("~/js/magnific.js")"></script>
+        <script src="@Url.Content("~/js/hoverdir.js")"></script>
+        <script src="@Url.Content("~/js/custom.js")"></script>
+    </div>
+    @*@Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>

@@ -1,0 +1,102 @@
+.page-title .arrow{
+    border-color: transparent transparent transparent #79d318;
+}
+
+.header-field h3 {
+    background: #79d318;
+}
+
+.social-media li a:hover {
+    background: #79d318;
+}
+
+ul.pagination li a:hover {
+    background: #79d318;
+}
+
+.navbar .nav>li.active,
+.navbar .nav>li:hover {
+    border-color: #79d318;
+}
+
+.navbar .nav li.dropdown.open,
+.navbar .nav li.dropdown.active,
+.navbar .nav li.dropdown.open.active {
+    border-color: #79d318;
+}
+
+.navbar .right-icons ul li a:hover, .navbar .right-icons ul li a.active {
+    background: #79d318;
+}
+
+#search_form{
+    background: #79d318;
+}
+
+.inner-project h4 a:hover {
+    color: #79d318;
+}
+
+.thumb-project div span{
+    background: #79d318;
+}
+
+.post-item .post-image a.more {
+    background: #79d318;
+}
+
+.post-details a:hover h2 {
+    color: #79d318;
+}
+
+.post-info ul li a:hover {
+    color: #79d318;
+}
+
+.blog .pagination ul li.active a {
+    background: #79d318;
+}
+
+.blog .pagination ul li.active a:hover {
+    background: #79d318;
+}
+
+.leave-comment form button{
+    background: #79d318;
+}
+
+.sidebar-widget .tagcloud a {
+    background: #79d318;
+}
+
+.sidebar-widget .categories ul li a:hover {
+    color: #79d318;
+}
+
+#twitter .tweet a {
+    color: #79d318;
+}
+
+
+
+
+
+.contact-us form button{
+    background: #79d318;
+}
+
+.contact-us .contacts i{
+    background: #79d318;
+}
+
+.error404{
+    color: #79d318;
+}
+
+
+input:focus, textarea:focus{
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(244, 181, 48, 0.6) !important;
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(244, 181, 48, 0.6) !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(244, 181, 48, 0.6) !important;
+    border-color: #79d318 !important;
+}

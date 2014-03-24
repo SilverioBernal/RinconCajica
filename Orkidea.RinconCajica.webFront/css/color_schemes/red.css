@@ -1,0 +1,103 @@
+.page-title .arrow{
+    border-color: transparent transparent transparent #ff5252;
+}
+
+.header-field h3 {
+    color: #fff;
+    background: #ff5252;
+    text-shadow: 0px 1px 0px rgba(0,0,0, 0.3);
+}
+
+.social-media li a:hover {
+    background: #ff5252;
+}
+
+ul.pagination li a:hover {
+    background: #ff5252;
+}
+
+.navbar .nav>li.active,
+.navbar .nav>li:hover {
+    border-color: #ff5252;
+}
+
+.navbar .nav li.dropdown.open,
+.navbar .nav li.dropdown.active,
+.navbar .nav li.dropdown.open.active {
+    border-color: #ff5252;
+}
+
+.navbar .right-icons ul li a:hover, .navbar .right-icons ul li a.active {
+    background: #ff5252;
+}
+
+#search_form{
+    background: #ff5252;
+}
+
+.inner-project h4 a:hover {
+    color: #ff5252;
+}
+
+.thumb-project div span{
+    background: #ff5252;
+}
+
+.post-item .post-image a.more {
+    background: #ff5252;
+}
+
+.post-details a:hover h2 {
+    color: #ff5252;
+}
+
+.post-info ul li a:hover {
+    color: #ff5252;
+}
+
+.blog .pagination ul li.active a {
+    background: #ff5252;
+}
+
+.blog .pagination ul li.active a:hover {
+    background: #ff5252;
+}
+
+.leave-comment form button{
+    background: #ff5252;
+}
+
+.sidebar-widget .tagcloud a {
+    background: #ff5252;
+}
+
+.sidebar-widget .categories ul li a:hover {
+    color: #ff5252;
+}
+
+#twitter .tweet a {
+    color: #ff5252;
+}
+
+
+
+
+
+.contact-us form button{
+    background: #ff5252;
+}
+
+.contact-us .contacts i{
+    background: #ff5252;
+}
+
+.error404{
+    color: #ff5252;
+}
+
+input:focus, textarea:focus{
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,82,82,0.6) !important;
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,82,82,0.6) !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,82,82,0.6) !important;
+    border-color: #ff5252 !important;
+}

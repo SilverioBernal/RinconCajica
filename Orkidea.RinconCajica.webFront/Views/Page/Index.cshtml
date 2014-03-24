@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.Page>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+}
+
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+
+<div class="row-fluid">
+    <div class="span2">
+        <h2>Menú</h2>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
+            <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+            <li class="active" ><a href="@Url.Action("Index", "Page")">Páginas internas</a></li>
+        </ul>
+    </div>
+    <div class="span10">
+
+        <h2>Paginas del front end</h2>
+       
+        <table class="table table-bordered table-striped table_vam" id="dt_gal">
+            <thead>
+                <tr>
+
+                    <th>Titulo</th>                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>                            
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>                        
+                        <td>                            
+                            <a href="@Url.Action("Edit", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a> 
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+@*<script>
+    $('#dt_gal').dataTable();
+</script>*@

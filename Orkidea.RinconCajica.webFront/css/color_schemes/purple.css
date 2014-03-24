@@ -1,0 +1,102 @@
+.page-title .arrow{
+    border-color: transparent transparent transparent #ad77bb;
+}
+
+.header-field h3 {
+    background: #ad77bb;
+}
+
+.social-media li a:hover {
+    background: #ad77bb;
+}
+
+ul.pagination li a:hover {
+    background: #ad77bb;
+}
+
+.navbar .nav>li.active,
+.navbar .nav>li:hover {
+    border-color: #ad77bb;
+}
+
+.navbar .nav li.dropdown.open,
+.navbar .nav li.dropdown.active,
+.navbar .nav li.dropdown.open.active {
+    border-color: #ad77bb;
+}
+
+.navbar .right-icons ul li a:hover, .navbar .right-icons ul li a.active {
+    background: #ad77bb;
+}
+
+#search_form{
+    background: #ad77bb;
+}
+
+.inner-project h4 a:hover {
+    color: #ad77bb;
+}
+
+.thumb-project div span{
+    background: #ad77bb;
+}
+
+.post-item .post-image a.more {
+    background: #ad77bb;
+}
+
+.post-details a:hover h2 {
+    color: #ad77bb;
+}
+
+.post-info ul li a:hover {
+    color: #ad77bb;
+}
+
+.blog .pagination ul li.active a {
+    background: #ad77bb;
+}
+
+.blog .pagination ul li.active a:hover {
+    background: #ad77bb;
+}
+
+.leave-comment form button{
+    background: #ad77bb;
+}
+
+.sidebar-widget .tagcloud a {
+    background: #ad77bb;
+}
+
+.sidebar-widget .categories ul li a:hover {
+    color: #ad77bb;
+}
+
+#twitter .tweet a {
+    color: #ad77bb;
+}
+
+
+
+
+
+.contact-us form button{
+    background: #ad77bb;
+}
+
+.contact-us .contacts i{
+    background: #ad77bb;
+}
+
+.error404{
+    color: #ad77bb;
+}
+
+
+input:focus, textarea:focus{
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(244, 181, 48, 0.6) !important;
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(244, 181, 48, 0.6) !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(244, 181, 48, 0.6) !important;
+    border-color: #ad77bb !important;
+}

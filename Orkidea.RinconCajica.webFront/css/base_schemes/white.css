@@ -1,0 +1,404 @@
+.cont-outer {
+    background: #fff;
+}
+
+.social-media li a {
+    background: #f2f2f2;
+    color: #6a7279;
+}
+
+.social-media li a:hover {
+    color: #fff;
+}
+
+.slider-nav li a {
+    background: #000;
+    color: #fff;
+}
+.slider-nav li a:hover {
+    background: #000;
+    color: #fff;
+}
+
+ul.pagination li a {
+    background: #f2f2f2;
+    color: #888;
+}
+
+ul.pagination li a:hover {
+    color: #fff;
+}
+
+blockquote {
+    border-color: #aaa;
+    background: #fff;
+    color: #a6a6a6;
+}
+
+.navbar-fixed-top .navbar-inner {
+    background: #fff;
+}
+
+.navbar .nav>li a {
+    border-color: 1px solid #f2f2f2;
+    color: #4f5458;
+}
+
+.navbar .nav>li a span {
+    color: #a6a6a6;
+}
+
+.navbar .nav>li{
+    background: #fff;
+    border-color: #fff;
+}
+
+.navbar .nav>li a:hover,
+.navbar .nav>li.active a{
+    color: #222;
+    background-color: #fff !important;
+}
+
+.navbar .nav>li.active,
+.navbar .nav>li:hover {
+    background-color: #fff;
+}
+.navbar .nav li.dropdown.open,
+.navbar .nav li.dropdown.active,
+.navbar .nav li.dropdown.open.active {
+    background: #fff !important;
+    color: #222;
+}
+
+.navbar .nav>li ul li a {
+    color: #4f5458;
+}
+
+.navbar .nav>li ul li a:hover {
+    background: #f2f2f2;
+}
+
+
+.navbar .right-icons {
+    border-color: #eaeaea;
+}
+
+.navbar .right-icons ul li {
+    background: #f2f2f2;
+}
+
+.navbar .right-icons ul li a {
+    color: #adadad;
+}
+
+.navbar .right-icons ul li a:hover, .navbar .right-icons ul li a.active {
+    color: #fff;
+}
+.navbar .right-icons ul li.search {
+    border-color: #eaeaea;
+}
+
+.member .thumb {
+    background: #ddd;
+}
+
+.member:hover .thumb .links{
+    background: #000;
+    background: rgba(0,0,0,0.6);
+}
+
+.member .thumb .links a{
+    background: #ddd;
+    background: rgba(0,0,0,0.6);
+    color: #f2f2f2;
+}
+
+.member .thumb .links a:hover{
+    background: #fff;
+    background: rgba(255,255,255,0.3);
+}
+
+.member-infos {
+    background: #f2f2f2;
+}
+
+.member-infos h4 {
+    color: #4f5458;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.member-infos small {
+    color: #a0a0a0;
+}
+
+.service span {
+    color: #a0a0a0;
+}
+.service h4 {
+    color: #4f5458;
+}
+
+.portfolio {
+    background: #fff;
+}
+
+.inner-project {
+    background: #f2f2f2;
+}
+
+.inner-project h4 a {
+    color: #4f5458;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.inner-project .category {
+    color: #a0a0a0;
+}
+
+.inner-project span {
+    color: #8a8e92;
+}
+
+.thumb-project {
+    background: #ddd;
+}
+
+.thumb-project div {
+    background: #eee;
+    background: rgba(255,255,255,0.6);
+}
+
+.thumb-project div span{
+    color: #fff;
+}
+
+.filter-portfolio .always-visible {
+    background: #f9f9f9;
+}
+
+.filter-portfolio .always-visible a {
+    color: #4f5458;
+}
+
+.filter-portfolio ul {
+    box-shadow: 0 0 2px rgba(0,0,0,0.6);
+}
+
+.filter-portfolio li {
+    background: #f2f2f2;
+}
+
+.filter-portfolio li a {
+    color: #4f5458;
+}
+
+.filter-portfolio li:hover {
+    background: #fff;
+}
+
+.portfolio-single{
+    background: #fff;
+}
+
+.portfolio-single h1{
+    color: #000;
+}
+
+.portfolio-single .details{
+    background: #f2f2f2;
+    color: #808080;
+}
+
+.portfolio-single .details .category i{
+    color: #adadad;
+}
+
+.portfolio-single .details .share a{
+    color: #808080;
+}
+
+.portfolio-single .details .share a i{
+    color: #f2f2f2;
+    background: #adadad;
+}
+
+
+.portfolio-single .details .share.facebook a:hover i{
+    color: #f2f2f2;
+}
+
+.post-item .post-image {
+    background: #ddd;
+}
+
+.post-details {
+    background: #f2f2f2;
+}
+
+.post-details a {
+    color: #4f5458;
+}
+
+.post-details h2 {
+    color: #4f5458;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.post-info {
+    color: #fff;
+}
+
+.post-info ul li,
+.post-info ul li a {
+    color: #fff;
+}
+
+.pagination ul {
+    background: #fff;
+}
+
+.blog .pagination ul li.active a {
+    color: #fff;
+    text-shadow: 0px 1px 0px rgba(0,0,0, 0.3);
+}
+
+.blog .pagination ul li.active a:hover {
+    color: #fff;
+}
+
+.blog .pagination ul li a {
+    background: #f2f2f2;
+    color: #6a7279;
+}
+
+.blog .pagination ul li a:hover {
+    background: #e7e7e7;
+    color: #4f5458;
+}
+
+.comment-cnt {
+    background: #f2f2f2;
+}
+
+.leave-comment form button{
+    color: #fff;
+    text-shadow: 0px 1px 0px rgba(0,0,0, 0.3);
+}
+
+.leave-comment form button:active{
+    text-shadow: 0px -1px 0px rgba(0,0,0, 0.3);
+}
+
+.comments .comment-cnt{
+    background: #f2f2f2;
+    border-color: #fff;
+}
+
+.comments .comment-cnt:nth-child(odd){
+    background: #e7e7e7;
+}
+
+.comments .comment-cnt img{
+    border-color: #fff;
+}
+
+.comments .comment-cnt .author{
+    color: #4f5458;
+    text-shadow: 1px 1px #fff;
+}
+
+.comments .comment-cnt .date{
+    color: #999;
+}
+
+.blog .widget-title {
+    background: #e7e7e7;
+    color: #4f5458;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.sidebar-widget .widget-cnt {
+    background: #f2f2f2;
+}
+
+.sidebar-widget .tagcloud a {
+    color: #fff;
+}
+
+.sidebar-widget .tagcloud a:hover {
+    background: #4f5458;
+}
+
+.sidebar-widget .categories ul li a {
+    color: #4f5458;
+}
+
+#twitter .tweet a:hover {
+    color: #4f5458;
+}
+
+#twitter .tweet .time {
+    color: #a6a6a6;
+}
+
+
+
+.index h1{
+  color: #000;
+  background: #fff;
+  background: rgba(255,255,255,0.9);
+}
+
+.index a{
+  background: #000;
+  color: #fff;
+}
+
+.index h1 span a:hover{
+  background: #2c2d2d;
+  background: rgba(0,0,0,0.7);
+}
+
+
+#map {
+    border: 1px solid #eaeaea;
+    background: #f2f2f2;
+}
+
+.contact-us form button{
+    color: #fff;
+    text-shadow: 0px 1px 0px rgba(0,0,0, 0.3);
+}
+
+.contact-us form button:active{
+    text-shadow: 0px -1px 0px rgba(0,0,0, 0.3);
+}
+
+.contact-us .contacts i{
+    color: #fff;
+}
+
+.error404-text{
+    color: #adadad;
+}
+
+@-webkit-keyframes music {
+    0% {color: #adadad;}
+    50% {color: #f2f2f2;}
+    100% {color: #adadad;}
+}
+@-moz-keyframes music {
+    0% {color: #adadad;}
+    50% {color: #f2f2f2;}
+    100% {color: #adadad;}
+}
+@-o-keyframes music {
+    0% {color: #adadad;}
+    50% {color: #f2f2f2;}
+    100% {color: #adadad;}
+}
+@keyframes music {
+    0% {color: #adadad;}
+    50% {color: #f2f2f2;}
+    100% {color: #adadad;}
+}

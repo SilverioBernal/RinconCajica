@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RinconModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="RinconModelStoreContainer">
+          <EntitySet Name="FileUpload" EntityType="RinconModel.Store.FileUpload" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HomeSlider" EntityType="RinconModel.Store.HomeSlider" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Page" EntityType="RinconModel.Store.Page" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="FileUpload">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="fileName" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HomeSlider">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="urlImagen" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="textoBoton1" Type="varchar" MaxLength="50" />
+          <Property Name="urlBoton1" Type="varchar" MaxLength="250" />
+          <Property Name="textoBoton2" Type="varchar" MaxLength="50" />
+          <Property Name="urlBoton2" Type="varchar" MaxLength="250" />
+          <Property Name="textoSlider" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="titulo" Type="varchar" MaxLength="50" />
+          <Property Name="contenidoPrincipal" Type="varchar(max)" />
+          <Property Name="contenidoSecundario" Type="varchar(max)" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RinconModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RinconEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="FileUpload" EntityType="RinconModel.FileUpload" />
+          <EntitySet Name="HomeSlider" EntityType="RinconModel.HomeSlider" />
+          <EntitySet Name="Page" EntityType="RinconModel.Page" />
+        </EntityContainer>
+        <EntityType Name="FileUpload">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Guid" Name="id" Nullable="false" />
+          <Property Type="String" Name="fileName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HomeSlider">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Guid" Name="id" Nullable="false" />
+          <Property Type="String" Name="urlImagen" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="textoBoton1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="urlBoton1" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="textoBoton2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="urlBoton2" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="textoSlider" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="String" Name="id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="titulo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contenidoPrincipal" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contenidoSecundario" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RinconModelStoreContainer" CdmEntityContainer="RinconEntities">
+          <EntitySetMapping Name="FileUpload">
+            <EntityTypeMapping TypeName="RinconModel.FileUpload">
+              <MappingFragment StoreEntitySet="FileUpload">
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeSlider">
+            <EntityTypeMapping TypeName="RinconModel.HomeSlider">
+              <MappingFragment StoreEntitySet="HomeSlider">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="textoSlider" ColumnName="textoSlider" />
+                <ScalarProperty Name="urlBoton2" ColumnName="urlBoton2" />
+                <ScalarProperty Name="textoBoton2" ColumnName="textoBoton2" />
+                <ScalarProperty Name="urlBoton1" ColumnName="urlBoton1" />
+                <ScalarProperty Name="textoBoton1" ColumnName="textoBoton1" />
+                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Page">
+            <EntityTypeMapping TypeName="RinconModel.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="contenidoSecundario" ColumnName="contenidoSecundario" />
+                <ScalarProperty Name="contenidoPrincipal" ColumnName="contenidoPrincipal" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

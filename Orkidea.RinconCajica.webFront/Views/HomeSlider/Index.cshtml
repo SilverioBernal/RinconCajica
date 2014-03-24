@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.HomeSlider>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+}
+
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+<div class="row-fluid">
+    <div class="span2">
+        <h2>Menú</h2>
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
+            <li class="active"><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+            <li><a href="@Url.Action("Index", "Page")">Páginas internas</a></li>
+        </ul>
+    </div>
+    <div class="span10">
+        <h2>Contenido pag. inicio</h2>
+
+        <p>
+            <a href="@Url.Action("Create")" class="btn btn-primary">Nuevo Slide</a>
+        </p>
+        <table class="table table-bordered table-striped table_vam" id="dt_gal">
+            <thead>
+                <tr>
+
+                    <th>Texto slide</th>
+                    @*<th>@Html.DisplayNameFor(model => model.urlImagen)</th>*@
+                    <th>Texto boton 1</th>
+                    @*<th>@Html.DisplayNameFor(model => model.urlBoton1)</th>*@
+                    <th>Texto boton 2</th>
+                    @*<th>@Html.DisplayNameFor(model => model.urlBoton2)</th>*@
+                    <th>Activo</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.textoSlider)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.urlImagen)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.textoBoton1)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.urlBoton1)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.textoBoton2)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.urlBoton2)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.activo)</td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a> |                    
+                            <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>       
+    </div>
+</div>
+
+<script>
+    $('#dt_gal').dataTable();
+</script>

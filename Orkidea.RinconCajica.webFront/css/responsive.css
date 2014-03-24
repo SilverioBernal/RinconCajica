@@ -1,0 +1,192 @@
+/********************************
+RESPONSIVE CSS * MEDIA QUERIES
+********************************/
+
+@media screen and (max-width: 1920px)  {
+    
+    body{
+        min-width: 360px;
+    }
+
+}
+
+@media screen and (max-width: 1360px)  {
+    
+    .default-icons {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        margin: 0;
+        width: 100%;
+    }
+    .default-icons > ul{
+        float: left;
+        margin: 20px 20px 0 20px;
+    }
+    .default-icons > ul.social-media {
+        float: right;
+    }
+    
+    .slider-nav li,
+    .social-media li {
+        display: inline-block;
+    }
+
+}
+
+/*iPad Landscape*/
+@media screen and (max-width: 1024px), screen and (max-device-width: 1024px), screen and (max-width: 1200px)  {
+    
+    .navbar .nav>li a {
+        padding: 30px 20px;
+        border-left: 1px solid #e2e2e2;
+        color: #444;
+        text-shadow: none;
+    }
+    .navbar .brand {
+        line-height: 99px;
+        margin-left: 30px;
+    }
+    
+    .navbar .right-icons ul{
+        width: 49px;
+    }
+    
+    .navbar .right-icons ul li {
+        width: 49px;
+        height: 49px;
+    }
+    .navbar .right-icons ul li a {
+        font-size: 16px;
+        line-height: 49px;
+    }
+    
+    #bg_slide img{
+        width: auto;
+        max-width: 20000px;
+        height: 100%;
+    }
+
+}
+
+/*iPad Portrait*/
+@media handheld and (max-width: 767px), screen and (max-device-width: 767px), screen and (max-width: 960px)  {
+    .navbar{
+        position: relative;
+    }
+    body{
+        padding-top: 0;
+    }
+    .navbar .brand {
+        line-height: inherit;
+        margin-left: 30px;
+        margin-top: 30px;
+    }
+    .navbar .btn-navbar {
+        margin-top: 30px;
+    }
+    .navbar .nav>li a {
+        padding: 10px 30px;
+        border: none;
+        color: #444;
+        font-weight: 300;
+        text-shadow: none;
+    }
+    .navbar .nav>li a:hover {
+        border: none;
+        color: inherit;
+    }
+    .navbar .nav>li a span {
+        display: none;
+    }
+    .nav-collapse {
+        padding-top: 30px;
+    }
+    .navbar .nav>.active>a,
+    .navbar .nav>.active>a:hover {
+        background: #ff5252;
+        border: none;
+        box-shadow: none;
+        color: #fff;
+    }
+    
+    .navbar .right-icons {
+        position: absolute;
+        right: 80px;
+        top: 30px;
+        width: 70px;
+        border: 0;
+    }
+    
+    .navbar .right-icons ul{
+        width: 100%;
+    }
+    
+    .navbar .right-icons ul li{
+        border: 0 !important;
+        line-height: 29px;
+        width: 29px;
+        height: 29px;
+    }
+    
+    .navbar .right-icons ul li:last-of-type{
+        margin-left: 10px;
+    }
+    
+    .navbar .right-icons ul a{
+        border: 0 !important;
+        font-size: 14px !important;
+        line-height: 29px !important;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+    }
+    
+}
+
+/*iPhone Landscape*/
+@media screen and (max-width: 480px), screen and (max-device-width: 480px), screen and (max-width: 750px)  {
+    
+    .default-icons > ul{
+        margin: 20px 0 0 0;
+    }
+    
+}
+
+/*iPhone Portrait*/
+@media screen and (max-width: 320px), screen and (max-device-width: 320px), screen and (max-width: 450px) {
+    .navbar .brand {
+        line-height: inherit;
+        margin-left: 20px;
+        margin-top: 30px;
+    }
+    .navbar .btn-navbar {
+        margin-top: 30px;
+    }
+    .navbar .nav>li a {
+        padding: 10px 20px;
+        border: none;
+        color: #444;
+        font-weight: 300;
+        text-shadow: none;
+    }
+    .navbar .nav>li a:hover {
+        border: none;
+        color: inherit;
+    }
+    .navbar .nav>li a span {
+        display: none;
+    }
+    .nav-collapse {
+        padding-top: 30px;
+    }
+    .navbar .nav>.active>a,
+    .navbar .nav>.active>a:hover {
+        background: #ff5252;
+        border: none;
+        box-shadow: none;
+        color: #fff;
+    }
+}

@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title>Rib - Responsive HTML5 Photography Template</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- [if lt IE 9]
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+    <!-- Stylesheets -->    
+    @Styles.Render("~/css/bootstrap.min.css")    
+    @Styles.Render("~/css/bootstrap-responsive.min.css")    
+    @Styles.Render("~/css/font-awesome.min.css")
+    @Styles.Render("~/css/custom.css")
+    @Styles.Render("~/css/responsive.css")
+    @Styles.Render("~/content/DataTables")
+        
+    
+    @*@Styles.Render("~/css/bootstrap.min.css")
+    @Styles.Render("~/css/bootstrap.min.css")*@
+
+   @* <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/base_schemes/light.css" id="base" />
+    <link rel="stylesheet" href="css/color_schemes/yellow.css" id="scheme" />
+    <link rel="stylesheet" href="css/responsive.css" />*@
+
+    <!-- [if IE 7]>
+		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
+		<![endif] -->
+@Scripts.Render("http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="container">
+        <div class="cont-outer">
+            <div class="row-fluid">
+                @RenderBody()
+            </div>
+        </div>
+        <!-- /.row-fluid -->
+    </div>
+    <!-- /.container -->
+
+    <!-- Scripts -->
+    
+    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>*@
+    
+    
+    <script>
+        window.jQuery || document.write('<script src="js/jquery.min.js">\x3C/script>')
+    </script>
+        
+    
+    @Scripts.Render("~/js/responsiveslides.min.js")
+    @Scripts.Render("~/js/jquery.cookie.js")
+    @Scripts.Render("~/js/jquery.isotope.min.js")
+    @Scripts.Render("~/js/magnific.js")
+    @Scripts.Render("~/js/hoverdir.js")
+    @Scripts.Render("~/js/custom.js")    
+    @Scripts.Render("~/bundles/DataTables")
+    @*<script src="js/bootstrap.min.js"></script>
+    <script src="js/responsiveslides.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/magnific.js"></script>
+    <script src="js/hoverdir.js"></script>
+    <script src="js/custom.js"></script>*@
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>
