@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .page-title {
     position: relative;
-    margin: 60px 0;
+    margin: 20px 0;
 }
 
 .header-field h3 {
@@ -342,7 +342,7 @@ mark{
 }
 .navbar .btn-navbar {
     text-shadow: none;
-    line-height: 148px;
+    /*line-height: 148px;*/
     margin-right: 20px;
 }
 
@@ -355,7 +355,7 @@ mark{
 .navbar .brand {
     margin-left: 60px;
     padding: 0;
-    line-height: 145px;
+    /*line-height: 145px;*/
 }
 body.padding .navbar{
     position: fixed;
@@ -374,7 +374,7 @@ body.padding .navbar{
 .navbar .nav>li a {
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: 70px;
+    /*padding-top: 70px;*/
     padding-bottom: 38px;
     border-left: 1px solid #eaeaea;
     font: 14px 'Raleway', sans-serif;

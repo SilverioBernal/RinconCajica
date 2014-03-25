@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="@Url.Content("~/css/bootstrap-responsive.min.css" )" />
     <link rel="stylesheet" href="@Url.Content("~/css/font-awesome.min.css")" />
     <link rel="stylesheet" href="@Url.Content("~/css/custom.css" )" />
-    <link rel="stylesheet" href="@Url.Content("~/css/base_schemes/light.css" )" />
-    <link rel="stylesheet" href="@Url.Content("~/css/color_schemes/yellow.css" )" />
+    <link rel="stylesheet" href="@Url.Content("~/css/base_schemes/white.css" )" />
+    <link rel="stylesheet" href="@Url.Content("~/css/color_schemes/green.css" )" />
     <link rel="stylesheet" href="@Url.Content("~/css/responsive.css" )" />
 
     <!-- [if IE 7]>
@@ -63,7 +63,7 @@
                                 <a href="@Url.Action("Index", "Home")"><span style="color: white;">.</span>Inicio</a>
                             </li>
                             <li>
-                                <a href="@Url.Action("Details", "Page", new { id = "AcercaDe" })"><span style="color: white;">.</span>Acerca de</a>
+                                <a href="@Url.Action("Details", "Page", new { id = "AcercaDe" })"><span style="color: white;">.</span>El club</a>
                             </li>
                             <li>
                                 <a href="@Url.Action("Details", "Page", new { id = "Deportes" })"><span style="color: white;">.</span>Deportes</a>
@@ -124,7 +124,7 @@
             </ul>
             <!-- /.slider-nav -->
 
-            <ul class="social-media">
+            @*<ul class="social-media">
                 <li class="tt" data-toggle="tooltip" data-container="body" data-placement="left" title="Find us on Facebook">
                     <a href="#" class="icon-facebook"></a>
                 </li>
@@ -134,7 +134,7 @@
                 <li class="tt" data-toggle="tooltip" data-container="body" data-placement="left" title="Find us on LinkedIn">
                     <a href="#" class="icon-linkedin"></a>
                 </li>
-            </ul>
+            </ul>*@
             <!-- /.social-media -->
         </div>
 

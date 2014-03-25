@@ -5,16 +5,8 @@
     Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
 }
 
-@*<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap-wysihtml5.css"></link>
-<script src="@Url.Content("~/js/wysihtml5-0.3.0.js")"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script src="@Url.Content("~/js/wysihtml5-0.3.0.js")"></script>
-<script src="@Url.Content("~/js/bootstrap-wysihtml5.js")"></script>*@
 
-
-
-<link rel="stylesheet" type="text/css" href="@Url.Content("~/wysihtml5/lib/css/bootstrap.min.css")"></link>
+@*<link rel="stylesheet" type="text/css" href="@Url.Content("~/wysihtml5/lib/css/bootstrap.min.css")"></link>
 <link rel="stylesheet" type="text/css" href="@Url.Content("~/wysihtml5/lib/css/prettify.css")"></link>
 <link rel="stylesheet" type="text/css" href="@Url.Content("~/wysihtml5/src/bootstrap-wysihtml5.css")"></link>
 
@@ -22,8 +14,9 @@
 <script src="@Url.Content("~/wysihtml5/lib/js/jquery-1.7.2.min.js")"></script>
 <script src="@Url.Content("~/wysihtml5/lib/js/prettify.js")"></script>
 <script src="@Url.Content("~/wysihtml5/lib/js/bootstrap.min.js")"></script>
-<script src="@Url.Content("~/wysihtml5/src/bootstrap-wysihtml5.js")"></script>
+<script src="@Url.Content("~/wysihtml5/src/bootstrap-wysihtml5.js")"></script>*@
 
+<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 
 <div class="row-fluid">
     <div class="span2">
@@ -73,7 +66,7 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-<script>
+@*<script>
     //$('.textarea').wysihtml5();
 
     $('.textarea').wysihtml5({
@@ -85,4 +78,8 @@
         "image": true, //Button to insert an image. Default true,
         "color": false //Button to change color of font  
     });
+</script>*@
+
+<script>
+    tinymce.init({ selector: 'textarea', plugins: "code, image" });
 </script>
