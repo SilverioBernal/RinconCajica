@@ -12,14 +12,11 @@ namespace Orkidea.RinconCajica.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Page
+    public partial class FrontUser
     {
-        public string id { get; set; }
-        public string titulo { get; set; }
-        public string contenidoPublico { get; set; }
-        public string contenidoPrivado { get; set; }
-        public Nullable<int> idSideBar { get; set; }
-    
-        public virtual SideBar SideBar { get; set; }
+        public int id { get; set; }
+        public string usuario { get; set; }
+        public string contrasena { get; set; }
+        public string idRol { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+}
+<div class="row-fluid" style="padding-top:50px;">
+    <div class="span2">
+        <div class="span12">                        
+            <ul class="nav nav-list well span12">
+                <li class="nav-header">Menú</li>
+                <li class="active"><a href="@Url.Action("Index", "backend")">Inicio</a></li>
+                <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
+                <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+                <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="span10">
+        
+        <div class="span12 well" style="min-height: 800px;">
+            <h2 style="text-align:center;">Bienvenido a la consola de administración</h2>
+        </div>
+    </div>
+</div>

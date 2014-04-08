@@ -182,20 +182,25 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BackendController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeSliderController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CustomIdentity.cs" />
     <Compile Include="Models\vmFileUpload.cs" />
     <Compile Include="Models\vmPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="wysihtml5\.gitignore" />
     <Content Include="wysihtml5\index.html" />
     <Content Include="wysihtml5\lib\css\bootstrap-responsive.css" />
@@ -644,6 +649,9 @@
     <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Views\Page\Edit.cshtml" />
     <Content Include="Views\Page\Details.cshtml" />
+    <Content Include="Views\Page\Create.cshtml" />
+    <Content Include="Views\Security\Logout.cshtml" />
+    <Content Include="Views\Backend\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -661,6 +669,10 @@
     <ProjectReference Include="..\Orkidea.RinconCajica.Entities\Orkidea.RinconCajica.Entities.csproj">
       <Project>{41dad7cb-ad32-49e0-b02f-8e644fbc2252}</Project>
       <Name>Orkidea.RinconCajica.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orkidea.RinconCajica.Utilities\Orkidea.RinconCajica.Utilities.csproj">
+      <Project>{c8c0275c-5d05-44d4-a3c4-f1fcc71b1da9}</Project>
+      <Name>Orkidea.RinconCajica.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

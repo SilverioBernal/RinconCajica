@@ -47,6 +47,9 @@
     <Compile Include="FileUpload.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FrontUser.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HomeSlider.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
@@ -57,6 +60,9 @@
     <Compile Include="RinconEntityModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SideBar.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

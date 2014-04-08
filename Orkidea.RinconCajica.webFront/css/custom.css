@@ -375,7 +375,8 @@ body.padding .navbar{
     padding-left: 30px;
     padding-right: 30px;
     /*padding-top: 70px;*/
-    padding-bottom: 38px;
+    /*padding-bottom: 38px;*/
+    padding-bottom: 25px;
     border-left: 1px solid #eaeaea;
     font: 14px 'Raleway', sans-serif;
     font-weight: 700;
@@ -540,7 +541,7 @@ body.padding .navbar{
 #search_form{
     position: absolute;
     top: 100%;
-    right: -500px;
+    right: -590px;
     transition: all 0.2s ease-out;
     -webkit-transition: all 0.2s ease-out;
     -ms-transition: all 0.2s ease-out;

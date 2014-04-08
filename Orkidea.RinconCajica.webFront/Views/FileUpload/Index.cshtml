@@ -5,51 +5,55 @@
     Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
 }
 
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
 @Styles.Render("~/content/DataTables")
 @Scripts.Render("~/bundles/DataTables")
-<div class="row-fluid">
+<div class="row-fluid" style="padding-top: 50px;">
     <div class="span2">
-        <h2>Menú</h2>
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
-            <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
-            <li><a href="@Url.Action("Index", "Page")">Páginas internas</a></li>
-        </ul>
+        <div class="span12">
+            <ul class="nav nav-list well span12">
+                <li class="nav-header">Menú</li>
+                <li><a href="@Url.Action("Index", "backend")">Inicio</a></li>
+                <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
+                <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+                <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+            </ul>
+        </div>
     </div>
     <div class="span10">
+        <div class="span12 well" style="min-height: 800px;">
+            <h2 style="text-align:center;">Archivos subidos</h2>
 
-        <h2>Archivos subidos</h2>
-
-        <p>
-            <a href="@Url.Action("Create")" class="btn btn-primary">Nuevo archivo</a>            
-        </p>
-        <table class="table table-bordered table-striped table_vam" id="dt_gal">
-            <thead>
-                <tr>
-
-                    <th>                        
-                        @Html.DisplayNameFor(model => model.fileName)
-                    </th>
-                    <th>Link</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+            <p>
+                <a href="@Url.Action("Create")" class="btn btn-primary">Nuevo archivo</a>
+            </p>
+            <table class="table table-bordered table-striped table_vam" id="dt_gal">
+                <thead>
                     <tr>
-                        <td>                            
-                            @Html.DisplayFor(modelItem => item.fileName)
-                        </td>
-                        <td><a href="@Url.Content("~/UploadedFiles/" +item.fileName)" target="_blank">Ver mas</a></td>
-                        <td>                            
-                            <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
 
+                        <th>
+                            Nombre del archivo
+                        </th>
+                        <th>Link</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fileName)
+                            </td>
+                            <td><a href="@Url.Content("~/UploadedFiles/" + item.fileName)" target="_blank">Ver mas</a></td>
+                            <td>
+                                <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <script>

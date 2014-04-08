@@ -14,9 +14,25 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /HomeSlider/
-
+        [Authorize]
         public ActionResult Index()
         {
+            #region User identification
+            System.Security.Principal.IIdentity context = HttpContext.User.Identity;
+
+            string rol = "";
+
+            if (context.IsAuthenticated)
+            {
+                System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)HttpContext.User.Identity;
+                string[] userRole = ci.Ticket.UserData.Split('|');
+                rol = userRole[1];
+            }
+            #endregion
+
+            if (rol != "A")
+                return RedirectToAction("index", "Home");
+
             List<HomeSlider> lsHomeSlider = new List<HomeSlider>();
 
             try
@@ -40,15 +56,31 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /HomeSlider/Create
-
+        [Authorize]
         public ActionResult Create()
         {
+            #region User identification
+            System.Security.Principal.IIdentity context = HttpContext.User.Identity;
+
+            string rol = "";
+
+            if (context.IsAuthenticated)
+            {
+                System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)HttpContext.User.Identity;
+                string[] userRole = ci.Ticket.UserData.Split('|');
+                rol = userRole[1];
+            }
+            #endregion
+
+            if (rol != "A")
+                return RedirectToAction("index", "Home");
+
             return View();
         }
 
         //
         // POST: /HomeSlider/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(HomeSlider homeSlider)
         {
@@ -69,15 +101,31 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /HomeSlider/Edit/5
-
+        [Authorize]
         public ActionResult Edit(Guid id)
-        {            
+        {
+            #region User identification
+            System.Security.Principal.IIdentity context = HttpContext.User.Identity;
+
+            string rol = "";
+
+            if (context.IsAuthenticated)
+            {
+                System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)HttpContext.User.Identity;
+                string[] userRole = ci.Ticket.UserData.Split('|');
+                rol = userRole[1];
+            }
+            #endregion
+
+            if (rol != "A")
+                return RedirectToAction("index", "Home");
+
             return View(bizHomeSlider.GetHomeSliderbyKey(new HomeSlider() { id = id }));
         }
 
         //
         // POST: /HomeSlider/Edit/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Guid id, HomeSlider homeSlider)
         {
@@ -98,15 +146,31 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /HomeSlider/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
+            #region User identification
+            System.Security.Principal.IIdentity context = HttpContext.User.Identity;
+
+            string rol = "";
+
+            if (context.IsAuthenticated)
+            {
+                System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)HttpContext.User.Identity;
+                string[] userRole = ci.Ticket.UserData.Split('|');
+                rol = userRole[1];
+            }
+            #endregion
+
+            if (rol != "A")
+                return RedirectToAction("index", "Home");
+
             return View();
         }
 
         //
         // POST: /HomeSlider/Delete/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -2,9 +2,11 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
 <html lang="en">
+<!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <title>Club El Rincon de Cajicá</title>
@@ -20,22 +22,38 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap-responsive.min.css" )" />
+    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap-responsive.min.css")" />
     <link rel="stylesheet" href="@Url.Content("~/css/font-awesome.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/css/custom.css" )" />
-    <link rel="stylesheet" href="@Url.Content("~/css/base_schemes/white.css" )" />
-    <link rel="stylesheet" href="@Url.Content("~/css/color_schemes/green.css" )" />
-    <link rel="stylesheet" href="@Url.Content("~/css/responsive.css" )" />
+    <link rel="stylesheet" href="@Url.Content("~/css/custom.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/base_schemes/white.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/color_schemes/green.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/responsive.css")" />
 
     <!-- [if IE 7]>
 		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
 		<![endif] -->
 
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+
+    @{
+        System.Security.Principal.IIdentity context = Context.User.Identity;
+        int user = 0;
+        string rol = "U";
+        string userName = "";
+        bool autenticado = false;
+
+        if (context.IsAuthenticated)
+        {
+            System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)Context.User.Identity;
+            string[] userRole = ci.Ticket.UserData.Split('|');
+            user = int.Parse(userRole[0]);
+            rol = userRole[1];
+            userName = ci.Name;
+            autenticado = (user != null ? true : false);
+        }
+    }
 </head>
-<body>
-    <header>
-    </header>
+<body>    
     <div id="body">
         <!-- Background Slider -->
         <div id="bg_slide">
@@ -57,6 +75,14 @@
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
                     <a class="brand" href="@Url.Action("Index", "Home")">
                         <img src="img/logo.png" alt="Round"></a>
+                    <div class="right-icons pull-right">
+                        <ul>
+                            <li class="search tt" data-container="body" data-toggle="tooltip" data-placement="left" title="Zona de usuarios">
+                                <a id="search_toggle" class="icon-user"></a>
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="nav-collapse">
                         <ul class="nav pull-right">
                             <li class="active">
@@ -77,29 +103,10 @@
                             <li>
                                 <a href="#"><span style="color: white;">.</span>Contacto</a>
                             </li>
-                            @*<li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span></span>Deportes</a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="blog.html">Blog Front Page</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-single.html">Blog Single Page</a>
-                                    </li>
-                                </ul>
-                            </li>*@
-                            @*<li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Our Pages</span>Pages</a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="typogrid.html">Typography and Grid</a>
-                                    </li>
-                                    <li>
-                                        <a href="404.html">404 Page</a>
-                                    </li>
-                                </ul>
-                            </li>*@
+                            @if (rol == "A")
+                            {
+                                <li><a href="@Url.Action("Index", "Backend")"><span style="color: white;">.</span>BackEnd</a></li>
+                            }
                         </ul>
                     </div>
                     <!-- /.nav-collapse -->
@@ -108,7 +115,18 @@
             </div>
             <!-- /.container -->
             <form id="search_form">
-                <input type="text" placeholder="Type here and press enter..." />
+                @if (autenticado == false)
+                {
+                    <input type="text" placeholder="Usuario" id="txtUsuario" />
+                    <input type="password" placeholder="Contraseña" id="txtContrasena" />
+                    <button type="button" class="btn btn-default" id="btnLogin">Ingresar</button>
+                }
+                else
+                {
+                    <span style="color: white;"><strong>Bienvenido @userName | </strong></span>
+                    <a href="@Url.Action("Logout", "Security")" style="color: white;"><strong>Cerrar sesión | </strong></a>                    
+                    <a href="javascript:void(0);" style="color: white;" id="lnkCambioContrasena"><strong>Cambiar contraseña</strong></a>                    
+                }
             </form>
         </div>
         <!-- /.navbar -->
@@ -124,18 +142,6 @@
             </ul>
             <!-- /.slider-nav -->
 
-            @*<ul class="social-media">
-                <li class="tt" data-toggle="tooltip" data-container="body" data-placement="left" title="Find us on Facebook">
-                    <a href="#" class="icon-facebook"></a>
-                </li>
-                <li class="tt" data-toggle="tooltip" data-container="body" data-placement="left" title="Follow us on Twitter">
-                    <a href="#" class="icon-twitter"></a>
-                </li>
-                <li class="tt" data-toggle="tooltip" data-container="body" data-placement="left" title="Find us on LinkedIn">
-                    <a href="#" class="icon-linkedin"></a>
-                </li>
-            </ul>*@
-            <!-- /.social-media -->
         </div>
 
         <div class="container index">
@@ -158,8 +164,6 @@
                                     texto += "</span>";
                                 }
                                 texto += "</mark>";
-
-
                             }
                         }
                         @Html.Raw(texto)
@@ -170,16 +174,25 @@
         </div>
         <!-- /.container -->
 
-        <!-- Scripts -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>
-            window.jQuery || document.write('<script src="js/jquery.min.js">\x3C/script>')
+        <div id="logoutModal" class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Cambiar contraseña</h3>
+            </div>
+            <div class="modal-body">
+                <label>Ingrese la nueva contraseña</label>
+                <input type="password" placeholder="Nueva contraseña" id="txtNuevaClave" />
+                <label>Confirme la contraseña</label>
+                <input type="password" placeholder="Nueva contraseña" id="txtNuevaClaveConfirma" />
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-success" id="btnCambiarContrasena">Cambiar clave</a>
+                <a href="#" data-dismiss="modal" class="btn">Cancelar</a>
+            </div>
+        </div>
 
-            $('.work').click(function () {
-                var lola = this;
-                window.location.href = lola.href;
-            });
-        </script>
+        <!-- Scripts -->
+        <script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
         <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
         <script src="@Url.Content("~/js/responsiveslides.min.js")"></script>
         <script src="@Url.Content("~/js/jquery.cookie.js")"></script>
@@ -187,8 +200,82 @@
         <script src="@Url.Content("~/js/magnific.js")"></script>
         <script src="@Url.Content("~/js/hoverdir.js")"></script>
         <script src="@Url.Content("~/js/custom.js")"></script>
+        <script>
+            window.jQuery || document.write('<script src="@Url.Content("~/js/jquery.min.js")">\x3C/script>')
+
+            $('#btnLogin').click(function () {
+                var url = document.URL;
+
+                var sPageURL = window.location.search.substring(1);
+                var sURLVariables = sPageURL.split('&');
+                for (var i = 0; i < sURLVariables.length; i++) {
+                    var sParameterName = sURLVariables[i].split('=');
+                    if (sParameterName[0] == "ReturnUrl") {
+                        var url = sParameterName[1].replace('%2f', '');
+                    }
+                }
+                                
+                var usuario = $('#txtUsuario').val();
+                var contrasena = $('#txtContrasena').val();
+
+                if (usuario != '' && contrasena != '') {
+
+                    var datos = {
+                        UserName: usuario,
+                        Password: contrasena
+                    };
+
+                    $.getJSON("@Url.Action("barLogin", "Security")", datos, res);
+
+                    function res(data) {
+                        if (data == "OK") {
+                            window.open(url, '_self');
+                        }
+                    }
+                }
+            });
+
+            $('#lnkCambioContrasena').click(function () {
+                $('#logoutModal').modal()
+            });
+
+            $('#btnCambiarContrasena').click(function () {
+                var clave = $('#txtNuevaClave').val();
+                var url = document.URL;
+
+                if (clave != '' && clave == $('#txtNuevaClaveConfirma').val()) {
+                    var datos = {
+                        id: '@user',
+                        usuario: '@userName',
+                        contrasena: clave,
+                        idRol: '@rol'
+                    };
+
+                $.getJSON("@Url.Action("BarChangePassword", "Security")", datos, res);
+
+                    function res(data) {
+                        if (data == "OK") {
+                            window.open(url, '_self');
+                        }
+                    }
+                }
+            });
+
+            $(document).ready(function(){
+                var sPageURL = window.location.search.substring(1);
+                var sURLVariables = sPageURL.split('&');
+                for (var i = 0; i < sURLVariables.length; i++) 
+                {
+                    var sParameterName = sURLVariables[i].split('=');
+                    if (sParameterName[0] == "ReturnUrl")
+                    {
+                        $("#search_form").addClass("show");
+                    }
+                }
+            });
+
+            
+        </script>        
     </div>
-    @*@Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)*@
 </body>
 </html>

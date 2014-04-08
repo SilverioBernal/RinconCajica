@@ -47,8 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BizFileUpload.cs" />
+    <Compile Include="BizFrontUser.cs" />
     <Compile Include="BizHomeSlider.cs" />
     <Compile Include="BizPage.cs" />
+    <Compile Include="BizSideBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

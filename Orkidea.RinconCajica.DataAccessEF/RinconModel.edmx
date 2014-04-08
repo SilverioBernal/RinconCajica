@@ -7,8 +7,14 @@
     <Schema Namespace="RinconModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="RinconModelStoreContainer">
           <EntitySet Name="FileUpload" EntityType="RinconModel.Store.FileUpload" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FrontUser" EntityType="RinconModel.Store.FrontUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HomeSlider" EntityType="RinconModel.Store.HomeSlider" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Page" EntityType="RinconModel.Store.Page" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SideBar" EntityType="RinconModel.Store.SideBar" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.Store.FK_Page_SideBar">
+            <End Role="SideBar" EntitySet="SideBar" />
+            <End Role="Page" EntitySet="Page" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="FileUpload">
           <Key>
@@ -16,6 +22,15 @@
           </Key>
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="fileName" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FrontUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="contrasena" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="idRol" Type="varchar" Nullable="false" MaxLength="1" />
         </EntityType>
         <EntityType Name="HomeSlider">
           <Key>
@@ -36,9 +51,30 @@
           </Key>
           <Property Name="id" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="titulo" Type="varchar" MaxLength="50" />
-          <Property Name="contenidoPrincipal" Type="varchar(max)" />
-          <Property Name="contenidoSecundario" Type="varchar(max)" />
+          <Property Name="contenidoPublico" Type="varchar(max)" />
+          <Property Name="contenidoPrivado" Type="varchar(max)" />
+          <Property Name="idSideBar" Type="int" />
         </EntityType>
+        <EntityType Name="SideBar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="contenido" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Page_SideBar">
+          <End Role="SideBar" Type="RinconModel.Store.SideBar" Multiplicity="0..1" />
+          <End Role="Page" Type="RinconModel.Store.Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SideBar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Page">
+              <PropertyRef Name="idSideBar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -47,6 +83,12 @@
           <EntitySet Name="FileUpload" EntityType="RinconModel.FileUpload" />
           <EntitySet Name="HomeSlider" EntityType="RinconModel.HomeSlider" />
           <EntitySet Name="Page" EntityType="RinconModel.Page" />
+          <EntitySet Name="SideBar" EntityType="RinconModel.SideBar" />
+          <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.FK_Page_SideBar">
+            <End Role="SideBar" EntitySet="SideBar" />
+            <End Role="Page" EntitySet="Page" />
+          </AssociationSet>
+          <EntitySet Name="FrontUser" EntityType="RinconModel.FrontUser" />
         </EntityContainer>
         <EntityType Name="FileUpload">
           <Key>
@@ -74,8 +116,40 @@
           </Key>
           <Property Type="String" Name="id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="titulo" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contenidoPrincipal" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contenidoSecundario" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contenidoPublico" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contenidoPrivado" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="idSideBar" />
+          <NavigationProperty Name="SideBar" Relationship="RinconModel.FK_Page_SideBar" FromRole="Page" ToRole="SideBar" />
+        </EntityType>
+        <EntityType Name="SideBar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contenido" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Page" Relationship="RinconModel.FK_Page_SideBar" FromRole="SideBar" ToRole="Page" />
+        </EntityType>
+        <Association Name="FK_Page_SideBar">
+          <End Type="RinconModel.SideBar" Role="SideBar" Multiplicity="0..1" />
+          <End Type="RinconModel.Page" Role="Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SideBar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Page">
+              <PropertyRef Name="idSideBar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FrontUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contrasena" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="idRol" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -108,9 +182,29 @@
           <EntitySetMapping Name="Page">
             <EntityTypeMapping TypeName="RinconModel.Page">
               <MappingFragment StoreEntitySet="Page">
-                <ScalarProperty Name="contenidoSecundario" ColumnName="contenidoSecundario" />
-                <ScalarProperty Name="contenidoPrincipal" ColumnName="contenidoPrincipal" />
+                <ScalarProperty Name="idSideBar" ColumnName="idSideBar" />
+                <ScalarProperty Name="contenidoPrivado" ColumnName="contenidoPrivado" />
+                <ScalarProperty Name="contenidoPublico" ColumnName="contenidoPublico" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SideBar">
+            <EntityTypeMapping TypeName="RinconModel.SideBar">
+              <MappingFragment StoreEntitySet="SideBar">
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FrontUser">
+            <EntityTypeMapping TypeName="RinconModel.FrontUser">
+              <MappingFragment StoreEntitySet="FrontUser">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

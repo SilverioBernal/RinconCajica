@@ -15,9 +15,25 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         BizFileUpload bizFileUpload = new BizFileUpload();
         //
         // GET: /FileUpload/
-
+        [Authorize]
         public ActionResult Index()
         {
+            #region User identification
+            System.Security.Principal.IIdentity context = HttpContext.User.Identity;
+
+            string rol = "";
+
+            if (context.IsAuthenticated)
+            {
+                System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)HttpContext.User.Identity;
+                string[] userRole = ci.Ticket.UserData.Split('|');
+                rol = userRole[1];
+            }
+            #endregion
+
+            if (rol != "A")
+                return RedirectToAction("index", "Home");
+
             List<FileUpload> lsHomeSlider = new List<FileUpload>();
 
             try
@@ -41,15 +57,31 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /FileUpload/Create
-
+        [Authorize]
         public ActionResult Create()
         {
+            #region User identification
+            System.Security.Principal.IIdentity context = HttpContext.User.Identity;
+
+            string rol = "";
+
+            if (context.IsAuthenticated)
+            {
+                System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)HttpContext.User.Identity;
+                string[] userRole = ci.Ticket.UserData.Split('|');
+                rol = userRole[1];
+            }
+            #endregion
+
+            if (rol != "A")
+                return RedirectToAction("index", "Home");
+
             return View();
         }
 
         //
         // POST: /FileUpload/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(vmFileUpload model)
         {
@@ -95,9 +127,26 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /FileUpload/Delete/5
-
+        [Authorize]
         public ActionResult Delete(Guid id)
-        {            
+        {
+
+            #region User identification
+            System.Security.Principal.IIdentity context = HttpContext.User.Identity;
+
+            string rol = "";
+
+            if (context.IsAuthenticated)
+            {
+                System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)HttpContext.User.Identity;
+                string[] userRole = ci.Ticket.UserData.Split('|');
+                rol = userRole[1];
+            }
+            #endregion
+
+            if (rol != "A")
+                return RedirectToAction("index", "Home");
+
             bizFileUpload.DeleteFileUpload(new FileUpload() { id = id});
             return RedirectToAction("Index");
         }

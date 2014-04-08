@@ -29,5 +29,7 @@ namespace Orkidea.RinconCajica.DataAccessEF
         public DbSet<FileUpload> FileUpload { get; set; }
         public DbSet<HomeSlider> HomeSlider { get; set; }
         public DbSet<Page> Page { get; set; }
+        public DbSet<SideBar> SideBar { get; set; }
+        public DbSet<FrontUser> FrontUser { get; set; }
     }
 }
