@@ -93,7 +93,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                 model.File.SaveAs(physicalPath + fileName);
 
-                bizFileUpload.SaveFileUpload(new FileUpload() { id = Guid.NewGuid(), fileName = fileName });                
+
+
+                bizFileUpload.SaveFileUpload(new FileUpload() { id = Guid.NewGuid(), fileName = fileName, nombre = model.nombre });                
             }
 
             return RedirectToAction("Index");

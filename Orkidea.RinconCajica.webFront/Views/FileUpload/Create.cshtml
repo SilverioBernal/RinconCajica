@@ -21,6 +21,12 @@
                 <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
                 <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
                 <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                <li class="nav-header">Deportes</li>
+                <li><a href="@Url.Action("Index", "SportCategory")">Categorías</a></li>
+                <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
             </ul>
         </div>
     </div>
@@ -29,11 +35,18 @@
             <h2>Subir archvo</h2>
             <div class="span12">
                 @using (Html.BeginForm("Create", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
+                {                    
                     <div class="row-fluid">
                         @Html.TextBoxFor(m => m.File, new { type = "file", @class = "btn btn-primary", title = "Seleccione el archivo" })
                         @Html.ValidationMessageFor(m => m.File)
 
+                    </div>
+                    <br />
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <label>Descripcion del archivo</label>
+                            @Html.TextBoxFor(m => m.nombre, new { @class = "span12" })
+                        </div>
                     </div>
                     <br />
                     <div class="row-fluid">

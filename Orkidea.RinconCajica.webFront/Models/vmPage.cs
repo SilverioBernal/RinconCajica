@@ -12,7 +12,7 @@ namespace Orkidea.RinconCajica.webFront.Models
         BizHomeSlider bizHomeSlider = new BizHomeSlider();
         BizSideBar bizSideBar = new BizSideBar();
 
-        public string sideBar { get; set; }
+        public string sideBarContent { get; set; }
 
         public List<HomeSlider> lsHomeSlider { get; set; }
         public List<SideBar> lsSideBar { get; set; }

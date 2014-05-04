@@ -46,11 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BizClubPartner.cs" />
     <Compile Include="BizFileUpload.cs" />
     <Compile Include="BizFrontUser.cs" />
     <Compile Include="BizHomeSlider.cs" />
+    <Compile Include="BizJoinContest.cs" />
     <Compile Include="BizPage.cs" />
     <Compile Include="BizSideBar.cs" />
+    <Compile Include="BizSport.cs" />
+    <Compile Include="BizSportBranch.cs" />
+    <Compile Include="BizSportModality.cs" />
+    <Compile Include="BizSportSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

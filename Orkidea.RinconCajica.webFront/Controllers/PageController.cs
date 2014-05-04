@@ -45,15 +45,23 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /Page/Details/5
-        
+
         public ActionResult Details(string id)
         {
-            ViewBag.id = id;
+            string deportes = ConfigurationManager.AppSettings["deportes"].ToString() ;
+
+            if (deportes.Contains(id))
+                ViewBag.menu = "Deportes";
+            else
+                ViewBag.menu = id;
+
             Page page = bizPage.GetPagebyKey(new Page() { id = id });
 
-            if (page.idSideBar != null)
+            string sideBarContent = "";
+
+            if (page.idSideBar != null && page.idSideBar != 0)
             {
-                bizSideBar.GetSideBarByKey(new SideBar() { id = (int)page.idSideBar });
+               sideBarContent =  bizSideBar.GetSideBarByKey(new SideBar() { id = (int)page.idSideBar }).contenido;
 
             }
             vmPage _vmPage = new vmPage()
@@ -63,7 +71,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 contenidoPrivado = page.contenidoPrivado,
                 idSideBar = page.idSideBar,
                 titulo = page.titulo,
-                sideBar = (page.idSideBar != null) ? bizSideBar.GetSideBarByKey(new SideBar() { id = (int)page.idSideBar }).contenido : ""
+                sideBarContent = sideBarContent
             };
             return View(_vmPage);
         }
@@ -97,47 +105,41 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         // POST: /Page/Create
         [Authorize]
         [HttpPost]
-        public ActionResult Create(vmPage _page)
+        [ValidateInput(false)]
+        public ActionResult Create(vmPage pageTarget)
         {
+            // TODO: Add insert logic here
             try
             {
-                // TODO: Add insert logic here
-                try
+
+                Page page = new Page()
                 {
+                    contenidoPrivado = pageTarget.contenidoPrivado,
+                    contenidoPublico = pageTarget.contenidoPublico,
+                    idSideBar = pageTarget.idSideBar,
+                    titulo = pageTarget.titulo
+                };
 
-                    Page page = new Page()
-                    {
-                        contenidoPrivado = _page.contenidoPrivado,
-                        contenidoPublico = _page.contenidoPublico,
-                        idSideBar = _page.idSideBar,
-                        titulo = _page.titulo
-                    };
+                page.id = Regex.Replace(
+                    CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pageTarget.titulo
+                    .ToLower()
+                    .Replace(@"@", "a")
+                    .Replace('á', 'a')
+                    .Replace('é', 'e')
+                    .Replace('í', 'i')
+                    .Replace('ó', 'o')
+                    .Replace('ú', 'u')
+                    .Replace('ñ', 'n')
+                    .Replace('ü', 'u')
+                    ), @"[^\w]", "", RegexOptions.None, TimeSpan.FromSeconds(1.5));
 
-                    page.id = Regex.Replace(
-                        CultureInfo.CurrentCulture.TextInfo.ToTitleCase(_page.titulo
-                        .ToLower()
-                        .Replace(@"@", "a")
-                        .Replace('á', 'a')
-                        .Replace('é', 'e')
-                        .Replace('í', 'i')
-                        .Replace('ó', 'o')
-                        .Replace('ú', 'u')
-                        .Replace('ñ', 'n')
-                        .Replace('ü', 'u')
-                        ), @"[^\w]", "", RegexOptions.None, TimeSpan.FromSeconds(1.5));
-
-                    bizPage.SavePage(page);
-                }
-                // If we timeout when replacing invalid characters, 
-                // we should return Empty.
-                catch (RegexMatchTimeoutException)
-                {
-                    return RedirectToAction("Index");
-                }
+                bizPage.SavePage(page);
 
                 return RedirectToAction("Index");
             }
-            catch
+            // If we timeout when replacing invalid characters, 
+            // we should return Empty.
+            catch (RegexMatchTimeoutException)
             {
                 return View();
             }
@@ -192,7 +194,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 {
                     contenidoPrivado = _page.contenidoPrivado,
                     contenidoPublico = _page.contenidoPublico,
-                    idSideBar = _page.idSideBar,
+                    idSideBar = _page.idSideBar == 0 ? null : _page.idSideBar,
                     titulo = _page.titulo
                 };
 

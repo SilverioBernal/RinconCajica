@@ -1,0 +1,145 @@
+﻿@model Orkidea.RinconCajica.webFront.Models.vmJoinContest
+@using Recaptcha;
+@{
+    ViewBag.Title = "join";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+
+<div id="bg_slide">
+    <ul>
+        @{Html.RenderAction("getHomeSlider", "HomeSlider");}
+    </ul>
+    <div class="pattern"></div>
+</div>
+
+<div class="default-icons clearfix">
+    <ul class="slider-nav">
+        <li>
+            <a href="#" class="icon-angle-left rslides_nav rslides1_nav prev"></a>
+        </li>
+        <li>
+            <a href="#" class="icon-angle-right rslides_nav rslides1_nav next"></a>
+        </li>
+    </ul>
+    <!-- /.slider-nav -->
+
+
+</div>
+
+<div class="container">
+    <div class="header-field">
+        <div class="page-title pull-left">
+            <h3>@Model.nombreTorneo - Inscripción</h3>
+        </div>
+    </div>
+    <!-- /.header-field -->
+</div>
+<!-- /.container -->
+
+<div class="container">
+    <div class="cont-outer">
+        <div class="row-fluid">
+            <div class="span8">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)   
+                    @Html.HiddenFor(c => c.idSocio)
+                    <div class="row-fluid">
+                        <div class="span9">
+                            <label class="span12">Nombre <span style="color: red; display: none;">Requerido</span></label>
+                            @Html.TextBoxFor(c => c.nombre, new { @class = "span12 req" })
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span3">
+                            <label>Identificación <span style="color: red; display: none;">Requerido</span></label>
+                            @Html.TextBoxFor(c => c.identificacion, new { @class = "span12 req" })
+                        </div>
+                        <div class="span3">
+                            <label>Teléfono fijo <span style="color: red; display: none;">Requerido</span></label>
+                            @Html.TextBoxFor(c => c.telefonoFijo, new { @class = "span12 req" })
+                        </div>
+                        <div class="span3">
+                            <label>Celular <span style="color: red; display: none;">Requerido</span></label>
+                            @Html.TextBoxFor(c => c.telefonoCelular, new { @class = "span12 req" })
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <label>Correo electrónico <span style="color: red; display: none;">Requerido</span></label>
+                            @Html.TextBoxFor(c => c.email, new { @class = "span12 req", type = "email" })
+                        </div>
+                        <div class="span3">
+                            <label>Categoría <span style="color: red; display: none;">Requerido</span></label>
+                            @Html.DropDownListFor(c => c.categoria, new SelectList(Model.lsCategorias, "key", "value"), new { @class = "span12" })
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        @Html.Raw(Html.GenerateCaptcha())
+                        <span style="color: red;">@ViewBag.mensaje</span>
+                         @*@Html.ValidationMessage("recaptcha")*@
+                    </div>
+                    <br />
+                    <div class="row-fluid">
+                        <input type="submit" value="Guardar registro" class="btn btn-success" id="btnGuardar" />
+                    </div>
+                }
+
+            </div>
+            <div class="span4">
+                <img src="@Model.urlPoster" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+    $(document).ready(function () {
+        var socio = '@ViewBag.socio';
+
+        if (socio == 'True') {
+            $("#nombre").attr("ReadOnly", "true");
+            $("#identificacion").attr("ReadOnly", "true");
+        }
+        else {
+            $("#nombre").removeAttr("ReadOnly");
+            $("#identificacion").removeAttr("ReadOnly");
+        }
+    });
+
+
+    $('#btnGuardar').click(function () {
+        var socio = '@ViewBag.socio';
+
+        var requeridos = $('.req');
+        var falla = 0;
+
+        $(requeridos).each(function () {
+
+            var padre = this.parentNode;
+            var etiqueta = $(padre).find('label')
+            var validador = etiqueta.find('span')[0];
+
+            if ($(this).val() == "") {
+                $(validador).css("display", "inline")
+                falla++
+            }
+            else {
+                $(validador).css("display", "none")
+            }
+        });
+
+        if (falla > 0)
+        {
+            return false;
+        }
+    });
+
+
+</script>

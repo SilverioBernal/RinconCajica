@@ -16,5 +16,6 @@ namespace Orkidea.RinconCajica.Entities
     {
         public System.Guid id { get; set; }
         public string fileName { get; set; }
+        public string nombre { get; set; }
     }
 }

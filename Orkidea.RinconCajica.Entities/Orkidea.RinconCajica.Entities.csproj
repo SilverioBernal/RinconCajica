@@ -44,26 +44,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClubPartner.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FileUpload.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="FrontUser.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="HomeSlider.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JoinContest.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Page.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RinconEntityModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="SideBar.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sport.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SportBranch.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SportModality.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SportSchedule.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -39,9 +39,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
                 lsHomeSlider.AddRange(bizHomeSlider.GetHomeSliderList());
             }
-            catch (Exception )
+            catch (Exception)
             {
-                                
+
             }
             return View(lsHomeSlider);
         }
@@ -184,6 +184,15 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult getHomeSlider()
+        {
+            List<HomeSlider> lsHomeSlider = new List<HomeSlider>();
+
+            lsHomeSlider.AddRange(bizHomeSlider.GetHomeSliderList().Where(x => x.activo).ToList());
+
+            return PartialView(lsHomeSlider);
         }
     }
 }

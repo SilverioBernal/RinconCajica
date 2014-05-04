@@ -17,6 +17,12 @@
                 <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
                 <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
                 <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                <li class="nav-header">Deportes</li>                
+                <li><a href="@Url.Action("Index", "SportCategory")">Categorías</a></li>
+                <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
             </ul>
         </div>
     </div>
@@ -32,7 +38,10 @@
                     <tr>
 
                         <th>
-                            Nombre del archivo
+                            Nombre
+                        </th>
+                        <th>
+                            Descripción
                         </th>
                         <th>Link</th>
                         <th></th>
@@ -44,6 +53,9 @@
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.fileName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
                             </td>
                             <td><a href="@Url.Content("~/UploadedFiles/" + item.fileName)" target="_blank">Ver mas</a></td>
                             <td>

@@ -23,9 +23,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
 
             }
-            return View(lsHomeSlider);
-
-            return View();
+            return View(lsHomeSlider);         
         }
 
         public ActionResult About()

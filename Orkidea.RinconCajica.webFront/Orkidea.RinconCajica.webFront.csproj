@@ -40,6 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Recaptcha">
+      <HintPath>..\packages\recaptcha.1.0.5.0\lib\.NetFramework 4.0\Recaptcha.dll</HintPath>
+    </Reference>
+    <Reference Include="Recaptcha.MvcModel">
+      <HintPath>..\packages\reCaptchaMvcExtensions.1.0.1\lib\Recaptcha.MvcModel.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -186,8 +192,14 @@
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeSliderController.cs" />
+    <Compile Include="Controllers\JoinContestController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Controllers\SideBarController.cs" />
+    <Compile Include="Controllers\SportBranchController.cs" />
+    <Compile Include="Controllers\SportController.cs" />
+    <Compile Include="Controllers\SportModalityController.cs" />
+    <Compile Include="Controllers\SportScheduleController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,10 +207,38 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CustomIdentity.cs" />
     <Compile Include="Models\vmFileUpload.cs" />
+    <Compile Include="Models\vmJoinContest.cs" />
     <Compile Include="Models\vmPage.cs" />
+    <Compile Include="Models\vmSportBranch.cs" />
+    <Compile Include="Models\vmSportModality.cs" />
+    <Compile Include="Models\vmSportSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\datepicker.css" />
+    <Content Include="js\bootstrap-datepicker.js" />
+    <Content Include="Scripts\datepicker\bootstrap-datepicker.js" />
+    <Content Include="Scripts\datepicker\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\datepicker\bootstrap-timepicker.js" />
+    <Content Include="Scripts\datepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Scripts\datepicker\datepicker.css" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.br.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.zh-CN.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="wysihtml5\.gitignore" />
@@ -571,6 +611,7 @@
     <Content Include="wysihtml5\readme.textile" />
     <Content Include="wysihtml5\VERSION" />
     <None Include="Properties\PublishProfiles\Rincon.pubxml" />
+    <Content Include="Scripts\datepicker\LICENSE" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="img\bg-pattern.png" />
     <Content Include="img\logo.png" />
@@ -652,6 +693,25 @@
     <Content Include="Views\Page\Create.cshtml" />
     <Content Include="Views\Security\Logout.cshtml" />
     <Content Include="Views\Backend\Index.cshtml" />
+    <Content Include="Views\SideBar\Index.cshtml" />
+    <Content Include="Views\SideBar\Create.cshtml" />
+    <Content Include="Views\SideBar\Edit.cshtml" />
+    <Content Include="Views\Sport\Index.cshtml" />
+    <Content Include="Views\SportModality\Index.cshtml" />
+    <Content Include="Views\SportModality\Create.cshtml" />
+    <Content Include="Views\SportModality\Edit.cshtml" />
+    <Content Include="Views\SportBranch\Index.cshtml" />
+    <Content Include="Views\SportBranch\Create.cshtml" />
+    <Content Include="Views\SportBranch\Edit.cshtml" />
+    <Content Include="Views\SportSchedule\Create.cshtml" />
+    <Content Include="Views\SportSchedule\Index.cshtml" />
+    <Content Include="Views\SportSchedule\Edit.cshtml" />
+    <Content Include="Views\SportSchedule\IndexSportSchedule.cshtml" />
+    <Content Include="Views\SportSchedule\IndexSportSchedulePage.cshtml" />
+    <Content Include="Views\SportSchedule\IndexNextSchedule.cshtml" />
+    <Content Include="Views\HomeSlider\getHomeSlider.cshtml" />
+    <Content Include="Views\JoinContest\join.cshtml" />
+    <Content Include="Views\JoinContest\joined.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

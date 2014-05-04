@@ -6,22 +6,96 @@
     <edmx:StorageModels>
     <Schema Namespace="RinconModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="RinconModelStoreContainer">
+          <EntitySet Name="ClubPartner" EntityType="RinconModel.Store.ClubPartner" store:Type="Tables" store:Schema="dbo" store:Name="ClubPartner">
+            <DefiningQuery>SELECT 
+      [ClubPartner].[id] AS [id], 
+      [ClubPartner].[doccl] AS [doccl], 
+      [ClubPartner].[docto] AS [docto], 
+      [ClubPartner].[carnet] AS [carnet], 
+      [ClubPartner].[accion] AS [accion], 
+      [ClubPartner].[cod_clie] AS [cod_clie], 
+      [ClubPartner].[nombre] AS [nombre], 
+      [ClubPartner].[direcc] AS [direcc], 
+      [ClubPartner].[telefn] AS [telefn], 
+      [ClubPartner].[fax] AS [fax], 
+      [ClubPartner].[correo] AS [correo], 
+      [ClubPartner].[fec_nac] AS [fec_nac], 
+      [ClubPartner].[sexo] AS [sexo], 
+      [ClubPartner].[nhijos] AS [nhijos], 
+      [ClubPartner].[celular] AS [celular], 
+      [ClubPartner].[idUsuario] AS [idUsuario]
+      FROM [dbo].[ClubPartner] AS [ClubPartner]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="FileUpload" EntityType="RinconModel.Store.FileUpload" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FrontUser" EntityType="RinconModel.Store.FrontUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HomeSlider" EntityType="RinconModel.Store.HomeSlider" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="JoinContest" EntityType="RinconModel.Store.JoinContest" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Page" EntityType="RinconModel.Store.Page" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SideBar" EntityType="RinconModel.Store.SideBar" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sport" EntityType="RinconModel.Store.Sport" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SportBranch" EntityType="RinconModel.Store.SportBranch" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SportModality" EntityType="RinconModel.Store.SportModality" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SportSchedule" EntityType="RinconModel.Store.SportSchedule" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_JoinContest_SportSchedule" Association="RinconModel.Store.FK_JoinContest_SportSchedule">
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+            <End Role="JoinContest" EntitySet="JoinContest" />
+          </AssociationSet>
           <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.Store.FK_Page_SideBar">
             <End Role="SideBar" EntitySet="SideBar" />
             <End Role="Page" EntitySet="Page" />
           </AssociationSet>
+          <AssociationSet Name="FK_SportBranch_Sport" Association="RinconModel.Store.FK_SportBranch_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportBranch" EntitySet="SportBranch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportModality_Sport" Association="RinconModel.Store.FK_SportModality_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportModality" EntitySet="SportModality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_Sport" Association="RinconModel.Store.FK_SportsSchedule_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_SportBranch" Association="RinconModel.Store.FK_SportsSchedule_SportBranch">
+            <End Role="SportBranch" EntitySet="SportBranch" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_SportModality" Association="RinconModel.Store.FK_SportsSchedule_SportModality">
+            <End Role="SportModality" EntitySet="SportModality" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
         </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Rincon.dbo.ClubPartner' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ClubPartner">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="doccl" Type="varchar" MaxLength="50" />
+          <Property Name="docto" Type="varchar" MaxLength="50" />
+          <Property Name="carnet" Type="varchar" MaxLength="50" />
+          <Property Name="accion" Type="varchar" MaxLength="50" />
+          <Property Name="cod_clie" Type="varchar" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="direcc" Type="varchar" MaxLength="50" />
+          <Property Name="telefn" Type="varchar" MaxLength="50" />
+          <Property Name="fax" Type="varchar" MaxLength="50" />
+          <Property Name="correo" Type="varchar" MaxLength="50" />
+          <Property Name="fec_nac" Type="datetime" />
+          <Property Name="sexo" Type="varchar" MaxLength="50" />
+          <Property Name="nhijos" Type="varchar" MaxLength="50" />
+          <Property Name="celular" Type="varchar" MaxLength="50" />
+          <Property Name="idUsuario" Type="int" />
+        </EntityType>
         <EntityType Name="FileUpload">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="fileName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="FrontUser">
           <Key>
@@ -45,6 +119,22 @@
           <Property Name="textoSlider" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="activo" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="JoinContest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idTorneo" Type="int" Nullable="false" />
+          <Property Name="idSocio" Type="int" />
+          <Property Name="tipoIdentificacion" Type="varchar" MaxLength="2" />
+          <Property Name="identificacion" Type="varchar" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" />
+          <Property Name="telefonoFijo" Type="varchar" MaxLength="50" />
+          <Property Name="telefonoCelular" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="250" />
+          <Property Name="categoria" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="fechaInscripcion" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Page">
           <Key>
             <PropertyRef Name="id" />
@@ -63,6 +153,58 @@
           <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="contenido" Type="varchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="Sport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SportBranch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idDeporte" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SportModality">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idDeporte" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SportSchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idDeporte" Type="int" Nullable="false" />
+          <Property Name="inicio" Type="date" Nullable="false" />
+          <Property Name="fin" Type="date" />
+          <Property Name="competencia" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="categoria" Type="varchar" MaxLength="50" />
+          <Property Name="idModalidad" Type="int" />
+          <Property Name="idRama" Type="int" />
+          <Property Name="aireacion" Type="bit" Nullable="false" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+          <Property Name="poster" Type="varchar" MaxLength="350" />
+          <Property Name="privado" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_JoinContest_SportSchedule">
+          <End Role="SportSchedule" Type="RinconModel.Store.SportSchedule" Multiplicity="1" />
+          <End Role="JoinContest" Type="RinconModel.Store.JoinContest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportSchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JoinContest">
+              <PropertyRef Name="idTorneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Page_SideBar">
           <End Role="SideBar" Type="RinconModel.Store.SideBar" Multiplicity="0..1" />
           <End Role="Page" Type="RinconModel.Store.Page" Multiplicity="*" />
@@ -75,28 +217,111 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SportBranch_Sport">
+          <End Role="Sport" Type="RinconModel.Store.Sport" Multiplicity="1" />
+          <End Role="SportBranch" Type="RinconModel.Store.SportBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportBranch">
+              <PropertyRef Name="idDeporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportModality_Sport">
+          <End Role="Sport" Type="RinconModel.Store.Sport" Multiplicity="1" />
+          <End Role="SportModality" Type="RinconModel.Store.SportModality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportModality">
+              <PropertyRef Name="idDeporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportsSchedule_Sport">
+          <End Role="Sport" Type="RinconModel.Store.Sport" Multiplicity="1" />
+          <End Role="SportSchedule" Type="RinconModel.Store.SportSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportSchedule">
+              <PropertyRef Name="idDeporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportsSchedule_SportBranch">
+          <End Role="SportBranch" Type="RinconModel.Store.SportBranch" Multiplicity="0..1" />
+          <End Role="SportSchedule" Type="RinconModel.Store.SportSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportBranch">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportSchedule">
+              <PropertyRef Name="idRama" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportsSchedule_SportModality">
+          <End Role="SportModality" Type="RinconModel.Store.SportModality" Multiplicity="0..1" />
+          <End Role="SportSchedule" Type="RinconModel.Store.SportSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportModality">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportSchedule">
+              <PropertyRef Name="idModalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RinconModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RinconEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="FileUpload" EntityType="RinconModel.FileUpload" />
           <EntitySet Name="HomeSlider" EntityType="RinconModel.HomeSlider" />
+          <EntitySet Name="FrontUser" EntityType="RinconModel.FrontUser" />
+          <EntitySet Name="Sport" EntityType="RinconModel.Sport" />
           <EntitySet Name="Page" EntityType="RinconModel.Page" />
           <EntitySet Name="SideBar" EntityType="RinconModel.SideBar" />
           <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.FK_Page_SideBar">
             <End Role="SideBar" EntitySet="SideBar" />
             <End Role="Page" EntitySet="Page" />
           </AssociationSet>
-          <EntitySet Name="FrontUser" EntityType="RinconModel.FrontUser" />
-        </EntityContainer>
-        <EntityType Name="FileUpload">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Guid" Name="id" Nullable="false" />
-          <Property Type="String" Name="fileName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
+          <EntitySet Name="SportBranch" EntityType="RinconModel.SportBranch" />
+          <EntitySet Name="SportModality" EntityType="RinconModel.SportModality" />
+          <AssociationSet Name="FK_SportBranch_Sport" Association="RinconModel.FK_SportBranch_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportBranch" EntitySet="SportBranch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportModality_Sport" Association="RinconModel.FK_SportModality_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportModality" EntitySet="SportModality" />
+          </AssociationSet>
+          <EntitySet Name="FileUpload" EntityType="RinconModel.FileUpload" />
+          <EntitySet Name="JoinContest" EntityType="RinconModel.JoinContest" />
+          <EntitySet Name="SportSchedule" EntityType="RinconModel.SportSchedule" />
+          <AssociationSet Name="FK_JoinContest_SportSchedule" Association="RinconModel.FK_JoinContest_SportSchedule">
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+            <End Role="JoinContest" EntitySet="JoinContest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_Sport" Association="RinconModel.FK_SportsSchedule_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_SportBranch" Association="RinconModel.FK_SportsSchedule_SportBranch">
+            <End Role="SportBranch" EntitySet="SportBranch" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_SportModality" Association="RinconModel.FK_SportsSchedule_SportModality">
+            <End Role="SportModality" EntitySet="SportModality" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+          <EntitySet Name="ClubPartner" EntityType="RinconModel.ClubPartner" />
+          </EntityContainer>
         <EntityType Name="HomeSlider">
           <Key>
             <PropertyRef Name="id" />
@@ -109,6 +334,25 @@
           <Property Type="String" Name="urlBoton2" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="textoSlider" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="activo" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FrontUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contrasena" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="idRol" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Sport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SportBranch" Relationship="RinconModel.FK_SportBranch_Sport" FromRole="Sport" ToRole="SportBranch" />
+          <NavigationProperty Name="SportModality" Relationship="RinconModel.FK_SportModality_Sport" FromRole="Sport" ToRole="SportModality" />
+          <NavigationProperty Name="SportSchedule" Relationship="RinconModel.FK_SportsSchedule_Sport" FromRole="Sport" ToRole="SportSchedule" />
         </EntityType>
         <EntityType Name="Page">
           <Key>
@@ -142,29 +386,171 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="FrontUser">
+        <EntityType Name="SportBranch">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contrasena" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="idRol" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="idDeporte" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Sport" Relationship="RinconModel.FK_SportBranch_Sport" FromRole="SportBranch" ToRole="Sport" />
+          <NavigationProperty Name="SportSchedule" Relationship="RinconModel.FK_SportsSchedule_SportBranch" FromRole="SportBranch" ToRole="SportSchedule" />
         </EntityType>
-      </Schema>
+        <EntityType Name="SportModality">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idDeporte" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sport" Relationship="RinconModel.FK_SportModality_Sport" FromRole="SportModality" ToRole="Sport" />
+          <NavigationProperty Name="SportSchedule" Relationship="RinconModel.FK_SportsSchedule_SportModality" FromRole="SportModality" ToRole="SportSchedule" />
+        </EntityType>
+        <Association Name="FK_SportBranch_Sport">
+          <End Type="RinconModel.Sport" Role="Sport" Multiplicity="1" />
+          <End Type="RinconModel.SportBranch" Role="SportBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportBranch">
+              <PropertyRef Name="idDeporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportModality_Sport">
+          <End Type="RinconModel.Sport" Role="Sport" Multiplicity="1" />
+          <End Type="RinconModel.SportModality" Role="SportModality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportModality">
+              <PropertyRef Name="idDeporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FileUpload">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Guid" Name="id" Nullable="false" />
+          <Property Type="String" Name="fileName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nombre" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="JoinContest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idTorneo" Nullable="false" />
+          <Property Type="Int32" Name="idSocio" />
+          <Property Type="String" Name="tipoIdentificacion" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="identificacion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nombre" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="telefonoFijo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="telefonoCelular" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="categoria" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="fechaInscripcion" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SportSchedule" Relationship="RinconModel.FK_JoinContest_SportSchedule" FromRole="JoinContest" ToRole="SportSchedule" />
+        </EntityType>
+        <EntityType Name="SportSchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idDeporte" Nullable="false" />
+          <Property Type="DateTime" Name="inicio" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="fin" Precision="0" />
+          <Property Type="String" Name="competencia" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="categoria" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="idModalidad" />
+          <Property Type="Int32" Name="idRama" />
+          <Property Type="Boolean" Name="aireacion" Nullable="false" />
+          <Property Type="Boolean" Name="visible" Nullable="false" />
+          <Property Type="String" Name="poster" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="privado" Nullable="false" />
+          <NavigationProperty Name="JoinContest" Relationship="RinconModel.FK_JoinContest_SportSchedule" FromRole="SportSchedule" ToRole="JoinContest" />
+          <NavigationProperty Name="Sport" Relationship="RinconModel.FK_SportsSchedule_Sport" FromRole="SportSchedule" ToRole="Sport" />
+          <NavigationProperty Name="SportBranch" Relationship="RinconModel.FK_SportsSchedule_SportBranch" FromRole="SportSchedule" ToRole="SportBranch" />
+          <NavigationProperty Name="SportModality" Relationship="RinconModel.FK_SportsSchedule_SportModality" FromRole="SportSchedule" ToRole="SportModality" />
+        </EntityType>
+        <Association Name="FK_JoinContest_SportSchedule">
+          <End Type="RinconModel.SportSchedule" Role="SportSchedule" Multiplicity="1" />
+          <End Type="RinconModel.JoinContest" Role="JoinContest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportSchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JoinContest">
+              <PropertyRef Name="idTorneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportsSchedule_Sport">
+          <End Type="RinconModel.Sport" Role="Sport" Multiplicity="1" />
+          <End Type="RinconModel.SportSchedule" Role="SportSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportSchedule">
+              <PropertyRef Name="idDeporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportsSchedule_SportBranch">
+          <End Type="RinconModel.SportBranch" Role="SportBranch" Multiplicity="0..1" />
+          <End Type="RinconModel.SportSchedule" Role="SportSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportBranch">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportSchedule">
+              <PropertyRef Name="idRama" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportsSchedule_SportModality">
+          <End Type="RinconModel.SportModality" Role="SportModality" Multiplicity="0..1" />
+          <End Type="RinconModel.SportSchedule" Role="SportSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportModality">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportSchedule">
+              <PropertyRef Name="idModalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ClubPartner">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="doccl" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="docto" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="carnet" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="accion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cod_clie" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nombre" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="direcc" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="telefn" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="fax" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="correo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="fec_nac" Precision="3" />
+          <Property Type="String" Name="sexo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nhijos" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="celular" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="idUsuario" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RinconModelStoreContainer" CdmEntityContainer="RinconEntities">
-          <EntitySetMapping Name="FileUpload">
-            <EntityTypeMapping TypeName="RinconModel.FileUpload">
-              <MappingFragment StoreEntitySet="FileUpload">
-                <ScalarProperty Name="fileName" ColumnName="fileName" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="HomeSlider">
             <EntityTypeMapping TypeName="RinconModel.HomeSlider">
               <MappingFragment StoreEntitySet="HomeSlider">
@@ -175,6 +561,24 @@
                 <ScalarProperty Name="urlBoton1" ColumnName="urlBoton1" />
                 <ScalarProperty Name="textoBoton1" ColumnName="textoBoton1" />
                 <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FrontUser">
+            <EntityTypeMapping TypeName="RinconModel.FrontUser">
+              <MappingFragment StoreEntitySet="FrontUser">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sport">
+            <EntityTypeMapping TypeName="RinconModel.Sport">
+              <MappingFragment StoreEntitySet="Sport">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -199,12 +603,86 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FrontUser">
-            <EntityTypeMapping TypeName="RinconModel.FrontUser">
-              <MappingFragment StoreEntitySet="FrontUser">
-                <ScalarProperty Name="idRol" ColumnName="idRol" />
-                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <EntitySetMapping Name="SportBranch">
+            <EntityTypeMapping TypeName="RinconModel.SportBranch">
+              <MappingFragment StoreEntitySet="SportBranch">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SportModality">
+            <EntityTypeMapping TypeName="RinconModel.SportModality">
+              <MappingFragment StoreEntitySet="SportModality">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileUpload">
+            <EntityTypeMapping TypeName="RinconModel.FileUpload">
+              <MappingFragment StoreEntitySet="FileUpload">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JoinContest">
+            <EntityTypeMapping TypeName="RinconModel.JoinContest">
+              <MappingFragment StoreEntitySet="JoinContest">
+                <ScalarProperty Name="fechaInscripcion" ColumnName="fechaInscripcion" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefonoCelular" ColumnName="telefonoCelular" />
+                <ScalarProperty Name="telefonoFijo" ColumnName="telefonoFijo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="tipoIdentificacion" ColumnName="tipoIdentificacion" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SportSchedule">
+            <EntityTypeMapping TypeName="RinconModel.SportSchedule">
+              <MappingFragment StoreEntitySet="SportSchedule">
+                <ScalarProperty Name="privado" ColumnName="privado" />
+                <ScalarProperty Name="poster" ColumnName="poster" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="aireacion" ColumnName="aireacion" />
+                <ScalarProperty Name="idRama" ColumnName="idRama" />
+                <ScalarProperty Name="idModalidad" ColumnName="idModalidad" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="competencia" ColumnName="competencia" />
+                <ScalarProperty Name="fin" ColumnName="fin" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClubPartner">
+            <EntityTypeMapping TypeName="RinconModel.ClubPartner">
+              <MappingFragment StoreEntitySet="ClubPartner">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="nhijos" ColumnName="nhijos" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fec_nac" ColumnName="fec_nac" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="telefn" ColumnName="telefn" />
+                <ScalarProperty Name="direcc" ColumnName="direcc" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cod_clie" ColumnName="cod_clie" />
+                <ScalarProperty Name="accion" ColumnName="accion" />
+                <ScalarProperty Name="carnet" ColumnName="carnet" />
+                <ScalarProperty Name="docto" ColumnName="docto" />
+                <ScalarProperty Name="doccl" ColumnName="doccl" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,312 +1,95 @@
 ﻿@model Orkidea.RinconCajica.webFront.Models.vmPage
 @{
-    Layout = null;
-}
-<!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <title>Club El Rincon de Cajicá | @Model.titulo</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    System.Security.Principal.IIdentity context = Context.User.Identity;
+    int user = 0;
+    string rol = "U";
+    string userName = "";
+    bool autenticado = false;
 
-    <!-- Mobile Specific Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!-- [if lt IE 9]
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/css/bootstrap-responsive.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/css/font-awesome.min.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/css/custom.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/css/base_schemes/white.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/css/color_schemes/green.css")" />
-    <link rel="stylesheet" href="@Url.Content("~/css/responsive.css")" />
-
-    <!-- [if IE 7]>
-		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
-		<![endif] -->
-
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
-
-    @{
-        System.Security.Principal.IIdentity context = Context.User.Identity;
-        int user = 0;
-        string rol = "U";
-        string userName = "";
-        bool autenticado = false;
-
-        if (context.IsAuthenticated)
-        {
-            System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)Context.User.Identity;
-            string[] userRole = ci.Ticket.UserData.Split('|');
-            user = int.Parse(userRole[0]);
-            rol = userRole[1];
-            userName = ci.Name;
-            autenticado = (user != null ? true : false);
-        }
+    if (context.IsAuthenticated)
+    {
+        System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)Context.User.Identity;
+        string[] userRole = ci.Ticket.UserData.Split('|');
+        user = int.Parse(userRole[0]);
+        rol = userRole[1];
+        userName = ci.Name;
+        autenticado = (user != null ? true : false);
     }
-</head>
-<body>
-    <div id="body">
-        <!-- Background Slider -->
-        <div id="bg_slide">
-            <ul>
-                @foreach (var item in Model.lsHomeSlider)
-                {
-                    <li>
-                        <img src="@Url.Content(item.urlImagen)" alt="">
-                    </li>                    
-                }
-            </ul>
-            <div class="pattern"></div>
+}
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+
+<div id="bg_slide">
+    <ul>
+        @foreach (var item in Model.lsHomeSlider)
+        {
+            <li>
+                <img src="@Url.Content(item.urlImagen)" alt="">
+            </li>                    
+        }
+    </ul>
+    <div class="pattern"></div>
+</div>
+
+<div class="default-icons clearfix">
+    <ul class="slider-nav">
+        <li>
+            <a href="#" class="icon-angle-left rslides_nav rslides1_nav prev"></a>
+        </li>
+        <li>
+            <a href="#" class="icon-angle-right rslides_nav rslides1_nav next"></a>
+        </li>
+    </ul>
+    <!-- /.slider-nav -->
+
+
+</div>
+
+<div class="container">
+    <div class="header-field">
+        <div class="page-title pull-left">
+            <h3>@Model.titulo</h3>
         </div>
+    </div>
+    <!-- /.header-field -->
+</div>
+<!-- /.container -->
 
-        <div class="navbar navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-inner">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
-                    <a class="brand" href="@Url.Action("Index", "Home")">
-                        <img src="@Url.Content("~/img/logo.png")" alt="Round"></a>
-                    <div class="right-icons pull-right">
-                        <ul>
-                            <li class="search tt" data-container="body" data-toggle="tooltip" data-placement="left" title="Zona de usuarios">
-                                <a id="search_toggle" class="icon-user"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="nav-collapse">
-                        <ul class="nav pull-right">
-                            <li>
-                                <a href="@Url.Action("Index", "Home")"><span style="color: white;">.</span>Inicio</a>
-                            </li>
-                            @{
-                                string acercade = "", deportes = "", eventos = "", socios = "";
+<div class="container">
+    <div class="cont-outer">
+        <div class="row-fluid">
+            @{
+                string contenido = "";
 
-                                if (ViewBag.id == "AcercaDe")
-                                {
-                                    acercade += "<li class='active'><a href='" + Url.Action("Details", "Page", new { id = "AcercaDe" }) +
-                                        "'><span style='color: white;'>.</span>El club</a></li>";
-                                }
-                                else
-                                {
-                                    acercade += "<li><a href='" + Url.Action("Details", "Page", new { id = "AcercaDe" }) +
-                                        "'><span style='color: white;'>.</span>El club</a></li>";
-                                }
-
-                                if (ViewBag.id == "Deportes")
-                                {
-                                    deportes += "<li class='active'>" + "<a href='" + Url.Action("Details", "Page", new { id = "Deportes" }) +
-                                        "'><span style='color: white;'>.</span>Deportes</a></li>";
-                                }
-                                else
-                                {
-                                    deportes += "<li><a href='" + Url.Action("Details", "Page", new { id = "Deportes" }) +
-                                        "'><span style='color: white;'>.</span>Deportes</a></li>";
-                                }
-
-                                if (ViewBag.id == "Eventos")
-                                {
-                                    eventos += "<li class='active'>" + "<a href='" + Url.Action("Details", "Page", new { id = "Eventos" }) +
-                                        "'><span style='color: white;'>.</span>Eventos</a></li>";
-                                }
-                                else
-                                {
-                                    eventos += "<li><a href='" + Url.Action("Details", "Page", new { id = "Eventos" }) +
-                                        "'><span style='color: white;'>.</span>Eventos</a></li>";
-                                }
-
-                                if (ViewBag.id == "Socios")
-                                {
-                                    socios += "<li class='active'>" + "<a href='" + Url.Action("Details", "Page", new { id = "Socios" }) +
-                                        "'><span style='color: white;'>.</span>Socios</a></li>";
-                                }
-                                else
-                                {
-                                    socios += "<li><a href='" + Url.Action("Details", "Page", new { id = "Socios" }) +
-                                        "'><span style='color: white;'>.</span>Socios</a></li>";
-                                }                            
-                            }
-
-                            @Html.Raw(acercade)
-                            @Html.Raw(deportes)
-                            @Html.Raw(eventos)
-                            @Html.Raw(socios)                            
-                            <li>
-                                <a href="#"><span style="color: white;">.</span>Contacto</a>
-                            </li>
-                            @if (rol == "A")
-                            {
-                                <li><a href="@Url.Action("Index", "Backend")"><span style="color: white;">.</span>BackEnd</a></li>
-                            }
-                        </ul>
-                    </div>
-                    <!-- /.nav-collapse -->
-                </div>
-                <!-- /.navbar-inner -->
-            </div>
-            <!-- /.container -->
-            <form id="search_form">
-                @if (autenticado == false)
+                if (Model.idSideBar != null)
                 {
-                    <input type="text" placeholder="Usuario" id="txtUsuario" />
-                    <input type="password" placeholder="Contraseña" id="txtContrasena" />
-                    <button type="button" class="btn btn-default" id="btnLogin">Ingresar</button>
+                    if (autenticado)
+                    {
+                        contenido += "<div class='span8'><div class='post-item single-post'>" + Model.contenidoPrivado + "</div></div>";
+                    }
+                    else
+                    {
+                        contenido += "<div class='span8'><div class='post-item single-post'>" + Model.contenidoPublico + "</div></div>";
+                    }
+
+                    contenido += "<div class='span4'>" + Model.sideBarContent + "</div>";
                 }
                 else
                 {
-                    <span style="color: white;"><strong>Bienvenido @userName | </strong></span>
-                    <a href="@Url.Action("Logout", "Security")" style="color: white;"><strong>Cerrar sesión | </strong></a>                    
-                    <a href="javascript:void(0);" style="color: white;" id="lnkCambioContrasena"><strong>Cambiar contraseña</strong></a>                    
-                }
-            </form>
-        </div>
-        <!-- /.navbar -->
-
-        <div class="default-icons clearfix">
-            <ul class="slider-nav">
-                <li>
-                    <a href="#" class="icon-angle-left rslides_nav rslides1_nav prev"></a>
-                </li>
-                <li>
-                    <a href="#" class="icon-angle-right rslides_nav rslides1_nav next"></a>
-                </li>
-            </ul>
-            <!-- /.slider-nav -->
-
-
-        </div>
-
-        <div class="container">
-            <div class="header-field">
-                <div class="page-title pull-left">
-                    <h3>@Model.titulo</h3>
-                </div>
-            </div>
-            <!-- /.header-field -->
-        </div>
-        <!-- /.container -->
-
-        <div class="container">
-            <div class="cont-outer">
-                <div class="row-fluid">
-                    @{
-                        string contenido = "";
-
-                        if (Model.idSideBar != null)
-                        {
-                            if (autenticado)
-                            {
-                                contenido += "<div class='span8'><div class='post-item single-post'>" + Model.contenidoPrivado + "</div></div>";
-                            }
-                            else
-                            {
-                                contenido += "<div class='span8'><div class='post-item single-post'>" + Model.contenidoPublico + "</div></div>";
-                            }
-
-                            contenido += "<div class='span4'>" + Model.sideBar + "</div>";
-                        }
-                        else
-                        {
-                            if (autenticado)
-                            {
-                                contenido += "<div class='span12'><div class='post-item single-post'>" + Model.contenidoPrivado + "</div></div>";
-                            }
-                            else
-                            {
-                                contenido += "<div class='span12'><div class='post-item single-post'>" + Model.contenidoPublico + "</div></div>";
-                            }
-                        }
+                    if (autenticado)
+                    {
+                        contenido += "<div class='span12'><div class='post-item single-post'>" + Model.contenidoPrivado + "</div></div>";
                     }
-                    @Html.Raw(contenido)
-                </div>
-                <!-- /.row-fluid -->
-            </div>
-            <!-- /.cont-outer -->
-        </div>
-        <!-- /.container -->
-
-        <div id="logoutModal" class="modal hide fade">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3>Cambiar contraseña</h3>
-            </div>
-            <div class="modal-body">
-                <label>Ingrese la nueva contraseña</label>
-                <input type="password" placeholder="Nueva contraseña" id="txtNuevaClave" />
-                <label>Confirme la contraseña</label>
-                <input type="password" placeholder="Nueva contraseña" id="txtNuevaClaveConfirma" />
-            </div>
-            <div class="modal-footer">
-                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-success" id="btnCambiarContrasena">Cambiar clave</a>
-                <a href="#" data-dismiss="modal" class="btn">Cancelar</a>
-            </div>
-        </div>
-
-        <!-- Scripts -->
-        <script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
-        <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
-        <script src="@Url.Content("~/js/responsiveslides.min.js")"></script>
-        <script src="@Url.Content("~/js/jquery.cookie.js")"></script>
-        <script src="@Url.Content("~/js/jquery.isotope.min.js")"></script>
-        <script src="@Url.Content("~/js/magnific.js")"></script>
-        <script src="@Url.Content("~/js/hoverdir.js")"></script>
-        <script src="@Url.Content("~/js/custom.js")"></script>
-        <script>        
-            $('#btnLogin').click(function () {
-                var url = document.URL;
-                var usuario = $('#txtUsuario').val();
-                var contrasena = $('#txtContrasena').val();
-
-                if (usuario != '' && contrasena != '') {
-
-                    var datos = {
-                        UserName: usuario,
-                        Password: contrasena
-                    };
-
-                    $.getJSON("@Url.Action("barLogin", "Security")", datos, res);
-
-                    function res(data) {
-                        if (data == "OK") {
-                            window.open(url, '_self');
-                        }
+                    else
+                    {
+                        contenido += "<div class='span12'><div class='post-item single-post'>" + Model.contenidoPublico + "</div></div>";
                     }
                 }
-            });
+            }
+            @Html.Raw(contenido)
+        </div>
+        <!-- /.row-fluid -->
 
-            $('#lnkCambioContrasena').click(function () {
-                $('#logoutModal').modal()
-            });
-
-            $('#btnCambiarContrasena').click(function () {
-                var clave = $('#txtNuevaClave').val();
-                var url = document.URL;
-
-                if (clave != '' && clave == $('#txtNuevaClaveConfirma').val()) {
-                    var datos = {
-                        id: '@user',
-                            usuario: '@userName',
-                            contrasena: clave,
-                            idRol: '@rol'
-                        };
-
-                    $.getJSON("@Url.Action("BarChangePassword", "Security")", datos, res);
-
-                        function res(data) {
-                            if (data == "OK") {
-                                window.open(url, '_self');
-                            }
-                        }
-                    }
-                });
-        </script>        
     </div>
-</body>
-</html>
+    <!-- /.cont-outer -->
+</div>

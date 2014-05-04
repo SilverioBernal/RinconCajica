@@ -10,5 +10,6 @@ namespace Orkidea.RinconCajica.webFront.Models
     {
         [Required]
         public HttpPostedFileBase File { get; set; }
+        public string nombre { get; set; }
     }
 }

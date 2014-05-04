@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmSportSchedule>
+
+@{
+    ViewBag.Title = "IndexSportSchedule";
+    //Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row-fluid">
+    <div class="span12">
+        @foreach (var item in Model)
+        {
+            if (item.visible)
+            {
+            <div class="row-fluid">
+                <div class="span2">
+                    <img src="@item.poster" width="300" />
+                </div>
+                <div class="span10">
+                    <div class="row.fluid">
+                        <span style="font-size: 18px"><strong>@Html.DisplayFor(modelItem => item.competencia)</strong></span>
+                    </div>
+                    <div class="row.fluid">
+                        <span>Desde: </span>@Html.DisplayFor(modelItem => item.inicio)
+
+                        @if (item.fin != item.fin)
+                        {
+                            <span>Hasta: </span> @Html.DisplayFor(modelItem => item.fin)
+                        }
+
+                    </div>
+                    <div class="row.fluid">
+                        <span>Categoria: </span>@Html.DisplayFor(modelItem => item.nombreCategoria)
+                    </div>
+                    <div class="row.fluid">
+                        <span>Modalidad: </span>@Html.DisplayFor(modelItem => item.nombreModalidad)
+                    </div>
+                    <div class="row.fluid">
+                        <span>Rama: </span>@Html.DisplayFor(modelItem => item.nombreRama)
+                    </div>
+                    <div class="row.fluid">
+                        <input type="button" class="btn" value="Inscribirse" />
+                    </div>
+                </div>
+            </div>
+            
+            
+            <br />
+            }
+        }
+    </div>
+</div>

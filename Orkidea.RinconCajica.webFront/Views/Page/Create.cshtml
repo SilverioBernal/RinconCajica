@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
 }
-
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
 <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 
 <div class="row-fluid" style="padding-top: 50px;">
@@ -16,6 +16,12 @@
                 <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
                 <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
                 <li class="active"><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                <li class="nav-header">Deportes</li>                
+                <li><a href="@Url.Action("Index", "SportCategory")">Categorías</a></li>
+                <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
             </ul>
         </div>
     </div>
@@ -48,7 +54,8 @@
                 <div class="row-fluid">
                     <div class="span12">
                         <label>Side bar<span class="f_req">*</span></label>
-                        @Html.DropDownList("lsSideBar", new SelectList(Model.lsSideBar, "id", "nombre"), new { @class = "span10" })
+                        @Html.DropDownListFor(c => c.idSideBar, new SelectList(Model.lsSideBar, "id", "nombre"), new { @class = "span10" })
+                        @*@Html.DropDownList("lsSideBar", new SelectList(Model.lsSideBar, "id", "nombre"), new { @class = "span10" })*@
                     </div>
                 </div>
             
@@ -93,5 +100,5 @@
 </script>
 
 <script>
-    tinymce.init({ selector: 'textarea', plugins: "code, image" });
+    tinymce.init({ selector: 'textarea', plugins: "code, image, link" });
 </script>
