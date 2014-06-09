@@ -49,17 +49,17 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     nombreDeporte = lsDeportes.Where(x => x.id.Equals(item.idDeporte)).Select(x => x.nombre).FirstOrDefault()
                 });
             }
-
+            ViewBag.menu = "SportBranch";
             return View(lsIndexCategorias);
         }
 
         //
         // GET: /SportBranch/Details/5
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         //
         // GET: /SportBranch/Create
@@ -86,7 +86,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             vmSportBranch SportBranch = new vmSportBranch();
 
             SportBranch.lsDeportes.AddRange(lsDeportes);
-
+            ViewBag.menu = "SportBranch";
             return View(SportBranch);
         }
 
@@ -147,7 +147,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 nombreDeporte = lsDeporte.Where(x => x.id.Equals(currentSportBranch.idDeporte)).Select(x => x.nombre).FirstOrDefault(),
                 lsDeportes = lsDeporte
             };
-
+            ViewBag.menu = "SportBranch";
             return View(SportBranch);
         }
 

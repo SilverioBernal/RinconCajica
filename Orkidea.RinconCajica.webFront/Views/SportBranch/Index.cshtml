@@ -8,58 +8,36 @@
 @Styles.Render("~/content/DataTables")
 @Scripts.Render("~/bundles/DataTables")
 
-<div class="row-fluid" style="padding-top: 50px;">
-    <div class="span2">
-        <div class="span12">
-            <ul class="nav nav-list well span12">
-                <li class="nav-header">Menú</li>
-                <li><a href="@Url.Action("Index", "backend")">Inicio</a></li>
-                <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
-                <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
-                <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
-                <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
-                <li class="nav-header">Deportes</li>
-                <li><a href="@Url.Action("Index", "SportCategory")">Categorías</a></li>
-                <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
-                <li class="active"><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
-                <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="span10">
+<div class="span12 well" style="min-height: 800px;">
 
-        <div class="span12 well" style="min-height: 800px;">
+    <h2 style="text-align: center;">Ramas de deportes</h2>
 
-            <h2 style="text-align:center;">Ramas de deportes</h2>
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-primary">Nueva rama deportiva</a>
+    </p>
+    <table class="table table-bordered table-striped table_vam" id="dt_gal">
+        <thead>
+            <tr>
 
-            <p>
-                <a href="@Url.Action("Create")" class="btn btn-primary">Nueva rama deportiva</a>
-            </p>
-            <table class="table table-bordered table-striped table_vam" id="dt_gal">
-                <thead>
-                    <tr>
-
-                        <th>Rama</th>                                                
-                        <th>Deporte</th>                                                
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr> 
-                            <td>@Html.DisplayFor(modelItem => item.nombre)</td>                            
-                            <td>@Html.DisplayFor(modelItem => item.nombreDeporte)</td>                            
-                            <td>
-                                <a href="@Url.Action("Edit", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>|                    
+                <th>Rama</th>
+                <th>Deporte</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreDeporte)</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>|                    
                             <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 <script>

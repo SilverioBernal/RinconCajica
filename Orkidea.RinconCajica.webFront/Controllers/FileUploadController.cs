@@ -44,6 +44,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
 
             }
+
+            ViewBag.menu = "medios";
             return View(lsHomeSlider);
         }
 
@@ -76,6 +78,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             if (rol != "A")
                 return RedirectToAction("index", "Home");
 
+            ViewBag.menu = "medios";
             return View();
         }
 
@@ -97,6 +100,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                 bizFileUpload.SaveFileUpload(new FileUpload() { id = Guid.NewGuid(), fileName = fileName, nombre = model.nombre });                
             }
+
+            ViewBag.menu = "medios";
 
             return RedirectToAction("Index");
         }

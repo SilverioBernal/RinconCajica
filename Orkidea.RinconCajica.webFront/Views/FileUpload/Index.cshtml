@@ -8,66 +8,43 @@
 <script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
 @Styles.Render("~/content/DataTables")
 @Scripts.Render("~/bundles/DataTables")
-<div class="row-fluid" style="padding-top: 50px;">
-    <div class="span2">
-        <div class="span12">
-            <ul class="nav nav-list well span12">
-                <li class="nav-header">Menú</li>
-                <li><a href="@Url.Action("Index", "backend")">Inicio</a></li>
-                <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
-                <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
-                <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
-                <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
-                <li class="nav-header">Deportes</li>                
-                <li><a href="@Url.Action("Index", "SportCategory")">Categorías</a></li>
-                <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
-                <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
-                <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="span10">
-        <div class="span12 well" style="min-height: 800px;">
-            <h2 style="text-align:center;">Archivos subidos</h2>
 
-            <p>
-                <a href="@Url.Action("Create")" class="btn btn-primary">Nuevo archivo</a>
-            </p>
-            <table class="table table-bordered table-striped table_vam" id="dt_gal">
-                <thead>
-                    <tr>
+<div class="span12 well" style="min-height: 800px;">
+    <h2 style="text-align: center;">Archivos subidos</h2>
 
-                        <th>
-                            Nombre
-                        </th>
-                        <th>
-                            Descripción
-                        </th>
-                        <th>Link</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.fileName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nombre)
-                            </td>
-                            <td><a href="@Url.Content("~/UploadedFiles/" + item.fileName)" target="_blank">Ver mas</a></td>
-                            <td>
-                                <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <p><a href="@Url.Action("Create")" class="btn btn-primary">Nuevo archivo</a></p>
+    <table class="table table-bordered table-striped table_vam" id="dt_gal">
+        <thead>
+            <tr>
+
+                <th>Nombre
+                </th>
+                <th>Descripción
+                </th>
+                <th>Link</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fileName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td><a href="@Url.Content("~/UploadedFiles/" + item.fileName)" target="_blank">Ver mas</a></td>
+                    <td>
+                        <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
 <script>
     $('#dt_gal').dataTable();
 </script>

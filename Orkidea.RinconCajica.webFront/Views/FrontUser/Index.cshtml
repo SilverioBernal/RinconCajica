@@ -1,27 +1,26 @@
-﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmSportModality>
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.FrontUser>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
 }
 
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
 @Styles.Render("~/content/DataTables")
 @Scripts.Render("~/bundles/DataTables")
 
-
 <div class="span12 well" style="min-height: 800px;">
 
-    <h2 style="text-align: center;">Modalidades de deportes</h2>
+    <h2 style="text-align: center;">Listado general de usuarios</h2>
 
     <p>
-        <a href="@Url.Action("Create")" class="btn btn-primary">Nueva modalidad deportiva</a>
+        <a href="@Url.Action("Create")" class="btn btn-primary">Nuevo usuario</a>
     </p>
     <table class="table table-bordered table-striped table_vam" id="dt_gal">
         <thead>
             <tr>
-
-                <th>Modalidad</th>
-                <th>Deporte</th>
+                <th>Usuario</th>                
+                <th>Rol</th>                
                 <th></th>
             </tr>
         </thead>
@@ -29,8 +28,8 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.nombre)</td>
-                    <td>@Html.DisplayFor(modelItem => item.nombreDeporte)</td>
+                    <td>@Html.DisplayFor(modelItem => item.usuario)</td>
+                    <td>@Html.DisplayFor(modelItem => item.idRol)</td>
                     <td>
                         <a href="@Url.Action("Edit", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>|                    
                             <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
@@ -41,6 +40,4 @@
     </table>
 </div>
 
-<script>
-    $('#dt_gal').dataTable();
-</script>
+

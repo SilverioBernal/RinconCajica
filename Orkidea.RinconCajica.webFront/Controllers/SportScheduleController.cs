@@ -49,7 +49,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     nombreRama = item.idRama != null && item.idRama != 0 ? lsRama.Where(x => x.id.Equals(item.idRama)).Select(x => x.nombre).FirstOrDefault() : null,
                 });
             }
-
+            ViewBag.menu = "SportSchedule";
             return View(lsCalendario);
         }
 
@@ -183,7 +183,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 lsModalidades = lsModalidad,
                 lsRamas = lsRama
             };
-
+            ViewBag.menu = "SportSchedule";
             return View(nuevoEvento);
         }
 
@@ -264,7 +264,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 lsRamas = lsRama,
                 visible = evento.visible
             };
-
+            ViewBag.menu = "SportSchedule";
             return View(sportSchedule);
         }
 

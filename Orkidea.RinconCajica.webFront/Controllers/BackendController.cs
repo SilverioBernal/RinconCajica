@@ -29,6 +29,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             if (rol != "A")
                 return RedirectToAction("index", "Home");
 
+            ViewBag.menu = "backend";
+
             return View();
 
         }

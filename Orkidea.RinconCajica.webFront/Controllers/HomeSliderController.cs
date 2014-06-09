@@ -43,6 +43,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
 
             }
+
+            ViewBag.menu = "HomeSlider";
             return View(lsHomeSlider);
         }
 
@@ -74,6 +76,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             if (rol != "A")
                 return RedirectToAction("index", "Home");
+
+            ViewBag.menu = "HomeSlider";
 
             return View();
         }
@@ -120,6 +124,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             if (rol != "A")
                 return RedirectToAction("index", "Home");
 
+            ViewBag.menu = "HomeSlider";
+
             return View(bizHomeSlider.GetHomeSliderbyKey(new HomeSlider() { id = id }));
         }
 
@@ -147,7 +153,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         //
         // GET: /HomeSlider/Delete/5
         [Authorize]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             #region User identification
             System.Security.Principal.IIdentity context = HttpContext.User.Identity;
@@ -165,7 +171,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             if (rol != "A")
                 return RedirectToAction("index", "Home");
 
-            return View();
+            bizHomeSlider.DeleteHomeSlider(new HomeSlider() { id = id });
+            return RedirectToAction("Index");
         }
 
         //

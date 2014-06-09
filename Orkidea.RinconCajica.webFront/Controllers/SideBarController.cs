@@ -17,22 +17,24 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            ViewBag.menu = "SideBar";
             return View(bizSideBar.GetSideBarList());
         }
 
         //
         // GET: /SideBar/Details/5
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         //
         // GET: /SideBar/Create
         [Authorize]
         public ActionResult Create()
         {
+            ViewBag.menu = "SideBar";
             return View();
         }
 
@@ -64,7 +66,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         public ActionResult Edit(int id)
         {
             SideBar sidebar = bizSideBar.GetSideBarByKey(new SideBar() { id = id });
-
+            ViewBag.menu = "SideBar";
             return View(sidebar);
         }
 

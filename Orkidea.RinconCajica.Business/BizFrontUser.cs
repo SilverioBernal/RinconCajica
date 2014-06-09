@@ -141,8 +141,6 @@ namespace Orkidea.RinconCajica.Business
             catch (Exception ex) { throw ex; }
         }
 
-
-
         public FrontUser GetFrontUserbyName(FrontUser FrontUserTarget)
         {
             FrontUser oFrontUser = new FrontUser();

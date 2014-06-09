@@ -40,6 +40,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             ViewBag.paginasNoBorrables = ConfigurationManager.AppSettings["paginasNoBorrables"].ToString();
             List<Page> lstPage = bizPage.GetPageList();
+
+            ViewBag.menu = "Page";
+
             return View(lstPage);
         }
 
@@ -73,6 +76,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 titulo = page.titulo,
                 sideBarContent = sideBarContent
             };
+
             return View(_vmPage);
         }
 
@@ -98,6 +102,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 return RedirectToAction("index", "Home");
 
             vmPage page = new vmPage();
+            ViewBag.menu = "Page";
             return View(page);
         }
 
@@ -176,7 +181,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 idSideBar = page.idSideBar,
                 titulo = page.titulo
             };
-
+            ViewBag.menu = "Page";
             return View(_vmPage);
         }
 

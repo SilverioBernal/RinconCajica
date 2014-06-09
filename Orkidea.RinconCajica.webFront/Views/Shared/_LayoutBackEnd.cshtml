@@ -18,17 +18,15 @@
 		<![endif]-->
 
     <!-- Stylesheets -->
-    @Styles.Render("~/css/bootstrap.min.css")
-    @Styles.Render("~/css/bootstrap-responsive.min.css")
-    @Styles.Render("~/css/font-awesome.min.css")
-    @Styles.Render("~/css/responsive.css")
-    @Styles.Render("~/content/DataTables")
+    <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/bootstrap-responsive.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/font-awesome.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/responsive.css")" rel="stylesheet" />
 
 
     <!-- [if IE 7]>
 		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
 		<![endif] -->
-    @*@Scripts.Render("http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")*@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 
     @{
@@ -63,7 +61,85 @@
     <div class="container">
         <div class="cont-outer">
             <div class="row-fluid">
-                @RenderBody()
+                <div class="row-fluid" style="padding-top: 50px;">
+                    <div class="span2">
+                        <div class="span12">
+                            <ul class="nav nav-list well span12">
+                                <li class="nav-header">Menú</li>
+                                @if (ViewBag.menu == "backend")
+                                {
+                                    <li class="active"><a href="@Url.Action("Index", "backend")">Inicio</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "backend")">Inicio</a></li>
+                                }
+                                @if (ViewBag.menu == "medios")
+                                {
+                                    <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>                                
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
+                                }
+                                @if (ViewBag.menu == "HomeSlider")
+                                {
+                                    <li class="active"><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+                                }
+                                @if (ViewBag.menu == "Page")
+                                {
+                                    <li class="active"><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                                }
+                                @if (ViewBag.menu == "SideBar")
+                                {
+                                    <li class="active"><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                                }
+
+                                <li class="nav-header">Deportes</li>
+
+                                @if (ViewBag.menu == "SportModality")
+                                {
+                                    <li class="active"><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                                }
+                                @if (ViewBag.menu == "SportBranch")
+                                {
+                                    <li class="active"><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                                }
+                                @if (ViewBag.menu == "SportSchedule")
+                                {
+                                    <li class="active"><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="span10">
+                        @RenderBody()
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.row-fluid -->
@@ -72,14 +148,14 @@
 
     <!-- Scripts -->
 
-    @Scripts.Render("~/scripts/jquery-1.9.1.min.js")
-    @Scripts.Render("~/js/bootstrap.min.js")
-    @Scripts.Render("~/js/responsiveslides.min.js")
-    @Scripts.Render("~/js/jquery.cookie.js")
-    @Scripts.Render("~/js/jquery.isotope.min.js")
-    @Scripts.Render("~/js/magnific.js")
-    @Scripts.Render("~/js/hoverdir.js")
-    @Scripts.Render("~/js/custom.js")
-    @Scripts.Render("~/bundles/DataTables")
+    <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+    <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/js/responsiveslides.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery.cookie.js")"></script>
+    <script src="@Url.Content("~/js/jquery.isotope.min.js")"></script>
+    <script src="@Url.Content("~/js/magnific.js")"></script>
+    <script src="@Url.Content("~/js/hoverdir.js")"></script>
+    <script src="@Url.Content("~/js/custom.js")"></script>
+
 </body>
 </html>
