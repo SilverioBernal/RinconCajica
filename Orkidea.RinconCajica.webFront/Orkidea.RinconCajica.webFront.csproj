@@ -218,6 +218,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\datepicker.css" />
+    <Content Include="Images\adobe.jpg" />
+    <Content Include="Images\blackBall.png" />
+    <Content Include="Images\blueBall.png" />
+    <Content Include="Images\redBall.png" />
+    <Content Include="Images\whiteBall.png" />
+    <Content Include="Images\yellowBall.png" />
     <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="Scripts\datepicker\bootstrap-datepicker.js" />
     <Content Include="Scripts\datepicker\bootstrap-datepicker.min.js" />

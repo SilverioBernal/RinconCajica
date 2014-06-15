@@ -1028,6 +1028,7 @@ body.padding .navbar{
 .post-details {
     background: #f2f2f2;
     padding: 20px;
+    text-align:justify;
 }
 .post-details a {
     color: #4f5458;
