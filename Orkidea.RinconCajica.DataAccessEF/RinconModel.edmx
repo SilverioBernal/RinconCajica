@@ -6,31 +6,19 @@
     <edmx:StorageModels>
     <Schema Namespace="RinconModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="RinconModelStoreContainer">
-          <EntitySet Name="ClubPartner" EntityType="RinconModel.Store.ClubPartner" store:Type="Tables" store:Schema="dbo" store:Name="ClubPartner">
-            <DefiningQuery>SELECT 
-      [ClubPartner].[id] AS [id], 
-      [ClubPartner].[doccl] AS [doccl], 
-      [ClubPartner].[docto] AS [docto], 
-      [ClubPartner].[carnet] AS [carnet], 
-      [ClubPartner].[accion] AS [accion], 
-      [ClubPartner].[cod_clie] AS [cod_clie], 
-      [ClubPartner].[nombre] AS [nombre], 
-      [ClubPartner].[direcc] AS [direcc], 
-      [ClubPartner].[telefn] AS [telefn], 
-      [ClubPartner].[fax] AS [fax], 
-      [ClubPartner].[correo] AS [correo], 
-      [ClubPartner].[fec_nac] AS [fec_nac], 
-      [ClubPartner].[sexo] AS [sexo], 
-      [ClubPartner].[nhijos] AS [nhijos], 
-      [ClubPartner].[celular] AS [celular], 
-      [ClubPartner].[idUsuario] AS [idUsuario]
-      FROM [dbo].[ClubPartner] AS [ClubPartner]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="ClubPartner" EntityType="RinconModel.Store.ClubPartner" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DocumentType" EntityType="RinconModel.Store.DocumentType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FileType" EntityType="RinconModel.Store.FileType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FileUpload" EntityType="RinconModel.Store.FileUpload" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FrontUser" EntityType="RinconModel.Store.FrontUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HomeSlider" EntityType="RinconModel.Store.HomeSlider" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JoinContest" EntityType="RinconModel.Store.JoinContest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NewsPaper" EntityType="RinconModel.Store.NewsPaper" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Page" EntityType="RinconModel.Store.Page" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Process" EntityType="RinconModel.Store.Process" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProcessDocument" EntityType="RinconModel.Store.ProcessDocument" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Project" EntityType="RinconModel.Store.Project" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProjectDocument" EntityType="RinconModel.Store.ProjectDocument" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SideBar" EntityType="RinconModel.Store.SideBar" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sport" EntityType="RinconModel.Store.Sport" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SportBranch" EntityType="RinconModel.Store.SportBranch" store:Type="Tables" Schema="dbo" />
@@ -43,6 +31,22 @@
           <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.Store.FK_Page_SideBar">
             <End Role="SideBar" EntitySet="SideBar" />
             <End Role="Page" EntitySet="Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessDocument_DocumentType" Association="RinconModel.Store.FK_ProcessDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessDocument_Process" Association="RinconModel.Store.FK_ProcessDocument_Process">
+            <End Role="Process" EntitySet="Process" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDocument_DocumentType" Association="RinconModel.Store.FK_ProjectDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDocument_Project" Association="RinconModel.Store.FK_ProjectDocument_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
           </AssociationSet>
           <AssociationSet Name="FK_SportBranch_Sport" Association="RinconModel.Store.FK_SportBranch_Sport">
             <End Role="Sport" EntitySet="Sport" />
@@ -65,9 +69,6 @@
             <End Role="SportSchedule" EntitySet="SportSchedule" />
           </AssociationSet>
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'Rincon.dbo.ClubPartner' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="ClubPartner">
           <Key>
             <PropertyRef Name="id" />
@@ -89,6 +90,21 @@
           <Property Name="celular" Type="varchar" MaxLength="50" />
           <Property Name="idUsuario" Type="int" />
         </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FileType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="tipoMIME" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="extension" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <EntityType Name="FileUpload">
           <Key>
             <PropertyRef Name="id" />
@@ -105,6 +121,7 @@
           <Property Name="usuario" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="contrasena" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="idRol" Type="varchar" Nullable="false" MaxLength="1" />
+          <Property Name="email" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="HomeSlider">
           <Key>
@@ -116,7 +133,7 @@
           <Property Name="urlBoton1" Type="varchar" MaxLength="250" />
           <Property Name="textoBoton2" Type="varchar" MaxLength="50" />
           <Property Name="urlBoton2" Type="varchar" MaxLength="250" />
-          <Property Name="textoSlider" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="textoSlider" Type="varchar" MaxLength="250" />
           <Property Name="activo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="JoinContest">
@@ -135,6 +152,15 @@
           <Property Name="categoria" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="fechaInscripcion" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="NewsPaper">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="titulo" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="contenido" Type="varchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Page">
           <Key>
             <PropertyRef Name="id" />
@@ -144,6 +170,43 @@
           <Property Name="contenidoPublico" Type="varchar(max)" />
           <Property Name="contenidoPrivado" Type="varchar(max)" />
           <Property Name="idSideBar" Type="int" />
+        </EntityType>
+        <EntityType Name="Process">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="archivoCaracterizacion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="ProcessDocument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idProceso" Type="int" Nullable="false" />
+          <Property Name="idTipoDocumento" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="ruta" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProjectDocument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idProyecto" Type="int" Nullable="false" />
+          <Property Name="idTipoDocumento" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ruta" Type="varchar" Nullable="false" MaxLength="250" />
         </EntityType>
         <EntityType Name="SideBar">
           <Key>
@@ -217,6 +280,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProcessDocument_DocumentType">
+          <End Role="DocumentType" Type="RinconModel.Store.DocumentType" Multiplicity="1" />
+          <End Role="ProcessDocument" Type="RinconModel.Store.ProcessDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProcessDocument">
+              <PropertyRef Name="idTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessDocument_Process">
+          <End Role="Process" Type="RinconModel.Store.Process" Multiplicity="1" />
+          <End Role="ProcessDocument" Type="RinconModel.Store.ProcessDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Process">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProcessDocument">
+              <PropertyRef Name="idProceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDocument_DocumentType">
+          <End Role="DocumentType" Type="RinconModel.Store.DocumentType" Multiplicity="1" />
+          <End Role="ProjectDocument" Type="RinconModel.Store.ProjectDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectDocument">
+              <PropertyRef Name="idTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDocument_Project">
+          <End Role="Project" Type="RinconModel.Store.Project" Multiplicity="1" />
+          <End Role="ProjectDocument" Type="RinconModel.Store.ProjectDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectDocument">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SportBranch_Sport">
           <End Role="Sport" Type="RinconModel.Store.Sport" Multiplicity="1" />
           <End Role="SportBranch" Type="RinconModel.Store.SportBranch" Multiplicity="*" />
@@ -282,8 +393,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="RinconModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="RinconEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="HomeSlider" EntityType="RinconModel.HomeSlider" />
-          <EntitySet Name="FrontUser" EntityType="RinconModel.FrontUser" />
           <EntitySet Name="Sport" EntityType="RinconModel.Sport" />
           <EntitySet Name="Page" EntityType="RinconModel.Page" />
           <EntitySet Name="SideBar" EntityType="RinconModel.SideBar" />
@@ -321,29 +430,32 @@
             <End Role="SportSchedule" EntitySet="SportSchedule" />
           </AssociationSet>
           <EntitySet Name="ClubPartner" EntityType="RinconModel.ClubPartner" />
+          <EntitySet Name="DocumentType" EntityType="RinconModel.DocumentType" />
+          <EntitySet Name="FileType" EntityType="RinconModel.FileType" />
+          <EntitySet Name="NewsPaper" EntityType="RinconModel.NewsPaper" />
+          <EntitySet Name="Process" EntityType="RinconModel.Process" />
+          <EntitySet Name="ProcessDocument" EntityType="RinconModel.ProcessDocument" />
+          <EntitySet Name="Project" EntityType="RinconModel.Project" />
+          <EntitySet Name="ProjectDocument" EntityType="RinconModel.ProjectDocument" />
+          <AssociationSet Name="FK_ProcessDocument_DocumentType" Association="RinconModel.FK_ProcessDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDocument_DocumentType" Association="RinconModel.FK_ProjectDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessDocument_Process" Association="RinconModel.FK_ProcessDocument_Process">
+            <End Role="Process" EntitySet="Process" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDocument_Project" Association="RinconModel.FK_ProjectDocument_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
+          </AssociationSet>
+          <EntitySet Name="FrontUser" EntityType="RinconModel.FrontUser" />
+          <EntitySet Name="HomeSlider" EntityType="RinconModel.HomeSlider" />
           </EntityContainer>
-        <EntityType Name="HomeSlider">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Guid" Name="id" Nullable="false" />
-          <Property Type="String" Name="urlImagen" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="textoBoton1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="urlBoton1" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="textoBoton2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="urlBoton2" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="textoSlider" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="activo" Nullable="false" />
-        </EntityType>
-        <EntityType Name="FrontUser">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contrasena" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="idRol" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Sport">
           <Key>
             <PropertyRef Name="id" />
@@ -545,36 +657,152 @@
           <Property Type="String" Name="celular" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="idUsuario" />
         </EntityType>
+        <EntityType Name="DocumentType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProcessDocument" Relationship="RinconModel.FK_ProcessDocument_DocumentType" FromRole="DocumentType" ToRole="ProcessDocument" />
+          <NavigationProperty Name="ProjectDocument" Relationship="RinconModel.FK_ProjectDocument_DocumentType" FromRole="DocumentType" ToRole="ProjectDocument" />
+        </EntityType>
+        <EntityType Name="FileType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="tipoMIME" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="extension" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NewsPaper">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="3" />
+          <Property Type="String" Name="titulo" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contenido" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Process">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="archivoCaracterizacion" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProcessDocument" Relationship="RinconModel.FK_ProcessDocument_Process" FromRole="Process" ToRole="ProcessDocument" />
+        </EntityType>
+        <EntityType Name="ProcessDocument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idProceso" Nullable="false" />
+          <Property Type="Int32" Name="idTipoDocumento" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcion" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ruta" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentType" Relationship="RinconModel.FK_ProcessDocument_DocumentType" FromRole="ProcessDocument" ToRole="DocumentType" />
+          <NavigationProperty Name="Process" Relationship="RinconModel.FK_ProcessDocument_Process" FromRole="ProcessDocument" ToRole="Process" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProjectDocument" Relationship="RinconModel.FK_ProjectDocument_Project" FromRole="Project" ToRole="ProjectDocument" />
+        </EntityType>
+        <EntityType Name="ProjectDocument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idProyecto" Nullable="false" />
+          <Property Type="Int32" Name="idTipoDocumento" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ruta" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentType" Relationship="RinconModel.FK_ProjectDocument_DocumentType" FromRole="ProjectDocument" ToRole="DocumentType" />
+          <NavigationProperty Name="Project" Relationship="RinconModel.FK_ProjectDocument_Project" FromRole="ProjectDocument" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_ProcessDocument_DocumentType">
+          <End Type="RinconModel.DocumentType" Role="DocumentType" Multiplicity="1" />
+          <End Type="RinconModel.ProcessDocument" Role="ProcessDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProcessDocument">
+              <PropertyRef Name="idTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDocument_DocumentType">
+          <End Type="RinconModel.DocumentType" Role="DocumentType" Multiplicity="1" />
+          <End Type="RinconModel.ProjectDocument" Role="ProjectDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectDocument">
+              <PropertyRef Name="idTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessDocument_Process">
+          <End Type="RinconModel.Process" Role="Process" Multiplicity="1" />
+          <End Type="RinconModel.ProcessDocument" Role="ProcessDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Process">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProcessDocument">
+              <PropertyRef Name="idProceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDocument_Project">
+          <End Type="RinconModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="RinconModel.ProjectDocument" Role="ProjectDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectDocument">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FrontUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contrasena" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="idRol" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="HomeSlider">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Guid" Name="id" Nullable="false" />
+          <Property Type="String" Name="urlImagen" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="textoBoton1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="urlBoton1" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="textoBoton2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="urlBoton2" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="textoSlider" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RinconModelStoreContainer" CdmEntityContainer="RinconEntities">
-          <EntitySetMapping Name="HomeSlider">
-            <EntityTypeMapping TypeName="RinconModel.HomeSlider">
-              <MappingFragment StoreEntitySet="HomeSlider">
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="textoSlider" ColumnName="textoSlider" />
-                <ScalarProperty Name="urlBoton2" ColumnName="urlBoton2" />
-                <ScalarProperty Name="textoBoton2" ColumnName="textoBoton2" />
-                <ScalarProperty Name="urlBoton1" ColumnName="urlBoton1" />
-                <ScalarProperty Name="textoBoton1" ColumnName="textoBoton1" />
-                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FrontUser">
-            <EntityTypeMapping TypeName="RinconModel.FrontUser">
-              <MappingFragment StoreEntitySet="FrontUser">
-                <ScalarProperty Name="idRol" ColumnName="idRol" />
-                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sport">
             <EntityTypeMapping TypeName="RinconModel.Sport">
               <MappingFragment StoreEntitySet="Sport">
@@ -683,6 +911,99 @@
                 <ScalarProperty Name="carnet" ColumnName="carnet" />
                 <ScalarProperty Name="docto" ColumnName="docto" />
                 <ScalarProperty Name="doccl" ColumnName="doccl" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentType">
+            <EntityTypeMapping TypeName="RinconModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileType">
+            <EntityTypeMapping TypeName="RinconModel.FileType">
+              <MappingFragment StoreEntitySet="FileType">
+                <ScalarProperty Name="extension" ColumnName="extension" />
+                <ScalarProperty Name="tipoMIME" ColumnName="tipoMIME" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsPaper">
+            <EntityTypeMapping TypeName="RinconModel.NewsPaper">
+              <MappingFragment StoreEntitySet="NewsPaper">
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Process">
+            <EntityTypeMapping TypeName="RinconModel.Process">
+              <MappingFragment StoreEntitySet="Process">
+                <ScalarProperty Name="archivoCaracterizacion" ColumnName="archivoCaracterizacion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessDocument">
+            <EntityTypeMapping TypeName="RinconModel.ProcessDocument">
+              <MappingFragment StoreEntitySet="ProcessDocument">
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
+                <ScalarProperty Name="idProceso" ColumnName="idProceso" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project">
+            <EntityTypeMapping TypeName="RinconModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectDocument">
+            <EntityTypeMapping TypeName="RinconModel.ProjectDocument">
+              <MappingFragment StoreEntitySet="ProjectDocument">
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FrontUser">
+            <EntityTypeMapping TypeName="RinconModel.FrontUser">
+              <MappingFragment StoreEntitySet="FrontUser">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeSlider">
+            <EntityTypeMapping TypeName="RinconModel.HomeSlider">
+              <MappingFragment StoreEntitySet="HomeSlider">
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="textoSlider" ColumnName="textoSlider" />
+                <ScalarProperty Name="urlBoton2" ColumnName="urlBoton2" />
+                <ScalarProperty Name="textoBoton2" ColumnName="textoBoton2" />
+                <ScalarProperty Name="urlBoton1" ColumnName="urlBoton1" />
+                <ScalarProperty Name="textoBoton1" ColumnName="textoBoton1" />
+                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

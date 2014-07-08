@@ -191,16 +191,16 @@ $(window).load(function(){
             type: "POST",
             dataType : 'json',
             data: d,
-            dataType: 'html',
+            dataType: 'json',
             cache: false,
-            url: 'contact.php',
+            url: 'sendContactMessage',
             success: function(data){
                 that.find('button i').remove();
                 if(data == 'OK'){
-                    that.find('button').text("Your message was successfully sent!").attr('disabled','disabled');
+                    that.find('button').text("Su mensaje, ha sido enviado!").attr('disabled','disabled');
                 }
                 else{
-                    alert('There was an error when sending the message! Please check your fields.');
+                    alert('Ocurrio un error al intentar enviar su mensaje. Verifique los campos e intentelo de nuevo.');
                 }
             }
         });

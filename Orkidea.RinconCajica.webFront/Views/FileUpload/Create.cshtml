@@ -2,14 +2,14 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 
 <script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
 
-<div class="span12 well" style="min-height: 800px;">
+<div class="span12">
     <h2>Subir archvo</h2>
-    <div class="span12">
+    <div>
         @using (Html.BeginForm("Create", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {                    
             <div class="row-fluid">

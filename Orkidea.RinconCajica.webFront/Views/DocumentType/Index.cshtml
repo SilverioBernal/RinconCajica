@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.DocumentType>
+@{
+    ViewBag.Title = "Sistema de gestión - Lista de tipos de documento";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+<h2>Sistema de gestión - Lista de tipos de documento</h2>
+
+<div class="row-fluid">
+    <div class="span12">
+        <p>
+            @Html.ActionLink("Crear nuevo", "Create", null, new{ @class= "btn btn-info"}) | @Html.ActionLink("Volver al Home","Index", "Home")
+        </p>
+        <br />
+        <table class="table table-bordered table-striped table_vam" id="dt_gal">
+            <thead>
+                <tr>
+                    <th>Tipo de documento</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "DocumentType", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>
+                            <a href="@Url.Action("Delete", "DocumentType", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $('#dt_gal').dataTable();
+</script>
+

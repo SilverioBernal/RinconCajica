@@ -175,24 +175,6 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             return RedirectToAction("Index");
         }
 
-        //
-        // POST: /HomeSlider/Delete/5
-        [Authorize]
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         public ActionResult getHomeSlider()
         {
             List<HomeSlider> lsHomeSlider = new List<HomeSlider>();

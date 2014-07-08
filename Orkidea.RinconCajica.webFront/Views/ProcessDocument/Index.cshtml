@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmProcessDocument>
+
+@{
+    ViewBag.Title = "Sistema de gestión - Lista documentos";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+<h2>Sistema de gestión - Lista documentos</h2>
+
+<div class="row-fluid">
+    <div class="span12">
+        <p>
+            @Html.ActionLink("Crear nuevo", "Create", null, new{ @class= "btn btn-info"}) | @Html.ActionLink("Volver al home","Index", "Home")     
+        </p>
+        <table class="table table-bordered table-striped table_vam" id="dt_gal">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.desProceso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.desTipo)
+                    </th>
+                    <th>Link</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.desProceso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.desTipo)
+                        </td>
+                        <td><a href="@Url.Content("~/UploadedFiles/" +item.ruta)" target="_blank">Url</a></td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>
+                        <td>                            
+                            <a href="@Url.Action("Edit", "ProcessDocument", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>                            
+                            <a href="@Url.Action("Delete", "ProcessDocument", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>            
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $('#dt_gal').dataTable();
+</script>

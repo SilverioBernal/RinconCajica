@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.NewsPaper>
+
+@{
+    ViewBag.Title = "Noticias - Listado general";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+<h2>Noticias - Listado general</h2>
+<p>
+    @Html.ActionLink("Crear nuevo", "Create", null, new { @class = "btn btn-info" }) | @Html.ActionLink("Volver al Home", "Index", "Home")
+</p>
+<br />
+<div class="row-fluid">
+    <div class="span12">
+        <table class="table table-bordered table-striped table_vam" id="dt">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.fecha)</th>
+                    <th>@Html.DisplayNameFor(model => model.titulo)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fecha)
+                            @Html.HiddenFor(modelItem => item.id)
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.titulo)</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "NewsPaper", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>
+                            <a href="@Url.Action("Delete", "NewsPaper", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $('#dt').dataTable();
+</script>

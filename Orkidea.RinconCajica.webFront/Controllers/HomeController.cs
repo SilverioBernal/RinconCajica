@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
+using Orkidea.RinconCajica.webFront.Models;
 
 namespace Orkidea.RinconCajica.webFront.Controllers
 {    
@@ -34,10 +35,29 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         }
 
         public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+        {            
+            ViewBag.menu = "contacto";
             return View();
+        }
+
+        public JsonResult sendContactMessage(string name, string email, string message)
+        {
+            string res = "";
+
+            BizCommon bizCommon = new BizCommon();
+
+            try
+            {
+                bizCommon.sendContactMessage(email, name + " se ha contactado con el Club", message);
+
+                res = "OK";
+            }
+            catch (Exception)
+            {
+                res = "fail";
+            }
+
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
     }
 }

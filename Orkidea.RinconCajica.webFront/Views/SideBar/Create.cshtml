@@ -2,14 +2,14 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 
 @Scripts.Render("~/scripts/jquery-1.9.1.min.js")
 <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 
-<div class="span12 well" style="min-height: 800px;">
-    <h2 style="text-align: center;">Crear side bar</h2>
+<div>
+    <h2>Crear side bar</h2>
 
     @using (Html.BeginForm())
     {
@@ -24,7 +24,8 @@
                 <label>Contenido público</label>
                 @Html.TextAreaFor(c => c.contenido, new { @class = "textarea span12", style = "width: 810px; height: 200px" })
             </div>
-        </div>                
+        </div>     
+        <br />           
         <div class="row-fluid">
             <div class="span2">
                 <input type="button" value="Guardar" id="btnSubmit" class="btn btn-info" />

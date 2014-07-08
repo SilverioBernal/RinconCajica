@@ -54,14 +54,6 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         }
 
         //
-        // GET: /SportModality/Details/5
-
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
-
-        //
         // GET: /SportModality/Create
         [Authorize]
         public ActionResult Create()

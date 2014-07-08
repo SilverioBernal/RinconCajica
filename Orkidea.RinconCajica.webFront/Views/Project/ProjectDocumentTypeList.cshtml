@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.DocumentType>
+
+@{
+    Layout = null;
+    string guid = Guid.NewGuid().ToString();
+    }
+
+<div class="row-fluid">
+    <div class="span12">
+        <h5>Tipos de documento</h5>
+        <div class="accordion" id="@guid">
+                @foreach (Orkidea.Exterran.Entities.DocumentType item in Model)
+                {
+                    <div class="accordion-group">
+                        <div class="accordion-heading nav-pills">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#@guid" href="#collapse_Type_@item.id@guid">@item.nombre
+                            </a>
+                        </div>
+                        <div id="collapse_Type_@item.id@guid" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                @{Html.RenderAction("IndexByProjectDotumentType", "ProjectDocument", new { idProject = ViewBag.idProject, idDocumentType = item.id });}
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+    </div>
+</div>
+

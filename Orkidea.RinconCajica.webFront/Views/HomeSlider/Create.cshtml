@@ -2,11 +2,11 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 
-<div class="span12 well" style="min-height: 800px;">
-    <h2 style="text-align: center;">Crear contenido pag. inicio</h2>
+<div class="span12">
+    <h2>Crear contenido pag. inicio</h2>
     @using (Html.BeginForm())
     {
         <div class="row-fluid">
@@ -55,5 +55,5 @@
 </div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>

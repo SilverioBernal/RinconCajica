@@ -26,8 +26,6 @@ namespace Orkidea.RinconCajica.DataAccessEF
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<HomeSlider> HomeSlider { get; set; }
-        public DbSet<FrontUser> FrontUser { get; set; }
         public DbSet<Sport> Sport { get; set; }
         public DbSet<Page> Page { get; set; }
         public DbSet<SideBar> SideBar { get; set; }
@@ -37,5 +35,14 @@ namespace Orkidea.RinconCajica.DataAccessEF
         public DbSet<JoinContest> JoinContest { get; set; }
         public DbSet<SportSchedule> SportSchedule { get; set; }
         public DbSet<ClubPartner> ClubPartner { get; set; }
+        public DbSet<DocumentType> DocumentType { get; set; }
+        public DbSet<FileType> FileType { get; set; }
+        public DbSet<NewsPaper> NewsPaper { get; set; }
+        public DbSet<Process> Process { get; set; }
+        public DbSet<ProcessDocument> ProcessDocument { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<ProjectDocument> ProjectDocument { get; set; }
+        public DbSet<FrontUser> FrontUser { get; set; }
+        public DbSet<HomeSlider> HomeSlider { get; set; }
     }
 }

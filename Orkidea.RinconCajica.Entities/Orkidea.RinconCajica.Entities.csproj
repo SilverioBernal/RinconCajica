@@ -47,25 +47,44 @@
     <Compile Include="ClubPartner.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DocumentType.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FileType.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FileUpload.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FrontUser.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="HomeSlider.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="JoinContest.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="NewsPaper.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Page.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Process.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessDocument.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectDocument.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RinconEntityModel.cs">

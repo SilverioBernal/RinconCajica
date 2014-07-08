@@ -2,16 +2,16 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 
 @Scripts.Render("~/scripts/jquery-1.9.1.min.js")
 @Styles.Render("~/content/DataTables")
 @Scripts.Render("~/bundles/DataTables")
 
-<div class="span12 well" style="min-height: 800px;">
+<div>
 
-    <h2 style="text-align: center;">Listado general de usuarios</h2>
+    <h2>Listado general de usuarios</h2>
 
     <p>
         <a href="@Url.Action("Create")" class="btn btn-primary">Nuevo usuario</a>
@@ -41,3 +41,6 @@
 </div>
 
 
+<script>
+    $('#dt_gal').dataTable();
+</script>

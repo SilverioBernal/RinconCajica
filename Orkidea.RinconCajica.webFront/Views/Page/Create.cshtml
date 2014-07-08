@@ -2,13 +2,13 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 @Scripts.Render("~/scripts/jquery-1.9.1.min.js")
 <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
 
-<div class="span12 well" style="min-height: 800px;">
-    <h2 style="text-align: center;">Crear pagina</h2>
+<div>
+    <h2>Crear pagina</h2>
 
     @using (Html.BeginForm())
     {
@@ -47,7 +47,7 @@
     }
 </div>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>
 
 <div id="myModal" class="modal hide fade">

@@ -5,11 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d0dd5b960ced400dac5c9f30e893c457" Name="Diagram1" ZoomLevel="106">
-        <EntityTypeShape EntityType="RinconModel.HomeSlider" Width="1.5" PointX="5.75" PointY="7.75" />
-        <EntityTypeShape EntityType="RinconModel.FrontUser" Width="1.5" PointX="7.75" PointY="7.75" />
         <EntityTypeShape EntityType="RinconModel.Sport" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="RinconModel.Page" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="RinconModel.SideBar" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="RinconModel.Page" Width="1.5" PointX="11" PointY="7.875" />
+        <EntityTypeShape EntityType="RinconModel.SideBar" Width="1.5" PointX="8.75" PointY="8.125" />
         <AssociationConnector Association="RinconModel.FK_Page_SideBar" />
         <EntityTypeShape EntityType="RinconModel.SportBranch" Width="1.5" PointX="3" PointY="2.25" />
         <EntityTypeShape EntityType="RinconModel.SportModality" Width="1.5" PointX="3" PointY="5" />
@@ -22,7 +20,20 @@
         <AssociationConnector Association="RinconModel.FK_SportsSchedule_Sport" />
         <AssociationConnector Association="RinconModel.FK_SportsSchedule_SportBranch" />
         <AssociationConnector Association="RinconModel.FK_SportsSchedule_SportModality" />
-        <EntityTypeShape EntityType="RinconModel.ClubPartner" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RinconModel.ClubPartner" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RinconModel.DocumentType" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="RinconModel.FileType" Width="1.5" PointX="8.75" PointY="11.75" />
+        <EntityTypeShape EntityType="RinconModel.NewsPaper" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="RinconModel.Process" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="RinconModel.ProcessDocument" Width="1.5" PointX="3" PointY="9.625" />
+        <EntityTypeShape EntityType="RinconModel.Project" Width="1.5" PointX="3.75" PointY="13.125" />
+        <EntityTypeShape EntityType="RinconModel.ProjectDocument" Width="1.5" PointX="6" PointY="9.75" />
+        <AssociationConnector Association="RinconModel.FK_ProcessDocument_DocumentType" />
+        <AssociationConnector Association="RinconModel.FK_ProjectDocument_DocumentType" />
+        <AssociationConnector Association="RinconModel.FK_ProcessDocument_Process" />
+        <AssociationConnector Association="RinconModel.FK_ProjectDocument_Project" />
+        <EntityTypeShape EntityType="RinconModel.FrontUser" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="RinconModel.HomeSlider" Width="1.5" PointX="13.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

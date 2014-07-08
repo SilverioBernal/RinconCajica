@@ -1,0 +1,23 @@
+﻿@model Orkidea.RinconCajica.Entities.DocumentType
+
+@{
+    ViewBag.Title = "Sistema de gestión - Edición de tipos de documento";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <h2>Sistema de gestión - Edición de tipos de documento</h2>
+
+    @Html.ValidationSummary(true)
+
+    <div class="row-fluid">
+        <label>Nombre tipo documento</label>
+        @Html.TextBoxFor(model => model.nombre)
+        @Html.ValidationMessageFor(model => model.nombre)
+    </div>
+    <br />
+     <div class="row-fluid">
+        <input type='submit' id='upload-files' value=' Guardar ' class="btn btn-primary" /> | @Html.ActionLink("Volver a la lista","Index")
+    </div>
+}

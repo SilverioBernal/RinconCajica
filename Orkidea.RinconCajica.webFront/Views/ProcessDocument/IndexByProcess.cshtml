@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.ProcessDocument>
+
+@{
+    Layout = null;
+    }
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><a href="@Url.Content("~/UploadedFiles/" +item.ruta)" target="_blank">@item.nombre</a></li>        
+    }
+</ul>
+

@@ -2,15 +2,15 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 
 @Styles.Render("~/content/DataTables")
 @Scripts.Render("~/bundles/DataTables")
 
-<div class="span12 well" style="min-height: 800px;">
+<div>
 
-    <h2 style="text-align: center;">Ramas de deportes</h2>
+    <h2>Ramas de deportes</h2>
 
     <p>
         <a href="@Url.Action("Create")" class="btn btn-primary">Nueva rama deportiva</a>

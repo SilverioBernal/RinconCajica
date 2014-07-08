@@ -29,7 +29,8 @@
 		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
 		<![endif] -->
 
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+    @*<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>*@
+    <link href='http://fonts.googleapis.com/css?family=Roboto:100,200,300' rel='stylesheet' type='text/css'>
 
     @{
         System.Security.Principal.IIdentity context = Context.User.Identity;
@@ -124,16 +125,16 @@
 
                             @if (ViewBag.menu == "contacto")
                             {
-                                <li class="active"><a href="#"><span style="color: white;">.</span>Contacto</a></li>
+                                <li class="active"><a href="@Url.Action("Contact", "Home")"><span style="color: white;">.</span>Contacto</a></li>
                             }
                             else
                             {
-                                <li><a href="#"><span style="color: white;">.</span>Contacto</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")"><span style="color: white;">.</span>Contacto</a></li>
                             }
 
-                            @if (rol == "A")
+                            @if (rol == "A" || rol == "C" || rol =="E")
                             {
-                                <li><a href="@Url.Action("Index", "Backend")"><span style="color: white;">.</span>BackEnd</a></li>
+                                <li><a href="@Url.Action("Index", "homeSGC")"><span style="color: white;">.</span>Empleados</a></li>
                             }
                         </ul>
                     </div>
@@ -212,7 +213,8 @@
         <!-- /modal -->
 
         <!-- Scripts -->
-        <script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
         <script src="@Url.Content("~/js/responsiveslides.min.js")"></script>
         <script src="@Url.Content("~/js/jquery.cookie.js")"></script>

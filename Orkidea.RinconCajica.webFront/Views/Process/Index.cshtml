@@ -1,0 +1,164 @@
+﻿@model Orkidea.RinconCajica.Entities.Process
+
+@{
+    ViewBag.Title = "Mapa de procesos";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+<div>
+    <h2>Sistema de gestion - Mapa de procesos</h2>
+    <div style="width: 790px; margin: 0 auto;">
+        <div style="float: left;" class="MPro">
+            <a href="@Url.Action("Details", "Process", new { id = 1 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                <img src="@Url.Content("~/Images/1N.png")" class="imgNormal" />
+                <img src="@Url.Content("~/Images/1S.png")" class="imgSelected" style="display: none" />
+            </a>
+        </div>
+        <div style="float: left; width: 571px;">
+            <div style="float: left; width: 571px;">
+                <div class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 2 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/2N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/2S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+
+            </div>
+            <div style="float: left; width: 571px">
+                <div style="float: left">
+                    <img src="@Url.Content("~/Images/2I.png")" class="imgNormal" />
+                </div>
+                <div style="float: left;">
+                    <div style="float: left; width: 462px;">
+                        <div style="float: left" class="MPro">
+                            <a href="@Url.Action("Details", "Process", new { id = 3 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                                <img src="@Url.Content("~/Images/3N.png")" class="imgNormal" />
+                                <img src="@Url.Content("~/Images/3S.png")" class="imgSelected" style="display: none" />
+                            </a>
+                        </div>
+                        <div style="float: left;">
+                            <div style="float: left;" class="MPro">
+                                <a href="@Url.Action("Details", "Process", new { id = 4 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                                    <img src="@Url.Content("~/Images/4N.png")" class="imgNormal" />
+                                    <img src="@Url.Content("~/Images/4S.png")" class="imgSelected" style="display: none" />
+                                </a>
+                            </div>
+                            <div style="float: left;" class="MPro">
+                                <a href="@Url.Action("Index", "Project", new { id = 5 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                                    <img src="@Url.Content("~/Images/5N.png")" class="imgNormal" />
+                                    <img src="@Url.Content("~/Images/5S.png")" class="imgSelected" style="display: none" />
+                                </a>
+                            </div>
+                        </div>
+                        <div style="float: left" class="MPro">
+                            <a href="@Url.Action("Details", "Process", new { id = 6 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                                <img src="@Url.Content("~/Images/6N.png")" class="imgNormal" />
+                                <img src="@Url.Content("~/Images/6S.png")" class="imgSelected" style="display: none" />
+                            </a>
+                        </div>
+                        <div style="float: left">
+                            <img src="@Url.Content("~/Images/7.png")" class="imgNormal" />
+                        </div>
+                    </div>
+                </div>
+                <div style="float: left">
+                    <img src="@Url.Content("~/Images/2D.png")" class="imgNormal" />
+                </div>
+                @*<div style="float: left">
+                    <a href="@Url.Action("Details", "Process", new { id = 3 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/99.png")" class="imgNormal" />
+                    </a>
+                </div>*@
+            </div>
+            <div style="float: left; width: 571px;">
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 7 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/8N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/8S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 8 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/9N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/9S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 9 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/10N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/10S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 10 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/11N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/11S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 11 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/12N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/12S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 12 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/13N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/13S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 13 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/14N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/14S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 14 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/15N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/15S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+            </div>
+            <div style="float: left; width: 571px;">
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 15 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/16N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/16S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 16 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/17N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/17S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+                <div style="float: left;" class="MPro">
+                    <a href="@Url.Action("Details", "Process", new { id = 17 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                        <img src="@Url.Content("~/Images/18N.png")" class="imgNormal" />
+                        <img src="@Url.Content("~/Images/18S.png")" class="imgSelected" style="display: none" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div style="float: left;" class="MPro">
+            <a href="@Url.Action("Details", "Process", new { id = 18 })" style="padding: 0px 0px 0px 0px; background-color: white;">
+                <img src="@Url.Content("~/Images/19N.png")" class="imgNormal" />
+                <img src="@Url.Content("~/Images/19S.png")" class="imgSelected" style="display: none" />
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+    $('.MPro').mouseenter(function () {
+        var div = this;
+        $(this).find('.imgNormal').css('display', 'none');
+        $(this).find('.imgSelected').css('display', 'inline');
+    });
+
+    $('.MPro').mouseleave(function () {
+        var div = this;
+        $(this).find('.imgNormal').css('display', 'inline');
+        $(this).find('.imgSelected').css('display', 'none');
+    });
+</script>

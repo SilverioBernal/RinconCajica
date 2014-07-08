@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -47,11 +48,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BizClubPartner.cs" />
+    <Compile Include="BizCommon.cs" />
+    <Compile Include="BizDocumentType.cs" />
+    <Compile Include="BizFileType.cs" />
     <Compile Include="BizFileUpload.cs" />
     <Compile Include="BizFrontUser.cs" />
     <Compile Include="BizHomeSlider.cs" />
     <Compile Include="BizJoinContest.cs" />
+    <Compile Include="BizNewsPaper.cs" />
     <Compile Include="BizPage.cs" />
+    <Compile Include="BizProcess.cs" />
+    <Compile Include="BizProcessDocument.cs" />
+    <Compile Include="BizProject.cs" />
+    <Compile Include="BizProjectDocument.cs" />
     <Compile Include="BizSideBar.cs" />
     <Compile Include="BizSport.cs" />
     <Compile Include="BizSportBranch.cs" />

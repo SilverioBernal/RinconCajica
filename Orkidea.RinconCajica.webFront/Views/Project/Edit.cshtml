@@ -1,0 +1,25 @@
+﻿@model Orkidea.RinconCajica.webFront.Models.vmProject
+
+@{
+    ViewBag.Title = "Sistema de gestión - Edición de proyectos";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <h2>Sistema de gestión - Edición de proyectos</h2>
+
+    @Html.ValidationSummary(true)
+
+    <div class="row-fluid">
+        @Html.LabelFor(model => model.nombre)
+        @Html.TextBoxFor(model => model.nombre)
+        @Html.ValidationMessageFor(model => model.nombre)
+    </div>
+
+    <p>
+        <input type='submit' id='upload-files' value=' Guardar ' class="btn btn-primary" />
+        | @Html.ActionLink("Volver a la lista", "List")
+    </p>                                                                                     
+   
+}

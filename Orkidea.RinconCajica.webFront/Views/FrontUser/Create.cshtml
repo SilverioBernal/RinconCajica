@@ -1,0 +1,125 @@
+﻿@model Orkidea.RinconCajica.webFront.Models.vmFrontUser
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+
+
+<div>
+    <h2>Crear usuario web</h2>
+
+    @using (Html.BeginForm())
+    {
+        <div class="row-fluid">
+            <div class="span7">
+                <div class="row-fluid">
+                    <label>Rol<span class="f_req">*</span></label>
+                    @Html.DropDownListFor(c => c.idRol, new SelectList(Model.lstRol, "key", "value"))
+                </div>
+                <div class="row-fluid" id="divSocio" style="display: none;">
+                    <label>Socio<span class="f_req">*</span></label>
+                    @Html.DropDownListFor(c => c.idSocio, new SelectList(Model.lstSocio, "key", "value"), new { @class = "span8" })
+                </div>
+                <div class="row-fluid">
+                    <label>Nombre de usuario</label>
+                    @Html.TextBoxFor(c => c.usuario)
+                </div>
+                <div class="row-fluid">
+                    <label>Correo</label>
+                    @Html.TextBoxFor(c => c.email, new {@class ="span8" })
+                </div>
+            </div>
+            <div class="span5">
+                <div class="row-fluid" id="divUser" style="display: none;">
+                    <h4>usuarios sugeridos</h4>
+                    <ul id="suggestedUsers">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span2">
+                <input type="button" value="Guardar" id="btnSubmit" class="btn btn-info" />
+            </div>
+        </div>    
+    }
+</div>
+<div>
+    @Html.ActionLink("Volver a la lista", "Index")
+</div>
+<div id="myModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Error</h3>
+    </div>
+    <div class="modal-body">
+        <p></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" data-dismiss="modal" aria-hidden="true" class="btn">Cerrar</a>
+        <a href="@Url.Action("index")" class="btn btn-danger">Cancelar</a>
+    </div>
+</div>
+
+
+<script>
+    $('#idRol').change(function () {
+        if ($('#idRol').val() == 'S') {
+            $('#divSocio').toggle(true);
+        }
+        else {
+            $('#divSocio').toggle(false);
+        }
+    });
+
+    $('#idSocio').change(function () {
+        if ($('#idSocio').val() != '0') {
+
+            $.getJSON("sugerirUsuario/" + $('#idSocio').val(), function (data) {
+                var items = [];
+                
+                $.each(data, function () {
+                    items.push('<li> ' + this + ' <a href="javascript:void(0)" > usar </a> </li>');
+                });
+                $('#suggestedUsers').html(items);
+
+                $('#divUser').toggle(true)
+            });
+
+            $.getJSON("obtenerCorreoSocio/" + $('#idSocio').val(), function (data) {
+                $('#email').val(data);
+            });
+        }
+    });
+
+    $('#divUser').click(function (e) {
+        var usuario = e.target.parentNode.childNodes[0]
+
+        $('#usuario').val(usuario.nodeValue.trim());       
+    });
+
+    $('#btnSubmit').click(function () {
+        var megBox = $('#myModal p')[0]
+
+        var usuario = $('#usuario').val();
+        var correo =  $('#email').val();
+        var mensaje = '';
+
+        if (usuario == '' || usuario == null)
+            mensaje += 'El usuario es obligatorio\n';
+        if (correo == '' || correo == null)
+            mensaje += 'El correo es obligatorio';
+
+        if (mensaje == '') {
+            $("form").submit();
+        }
+        else {
+            megBox.innerText = mensaje;
+            $('#myModal').modal()
+        }        
+    });
+</script>

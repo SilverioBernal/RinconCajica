@@ -2,15 +2,15 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 
 @Scripts.Render("~/scripts/jquery-1.9.1.min.js")
 @Styles.Render("~/css/datepicker.css")
 @Scripts.Render("~/js/bootstrap-datepicker.js")
 
-<div class="span12 well" style="min-height: 800px;">
-    <h2 style="text-align: center;">Crear evento</h2>
+<div>
+    <h2>Crear evento</h2>
 
     @using (Html.BeginForm())
     {                
@@ -83,7 +83,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>
 
 <div id="myModal" class="modal hide fade">

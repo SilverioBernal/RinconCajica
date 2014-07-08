@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -63,9 +64,9 @@ namespace Orkidea.RinconCajica.Business
         /// Create or update a FrontUser
         /// </summary>
         /// <param name="FrontUserTarget"></param>
-        public void SaveFrontUser(FrontUser FrontUserTarget)
+        public int SaveFrontUser(FrontUser FrontUserTarget)
         {
-
+            int res = -1;
             try
             {
                 using (var ctx = new RinconEntities())
@@ -79,14 +80,34 @@ namespace Orkidea.RinconCajica.Business
                         ctx.FrontUser.Attach(oFrontUser);
                         EntityFrameworkHelper.EnumeratePropertyDifferences(oFrontUser, FrontUserTarget);
                         ctx.SaveChanges();
+                        res=  oFrontUser.id;
                     }
                     else
                     {
-                        // else create
+                        // else assing password and create
+                        Cryptography oCrypto = new Cryptography();
+                        FrontUserTarget.contrasena = oCrypto.Encrypt(PasswordHelper.Generate());
                         ctx.FrontUser.Add(FrontUserTarget);
                         ctx.SaveChanges();
+                        res = FrontUserTarget.id;
+                        
+                        // send notification
+                        List<System.Net.Mail.MailAddress> to = new List<System.Net.Mail.MailAddress>();
+                        to.Add(new System.Net.Mail.MailAddress(FrontUserTarget.email));
+
+                        Dictionary<string, string> dynamicValues = new Dictionary<string, string>();
+                        dynamicValues.Add("[usuario]", FrontUserTarget.usuario);
+                        dynamicValues.Add("[clave]",oCrypto.Decrypt(FrontUserTarget.contrasena));
+                        dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
+
+                        MailingHelper.SendMail(to, "Notificación de creacion de usuario", 
+                            ConfigurationManager.AppSettings["emailNewUserNotificationTemplateHTML"].ToString(), 
+                            ConfigurationManager.AppSettings["emailNewUserNotificationTemplateText"].ToString(), 
+                            ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
                     }
                 }
+
+                return res;
 
             }
             catch (DbEntityValidationException e)
@@ -157,6 +178,38 @@ namespace Orkidea.RinconCajica.Business
             catch (Exception ex) { throw ex; }
 
             return oFrontUser;
+        }
+
+        public string UserNameSuggest(int idSocio)
+        {
+            string res = "";
+
+            BizClubPartner bizClubPartner = new BizClubPartner();
+            ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { id = idSocio });
+
+            string usuariosSugeridos = UserNameHelper.userNameGenerator(clubPartner.nombre, true);
+
+            string[] usuariosSugeridosArray = usuariosSugeridos.Split('|');
+
+            List<FrontUser> lsUsuarios = GetFrontUserList();
+
+            for (int i = 0; i < usuariosSugeridosArray.Count(); i++)
+            {
+                string usuarioActual = usuariosSugeridosArray[i];
+
+                int repetidos = lsUsuarios.Where(x => x.usuario.Contains(usuarioActual)).Count();
+
+                if (repetidos != 0)
+                {
+                    res += usuariosSugeridosArray[i] + (repetidos + 1).ToString() + "|";
+
+                }
+                else
+                {
+                    res += usuariosSugeridosArray[i] + "|";
+                }
+            }
+            return res.Substring(0, (res.Length - 1)); ;
         }
     }
 }

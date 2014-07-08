@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.Project>
+
+@{
+    ViewBag.Title = "Sistema de gestión - Proyectos";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+<style>
+    .active
+    {
+        background-color: #006dcc;
+        color: white;
+    }
+
+        .active:hover
+        {
+            color: white;
+        }
+</style>
+<div class="row-fluid">
+    <h2>Sistema de gestión - Proyectos</h2>        
+    <div class="row-fluid">
+        <div class="span12">
+            <h4>Documentos vigentes</h4>
+            <div class="accordion" id="accordionDocs">
+                @foreach (Orkidea.RinconCajica.Entities.Project item in Model)
+                {
+                    <div class="accordion-group">
+                        <div class="accordion-heading nav-pills">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionDocs" href="#collapse_@item.id">@item.nombre
+                            </a>
+                        </div>
+                        <div id="collapse_@item.id" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                @{Html.RenderAction("ProjectDocumentTypeList", "Project", new { id= item.id });}
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+        $('.accordion').on('show', function (e) {
+            $(e.target).prev('.accordion-heading').find('.accordion-toggle').addClass('active');
+        });
+
+        $('.accordion').on('hide', function (e) {
+            $(this).find('.accordion-toggle').not($(e.target)).removeClass('active');
+        });
+
+    });
+</script>

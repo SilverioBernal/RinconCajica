@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title>Rincon de Cajicá | Portal de Calidad</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- [if lt IE 9]
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+    <!-- Stylesheets -->
+    <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/bootstrap-responsive.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/font-awesome.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/responsive.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/backend.css")" rel="stylesheet" />
+
+    <!-- [if IE 7]>
+		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
+		<![endif] -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+
+    @{
+        System.Security.Principal.IIdentity context = Context.User.Identity;
+        int user = 0;
+        string rol = "U";
+        string userName = "";
+        bool autenticado = false;
+
+        if (context.IsAuthenticated)
+        {
+            System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)Context.User.Identity;
+            string[] userRole = ci.Ticket.UserData.Split('|');
+            user = int.Parse(userRole[0]);
+            rol = userRole[1];
+            userName = ci.Name;
+            autenticado = (user != null ? true : false);
+        }
+    }
+
+</head>
+<body class="bodyBackend">
+    <div class="row-fluid">
+        <div class="navbar">
+            <div class="navbar-inner navbar-fixed-top">
+                <a class="brand" href="@Url.Action("index", "HomeSGC")">
+                    <img src="~/img/logo.png" width="100px" /></a>
+                <ul class="nav customNav">
+                    <li><a href="@Url.Action("index", "HomeSGC")">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acerca del SGC<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Estructura organizacional</a></li>
+                            <li><a href="#">Direccionamiento estratégico</a></li>
+                            <li><a href="#">Normativas</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("Index", "Process")">Sistema de Gestión</a></li>
+                    <li><a href="#">Sugerencias</a></li>
+                    @if (rol == "A" || rol == "C")
+                    {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            @if (rol == "A")
+                            {
+                                <li class="nav-header">General</li>
+                                <li><a href="@Url.Action("Index", "FrontUser")">Usuarios</a></li>
+                                <li><a href="@Url.Action("Index", "NewsPaper")">Noticias</a></li>
+                            
+                                if (ViewBag.menu == "medios")
+                                {
+                                <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>                                
+                                }
+                                else
+                                {
+                                <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
+                                }
+                                if (ViewBag.menu == "HomeSlider")
+                                {
+                                <li class="active"><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+                                }
+                                else
+                                {
+                                <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+                                }
+                                if (ViewBag.menu == "Page")
+                                {
+                                <li class="active"><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                                }
+                                else
+                                {
+                                <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                                }
+                                if (ViewBag.menu == "SideBar")
+                                {
+                                <li class="active"><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                                }
+                                else
+                                {
+                                <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                                }
+                                <li class="divider"></li>
+                                <li class="nav-header">Deportes</li>
+
+                                if (ViewBag.menu == "SportModality")
+                                {
+                                <li class="active"><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                                }
+                                else
+                                {
+                                <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                                }
+                                if (ViewBag.menu == "SportBranch")
+                                {
+                                <li class="active"><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                                }
+                                else
+                                {
+                                <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                                }
+                                if (ViewBag.menu == "SportSchedule")
+                                {
+                                <li class="active"><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
+                                }
+                                else
+                                {
+                                <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
+                                }
+                            }
+                            @if (rol == "A" || rol == "C")
+                            {
+                                <li class="divider"></li>
+                                <li class="nav-header">Calidad</li>
+
+                                <li><a href="@Url.Action("Index", "DocumentType")">Tipos de documento</a></li>
+                                <li><a href="@Url.Action("List", "Process")">Procesos</a></li>
+                                <li><a href="@Url.Action("Index", "ProcessDocument")">Documentos por proceso</a></li>
+                                @*<li><a href="@Url.Action("List", "Project")">Proyectos</a></li>
+                                <li><a href="@Url.Action("Index", "ProjectDocument")">Documentos por proyecto</a></li>*@
+                            }
+                        </ul>
+                    </li>
+                    }
+                </ul>
+                <ul class="nav pull-right customNav">
+                    <li><a href="javascript:void(0);">@userName</a></li>
+                    <li><a href="@Url.Action("logout", "security")">Cerrar sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row-fluid">
+        <div class="container boxBackend">
+            <div class="cont-outer">
+                <div class="row-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- /.row-fluid -->
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <!-- Scripts -->
+
+    <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+    <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/js/responsiveslides.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery.cookie.js")"></script>
+    <script src="@Url.Content("~/js/jquery.isotope.min.js")"></script>
+    <script src="@Url.Content("~/js/magnific.js")"></script>
+    <script src="@Url.Content("~/js/hoverdir.js")"></script>
+    <script src="@Url.Content("~/js/custom.js")"></script>
+
+</body>
+</html>

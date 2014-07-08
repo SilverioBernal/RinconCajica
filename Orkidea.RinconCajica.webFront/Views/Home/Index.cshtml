@@ -33,7 +33,8 @@
 		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
 		<![endif] -->
 
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+   @*<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>*@
+    <link href='http://fonts.googleapis.com/css?family=Roboto:100,200,300' rel='stylesheet' type='text/css'>
 
     @{
         System.Security.Principal.IIdentity context = Context.User.Identity;
@@ -53,7 +54,7 @@
         }
     }
 </head>
-<body>    
+<body>
     <div id="body">
         <!-- Background Slider -->
         <div id="bg_slide">
@@ -84,7 +85,7 @@
                     </div>
 
                     <div class="nav-collapse">
-                        <ul class="nav pull-right">
+                        <ul class="nav pull-right" style="font-family: 'Roboto'">
                             <li class="active">
                                 <a href="@Url.Action("Index", "Home")"><span style="color: white;">.</span>Inicio</a>
                             </li>
@@ -104,11 +105,11 @@
                                 <a href="@Url.Action("Details", "Page", new { id = "Fundacion" })"><span style="color: white;">.</span>Fundación</a>
                             </li>
                             <li>
-                                <a href="#"><span style="color: white;">.</span>Contacto</a>
+                                <a href="@Url.Action("Contact", "Home")"><span style="color: white;">.</span>Contacto</a>
                             </li>
-                            @if (rol == "A")
+                            @if (rol == "A" || rol == "C" || rol == "E")
                             {
-                                <li><a href="@Url.Action("Index", "Backend")"><span style="color: white;">.</span>BackEnd</a></li>
+                                <li><a href="@Url.Action("Index", "homeSGC")"><span style="color: white;">.</span>Empleados</a></li>
                             }
                         </ul>
                     </div>
@@ -150,27 +151,32 @@
         <div class="container index">
             <div class="row-fluid">
                 <div class="span12">
-                    <h1>
+                    
                         @{                           
                             string texto = "";
 
                             foreach (var item in Model)
                             {
-                                texto += "<mark>" + item.textoSlider;
-                                if (!string.IsNullOrEmpty(item.textoBoton1))
+
+                                if (!string.IsNullOrEmpty(item.textoSlider))
                                 {
-                                    texto += "<span style='padding-top: 50px;width: 500px;'><a href='" + item.urlBoton1 + "' class='work'>" + item.textoBoton1 + "</a>";
-                                    if (!string.IsNullOrEmpty(item.textoBoton2))
+                                    texto += "<h1><mark>" + item.textoSlider;
+                                    if (!string.IsNullOrEmpty(item.textoBoton1))
                                     {
-                                        texto += " <a href='" + item.urlBoton2 + "' class='work'>" + item.textoBoton2 + "</a>";
+                                        texto += "<span style='padding-top: 50px;width: 500px;'><a href='" + item.urlBoton1 + "' class='work'>" + item.textoBoton1 + "</a>";
+                                        if (!string.IsNullOrEmpty(item.textoBoton2))
+                                        {
+                                            texto += " <a href='" + item.urlBoton2 + "' class='work'>" + item.textoBoton2 + "</a>";
+                                        }
+                                        texto += "</span>";
                                     }
-                                    texto += "</span>";
+                                    texto += "</mark></h1>";
                                 }
-                                texto += "</mark>";
-                            }
+
+                            }                        
                         }
                         @Html.Raw(texto)
-                    </h1>
+                    
                 </div>
             </div>
             <!-- /.row-fluid -->
@@ -217,7 +223,7 @@
                         var url = sParameterName[1].replace('%2f', '');
                     }
                 }
-                                
+
                 var usuario = $('#txtUsuario').val();
                 var contrasena = $('#txtContrasena').val();
 
@@ -254,7 +260,7 @@
                         idRol: '@rol'
                     };
 
-                $.getJSON("@Url.Action("BarChangePassword", "Security")", datos, res);
+                    $.getJSON("@Url.Action("BarChangePassword", "Security")", datos, res);
 
                     function res(data) {
                         if (data == "OK") {
@@ -264,21 +270,19 @@
                 }
             });
 
-            $(document).ready(function(){
+            $(document).ready(function () {
                 var sPageURL = window.location.search.substring(1);
                 var sURLVariables = sPageURL.split('&');
-                for (var i = 0; i < sURLVariables.length; i++) 
-                {
+                for (var i = 0; i < sURLVariables.length; i++) {
                     var sParameterName = sURLVariables[i].split('=');
-                    if (sParameterName[0] == "ReturnUrl")
-                    {
+                    if (sParameterName[0] == "ReturnUrl") {
                         $("#search_form").addClass("show");
                     }
                 }
             });
 
-            
-        </script>        
+
+        </script>
     </div>
 </body>
 </html>

@@ -1,0 +1,111 @@
+﻿@model Orkidea.RinconCajica.webFront.Models.vmProcess
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+
+    string nombreArchivo = Url.Content("~/UploadedFiles/" + Model.archivoCaracterizacion);
+}
+
+
+<style>
+    .active
+    {
+        background-color: #006dcc;
+        color: white;
+    }
+
+        .active:hover
+        {
+            color: white;
+        }
+</style>
+<div class="row-fluid">
+    <h2>Sistema de gestión</h2>
+    <h3>@Model.nombre</h3>
+    <button id='showCaracterizacion' class="btn btn-info">Caracterización</button>
+    <div class="row-fluid">
+        <div class="span12">
+            <h4>Documentos relacionados</h4>            
+            <div class="accordion" id="accordionDocs">
+                @foreach (Orkidea.RinconCajica.Entities.DocumentType item in Model.lstDocumentType)
+                {
+                    <div class="accordion-group">
+                        <div class="accordion-heading nav-pills">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionDocs" href="#collapse_@item.id">@item.nombre
+                            </a>
+                        </div>
+                        <div id="collapse_@item.id" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                @{Html.RenderAction("IndexByProcess", "ProcessDocument", new { idProceso = Model.id, idTipoDocumento = item.id });}
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div id='caracterizacionModal' class='modal hide fade in' >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Caracterización</h3>
+        </div>
+        <div class="modal-body">
+            <embed src="@nombreArchivo" width="100%" height="390" id="pdfDoc"  />
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+        </div>
+    </div>
+
+
+    <div id='docModal' class='modal hide fade in'  >
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Caracterización</h3>
+        </div>
+        <div class="modal-body">
+            @*<embed src="@nombreArchivo" width="100%" height="390" id="pdfDoc"  />*@
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cerrar</button> 
+        </div>
+    </div>
+
+@Html.ActionLink("Volver al mapa","Index")     
+</div>
+<script>
+    $(function () {
+
+        $('.accordion').on('show', function (e) {
+            $(e.target).prev('.accordion-heading').find('.accordion-toggle').addClass('active');
+        });
+
+        $('.accordion').on('hide', function (e) {
+            $(this).find('.accordion-toggle').not($(e.target)).removeClass('active');
+        });
+
+    });
+
+    $(document).ready(function () {
+        $('#showCaracterizacion').click(function () {
+            var url = "@nombreArchivo";
+
+            $.get(url, function (data) {
+                $('#caracterizacionModal').modal('show');
+            });
+        });
+
+        $($('.accordion-toggle')[0]).click();
+    });
+
+    $('.documento').click(function (e) {
+        e.preventDefault();  //stop the browser from following
+        var uri = this.parentNode.childNodes[1].innerText;
+        window.location.href = uri;
+    });    
+</script>
+

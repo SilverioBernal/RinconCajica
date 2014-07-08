@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.Process>
+
+@{
+    ViewBag.Title = "Sistema de gestión - Lista de procesos";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+<h2>Sistema de gestión - Lista de procesos</h2>
+<p>
+    @Html.ActionLink("Crear nuevo", "Create", null, new { @class = "btn btn-info" }) | @Html.ActionLink("Volver al home", "Index", "Home")
+</p>
+<div class="row-fluid">
+    <div class="span12">
+        <table class="table table-bordered table-striped table_vam" id="dt">
+            <thead>
+                <tr>
+                    <th>Nombre del proceso</th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                            @Html.HiddenFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Details", "Process", new { id = item.id })" class="sepV_a" title="Ver"><i class="icon-eye-open"></i></a>
+                            <a href="@Url.Action("Edit", "Process", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>
+                            <a href="@Url.Action("Delete", "Process", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $('#dt').dataTable();
+</script>

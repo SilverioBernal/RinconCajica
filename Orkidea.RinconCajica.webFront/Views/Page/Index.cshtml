@@ -2,17 +2,18 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutBackEnd.cshtml";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
 
     string paginasNoBorrables = ViewBag.paginasNoBorrables;
     
 }
 
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
 @Styles.Render("~/content/DataTables")
 @Scripts.Render("~/bundles/DataTables")
 
-<div class="span12 well" style="min-height: 800px;">
-    <h2 style="text-align: center;">Páginas</h2>
+<div>
+    <h2>Páginas</h2>
     <p>
         <a href="@Url.Action("Create")" class="btn btn-primary">Nueva página</a>
     </p>
