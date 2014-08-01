@@ -94,7 +94,6 @@
     </Compile>
     <Compile Include="SideBar.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Sport.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>

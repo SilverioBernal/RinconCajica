@@ -21,7 +21,8 @@ namespace Orkidea.RinconCajica.Entities
     
         public int id { get; set; }
         public string nombre { get; set; }
-        public string contenido { get; set; }
+        public string contenidoPublico { get; set; }
+        public string contenidoPrivado { get; set; }
     
         public virtual ICollection<Page> Page { get; set; }
     }

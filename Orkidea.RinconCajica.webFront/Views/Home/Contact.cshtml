@@ -59,25 +59,42 @@
                 </form>
             </div>
         </div>
-
         <div class="span4 contacts">
-            <div class="cont-outer">
+            <div style="padding: 42.7px" class="cont-outer">
+                <table>
+                    <tr>
+                        <td><i class="icon-phone"></i></td>
+                        <td><strong>PBX 866 4901 Ext 100 </strong><br /><strong>Cel: 320 390 5507 - 300 865 0133</strong></td>
+                    </tr>
+                    @*<tr><td><br /></td></tr>*@
+                    <tr>
+                        <td><i class="icon-road"></i></td>
+                        <td><strong>Cajicá, Colombia. Km. 26 </strong><br /><strong>Carretera Central Norte Via Sopó</strong></td>
+                    </tr>
+                    @*<tr><td><br /></td></tr>*@
+                    <tr>
+                        <td><i class="icon-envelope-alt"></i></td>
+                        <td><strong>contacto@elrincon.com.co</strong><br /></td>
+                    </tr>
+                </table>
+            </div>
+            @*<div class="cont-outer">
                 <div>
-                    <i class="icon-phone"></i><strong style="margin-left:5px;">866 4901 Ext 100</strong>
+                    <i class="icon-phone"></i><strong style="margin-left:5px;">PBX 8664901 Ext 100 - 3203905507 - 3008650133</strong>
                 </div>
                 <div>
-                    <i class="icon-road"></i><strong style="margin-left:5px;">Km. 26 Carretera Central Norte Via Sopo Cajica - Colombia</strong>
+                    <i class="icon-road"></i><strong style="margin-left:5px;">Cajica, Colombia. Km. 26 Carretera Central Norte Via Sopó</strong>
                 </div>
                 <div>
-                    <i class="icon-envelope-alt"></i><strong style="margin-left:5px;">contacto@elrincon.com.co</strong>
-                </div>
-                @*<div>
+                    <i class="icon-envelope-alt"></i><span style="margin-left:5px;">contacto@elrincon.com.co</span>
+                </div>*@
+            @*<div>
                     <i class="icon-time"></i><span>Mon-Fri, 8AM-4PM</span>
                 </div>*@
-            </div>
         </div>
     </div>
-    <!-- /.row-fluid -->
+</div>
+<!-- /.row-fluid -->
 </div>
 
 <div class="container" style="margin-bottom: 60px;">
@@ -92,25 +109,25 @@
 </div>
 <!-- /.container -->
 
-<script>   
-        $('#map').gmap3({
-            map: {
-                options: {
-                    center: [4.894756, -74.017701],
-                    zoom: 14,
-                    mapTypeControl: true,
-                    mapTypeControlOptions: {
-                        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-                    },
-                    navigationControl: false,
-                    scrollwheel: true,
-                    streetViewControl: true,
-                    panControl: false
-                }
-            },
-            marker: {
-                latLng: [4.894756, -74.017701],                               
+<script>
+    $('#map').gmap3({
+        map: {
+            options: {
+                center: [4.894756, -74.017701],
+                zoom: 14,
+                mapTypeControl: true,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+                },
+                navigationControl: false,
+                scrollwheel: true,
+                streetViewControl: true,
+                panControl: false
             }
-        });
+        },
+        marker: {
+            latLng: [4.894756, -74.017701],
+        }
+    });
 
 </script>

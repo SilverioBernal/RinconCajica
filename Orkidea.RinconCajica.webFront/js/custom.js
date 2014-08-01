@@ -209,10 +209,18 @@ $(window).load(function(){
     });
     
     /* Index animations */
-   
-   	var h = (($(window).height() - 145) / 2) - 200;
+    //($(window).height() *60)/100
+
+    var h = 0;
+
+    if ($(window).height() < 500)
+        var h = (($(window).height() - 145) / 2) - 200;
+    else
+        var h = ($(window).height() * 50) / 100;
+
    	h = h > 20 ? h : 20;
-   	$('.index h1').css({'top': h + 'px'});
+    $('.index h1').css({'top': h + 'px'}); //margin-bottom
+   	//$('.index h1').css({ 'margin-bottom': 50 + 'px' });
    	setTimeout(function(){
 	   	$('.index h1 span').addClass('op');
 	  }, 800);
@@ -311,7 +319,14 @@ $(window).load(function(){
     // When the window is resized
     $(window).resize(function() {
     	
-    	var h = (($(window).height() - 145) / 2) - 200;
+        var h = 0;
+
+        if ($(window).height() < 500)
+            h = (($(window).height() - 145) / 2) - 200;
+        else
+            h = ($(window).height() * 50) / 100;
+
+    	//var h = (($(window).height() - 145) / 2) - 200;
     	h = h > 20 ? h : 20;
    		$('.index h1').css({'top': h + 'px'});
         

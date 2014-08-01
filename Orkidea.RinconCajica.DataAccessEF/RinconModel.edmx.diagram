@@ -4,11 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d0dd5b960ced400dac5c9f30e893c457" Name="Diagram1" ZoomLevel="106">
+      <Diagram DiagramId="d0dd5b960ced400dac5c9f30e893c457" Name="Diagram1" ZoomLevel="80">
         <EntityTypeShape EntityType="RinconModel.Sport" Width="1.5" PointX="0.75" PointY="3.625" />
         <EntityTypeShape EntityType="RinconModel.Page" Width="1.5" PointX="11" PointY="7.875" />
-        <EntityTypeShape EntityType="RinconModel.SideBar" Width="1.5" PointX="8.75" PointY="8.125" />
-        <AssociationConnector Association="RinconModel.FK_Page_SideBar" />
         <EntityTypeShape EntityType="RinconModel.SportBranch" Width="1.5" PointX="3" PointY="2.25" />
         <EntityTypeShape EntityType="RinconModel.SportModality" Width="1.5" PointX="3" PointY="5" />
         <AssociationConnector Association="RinconModel.FK_SportBranch_Sport" />
@@ -34,6 +32,8 @@
         <AssociationConnector Association="RinconModel.FK_ProjectDocument_Project" />
         <EntityTypeShape EntityType="RinconModel.FrontUser" Width="1.5" PointX="12.75" PointY="11.75" />
         <EntityTypeShape EntityType="RinconModel.HomeSlider" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RinconModel.SideBar" Width="1.5" PointX="8.75" PointY="8" />
+        <AssociationConnector Association="RinconModel.FK_Page_SideBar" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

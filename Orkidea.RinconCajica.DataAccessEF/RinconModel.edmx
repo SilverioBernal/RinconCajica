@@ -214,7 +214,8 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="contenido" Type="varchar(max)" Nullable="false" />
+          <Property Name="contenidoPublico" Type="varchar(max)" Nullable="false" />
+          <Property Name="contenidoPrivado" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Sport">
           <Key>
@@ -395,11 +396,6 @@
         <EntityContainer Name="RinconEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Sport" EntityType="RinconModel.Sport" />
           <EntitySet Name="Page" EntityType="RinconModel.Page" />
-          <EntitySet Name="SideBar" EntityType="RinconModel.SideBar" />
-          <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.FK_Page_SideBar">
-            <End Role="SideBar" EntitySet="SideBar" />
-            <End Role="Page" EntitySet="Page" />
-          </AssociationSet>
           <EntitySet Name="SportBranch" EntityType="RinconModel.SportBranch" />
           <EntitySet Name="SportModality" EntityType="RinconModel.SportModality" />
           <AssociationSet Name="FK_SportBranch_Sport" Association="RinconModel.FK_SportBranch_Sport">
@@ -455,6 +451,11 @@
           </AssociationSet>
           <EntitySet Name="FrontUser" EntityType="RinconModel.FrontUser" />
           <EntitySet Name="HomeSlider" EntityType="RinconModel.HomeSlider" />
+          <EntitySet Name="SideBar" EntityType="RinconModel.SideBar" />
+          <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.FK_Page_SideBar">
+            <End Role="SideBar" EntitySet="SideBar" />
+            <End Role="Page" EntitySet="Page" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Sport">
           <Key>
@@ -477,27 +478,6 @@
           <Property Type="Int32" Name="idSideBar" />
           <NavigationProperty Name="SideBar" Relationship="RinconModel.FK_Page_SideBar" FromRole="Page" ToRole="SideBar" />
         </EntityType>
-        <EntityType Name="SideBar">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contenido" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Page" Relationship="RinconModel.FK_Page_SideBar" FromRole="SideBar" ToRole="Page" />
-        </EntityType>
-        <Association Name="FK_Page_SideBar">
-          <End Type="RinconModel.SideBar" Role="SideBar" Multiplicity="0..1" />
-          <End Type="RinconModel.Page" Role="Page" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SideBar">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Page">
-              <PropertyRef Name="idSideBar" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="SportBranch">
           <Key>
             <PropertyRef Name="id" />
@@ -797,6 +777,28 @@
           <Property Type="String" Name="textoSlider" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="activo" Nullable="false" />
         </EntityType>
+        <EntityType Name="SideBar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contenidoPublico" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contenidoPrivado" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Page" Relationship="RinconModel.FK_Page_SideBar" FromRole="SideBar" ToRole="Page" />
+        </EntityType>
+        <Association Name="FK_Page_SideBar">
+          <End Type="RinconModel.SideBar" Role="SideBar" Multiplicity="0..1" />
+          <End Type="RinconModel.Page" Role="Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SideBar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Page">
+              <PropertyRef Name="idSideBar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -818,15 +820,6 @@
                 <ScalarProperty Name="contenidoPrivado" ColumnName="contenidoPrivado" />
                 <ScalarProperty Name="contenidoPublico" ColumnName="contenidoPublico" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SideBar">
-            <EntityTypeMapping TypeName="RinconModel.SideBar">
-              <MappingFragment StoreEntitySet="SideBar">
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1004,6 +997,16 @@
                 <ScalarProperty Name="urlBoton1" ColumnName="urlBoton1" />
                 <ScalarProperty Name="textoBoton1" ColumnName="textoBoton1" />
                 <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SideBar">
+            <EntityTypeMapping TypeName="RinconModel.SideBar">
+              <MappingFragment StoreEntitySet="SideBar">
+                <ScalarProperty Name="contenidoPrivado" ColumnName="contenidoPrivado" />
+                <ScalarProperty Name="contenidoPublico" ColumnName="contenidoPublico" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,6 +1,16 @@
 ﻿@model IEnumerable<Orkidea.RinconCajica.Entities.HomeSlider>
 @{
     Layout = null;
+
+    bool mostrarCuadroTexto = false;
+
+    foreach (var item in Model)
+    {
+        if (!string.IsNullOrEmpty(item.textoSlider))
+        {
+            mostrarCuadroTexto = true;
+        }
+    }
 }
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -33,7 +43,7 @@
 		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
 		<![endif] -->
 
-   @*<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>*@
+    @*<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>*@
     <link href='http://fonts.googleapis.com/css?family=Roboto:100,200,300' rel='stylesheet' type='text/css'>
 
     @{
@@ -76,13 +86,13 @@
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
                     <a class="brand" href="@Url.Action("Index", "Home")">
                         <img src="img/logo.png" alt="Round"></a>
-                    <div class="right-icons pull-right">
+                    @*<div class="right-icons pull-right">
                         <ul>
                             <li class="search tt" data-container="body" data-toggle="tooltip" data-placement="left" title="Zona de usuarios">
                                 <a id="search_toggle" class="icon-user"></a>
                             </li>
                         </ul>
-                    </div>
+                    </div>*@
 
                     <div class="nav-collapse">
                         <ul class="nav pull-right" style="font-family: 'Roboto'">
@@ -92,15 +102,96 @@
                             <li>
                                 <a href="@Url.Action("Details", "Page", new { id = "AcercaDe" })"><span style="color: white;">.</span>El club</a>
                             </li>
-                            <li>
-                                <a href="@Url.Action("Details", "Page", new { id = "Deportes" })"><span style="color: white;">.</span>Deportes</a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Deportes<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    @*<li class="pepa"><a href="@Url.Action("Index", "NewsPaper")">Noticias</a></li>*@
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Golf</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Hoyo1" })">Campo</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelasDeportivasDeGolf" })">Escuelas</a></li>
+                                            <li><a href="#">Torneo</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "RankingGolf" })">Ranking</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Tenis</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Tenis" })">Campos</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaTenis" })">Escuelas</a></li>
+                                            <li><a href="#">Torneo</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "RankingTenis" })">Ranking</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Natación</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivasNatacion" })">Escuelas</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "RankingNatacion" })">Ranking</a></li>
+                                            @*<li><a href="#">Ranking</a></li>*@
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Futbol</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Futbol" })">Campo</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaFutbol" })">Escuelas</a></li>
+                                            @*<li><a href="#">Ranking</a></li>*@
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">C.E.F.</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Gimnasio" })">Instalaciones</a></li>
+                                            <li><a href="#">Eventos</a></li>
+                                            @*<li><a href="#">Ranking</a></li>*@
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="@Url.Action("Details", "Page", new { id = "Eventos" })"><span style="color: white;">.</span>Eventos</a>
                             </li>
-                            <li>
-                                <a href="@Url.Action("Details", "Page", new { id = "Socios" })"><span style="color: white;">.</span>Socios</a>
-                            </li>
+                            @if (!context.IsAuthenticated)
+                            {
+                                <li>
+                                    <a id="search_toggle"><span style="color: white;">.</span>Socios</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Socios<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        @if (rol == "A" || rol == "S")
+                                        {
+                                            <li class="pepa"><a href="#">Extractos</a></li>
+                                            <li class="pepa"><a href="#">Consumos</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a href="#">Documentos y circulares</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Historia</a></li>
+                                                    <li><a href="#">Misión</a></li>
+                                                    <li><a href="#">Visión</a></li>
+                                                    <li><a href="#">Valores</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="#">Reservas</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Deportes</a></li>
+                                                    <li><a href="#">Eventos</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="divider"></li>
+                                        }
+                                        <li class="nav-header">Cuenta</li>
+                                        <li class="pepa"><a href="javascript:void(0);" id="lnkCambioContrasena">Cambiar Clave</a></li>
+                                        <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
+                                    </ul>
+                                </li>
+                            }
                             <li>
                                 <a href="@Url.Action("Details", "Page", new { id = "Fundacion" })"><span style="color: white;">.</span>Fundación</a>
                             </li>
@@ -129,7 +220,7 @@
                 {
                     <span style="color: white;"><strong>Bienvenido @userName | </strong></span>
                     <a href="@Url.Action("Logout", "Security")" style="color: white;"><strong>Cerrar sesión | </strong></a>                    
-                    <a href="javascript:void(0);" style="color: white;" id="lnkCambioContrasena"><strong>Cambiar contraseña</strong></a>                    
+@*<a href="javascript:void(0);" style="color: white;" id="lnkCambioContrasena"><strong>Cambiar contraseña</strong></a>*@                    
                 }
             </form>
         </div>
@@ -151,38 +242,41 @@
         <div class="container index">
             <div class="row-fluid">
                 <div class="span12">
-                    
-                        @{                           
-                            string texto = "";
-
-                            foreach (var item in Model)
+                    @if (mostrarCuadroTexto)
+                    {
+                        <h1>
+                            @foreach (var item in Model)
                             {
-
                                 if (!string.IsNullOrEmpty(item.textoSlider))
                                 {
-                                    texto += "<h1><mark>" + item.textoSlider;
-                                    if (!string.IsNullOrEmpty(item.textoBoton1))
-                                    {
-                                        texto += "<span style='padding-top: 50px;width: 500px;'><a href='" + item.urlBoton1 + "' class='work'>" + item.textoBoton1 + "</a>";
-                                        if (!string.IsNullOrEmpty(item.textoBoton2))
-                                        {
-                                            texto += " <a href='" + item.urlBoton2 + "' class='work'>" + item.textoBoton2 + "</a>";
-                                        }
-                                        texto += "</span>";
-                                    }
-                                    texto += "</mark></h1>";
-                                }
+                            
+                                <mark>
+                                    @item.textoSlider
 
-                            }                        
-                        }
-                        @Html.Raw(texto)
-                    
+                                    @if (!string.IsNullOrEmpty(item.textoBoton1))
+                                    {
+                                        <span style='padding-top: 50px; width: 500px;'><a href='@item.urlBoton1' class='work'>@item.textoBoton1</a>
+                                            @if (!string.IsNullOrEmpty(item.textoBoton2))
+                                            {
+                                                <a href="@item.urlBoton2" class='work'>@item.textoBoton2</a>
+                                            }
+                                        </span>   
+                                    }
+                                </mark>
+                            
+                                }
+                            }
+                        </h1>                   
+                    }
                 </div>
             </div>
             <!-- /.row-fluid -->
+
         </div>
         <!-- /.container -->
-
+        <div class="footer">
+            <span>Cajicá, Colombia. Km. 26 Carretera Central Norte Via Sopó .::. Tel: 866 4901 Ext 100 .::. <a href="@Url.Action("contact")" style="color:white;" >Contactenos</a> .::. <a href="@Url.Action("Details", "Page", new { id = "legal" })" style="color:white;" >Política de privacidad</a></span>
+        </div>
         <div id="logoutModal" class="modal hide fade">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

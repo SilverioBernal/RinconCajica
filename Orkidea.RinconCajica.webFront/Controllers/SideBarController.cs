@@ -40,8 +40,11 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             try
             {
                 // TODO: Add insert logic here
-                if (string.IsNullOrEmpty(sideBar.contenido))
-                    sideBar.contenido = " ";
+                if (string.IsNullOrEmpty(sideBar.contenidoPublico))
+                    sideBar.contenidoPublico = " ";
+
+                if (string.IsNullOrEmpty(sideBar.contenidoPrivado))
+                    sideBar.contenidoPrivado = " ";
 
                 bizSideBar.SaveSideBar(sideBar);
                 return RedirectToAction("Index");
@@ -73,9 +76,12 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
                 // TODO: Add update logic here
                 sideBar.id = id;
-                
-                if (string.IsNullOrEmpty(sideBar.contenido))
-                    sideBar.contenido = " ";
+
+                if (string.IsNullOrEmpty(sideBar.contenidoPublico))
+                    sideBar.contenidoPublico = " ";
+
+                if (string.IsNullOrEmpty(sideBar.contenidoPrivado))
+                    sideBar.contenidoPrivado = " ";
 
                 bizSideBar.SaveSideBar(sideBar);
 

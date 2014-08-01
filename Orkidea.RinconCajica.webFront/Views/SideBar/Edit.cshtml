@@ -21,9 +21,15 @@
         <div class="row-fluid">
             <div class="span12">
                 <label>Contenido público</label>
-                @Html.TextAreaFor(c => c.contenido, new { @class = "textarea span12", style = "width: 810px; height: 200px" })
+                @Html.TextAreaFor(c => c.contenidoPublico, new { @class = "textarea span12", style = "width: 810px; height: 200px" })
             </div>
-        </div>          
+        </div>     
+        <div class="row-fluid">
+            <div class="span12">
+                <label>Contenido privado</label>
+                @Html.TextAreaFor(c => c.contenidoPrivado, new { @class = "textarea span12", style = "width: 810px; height: 200px" })
+            </div>
+        </div>            
         <br />      
         <div class="row-fluid">
             <div class="span2">

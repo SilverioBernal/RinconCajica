@@ -52,12 +52,6 @@
 </head>
 <body>
     <div id="body">
-        @*<!-- Background Slider -->
-        <div id="bg_slide">
-            <ul id="slideList">
-            </ul>
-            <div class="pattern"></div>
-        </div>*@
 
         <div class="navbar navbar-fixed-top">
             <div class="container-fluid">
@@ -65,13 +59,7 @@
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
                     <a class="brand" href="@Url.Action("Index", "Home")">
                         <img src="@Url.Content("~/img/logo.png")" alt="Round"></a>
-                    <div class="right-icons pull-right">
-                        <ul>
-                            <li class="search tt" data-container="body" data-toggle="tooltip" data-placement="left" title="Zona de usuarios">
-                                <a id="search_toggle" class="icon-user"></a>
-                            </li>
-                        </ul>
-                    </div>
+
                     <div class="nav-collapse">
                         <ul class="nav pull-right">
                             @if (ViewBag.menu == "inicio")
@@ -92,11 +80,105 @@
                             }
                             @if (ViewBag.menu == "Deportes")
                             {
-                                <li class='active'><a href="@Url.Action("Details", "Page", new { id = "Deportes" })"><span style='color: white;'>.</span>Deportes</a></li>
+                                <li class="dropdown active">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Deportes<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        @*<li class="pepa"><a href="@Url.Action("Index", "NewsPaper")">Noticias</a></li>*@
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Golf</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Hoyo1" })">Campo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelasDeportivasDeGolf" })">Escuelas</a></li>
+                                                <li><a href="#">Torneo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingGolf" })">Ranking</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Tenis</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Tenis" })">Campos</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaTenis" })">Escuelas</a></li>
+                                                <li><a href="#">Torneo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingTenis" })">Ranking</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Natación</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivasNatacion" })">Escuelas</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingNatacion" })">Ranking</a></li>
+                                                @*<li><a href="#">Ranking</a></li>*@
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Futbol</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Futbol" })">Campo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaFutbol" })">Escuelas</a></li>
+                                                @*<li><a href="#">Ranking</a></li>*@
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">C.E.F.</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Gimnasio" })">Instalaciones</a></li>
+                                                <li><a href="#">Eventos</a></li>
+                                                @*<li><a href="#">Ranking</a></li>*@
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
                             }
                             else
                             {
-                                <li><a href="@Url.Action("Details", "Page", new { id = "Deportes" })"><span style='color: white;'>.</span>Deportes</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Deportes<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        @*<li class="pepa"><a href="@Url.Action("Index", "NewsPaper")">Noticias</a></li>*@
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Golf</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Hoyo1" })">Campo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelasDeportivasDeGolf" })">Escuelas</a></li>
+                                                <li><a href="#">Torneo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingGolf" })">Ranking</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Tenis</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Tenis" })">Campos</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaTenis" })">Escuelas</a></li>
+                                                <li><a href="#">Torneo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingTenis" })">Ranking</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Natación</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivasNatacion" })">Escuelas</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingNatacion" })">Ranking</a></li>
+                                                @*<li><a href="#">Ranking</a></li>*@
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Futbol</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Futbol" })">Campo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaFutbol" })">Escuelas</a></li>
+                                                @*<li><a href="#">Ranking</a></li>*@
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">C.E.F.</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Gimnasio" })">Instalaciones</a></li>
+                                                <li><a href="#">Eventos</a></li>
+                                                @*<li><a href="#">Ranking</a></li>*@
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
                             }
                             @if (ViewBag.menu == "Eventos")
                             {
@@ -106,14 +188,82 @@
                             {
                                 <li><a href="@Url.Action("Details", "Page", new { id = "Eventos" })"><span style='color: white;'>.</span>Eventos</a></li>
                             }
-                            @if (ViewBag.menu == "Socios")
+                            @if (!context.IsAuthenticated)
                             {
-                                <li class="active"><a href="@Url.Action("Details", "Page", new { id = "Socios" })"><span style='color: white;'>.</span>Socios</a></li>
+                                <li>
+                                    <a id="search_toggle"><span style="color: white;">.</span>Socios</a>
+                                </li>
                             }
                             else
                             {
-                                <li><a href="@Url.Action("Details", "Page", new { id = "Socios" })"><span style='color: white;'>.</span>Socios</a></li>
+                                if (ViewBag.menu == "Socios")
+                                {
+                                <li class="dropdown active">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Socios<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        @if (rol == "A" || rol == "S")
+                                        {
+                                            <li class="pepa"><a href="#">Extractos</a></li>
+                                            <li class="pepa"><a href="#">Consumos</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a href="#">Documentos y circulares</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Historia</a></li>
+                                                    <li><a href="#">Misión</a></li>
+                                                    <li><a href="#">Visión</a></li>
+                                                    <li><a href="#">Valores</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="#">Reservas</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Deportes</a></li>
+                                                    <li><a href="#">Eventos</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="divider"></li>
+                                        }
+                                        <li class="nav-header">Cuenta</li>
+                                        <li class="pepa"><a href="javascript:void(0);" id="lnkCambioContrasena">Cambiar Clave</a></li>
+                                        <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
+                                    </ul>
+                                </li>
+                                }
+                                else
+                                {
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Socios<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        @if (rol == "A" || rol == "S")
+                                        {
+                                            <li class="pepa"><a href="#">Extractos</a></li>
+                                            <li class="pepa"><a href="#">Consumos</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a href="#">Documentos y circulares</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Historia</a></li>
+                                                    <li><a href="#">Misión</a></li>
+                                                    <li><a href="#">Visión</a></li>
+                                                    <li><a href="#">Valores</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-submenu">
+                                                <a href="#">Reservas</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Deportes</a></li>
+                                                    <li><a href="#">Eventos</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="divider"></li>
+                                        }
+                                        <li class="nav-header">Cuenta</li>
+                                        <li class="pepa"><a href="javascript:void(0);" id="lnkCambioContrasena">Cambiar Clave</a></li>
+                                        <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
+                                    </ul>
+                                </li>
+                                }
                             }
+
                             @if (ViewBag.menu == "Fundacion")
                             {
                                 <li class="active"><a href="@Url.Action("Details", "Page", new { id = "Fundacion" })"><span style='color: white;'>.</span>Fundación</a></li>
@@ -132,7 +282,7 @@
                                 <li><a href="@Url.Action("Contact", "Home")"><span style="color: white;">.</span>Contacto</a></li>
                             }
 
-                            @if (rol == "A" || rol == "C" || rol =="E")
+                            @if (rol == "A" || rol == "C" || rol == "E")
                             {
                                 <li><a href="@Url.Action("Index", "homeSGC")"><span style="color: white;">.</span>Empleados</a></li>
                             }
@@ -150,33 +300,20 @@
                     <input type="password" placeholder="Contraseña" id="txtContrasena" />
                     <button type="button" class="btn btn-default" id="btnLogin">Ingresar</button>
                 }
-                else
+@*else
                 {
                     <span style="color: white;"><strong>Bienvenido @userName | </strong></span>
                     <a href="@Url.Action("Logout", "Security")" style="color: white;"><strong>Cerrar sesión | </strong></a>                    
                     <a href="javascript:void(0);" style="color: white;" id="lnkCambioContrasena"><strong>Cambiar contraseña</strong></a>                    
-                }
+                }*@
             </form>
         </div>
         <!-- /.navbar -->
 
-        @*<div class="default-icons clearfix">
-            <ul class="slider-nav">
-                <li>
-                    <a href="#" class="icon-angle-left rslides_nav rslides1_nav prev"></a>
-                </li>
-                <li>
-                    <a href="#" class="icon-angle-right rslides_nav rslides1_nav next"></a>
-                </li>
-            </ul>
-            <!-- /.slider-nav -->
+        @*<div class="container blog">*@
+        @RenderBody()
+        @*</div>*@
 
-
-        </div>*@
-
-        <div class="container blog">
-            @RenderBody()
-        </div>
         <!-- /.container -->
 
         <div id="logoutModal" class="modal hide fade">
@@ -197,12 +334,8 @@
         </div>
 
         <div class="modal hide fade" id="myModal" style="min-height: 600px;">
-            @*<div class="modal-header">
-                <button class="close" data-dismiss="modal">X</button>
-                <h3 id="msgHeader"></h3>
-            </div>*@
             <div class="modal-body" id="msgBody" style="min-height: 570px;">
-                <div style="text-align:center;">
+                <div style="text-align: center;">
                     <img src="#" id="poster" style="height: 560px" />
                 </div>
             </div>
@@ -213,7 +346,7 @@
         <!-- /modal -->
 
         <!-- Scripts -->
-        
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
         <script src="@Url.Content("~/js/responsiveslides.min.js")"></script>
@@ -223,20 +356,6 @@
         <script src="@Url.Content("~/js/hoverdir.js")"></script>
         <script src="@Url.Content("~/js/custom.js")"></script>
         <script>
-            @*$(document).ready(function () {
-                $.getJSON("@Url.Action("getHomeSlider", "HomeSlider")", null, res);
-
-                function res(data) {
-                    if (data != "") {
-                        var sliders = "";
-                        $(data).each(function () {
-                            sliders += "<li><img src='" + this.urlImagen + "' alt ='' /></li>";
-                        });
-
-                        $(slideList).append(sliders);
-                    }
-                }
-            });*@
 
             $('#btnLogin').click(function () {
                 var url = document.URL;
@@ -286,6 +405,9 @@
                 }
             });
         </script>
+    </div>
+    <div class="footer">
+        <span>Cajicá, Colombia. Km. 26 Carretera Central Norte Via Sopó .::. Tel: 866 4901 Ext 100 .::. <a href="@Url.Action("contact", "home")" style="color:white;" >Contactenos</a> .::. <a href="@Url.Action("Details", "Page", new { id = "legal" })" style="color:white;" >Política de privacidad</a></span>
     </div>
 </body>
 </html>

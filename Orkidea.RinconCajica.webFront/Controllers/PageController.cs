@@ -51,9 +51,22 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         public ActionResult Details(string id)
         {
-            string deportes = ConfigurationManager.AppSettings["deportes"].ToString() ;
+            #region User identification
+            System.Security.Principal.IIdentity context = HttpContext.User.Identity;
 
-            if (deportes.Contains(id))
+            string rol = "";
+
+            if (context.IsAuthenticated)
+            {
+                System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)HttpContext.User.Identity;
+                string[] userRole = ci.Ticket.UserData.Split('|');
+                rol = userRole[1];
+            }
+            #endregion
+
+            string deportes = ConfigurationManager.AppSettings["deportes"].ToString();
+
+            if (deportes.Contains(id) || id.Substring(0,4).ToUpper()=="HOYO")
                 ViewBag.menu = "Deportes";
             else
                 ViewBag.menu = id;
@@ -64,7 +77,10 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             if (page.idSideBar != null && page.idSideBar != 0)
             {
-               sideBarContent =  bizSideBar.GetSideBarByKey(new SideBar() { id = (int)page.idSideBar }).contenido;
+                if (context.IsAuthenticated)
+                    sideBarContent = bizSideBar.GetSideBarByKey(new SideBar() { id = (int)page.idSideBar }).contenidoPrivado;
+                else
+                    sideBarContent = bizSideBar.GetSideBarByKey(new SideBar() { id = (int)page.idSideBar }).contenidoPublico;
 
             }
             vmPage _vmPage = new vmPage()
