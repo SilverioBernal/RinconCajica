@@ -1,0 +1,60 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+
+<div id="bg_slide">
+    <ul>
+        @{Html.RenderAction("getHomeSlider", "HomeSlider");}
+    </ul>
+    <div class="pattern"></div>
+</div>
+
+<div class="default-icons clearfix">
+    <ul class="slider-nav">
+        <li>
+            <a href="#" class="icon-angle-left rslides_nav rslides1_nav prev"></a>
+        </li>
+        <li>
+            <a href="#" class="icon-angle-right rslides_nav rslides1_nav next"></a>
+        </li>
+    </ul>
+    <!-- /.slider-nav -->
+
+
+</div>
+
+<div class="container">
+    <div class="header-field">
+        <div class="page-title pull-left">
+            <h3>Error inesperado</h3>
+        </div>
+    </div>
+    <!-- /.header-field -->
+</div>
+<!-- /.container -->
+
+<div class="container">
+    <div class="cont-outer">
+        <div class="row-fluid">
+           <div class="span1">
+                <span></span>
+            </div>
+            <div class="span4">
+                <h2>Se ha presentado un error desconocido.</h2>
+                <p>Si tienes dudas, aclaraciones o sugerencias, puedes comunicarte con nosotros a traves de nuestra pagina de contacto</p>
+                <a class="btn" href="../contact">Contactanos</a>
+            </div>
+            <div class="span1">
+                <span></span>
+            </div>
+            <div class="span6">
+                <img src="http://54.214.46.236/RinconCajica/UploadedFiles/c21d9a5a-5072-48de-a6d2-3fe9cf8cbac1.png" />
+            </div>
+        </div>
+    </div>
+</div>

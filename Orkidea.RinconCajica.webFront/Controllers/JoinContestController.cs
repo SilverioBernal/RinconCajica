@@ -42,14 +42,15 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                 try
                 {
-                    ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyUser(int.Parse(userCode) );
+                    Partner clubPartner = bizClubPartner.GetClubPartnerbyUser(int.Parse(userCode) );
 
                     joinContest.identificacion = clubPartner.docto;
-                    joinContest.idSocio = clubPartner.id;
+                    joinContest.idSocio = clubPartner.docid;
                     joinContest.nombre = clubPartner.nombre;
                     joinContest.telefonoCelular = clubPartner.celular;
-                    joinContest.telefonoFijo = clubPartner.telefn;
+                    joinContest.telefonoFijo = clubPartner.teleco;
                     joinContest.tipoIdentificacion = clubPartner.doccl;
+                    joinContest.email = clubPartner.correo;
 
                     ViewBag.socio = true;
                 }
@@ -96,10 +97,10 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                     try
                     {
-                        ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { id = int.Parse(userCode) });
+                        ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { docid = int.Parse(userCode) });
 
                         joinContest.identificacion = clubPartner.docto;
-                        joinContest.idSocio = clubPartner.id;
+                        joinContest.idSocio = clubPartner.docid;
                         joinContest.nombre = clubPartner.nombre;
                         joinContest.telefonoCelular = clubPartner.celular;
                         joinContest.telefonoFijo = clubPartner.telefn;

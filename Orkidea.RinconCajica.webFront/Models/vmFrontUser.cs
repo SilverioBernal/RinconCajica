@@ -45,7 +45,7 @@ namespace Orkidea.RinconCajica.webFront.Models
 
                 foreach (ClubPartner item in lstSocios)
                 {
-                    lstSocio.Add(item.id, item.nombre);
+                    lstSocio.Add(item.docid, item.nombre);
                 }
             }
         }

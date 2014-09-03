@@ -46,8 +46,23 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                     int id = frontUserTarget.id;
                     string idRole = frontUserTarget.idRol;
+                    string idSocio = "";
+                    if (idRole == "S")
+                    {
+                        BizClubPartner bizClubPartner = new BizClubPartner();
+                        Partner partner = bizClubPartner.GetClubPartnerbyUser(id);
 
-                    string userData = id.ToString().Trim() + "|" + idRole.ToString().Trim();
+                        idSocio = partner.docid.ToString();
+                    }
+
+
+                    string userData = "";
+
+                    if (idRole != "S")
+                        userData = id.ToString().Trim() + "|" + idRole.ToString().Trim() + "|";
+                    else
+                        userData = id.ToString().Trim() + "|" + idRole.ToString().Trim() + "|" + idSocio;
+
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(30), false, userData);
 
                     string encTicket = FormsAuthentication.Encrypt(ticket);
@@ -96,7 +111,31 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     int id = frontUserTarget.id;
                     string idRole = frontUserTarget.idRol;
 
-                    string userData = id.ToString().Trim() + "|" + idRole.ToString().Trim();
+                    //string userData = id.ToString().Trim() + "|" + idRole.ToString().Trim();
+
+                    string idSocio = "";
+                    string titular = "";
+                    if (idRole == "S")
+                    {
+                        BizClubPartner bizClubPartner = new BizClubPartner();
+                        Partner partner = bizClubPartner.GetClubPartnerbyUser(id);
+
+                        idSocio = partner.docid.ToString();
+                        titular = partner.rel_tit;
+                    }
+
+
+                    string userData = "";
+
+                    if (idRole != "S")
+                        userData = id.ToString().Trim() + "|" + idRole.ToString().Trim() + "|";
+                    else
+                    {
+                        if (titular == "T")
+                            userData = id.ToString().Trim() + "|" + idRole.ToString().Trim() + "|" + idSocio + "|T";
+                        else
+                            userData = id.ToString().Trim() + "|" + idRole.ToString().Trim() + "|" + idSocio + "|";
+                    }
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(30), false, userData);
 
                     string encTicket = FormsAuthentication.Encrypt(ticket);
@@ -116,7 +155,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     }
                 }
             }
-            
+
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 

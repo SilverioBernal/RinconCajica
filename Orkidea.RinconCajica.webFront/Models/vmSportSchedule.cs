@@ -15,7 +15,8 @@ namespace Orkidea.RinconCajica.webFront.Models
         public string nombreRama { get; set; }
         //public string nombreCategoria { get; set; }
         public string nombreModalidad { get; set; }
-
+        public string tmpInicio { get; set; }
+        public string tmpFin { get; set; }
         public List<Sport> lsDeportes { get; set; }
         public List<SportBranch> lsRamas { get; set; }
         //public List<SportCategory> lsCategorias { get; set; }

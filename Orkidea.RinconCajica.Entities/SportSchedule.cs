@@ -31,6 +31,7 @@ namespace Orkidea.RinconCajica.Entities
         public bool visible { get; set; }
         public string poster { get; set; }
         public bool privado { get; set; }
+        public string urlPagina { get; set; }
     
         public virtual ICollection<JoinContest> JoinContest { get; set; }
         public virtual Sport Sport { get; set; }

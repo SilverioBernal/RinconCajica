@@ -121,8 +121,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             ViewBag.titulo = id;
 
             int sport = bizSport.GetSportList().Where(x => x.nombre.ToUpper() == id.ToUpper()).Select(x => x.id).FirstOrDefault();
-
-            List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio >= DateTime.Now && x.visible).ToList();
+            DateTime desde = DateTime.Parse( DateTime.Now.ToString("yyyy-MM-dd"));
+            List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio >= desde && x.visible).ToList();
             List<vmSportSchedule> lsCalendario = new List<vmSportSchedule>();
 
             List<SportModality> lsModalidad = bizSportModality.GetSportModalityList();
@@ -148,7 +148,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     nombreDeporte = lsDeporte.Where(x => x.id.Equals(item.idDeporte)).Select(x => x.nombre).FirstOrDefault(),
                     nombreModalidad = item.idModalidad != null && item.idModalidad != 0 ? lsModalidad.Where(x => x.id.Equals(item.idModalidad)).Select(x => x.nombre).FirstOrDefault() : null,
                     nombreRama = item.idRama != null && item.idRama != 0 ? lsRama.Where(x => x.id.Equals(item.idRama)).Select(x => x.nombre).FirstOrDefault() : null,
-                    poster = item.poster
+                    poster = item.poster,
+                    urlPagina = item.urlPagina
                 });
             }
 
@@ -204,12 +205,13 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     idDeporte = nuevoEvento.idDeporte,
                     idModalidad = !nuevoEvento.aireacion ? nuevoEvento.idModalidad : null,
                     idRama = !nuevoEvento.aireacion ? nuevoEvento.idRama : null,
-                    inicio = nuevoEvento.inicio,
-                    fin = nuevoEvento.fin,
+                    inicio = buildDateTime(nuevoEvento.tmpInicio),
+                    fin = buildDateTime(nuevoEvento.tmpFin),
                     aireacion = nuevoEvento.aireacion,
                     competencia = nuevoEvento.competencia,
                     poster = nuevoEvento.poster,
-                    visible = nuevoEvento.visible
+                    visible = nuevoEvento.visible,
+                    urlPagina = nuevoEvento.urlPagina
                 };
 
                 bizSportSchedule.SaveSportSchedule(Evento);
@@ -251,13 +253,16 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 idRama = evento.idRama,
                 competencia = evento.competencia,
                 aireacion = evento.aireacion,
-                inicio = evento.inicio,
-                fin = evento.fin,
+                //inicio = evento.inicio,
+                //fin = evento.fin,
+                tmpInicio = evento.inicio.ToString("yyyy-MM-dd"),
+                tmpFin = evento.fin != null?((DateTime)evento.fin).ToString("yyyy-MM-dd"):"",
                 //nombreCategoria = evento.idCategoria != null && evento.idCategoria != 0 ? lsCategoria.Where(x => x.id.Equals(evento.idCategoria)).Select(x => x.nombre).FirstOrDefault() : null,
                 nombreDeporte = lsDeporte.Where(x => x.id.Equals(evento.idDeporte)).Select(x => x.nombre).FirstOrDefault(),
                 nombreModalidad = evento.idModalidad != null && evento.idModalidad != 0 ? lsModalidad.Where(x => x.id.Equals(evento.idModalidad)).Select(x => x.nombre).FirstOrDefault() : null,
                 nombreRama = evento.idRama != null && evento.idRama != 0 ? lsRama.Where(x => x.id.Equals(evento.idRama)).Select(x => x.nombre).FirstOrDefault() : null,
                 poster = evento.poster,
+                urlPagina = evento.urlPagina,
                 //lsCategorias = lsCategoria,
                 lsDeportes = lsDeporte,
                 lsModalidades = lsModalidad,
@@ -286,12 +291,13 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     idDeporte = evento.idDeporte,
                     idModalidad = !evento.aireacion ? evento.idModalidad : null,
                     idRama = !evento.aireacion ? evento.idRama : null,
-                    inicio = evento.inicio,
-                    fin = evento.fin,
+                    inicio = buildDateTime(evento.tmpInicio),
+                    fin = buildDateTime(evento.tmpFin),
                     aireacion = evento.aireacion,
                     competencia = evento.competencia,
                     visible = evento.visible,
-                    poster = evento.poster
+                    poster = evento.poster,
+                    urlPagina = evento.urlPagina
                 };
 
                 bizSportSchedule.SaveSportSchedule(Evento);
@@ -319,6 +325,14 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
+
+
+        private DateTime buildDateTime(string date)
+        {
+            string[] dateArray = date.Split('-');
+
+            return new DateTime(int.Parse(dateArray[0]), int.Parse(dateArray[1]), int.Parse(dateArray[2]));
         }
 
     }

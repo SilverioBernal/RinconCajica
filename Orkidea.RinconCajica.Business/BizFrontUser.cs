@@ -80,7 +80,7 @@ namespace Orkidea.RinconCajica.Business
                         ctx.FrontUser.Attach(oFrontUser);
                         EntityFrameworkHelper.EnumeratePropertyDifferences(oFrontUser, FrontUserTarget);
                         ctx.SaveChanges();
-                        res=  oFrontUser.id;
+                        res = oFrontUser.id;
                     }
                     else
                     {
@@ -90,19 +90,24 @@ namespace Orkidea.RinconCajica.Business
                         ctx.FrontUser.Add(FrontUserTarget);
                         ctx.SaveChanges();
                         res = FrontUserTarget.id;
-                        
+
                         // send notification
                         List<System.Net.Mail.MailAddress> to = new List<System.Net.Mail.MailAddress>();
-                        to.Add(new System.Net.Mail.MailAddress(FrontUserTarget.email));
+
+                        if (ConfigurationManager.AppSettings["testMail"].ToString() == "N")
+                            to.Add(new System.Net.Mail.MailAddress(FrontUserTarget.email));
+                        else
+                            to.Add(new System.Net.Mail.MailAddress("silverio.bernal@orkidea.co"));
+
 
                         Dictionary<string, string> dynamicValues = new Dictionary<string, string>();
                         dynamicValues.Add("[usuario]", FrontUserTarget.usuario);
-                        dynamicValues.Add("[clave]",oCrypto.Decrypt(FrontUserTarget.contrasena));
+                        dynamicValues.Add("[clave]", oCrypto.Decrypt(FrontUserTarget.contrasena));
                         dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
 
-                        MailingHelper.SendMail(to, "Notificación de creacion de usuario", 
-                            ConfigurationManager.AppSettings["emailNewUserNotificationTemplateHTML"].ToString(), 
-                            ConfigurationManager.AppSettings["emailNewUserNotificationTemplateText"].ToString(), 
+                        MailingHelper.SendMail(to, "Notificación de creacion de usuario",
+                            ConfigurationManager.AppSettings["emailNewUserNotificationTemplateHTML"].ToString(),
+                            ConfigurationManager.AppSettings["emailNewUserNotificationTemplateText"].ToString(),
                             ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
                     }
                 }
@@ -185,7 +190,7 @@ namespace Orkidea.RinconCajica.Business
             string res = "";
 
             BizClubPartner bizClubPartner = new BizClubPartner();
-            ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { id = idSocio });
+            ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { docid = idSocio });
 
             string usuariosSugeridos = UserNameHelper.userNameGenerator(clubPartner.nombre, true);
 

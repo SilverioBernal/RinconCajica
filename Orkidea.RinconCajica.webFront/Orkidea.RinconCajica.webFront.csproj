@@ -191,6 +191,7 @@
     <Compile Include="Controllers\BackendController.cs" />
     <Compile Include="Controllers\ClubPartnerController.cs" />
     <Compile Include="Controllers\DocumentTypeController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\FrontUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -737,7 +738,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\404.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -803,6 +804,10 @@
     <Content Include="Views\NewsPaper\Edit.cshtml" />
     <Content Include="Views\FrontUser\Create.cshtml" />
     <Content Include="Views\FrontUser\Edit.cshtml" />
+    <Content Include="Views\ClubPartner\Edit.cshtml" />
+    <Content Include="Views\Page\comingSoon.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,8 +20,8 @@
 <head>
     <meta charset="utf-8">
     <title>Club El Rincon de Cajicá</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Club el Rincón de Cajicá - Golf, Tenis, Natacion, Futbol, Gimnasio. Eventos y torneos empresariales y sociales">
+    <meta name="author" content="Orkidea S.A.S http://www.orkidea.co">
 
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -51,6 +51,7 @@
         int user = 0;
         string rol = "U";
         string userName = "";
+        string idSocio = "";
         bool autenticado = false;
 
         if (context.IsAuthenticated)
@@ -59,10 +60,30 @@
             string[] userRole = ci.Ticket.UserData.Split('|');
             user = int.Parse(userRole[0]);
             rol = userRole[1];
+
+            if (rol == "S")
+            {
+                idSocio = userRole[2];
+            }
+
             userName = ci.Name;
             autenticado = (user != null ? true : false);
         }
     }
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-47044449-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
 </head>
 <body>
     <div id="body">
@@ -99,59 +120,106 @@
                             <li class="active">
                                 <a href="@Url.Action("Index", "Home")"><span style="color: white;">.</span>Inicio</a>
                             </li>
-                            <li>
-                                <a href="@Url.Action("Details", "Page", new { id = "AcercaDe" })"><span style="color: white;">.</span>El club</a>
-                            </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Deportes<b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>El club<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    @*<li class="pepa"><a href="@Url.Action("Index", "NewsPaper")">Noticias</a></li>*@
+                                    <li><a href="@Url.Action("Details", "Page", new { id = "AcercaDe" })">Nuestra sede</a></li>
                                     <li class="dropdown-submenu">
-                                        <a href="#">Golf</a>
+                                        <a href="#">Quienes somos</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "Hoyo1" })">Campo</a></li>
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelasDeportivasDeGolf" })">Escuelas</a></li>
-                                            <li><a href="#">Torneo</a></li>
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "RankingGolf" })">Ranking</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Historia" })">Historia</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Mision" })">Misión, Visión, Valores</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown-submenu">
-                                        <a href="#">Tenis</a>
+                                        <a href="#">Restaurantes</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "Tenis" })">Campos</a></li>
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaTenis" })">Escuelas</a></li>
-                                            <li><a href="#">Torneo</a></li>
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "RankingTenis" })">Ranking</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Comedor principal y Terraza" })">SedeComedorPrincipal</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "TabernaMixta" })">Taberna</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "TerrazaJuvenilYHeladeria" })">Terraza juvenil y Heladería</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "TerrazaJuvenilYHeladeria" })">Cafetería Piscina</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "SedeRefugioTenis1Y2" })">Refugio Tenis Uno y Dos</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown-submenu">
-                                        <a href="#">Natación</a>
+                                        <a href="#">Áreas de servicio</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivasNatacion" })">Escuelas</a></li>
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "RankingNatacion" })">Ranking</a></li>
-                                            @*<li><a href="#">Ranking</a></li>*@
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#">Futbol</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "Futbol" })">Campo</a></li>
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaFutbol" })">Escuelas</a></li>
-                                            @*<li><a href="#">Ranking</a></li>*@
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="#">C.E.F.</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "Gimnasio" })">Instalaciones</a></li>
-                                            <li><a href="#">Eventos</a></li>
-                                            @*<li><a href="#">Ranking</a></li>*@
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "VestierDamasYCaballeros" })">Vestier Damas y Caballeros</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "VestierNinosYninas" })">Vestier Niñas y Niños</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "ZonaInfantilYJuegos" })">Zona Infantil</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "OtrosServicios" })">Otros Servicios</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="@Url.Action("Details", "Page", new { id = "Eventos" })"><span style="color: white;">.</span>Eventos</a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Deportes<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Golf</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Hoyo1" })">Campo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelasDeportivasDeGolf" })">Escuelas</a></li>
+                                                @*<li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Golf" })">Torneos</a></li>*@
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "TorneosGolf" })">Torneos</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingGolf" })">Ranking</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Tenis</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Tenis" })">Campos</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaTenis" })">Escuelas</a></li>
+                                                @*<li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Tenis" })">Torneos</a></li>*@
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "TorneosTenis" })">Torneos</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingTenis" })">Ranking</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Natación</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "NatacionPiscina" })">Piscina</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivasNatacion" })">Escuelas</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EquipoDeNatacion" })">Equipo de Natación</a></li>
+                                                <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Natacion" })">Torneo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingNatacion" })">Ranking</a></li>
+                                                @*<li><a href="#">Ranking</a></li>*@
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">Futbol</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Futbol" })">Campo</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaFutbol" })">Escuelas</a></li>
+                                                @*<li><a href="#">Ranking</a></li>*@
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu">
+                                            <a href="#">C.E.F.</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Gimnasio" })">Instalaciones</a></li>
+                                                @*<li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Gimnasio" })">Eventos</a></li>*@
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "TorneosCef" })">Torneos</a></li>
+                                                @*<li><a href="#">Ranking</a></li>*@
+                                            </ul>
+                                        </li>
+                                    </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Eventos<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Details", "Page", new { id = "EventosInstitucionalesCalendario2014" })">Eventos institucionales</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Salones</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Comedor principal y Terraza" })">ComedorPrincipal</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Taberna" })">Taberna</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Reservado1" })">Reservado 1</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Reservado2" })">Reservado 2</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "ZonaInfantil" })">Zona Infantil y Juvenil</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
                             @if (!context.IsAuthenticated)
                             {
@@ -161,46 +229,84 @@
                             }
                             else
                             {
-                                <li class="dropdown">
+                                if (ViewBag.menu == "Socios")
+                                {
+                                <li class="dropdown active">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Socios<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         @if (rol == "A" || rol == "S")
                                         {
-                                            <li class="pepa"><a href="#">Extractos</a></li>
-                                            <li class="pepa"><a href="#">Consumos</a></li>
-                                            <li class="dropdown-submenu">
-                                                <a href="#">Documentos y circulares</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#">Historia</a></li>
-                                                    <li><a href="#">Misión</a></li>
-                                                    <li><a href="#">Visión</a></li>
-                                                    <li><a href="#">Valores</a></li>
-                                                </ul>
-                                            </li>
+                                            <li class="pepa"><a href="@Url.Action("Details", "Page", new { id = "Comingsoon" })">Extractos y Consumos</a></li>                                            
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Socios" })">Documentos y circulares</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Canjes" })">Canjes</a></li>                                            
+                                            <li><a href="@Url.Action("Edit", "ClubPartner", new { id = idSocio })">Actualizacion de datos</a></li>                                            
                                             <li class="dropdown-submenu">
                                                 <a href="#">Reservas</a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="#">Deportes</a></li>
-                                                    <li><a href="#">Eventos</a></li>
+                                                    <<li><a href="@Url.Action("Details", "Page", new { id = "Comingsoon" })">Deportes</a></li>
+                                                    <li><a href="@Url.Action("Details", "Page", new { id = "Comingsoon" })">Canchas de Tenis</a></li>
+                                                    <li><a href="@Url.Action("Details", "Page", new { id = "Comingsoon" })">Eventos Institucionales</a></li>
                                                 </ul>
                                             </li>
                                             <li class="divider"></li>
                                         }
                                         <li class="nav-header">Cuenta</li>
-                                        <li class="pepa"><a href="javascript:void(0);" id="lnkCambioContrasena">Cambiar Clave</a></li>
+                                        <li class="lnkCambioContrasena"><a href="javascript:void(0);">Cambiar Clave</a></li>
                                         <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
                                     </ul>
                                 </li>
+                                }
+                                else
+                                {
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Socios<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        @if (rol == "A" || rol == "S")
+                                        {
+                                            <li class="pepa"><a href="@Url.Action("Details", "Page", new { id = "Comingsoon" })">Extractos y Consumos</a></li>                                            
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Socios" })">Documentos y circulares</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Canjes" })">Canjes</a></li>                                            
+                                            <li><a href="@Url.Action("Edit", "ClubPartner", new { id = idSocio })">Actualizacion de datos</a></li>                                            
+                                            <li class="dropdown-submenu">
+                                                <a href="#">Reservas</a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="@Url.Action("Details", "Page", new { id = "Comingsoon" })">Deportes</a></li>
+                                                    <li><a href="@Url.Action("Details", "Page", new { id = "Comingsoon" })">Canchas de Tenis</a></li>
+                                                    <li><a href="@Url.Action("Details", "Page", new { id = "Comingsoon" })">Eventos Institucionales</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="divider"></li>                                     
+                                        }
+                                        <li class="nav-header">Cuenta</li>
+                                        <li class="lnkCambioContrasena"><a href="javascript:void(0);">Cambiar Clave</a></li>
+                                        <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
+                                    </ul>
+                                </li>
+                                }
                             }
-                            <li>
-                                <a href="@Url.Action("Details", "Page", new { id = "Fundacion" })"><span style="color: white;">.</span>Fundación</a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Fundación<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Details", "Page", new { id = "Fundacion" })">Casa Vieja</a></li>
+                                    <li><a href="@Url.Action("Details", "Page", new { id = "FundacionGradoQuinto" })">Actividades</a></li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="@Url.Action("Contact", "Home")"><span style="color: white;">.</span>Contacto</a>
                             </li>
                             @if (rol == "A" || rol == "C" || rol == "E")
                             {
-                                <li><a href="@Url.Action("Index", "homeSGC")"><span style="color: white;">.</span>Empleados</a></li>
+                                <li><a href="@Url.Action("Index", "homeSGC")"><span style="color: white;">.</span>Intranet</a></li>
+                            }
+                            @if (context.IsAuthenticated)
+                            {
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span><strong style="color: yellowgreen">@userName</strong><b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="lnkCambioContrasena"><a href="javascript:void(0);">Cambiar Clave</a></li>
+                                        <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
+                                    </ul>
+                                </li>
                             }
                         </ul>
                     </div>
@@ -338,7 +444,7 @@
                 }
             });
 
-            $('#lnkCambioContrasena').click(function () {
+            $('.lnkCambioContrasena').click(function () {
                 $('#logoutModal').modal()
             });
 

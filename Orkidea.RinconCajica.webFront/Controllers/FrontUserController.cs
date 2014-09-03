@@ -45,12 +45,12 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 });
 
                 BizClubPartner bizClubPartner = new BizClubPartner();
-                ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { id = user.idSocio });
+                ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { docid = user.idSocio });
 
                 if (user.email.Trim() != clubPartner.correo.Trim())
                     clubPartner.correo = user.email;
 
-                clubPartner.idUsuario = id;
+                clubPartner.docid = id;
                 bizClubPartner.SaveClubPartner(clubPartner);
 
 
@@ -79,10 +79,10 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             if (frontUser.idRol == "S")
             {
                 BizClubPartner bizClubPartner = new BizClubPartner();
-                ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyUser(id);
+                Partner clubPartner = bizClubPartner.GetClubPartnerbyUser(id);
 
                 if (clubPartner != null)
-                    user.idSocio = clubPartner.id;
+                    user.idSocio = clubPartner.docid;
             }
 
             return View(user);
@@ -104,7 +104,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     bizFrontUser.SaveFrontUser(currentUser);
 
                     BizClubPartner bizClubPartner = new BizClubPartner();
-                    ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { id = user.idSocio });
+                    ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { docid = user.idSocio });
 
                     if (user.email.Trim() != clubPartner.correo.Trim())
                     {
@@ -135,7 +135,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     bizFrontUser.DeleteFrontUser(currentUser);
 
                     BizClubPartner bizClubPartner = new BizClubPartner();
-                    ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyUser(id);
+                    Partner clubPartner = bizClubPartner.GetClubPartnerbyUser(id);
 
                     if (clubPartner!=null)
                     {
@@ -175,7 +175,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             try
             {
                 BizClubPartner bizClubPartner = new BizClubPartner();
-                ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { id = id });
+                ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { docid = id });
                 res = clubPartner.correo;
             }
             catch (Exception)

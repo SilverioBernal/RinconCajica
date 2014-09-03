@@ -74,6 +74,7 @@
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Partner.cs" />
     <Compile Include="Process.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
@@ -109,7 +110,6 @@
     </Compile>
     <Compile Include="SportSchedule.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
