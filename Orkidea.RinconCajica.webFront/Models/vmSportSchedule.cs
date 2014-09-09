@@ -22,6 +22,7 @@ namespace Orkidea.RinconCajica.webFront.Models
         //public List<SportCategory> lsCategorias { get; set; }
         public List<SportModality> lsModalidades { get; set; }
         //public List<HomeSlider> lsHomeSlider { get; set; }
+        public List<SportSchedule> lsOtrosEventos { get; set; }
 
         public vmSportSchedule()
         {
@@ -31,6 +32,7 @@ namespace Orkidea.RinconCajica.webFront.Models
             lsRamas = new List<SportBranch>();
             //lsCategorias = new List<SportCategory>();
             lsModalidades = new List<SportModality>();
+            lsOtrosEventos = new List<SportSchedule>();
         }
     }
 }

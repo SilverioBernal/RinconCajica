@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
 using Orkidea.RinconCajica.webFront.Models;
@@ -22,7 +26,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList();
+            List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().OrderBy(x => x.inicio).ToList();
             List<vmSportSchedule> lsCalendario = new List<vmSportSchedule>();
 
             List<SportModality> lsModalidad = bizSportModality.GetSportModalityList();
@@ -43,14 +47,14 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     idModalidad = item.idModalidad != null && item.idModalidad != 0 ? item.idModalidad : null,
                     idRama = item.idRama != null && item.idRama != 0 ? item.idRama : null,
                     aireacion = item.aireacion,
-                    visible = item.visible,                    
+                    visible = item.visible,
                     nombreDeporte = lsDeporte.Where(x => x.id.Equals(item.idDeporte)).Select(x => x.nombre).FirstOrDefault(),
                     nombreModalidad = item.idModalidad != null && item.idModalidad != 0 ? lsModalidad.Where(x => x.id.Equals(item.idModalidad)).Select(x => x.nombre).FirstOrDefault() : null,
                     nombreRama = item.idRama != null && item.idRama != 0 ? lsRama.Where(x => x.id.Equals(item.idRama)).Select(x => x.nombre).FirstOrDefault() : null,
                 });
             }
             ViewBag.menu = "SportSchedule";
-            return View(lsCalendario);
+            return View(lsCalendario.OrderBy(x => x.inicio).ToList());
         }
 
         //public ActionResult IndexSportSchedulePage()
@@ -121,10 +125,11 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             ViewBag.titulo = id;
 
             int sport = bizSport.GetSportList().Where(x => x.nombre.ToUpper() == id.ToUpper()).Select(x => x.id).FirstOrDefault();
-            DateTime desde = DateTime.Parse( DateTime.Now.ToString("yyyy-MM-dd"));
-            List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio >= desde && x.visible).ToList();
+            DateTime desde = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
+            //List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio >= desde && x.visible).OrderBy(x => x.inicio).ToList();
+            List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio >= desde).OrderBy(x => x.inicio).ToList();
             List<vmSportSchedule> lsCalendario = new List<vmSportSchedule>();
-
+            List<SportSchedule> lsOtrosEventos = bizSportSchedule.GetSportScheduleList().Where(x => !x.aireacion && x.inicio >= desde && !string.IsNullOrEmpty(x.poster)).OrderBy(x => x.inicio).ToList();
             List<SportModality> lsModalidad = bizSportModality.GetSportModalityList();
             //List<SportCategory> lsCategoria = bizSportCategory.GetSportCategoryList();
             List<SportBranch> lsRama = bizSportBranch.GetSportBranchList();
@@ -149,7 +154,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     nombreModalidad = item.idModalidad != null && item.idModalidad != 0 ? lsModalidad.Where(x => x.id.Equals(item.idModalidad)).Select(x => x.nombre).FirstOrDefault() : null,
                     nombreRama = item.idRama != null && item.idRama != 0 ? lsRama.Where(x => x.id.Equals(item.idRama)).Select(x => x.nombre).FirstOrDefault() : null,
                     poster = item.poster,
-                    urlPagina = item.urlPagina
+                    urlPagina = item.urlPagina,
+                    lsOtrosEventos = lsOtrosEventos
                 });
             }
 
@@ -256,7 +262,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 //inicio = evento.inicio,
                 //fin = evento.fin,
                 tmpInicio = evento.inicio.ToString("yyyy-MM-dd"),
-                tmpFin = evento.fin != null?((DateTime)evento.fin).ToString("yyyy-MM-dd"):"",
+                tmpFin = evento.fin != null ? ((DateTime)evento.fin).ToString("yyyy-MM-dd") : "",
                 //nombreCategoria = evento.idCategoria != null && evento.idCategoria != 0 ? lsCategoria.Where(x => x.id.Equals(evento.idCategoria)).Select(x => x.nombre).FirstOrDefault() : null,
                 nombreDeporte = lsDeporte.Where(x => x.id.Equals(evento.idDeporte)).Select(x => x.nombre).FirstOrDefault(),
                 nombreModalidad = evento.idModalidad != null && evento.idModalidad != 0 ? lsModalidad.Where(x => x.id.Equals(evento.idModalidad)).Select(x => x.nombre).FirstOrDefault() : null,
@@ -325,6 +331,55 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
+
+        public ActionResult ContestReport(int id)
+        {
+            BizJoinContest bizJoinContest = new BizJoinContest();
+            List<JoinContest> lsJoinContest = bizJoinContest.GetJoinContestList(new JoinContest() { idTorneo = id });
+            List<JoinContestReportModel> lsReport = new List<JoinContestReportModel>();
+            foreach (JoinContest item in lsJoinContest)
+            {
+                lsReport.Add(new JoinContestReportModel()
+                {
+                    categoria = item.categoria,
+                    email = item.email,
+                    fechaInscripcion = item.fechaInscripcion,
+                    identificacion = item.identificacion,
+                    idSocio = (int)item.idSocio,
+                    id = item.id,
+                    idTorneo = item.idTorneo,
+                    nombre = item.nombre,
+                    telefonoCelular = item.telefonoCelular,
+                    telefonoFijo = item.telefonoFijo,
+                    tipoIdentificacion = item.tipoIdentificacion
+                });
+            }
+
+            SportSchedule ss = bizSportSchedule.GetSportSchedulebyKey(new SportSchedule() { id = id });
+
+            string fileName = Regex.Replace(
+                    CultureInfo.CurrentCulture.TextInfo.ToTitleCase(ss.competencia
+                    .ToLower()
+                    .Replace(@"@", "a")
+                    .Replace('á', 'a')
+                    .Replace('é', 'e')
+                    .Replace('í', 'i')
+                    .Replace('ó', 'o')
+                    .Replace('ú', 'u')
+                    .Replace('ñ', 'n')
+                    .Replace('ü', 'u')
+                    ), @"[^\w]", "", RegexOptions.None, TimeSpan.FromSeconds(1.5));
+
+            var stream = new MemoryStream();
+            XmlSerializer serializer = new XmlSerializer(lsReport.GetType());
+
+            serializer.Serialize(stream, lsReport);
+            stream.Position = 0;
+
+            
+
+            return File(stream, "application/vnd.ms-excel", fileName + ".xls");
         }
 
 

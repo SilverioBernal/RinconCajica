@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -48,6 +49,24 @@ namespace Orkidea.RinconCajica.Business
                 {
                     ctx.Configuration.ProxyCreationEnabled = false;
                     lstJoinContest = ctx.JoinContest.ToList();
+                }
+            }
+            catch (Exception ex) { throw ex; }
+
+            return lstJoinContest;
+        }
+
+        public List<JoinContest> GetJoinContestList(JoinContest joinContestTarget)
+        {
+
+            List<JoinContest> lstJoinContest = new List<JoinContest>();
+
+            try
+            {
+                using (var ctx = new RinconEntities())
+                {
+                    ctx.Configuration.ProxyCreationEnabled = false;
+                    lstJoinContest = ctx.JoinContest.Where(x=> x.idTorneo.Equals(joinContestTarget.idTorneo)).ToList();
                 }
             }
             catch (Exception ex) { throw ex; }
@@ -104,6 +123,28 @@ namespace Orkidea.RinconCajica.Business
                         // else create
                         ctx.JoinContest.Add(JoinContestTarget);
                         ctx.SaveChanges();
+
+                        BizSportSchedule bizSS = new BizSportSchedule();
+                        SportSchedule ss = bizSS.GetSportSchedulebyKey(new SportSchedule() { id = JoinContestTarget.idTorneo });
+
+                        // send notification
+                        List<System.Net.Mail.MailAddress> to = new List<System.Net.Mail.MailAddress>();
+
+                        if (ConfigurationManager.AppSettings["testMail"].ToString() == "N")
+                            to.Add(new System.Net.Mail.MailAddress(ConfigurationManager.AppSettings["emailAdmin"].ToString()));
+                        else
+                            to.Add(new System.Net.Mail.MailAddress("silverio.bernal@orkidea.co"));
+
+
+                        Dictionary<string, string> dynamicValues = new Dictionary<string, string>();
+                        dynamicValues.Add("[socio]", string.Format("{0}-{1}", JoinContestTarget.idSocio.ToString(), JoinContestTarget.nombre));
+                        dynamicValues.Add("[torneo]", ss.competencia);
+                        dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
+
+                        MailingHelper.SendMail(to, "Notificación de creacion de usuario",
+                            ConfigurationManager.AppSettings["emailjoinContestNotificationTemplateHTML"].ToString(),
+                            ConfigurationManager.AppSettings["emailjoinContestNotificationTemplateText"].ToString(),
+                            ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
                     }
                 }
 

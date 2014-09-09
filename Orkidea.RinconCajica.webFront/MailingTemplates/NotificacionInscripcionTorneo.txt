@@ -1,0 +1,11 @@
+﻿Apreciado Administrador
+
+
+El Socio [socio] ha realizado inscripción al torneo [torneo]
+
+Para acceder al sitio por favor haga clic en [urlSitio]
+
+
+Cordialmente,
+
+Club el Rincón de Cajicá

@@ -20,7 +20,7 @@ namespace Orkidea.RinconCajica.webFront.Models
         public vmPage()
         {
             lsHomeSlider = new List<HomeSlider>();
-            lsHomeSlider = bizHomeSlider.GetHomeSliderList();
+            lsHomeSlider = bizHomeSlider.GetHomeSliderList().Where(x => x.activo).ToList();
 
             lsSideBar = new List<SideBar>();
             lsSideBar.Add(new SideBar() { contenidoPublico ="", contenidoPrivado="" });

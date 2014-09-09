@@ -215,6 +215,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CustomIdentity.cs" />
+    <Compile Include="Models\JoinContestReportModel.cs" />
     <Compile Include="Models\vmContactMessage.cs" />
     <Compile Include="Models\vmFileUpload.cs" />
     <Compile Include="Models\vmFrontUser.cs" />
@@ -280,6 +281,8 @@
     <Content Include="Images\yellowBall.png" />
     <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\maps.js" />
+    <Content Include="MailingTemplates\NotificacionInscripcionTorneo.html" />
+    <Content Include="MailingTemplates\NotificacionInscripcionTorneo.txt" />
     <Content Include="MailingTemplates\NotificacionNuevoUsuario.html" />
     <Content Include="MailingTemplates\NotificacionNuevoUsuario.txt" />
     <Content Include="Scripts\datepicker\bootstrap-datepicker.js" />

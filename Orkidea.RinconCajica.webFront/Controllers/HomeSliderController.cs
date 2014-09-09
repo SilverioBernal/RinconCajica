@@ -182,6 +182,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             lsHomeSlider.AddRange(bizHomeSlider.GetHomeSliderList().Where(x => x.activo).ToList());
 
             return PartialView(lsHomeSlider);
+            
         }
     }
 }

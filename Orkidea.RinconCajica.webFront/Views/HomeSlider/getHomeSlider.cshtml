@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<Orkidea.RinconCajica.Entities.HomeSlider>
 
-@foreach (var item in Model) {
-        <li>
-            <img src="@Html.DisplayFor(modelItem => item.urlImagen)" alt="">
-        </li>
+@foreach (var item in Model)
+{
+
+    <li>
+        <img src="@Html.DisplayFor(modelItem => item.urlImagen)" alt="">
+    </li>
+
 }
 

@@ -27,14 +27,14 @@
                 <th>Categoria</th>
                 <th>Modalidad</th>
                 <th>Rama</th>
-                <th></th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                var fechaIni = String.Format("{0: dd/MM/yyyy}", item.inicio);
-                var fechaFin = String.Format("{0: dd/MM/yyyy}", item.fin);
+                var fechaIni = String.Format("{0: yyyy/MM/dd}", item.inicio);
+                var fechaFin = String.Format("{0: yyyy/MM/dd}", item.fin);
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.nombreDeporte)</td>
                     <td>@fechaIni</td>
@@ -45,7 +45,8 @@
                     <td>@Html.DisplayFor(modelItem => item.nombreRama)</td>
                     <td>
                         <a href="@Url.Action("Edit", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>|                    
-                            <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
+                            <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>|
+                        <a href="@Url.Action("ContestReport", new { id = item.id })" title="Imprimir"><i class="icon-print"></i></a>
                     </td>
                 </tr>
             }
@@ -55,5 +56,7 @@
 
 
 <script>
-    $('#dt_gal').dataTable();
+    $('#dt_gal').dataTable({
+        "aaSorting": [[1, 'asc']]
+    });
 </script>
