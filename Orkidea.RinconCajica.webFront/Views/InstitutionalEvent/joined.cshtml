@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "joined";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+
+<div id="bg_slide">
+    <ul>
+        @{Html.RenderAction("getHomeSlider", "HomeSlider");}
+    </ul>
+    <div class="pattern"></div>
+</div>
+
+<div class="default-icons clearfix">
+    <ul class="slider-nav">
+        <li>
+            <a href="#" class="icon-angle-left rslides_nav rslides1_nav prev"></a>
+        </li>
+        <li>
+            <a href="#" class="icon-angle-right rslides_nav rslides1_nav next"></a>
+        </li>
+    </ul>
+    <!-- /.slider-nav -->
+
+
+</div>
+
+<div class="container">
+    <div class="header-field">
+        <div class="page-title pull-left">
+            <h3>Inscripción exitosa</h3>
+        </div>
+    </div>
+    <!-- /.header-field -->
+</div>
+<!-- /.container -->
+<div class="container">
+    <div class="cont-outer">
+        <div class="row-fluid">
+            <div class="span8">
+                <h2>Gracias</h2>
+                <p>Su registro ha sido realizado con éxito</p>
+                <a href="@Url.Action("index", "Home")" class="btn btn-success">Volver al home</a>
+            </div>
+        </div>
+    </div>
+</div>

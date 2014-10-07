@@ -60,6 +60,27 @@ namespace Orkidea.RinconCajica.Business
             return oFrontUser;
         }
 
+        public FrontUser GetFrontUserbyPartner(int idPartner)
+        {
+            FrontUser oFrontUser = new FrontUser();
+
+            try
+            {
+                using (var ctx = new RinconEntities())
+                {
+                    ctx.Configuration.ProxyCreationEnabled = false;
+
+                    int? idUsuario = ctx.ClubPartner.Where(x => x.doccl.Equals(idPartner)).Select(x => x.idUsuario).FirstOrDefault();
+
+                    if (idUsuario != null)
+                        oFrontUser = ctx.FrontUser.Where(x => x.id.Equals(idUsuario)).FirstOrDefault();
+                }   
+            }
+            catch (Exception ex) { throw ex; }
+
+            return oFrontUser;
+        }
+
         /// <summary>
         /// Create or update a FrontUser
         /// </summary>
@@ -73,23 +94,28 @@ namespace Orkidea.RinconCajica.Business
                 {
                     //verify if the FrontUser exists
                     FrontUser oFrontUser = GetFrontUserbyKey(FrontUserTarget);
+                    Cryptography oCrypto = new Cryptography();
+
+                    string accion;
 
                     if (oFrontUser != null)
                     {
-                        // if exists then edit 
+                        // if exists then edit                         
                         ctx.FrontUser.Attach(oFrontUser);
                         EntityFrameworkHelper.EnumeratePropertyDifferences(oFrontUser, FrontUserTarget);
                         ctx.SaveChanges();
                         res = oFrontUser.id;
+                        accion = "modificación";
                     }
                     else
                     {
-                        // else assing password and create
-                        Cryptography oCrypto = new Cryptography();
+                        // else assing password and create                        
                         FrontUserTarget.contrasena = oCrypto.Encrypt(PasswordHelper.Generate());
                         ctx.FrontUser.Add(FrontUserTarget);
                         ctx.SaveChanges();
                         res = FrontUserTarget.id;
+
+                        accion = "creación";
 
                         // send notification
                         List<System.Net.Mail.MailAddress> to = new List<System.Net.Mail.MailAddress>();
@@ -105,11 +131,84 @@ namespace Orkidea.RinconCajica.Business
                         dynamicValues.Add("[clave]", oCrypto.Decrypt(FrontUserTarget.contrasena));
                         dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
 
-                        MailingHelper.SendMail(to, "Notificación de creacion de usuario",
+                        MailingHelper.SendMail(to, string.Format("Notificación de {0} de usuario", accion),
                             ConfigurationManager.AppSettings["emailNewUserNotificationTemplateHTML"].ToString(),
                             ConfigurationManager.AppSettings["emailNewUserNotificationTemplateText"].ToString(),
                             ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
                     }
+                }
+
+                return res;
+
+            }
+            catch (DbEntityValidationException e)
+            {
+                StringBuilder oError = new StringBuilder();
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    oError.AppendLine(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State));
+
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        oError.AppendLine(string.Format("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage));
+                    }
+                }
+                string msg = oError.ToString();
+                throw new Exception(msg);
+            }
+            catch (Exception ex) { throw ex; }
+        }
+
+        /// <summary>
+        /// Create or update a FrontUser
+        /// </summary>
+        /// <param name="FrontUserTarget"></param>
+        public int SaveFrontUser(FrontUser FrontUserTarget, bool actualizaContrasena)
+        {
+            int res = -1;
+            try
+            {
+                using (var ctx = new RinconEntities())
+                {
+                    //verify if the FrontUser exists
+                    FrontUser oFrontUser = GetFrontUserbyKey(FrontUserTarget);
+                    Cryptography oCrypto = new Cryptography();
+
+                    string accion = "";
+
+                    if (oFrontUser != null)
+                    {
+                        // if exists then edit                         
+                        FrontUserTarget.contrasena = oCrypto.Encrypt(PasswordHelper.Generate());
+
+                        ctx.FrontUser.Attach(oFrontUser);
+                        EntityFrameworkHelper.EnumeratePropertyDifferences(oFrontUser, FrontUserTarget);
+                        ctx.SaveChanges();
+                        res = oFrontUser.id;
+                        accion = "modificación";
+                    }
+
+                    // send notification
+                    List<System.Net.Mail.MailAddress> to = new List<System.Net.Mail.MailAddress>();
+
+                    if (ConfigurationManager.AppSettings["testMail"].ToString() == "N")
+                        to.Add(new System.Net.Mail.MailAddress(FrontUserTarget.email));
+                    else
+                        to.Add(new System.Net.Mail.MailAddress("silverio.bernal@orkidea.co"));
+
+
+                    Dictionary<string, string> dynamicValues = new Dictionary<string, string>();
+                    dynamicValues.Add("[usuario]", FrontUserTarget.usuario);
+                    dynamicValues.Add("[clave]", oCrypto.Decrypt(FrontUserTarget.contrasena));
+                    dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
+
+                    MailingHelper.SendMail(to, string.Format("Notificación de {0} de usuario", accion),
+                        ConfigurationManager.AppSettings["emailNewUserNotificationTemplateHTML"].ToString(),
+                        ConfigurationManager.AppSettings["emailNewUserNotificationTemplateText"].ToString(),
+                        ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
+
                 }
 
                 return res;

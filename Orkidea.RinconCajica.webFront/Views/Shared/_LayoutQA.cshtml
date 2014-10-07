@@ -52,7 +52,7 @@
     <div class="row-fluid">
         <div class="navbar">
             <div class="navbar-inner navbar-fixed-top">
-                <a class="brand" href="@Url.Action("index", "HomeSGC")">
+                <a class="brand" href="@Url.Action("index", "Home")">
                     <img src="~/img/logo.png" width="100px" /></a>
                 <ul class="nav customNav">
                     <li><a href="@Url.Action("index", "HomeSGC")">Home</a></li>
@@ -68,88 +68,109 @@
                     <li><a href="#">Sugerencias</a></li>
                     @if (rol == "A" || rol == "C")
                     {
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            @if (rol == "A")
-                            {
-                                <li class="nav-header">General</li>
-                                <li><a href="@Url.Action("Index", "FrontUser")">Usuarios</a></li>
-                                <li><a href="@Url.Action("Index", "NewsPaper")">Noticias</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                @if (rol == "A")
+                                {
+                                    <li class="nav-header">General</li>
+                                    <li><a href="@Url.Action("Index", "FrontUser")">Usuarios</a></li>
+                                    <li><a href="@Url.Action("Index", "NewsPaper")">Noticias</a></li>
                             
-                                if (ViewBag.menu == "medios")
-                                {
-                                <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>                                
-                                }
-                                else
-                                {
-                                <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
-                                }
-                                if (ViewBag.menu == "HomeSlider")
-                                {
-                                <li class="active"><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
-                                }
-                                else
-                                {
-                                <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
-                                }
-                                if (ViewBag.menu == "Page")
-                                {
-                                <li class="active"><a href="@Url.Action("Index", "Page")">Páginas</a></li>
-                                }
-                                else
-                                {
-                                <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
-                                }
-                                if (ViewBag.menu == "SideBar")
-                                {
-                                <li class="active"><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
-                                }
-                                else
-                                {
-                                <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
-                                }
-                                <li class="divider"></li>
-                                <li class="nav-header">Deportes</li>
+                                    if (ViewBag.menu == "medios")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>                                
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
+                                    }
+                                    if (ViewBag.menu == "HomeSlider")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+                                    }
+                                    if (ViewBag.menu == "Page")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                                    }
+                                    if (ViewBag.menu == "SideBar")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                                    }
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Deportes</li>
 
-                                if (ViewBag.menu == "SportModality")
-                                {
-                                <li class="active"><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
-                                }
-                                else
-                                {
-                                <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
-                                }
-                                if (ViewBag.menu == "SportBranch")
-                                {
-                                <li class="active"><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
-                                }
-                                else
-                                {
-                                <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
-                                }
-                                if (ViewBag.menu == "SportSchedule")
-                                {
-                                <li class="active"><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
-                                }
-                                else
-                                {
-                                <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
-                                }
-                            }
-                            @if (rol == "A" || rol == "C")
-                            {
-                                <li class="divider"></li>
-                                <li class="nav-header">Calidad</li>
+                                    if (ViewBag.menu == "SportModality")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                                    }
+                                    if (ViewBag.menu == "SportBranch")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                                    }
+                                    if (ViewBag.menu == "SportSchedule")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
+                                    }
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Socios</li>
+                                    if (ViewBag.menu == "AccountSummary")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "AccountSummary")">Extractos y consumos</a></li>
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "AccountSummary")">Extractos y consumos</a></li>
+                                    }
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Eventos institucionales</li>
 
-                                <li><a href="@Url.Action("Index", "DocumentType")">Tipos de documento</a></li>
-                                <li><a href="@Url.Action("List", "Process")">Procesos</a></li>
-                                <li><a href="@Url.Action("Index", "ProcessDocument")">Documentos por proceso</a></li>
-                                @*<li><a href="@Url.Action("List", "Project")">Proyectos</a></li>
+                                    if (ViewBag.menu == "SportModality")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "InstitutionalEvent")">Calendario</a></li>
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "InstitutionalEvent")">Calendario</a></li>
+                                    }
+                                }
+                                @if (rol == "A" || rol == "C")
+                                {
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Calidad</li>
+
+                                    <li><a href="@Url.Action("Index", "DocumentType")">Tipos de documento</a></li>
+                                    <li><a href="@Url.Action("List", "Process")">Procesos</a></li>
+                                    <li><a href="@Url.Action("Index", "ProcessDocument")">Documentos por proceso</a></li>
+@*<li><a href="@Url.Action("List", "Project")">Proyectos</a></li>
                                 <li><a href="@Url.Action("Index", "ProjectDocument")">Documentos por proyecto</a></li>*@
-                            }
-                        </ul>
-                    </li>
+                                }
+                            </ul>
+                        </li>
                     }
                 </ul>
                 <ul class="nav pull-right customNav">

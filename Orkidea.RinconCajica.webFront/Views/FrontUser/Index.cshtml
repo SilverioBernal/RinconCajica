@@ -19,8 +19,8 @@
     <table class="table table-bordered table-striped table_vam" id="dt_gal">
         <thead>
             <tr>
-                <th>Usuario</th>                
-                <th>Rol</th>                
+                <th>Usuario</th>
+                <th>Rol</th>
                 <th></th>
             </tr>
         </thead>
@@ -32,15 +32,50 @@
                     <td>@Html.DisplayFor(modelItem => item.idRol)</td>
                     <td>
                         <a href="@Url.Action("Edit", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>|                    
-                            <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
+                            <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>|                    
+                            <a href="javascript:void(0)" onclick="reset(@item.id)" title="Reestablecer contraseña"><i class="icon-refresh resetPass"></i></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
+<div class="modal hide fade" id="myModal">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3 id="msgHeader"></h3>
+    </div>
+    <div class="modal-body" id="msgBody">
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-info" data-dismiss="modal" value="Aceptar" id="btnSuccess" />
+        <a href="#" class="btn btn-danger" data-dismiss="modal" id="btnFail">Revisar</a>
+    </div>
+</div>
 
 <script>
     $('#dt_gal').dataTable();
+
+
+    function reset(idUser) {
+        var link = '@Url.Action("resetPasswordByAdmin", new { id = "-1" })';
+        link = link.replace("-1", idUser);
+
+        $.getJSON(link, function (data) {
+            if (data == "Ok") {
+                $('#msgHeader')[0].innerText = 'Reestablecer de contraseña';
+                $('#msgBody')[0].innerText = 'Contraseña reestablecia con éxito';
+                $('#btnSuccess').css("display", "inline");
+                $('#btnFail').css("display", "none");
+            }
+            else {
+                $('#msgHeader')[0].innerText = 'Reestablecer de contraseña';
+                $('#msgBody')[0].innerText = 'No se pudo reestablecer la contraseña';
+                $('#btnSuccess').css("display", "none");
+                $('#btnFail').css("display", "inline");
+            }
+            $('#myModal').modal('show');
+        });
+    }
+
 </script>

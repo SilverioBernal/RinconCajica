@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountSummary.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ClubPartner.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
@@ -63,9 +66,15 @@
     <Compile Include="HomeSlider.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="InstitutionalEvent.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="JoinContest.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JoinEvent.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NewsPaper.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>

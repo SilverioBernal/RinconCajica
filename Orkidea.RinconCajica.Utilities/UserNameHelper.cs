@@ -25,12 +25,14 @@ namespace Orkidea.RinconCajica.Utilities
             if (userNameArray.Count() == 3)
             {
                 res += (userNameArray[0][0].ToString() + userNameArray[1].ToString() + userNameArray[2][0].ToString()) + "|";
-            }
+                res += (userNameArray[0][0].ToString() + userNameArray[2].ToString() + userNameArray[1][0].ToString()) + "|";
+            }            
 
             // 2 names, 1 surnames
             if (userNameArray.Count() == 3)
             {
                 res += (userNameArray[0][0].ToString() + userNameArray[1][0].ToString() + userNameArray[2].ToString()) + "|";
+                res += (userNameArray[0][0].ToString() + userNameArray[2][0].ToString() + userNameArray[1].ToString()) + "|";
             }
 
             // 1 names, 1 surnames

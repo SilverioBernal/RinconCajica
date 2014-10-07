@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.AccountSummary>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+<div>
+<h2 >Extractos cargados</h2>
+
+    <p><a href="@Url.Action("upload")" class="btn btn-primary">Subir extractos</a></p>
+    <table class="table table-bordered table-striped table_vam" id="dt_gal">
+        <thead>
+            <tr>
+
+                <th>Año
+                </th>
+                <th>Mes
+                </th>
+                <th>Acción
+                </th>
+                <th>Link</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ano)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.accion)
+                    </td>
+                    <td><a href="@Url.Content("~/UploadedFiles/AccountSummaries/" + item.archivo)" target="_blank">Ver</a></td>
+                    <td>
+                        <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('#dt_gal').dataTable();
+</script>

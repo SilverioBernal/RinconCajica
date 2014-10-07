@@ -162,6 +162,49 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             return View(lsCalendario);
         }
 
+        public ActionResult IndexOlderSchedule(string id)
+        {
+            ViewBag.menu = "Deportes";
+            ViewBag.titulo = id;
+
+            int sport = bizSport.GetSportList().Where(x => x.nombre.ToUpper() == id.ToUpper()).Select(x => x.id).FirstOrDefault();
+            DateTime desde = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
+            //List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio >= desde && x.visible).OrderBy(x => x.inicio).ToList();
+            List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio < desde).OrderBy(x => x.inicio).ToList();
+            List<vmSportSchedule> lsCalendario = new List<vmSportSchedule>();
+            //List<SportSchedule> lsOtrosEventos = bizSportSchedule.GetSportScheduleList().Where(x => !x.aireacion && x.inicio >= desde && !string.IsNullOrEmpty(x.poster)).OrderBy(x => x.inicio).ToList();
+            List<SportModality> lsModalidad = bizSportModality.GetSportModalityList();
+            //List<SportCategory> lsCategoria = bizSportCategory.GetSportCategoryList();
+            List<SportBranch> lsRama = bizSportBranch.GetSportBranchList();
+            List<Sport> lsDeporte = bizSport.GetSportList();
+
+            foreach (SportSchedule item in lsSportSchedule)
+            {
+                lsCalendario.Add(new vmSportSchedule()
+                {
+                    id = item.id,
+                    idDeporte = item.idDeporte,
+                    inicio = item.inicio,
+                    fin = item.fin,
+                    competencia = item.competencia,
+                    //idCategoria = item.idCategoria != null && item.idCategoria != 0 ? item.idCategoria : null,
+                    idModalidad = item.idModalidad != null && item.idModalidad != 0 ? item.idModalidad : null,
+                    idRama = item.idRama != null && item.idRama != 0 ? item.idRama : null,
+                    aireacion = item.aireacion,
+                    visible = item.visible,
+                    //nombreCategoria = item.idCategoria != null && item.idCategoria != 0 ? lsCategoria.Where(x => x.id.Equals(item.idCategoria)).Select(x => x.nombre).FirstOrDefault() : null,
+                    nombreDeporte = lsDeporte.Where(x => x.id.Equals(item.idDeporte)).Select(x => x.nombre).FirstOrDefault(),
+                    nombreModalidad = item.idModalidad != null && item.idModalidad != 0 ? lsModalidad.Where(x => x.id.Equals(item.idModalidad)).Select(x => x.nombre).FirstOrDefault() : null,
+                    nombreRama = item.idRama != null && item.idRama != 0 ? lsRama.Where(x => x.id.Equals(item.idRama)).Select(x => x.nombre).FirstOrDefault() : null,
+                    poster = item.poster,
+                    urlPagina = item.urlPagina,
+                    //lsOtrosEventos = lsOtrosEventos
+                });
+            }
+
+            return View(lsCalendario);
+        }
+
 
         //
         // GET: /SportSchedule/Create

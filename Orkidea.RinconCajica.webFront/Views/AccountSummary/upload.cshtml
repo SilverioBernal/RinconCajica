@@ -1,0 +1,59 @@
+﻿@model Orkidea.RinconCajica.webFront.Models.vmAccountSummary
+
+@{
+    ViewBag.Title = "upload";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+
+<h2>Carga de extractos</h2>
+<div class="jumbotron">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row-fluid">
+            <label>Año</label>
+            @Html.TextBoxFor(x => x.ano)
+        </div>
+        <div class="row-fluid">
+            <label>Mes</label>
+            @Html.TextBoxFor(x => x.mes)
+            @Html.HiddenFor(x => x.accion, new { value="xxx"})
+            @Html.HiddenFor(x => x.archivo, new { value="xxx"})
+        </div>
+        <div class="row-fluid">
+            @Html.LabelFor(x => x.File, "Seleccione los archivos a cargar")
+            @Html.TextBoxFor(x => x.File, new { type = "file", multiple = "true" })
+            @Html.ValidationMessageFor(x => x.File)
+        </div>
+        <br />
+        <div class="row-fluid">
+            <button type="submit">Cargar extractos</button>
+        </div>
+    }
+</div>
+<div id="myModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Error</h3>
+    </div>
+    <div class="modal-body">
+        <p>El año y mes son campos obligatorios. Por favor verifique e intente de nuevo</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" data-dismiss="modal" aria-hidden="true" class="btn">Cerrar</a>        
+    </div>
+</div>
+
+<script>
+    $('form').submit(function (e) {
+        var año = $('#ano').val();
+        var mes = $('#mes').val();
+        var mensaje = "";
+
+        if (año = "" || mes == "") {           
+            $('#myModal').modal()
+            e.preventDefault();
+        }
+      });
+</script>

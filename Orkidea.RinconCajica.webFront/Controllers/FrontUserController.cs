@@ -37,20 +37,34 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         {
             try
             {
-                int id = bizFrontUser.SaveFrontUser(new FrontUser()
+                FrontUser frontUser = new FrontUser()
                 {
                     usuario = user.usuario,
                     email = user.email,
                     idRol = user.idRol
-                });
+                };
 
                 BizClubPartner bizClubPartner = new BizClubPartner();
                 ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { docid = user.idSocio });
 
+                if (clubPartner.idUsuario != null)
+                    frontUser.id = (int)clubPartner.idUsuario;
+
                 if (user.email.Trim() != clubPartner.correo.Trim())
                     clubPartner.correo = user.email;
 
-                clubPartner.docid = id;
+
+                int id = 0;
+
+                if (clubPartner.idUsuario != null)
+                    bizFrontUser.SaveFrontUser(frontUser);
+                else
+                {
+                    id = bizFrontUser.SaveFrontUser(frontUser);
+                    clubPartner.idUsuario = id;
+                }
+
+                clubPartner.fechaActualizacion = DateTime.Now;
                 bizClubPartner.SaveClubPartner(clubPartner);
 
 
@@ -181,6 +195,26 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             catch (Exception)
             {
                 res = "";
+            }
+
+            return Json(res.Split('|'), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult resetPasswordByAdmin(int id)
+        {
+            string res = "";
+
+            try
+            {                
+                FrontUser frontUser = bizFrontUser.GetFrontUserbyKey(new FrontUser() { id = id });
+
+                bizFrontUser.SaveFrontUser(frontUser,true);
+
+                res = "Ok";
+            }
+            catch (Exception)
+            {
+                res = "Fail";
             }
 
             return Json(res.Split('|'), JsonRequestBehavior.AllowGet);

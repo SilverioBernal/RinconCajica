@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.AccountSummary>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+<div id="bg_slide">
+    <ul>
+        @{Html.RenderAction("getHomeSlider", "HomeSlider");}
+    </ul>
+    <div class="pattern"></div>
+</div>
+
+<div class="default-icons clearfix">
+    <ul class="slider-nav">
+        <li>
+            <a href="#" class="icon-angle-left rslides_nav rslides1_nav prev"></a>
+        </li>
+        <li>
+            <a href="#" class="icon-angle-right rslides_nav rslides1_nav next"></a>
+        </li>
+    </ul>
+    S
+    <!-- /.slider-nav -->
+
+
+</div>
+
+<div class="container">
+    <div class="header-field">
+        <div class="page-title pull-left">
+            <h3>Extractos y consumos</h3>
+        </div>
+    </div>
+    <!-- /.header-field -->
+</div>
+<!-- /.container -->
+
+<div class="container">
+    <div class="cont-outer">
+        <div class="row-fluid">
+            <div class="row-fluid">
+                <table class="table table-bordered table-striped table_vam" id="dt_gal">
+                    <thead>
+                        <tr>
+                            <th>Año
+                            </th>
+                            <th>Mes                            
+                            </th>
+                            <th></th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ano)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mes)
+                                </td>
+                                <td><a href="@Url.Content("~/UploadedFiles/AccountSummaries/" + item.archivo)" target="_blank">Ver</a></td>                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.row-fluid -->
+    </div>
+    <!-- /.cont-outer -->
+</div>
+
+<script>
+    $('#dt_gal').dataTable();
+</script>

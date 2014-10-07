@@ -6,13 +6,16 @@
     <edmx:StorageModels>
     <Schema Namespace="RinconModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="RinconModelStoreContainer">
+          <EntitySet Name="AccountSummary" EntityType="RinconModel.Store.AccountSummary" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ClubPartner" EntityType="RinconModel.Store.ClubPartner" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DocumentType" EntityType="RinconModel.Store.DocumentType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FileType" EntityType="RinconModel.Store.FileType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FileUpload" EntityType="RinconModel.Store.FileUpload" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FrontUser" EntityType="RinconModel.Store.FrontUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HomeSlider" EntityType="RinconModel.Store.HomeSlider" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InstitutionalEvent" EntityType="RinconModel.Store.InstitutionalEvent" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JoinContest" EntityType="RinconModel.Store.JoinContest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="JoinEvent" EntityType="RinconModel.Store.JoinEvent" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NewsPaper" EntityType="RinconModel.Store.NewsPaper" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Page" EntityType="RinconModel.Store.Page" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Process" EntityType="RinconModel.Store.Process" store:Type="Tables" Schema="dbo" />
@@ -69,6 +72,16 @@
             <End Role="SportSchedule" EntitySet="SportSchedule" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AccountSummary">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="accion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ano" Type="int" Nullable="false" />
+          <Property Name="mes" Type="int" Nullable="false" />
+          <Property Name="archivo" Type="varchar" Nullable="false" MaxLength="250" />
+        </EntityType>
         <EntityType Name="ClubPartner">
           <Key>
             <PropertyRef Name="docid" />
@@ -176,6 +189,21 @@
           <Property Name="textoSlider" Type="varchar" MaxLength="250" />
           <Property Name="activo" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="InstitutionalEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="inicio" Type="date" Nullable="false" />
+          <Property Name="fin" Type="date" />
+          <Property Name="nombreEvento" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="etiqueta1" Type="varchar" MaxLength="50" />
+          <Property Name="etiqueta2" Type="varchar" MaxLength="50" />
+          <Property Name="etiqueta3" Type="varchar" MaxLength="50" />
+          <Property Name="visible" Type="bit" Nullable="false" />
+          <Property Name="poster" Type="varchar" MaxLength="350" />
+          <Property Name="urlPagina" Type="varchar" MaxLength="350" />
+        </EntityType>
         <EntityType Name="JoinContest">
           <Key>
             <PropertyRef Name="id" />
@@ -190,6 +218,24 @@
           <Property Name="telefonoCelular" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" MaxLength="250" />
           <Property Name="categoria" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="fechaInscripcion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JoinEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idEvento" Type="int" Nullable="false" />
+          <Property Name="idSocio" Type="int" />
+          <Property Name="tipoIdentificacion" Type="varchar" MaxLength="2" />
+          <Property Name="identificacion" Type="varchar" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" />
+          <Property Name="telefonoFijo" Type="varchar" MaxLength="50" />
+          <Property Name="telefonoCelular" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="250" />
+          <Property Name="campoLibre1" Type="varchar" MaxLength="1000" />
+          <Property Name="campoLibre2" Type="varchar" MaxLength="1000" />
+          <Property Name="campoLibre3" Type="varchar" MaxLength="1000" />
           <Property Name="fechaInscripcion" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsPaper">
@@ -497,6 +543,9 @@
             <End Role="SportModality" EntitySet="SportModality" />
             <End Role="SportSchedule" EntitySet="SportSchedule" />
           </AssociationSet>
+          <EntitySet Name="AccountSummary" EntityType="RinconModel.AccountSummary" />
+          <EntitySet Name="InstitutionalEvent" EntityType="RinconModel.InstitutionalEvent" />
+          <EntitySet Name="JoinEvent" EntityType="RinconModel.JoinEvent" />
           </EntityContainer>
         <EntityType Name="Sport">
           <Key>
@@ -881,6 +930,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AccountSummary">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="accion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ano" Nullable="false" />
+          <Property Type="Int32" Name="mes" Nullable="false" />
+          <Property Type="String" Name="archivo" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="InstitutionalEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="inicio" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="fin" Precision="0" />
+          <Property Type="String" Name="nombreEvento" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="etiqueta1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="etiqueta2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="etiqueta3" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="visible" Nullable="false" />
+          <Property Type="String" Name="poster" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="urlPagina" MaxLength="350" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="JoinEvent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="idEvento" Nullable="false" />
+          <Property Type="Int32" Name="idSocio" />
+          <Property Type="String" Name="tipoIdentificacion" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="identificacion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nombre" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="telefonoFijo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="telefonoCelular" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="campoLibre1" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="campoLibre2" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="campoLibre3" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="fechaInscripcion" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1130,6 +1222,52 @@
                 <ScalarProperty Name="fin" ColumnName="fin" />
                 <ScalarProperty Name="inicio" ColumnName="inicio" />
                 <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountSummary">
+            <EntityTypeMapping TypeName="RinconModel.AccountSummary">
+              <MappingFragment StoreEntitySet="AccountSummary">
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="accion" ColumnName="accion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstitutionalEvent">
+            <EntityTypeMapping TypeName="RinconModel.InstitutionalEvent">
+              <MappingFragment StoreEntitySet="InstitutionalEvent">
+                <ScalarProperty Name="urlPagina" ColumnName="urlPagina" />
+                <ScalarProperty Name="poster" ColumnName="poster" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="etiqueta3" ColumnName="etiqueta3" />
+                <ScalarProperty Name="etiqueta2" ColumnName="etiqueta2" />
+                <ScalarProperty Name="etiqueta1" ColumnName="etiqueta1" />
+                <ScalarProperty Name="nombreEvento" ColumnName="nombreEvento" />
+                <ScalarProperty Name="fin" ColumnName="fin" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JoinEvent">
+            <EntityTypeMapping TypeName="RinconModel.JoinEvent">
+              <MappingFragment StoreEntitySet="JoinEvent">
+                <ScalarProperty Name="fechaInscripcion" ColumnName="fechaInscripcion" />
+                <ScalarProperty Name="campoLibre3" ColumnName="campoLibre3" />
+                <ScalarProperty Name="campoLibre2" ColumnName="campoLibre2" />
+                <ScalarProperty Name="campoLibre1" ColumnName="campoLibre1" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefonoCelular" ColumnName="telefonoCelular" />
+                <ScalarProperty Name="telefonoFijo" ColumnName="telefonoFijo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="tipoIdentificacion" ColumnName="tipoIdentificacion" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

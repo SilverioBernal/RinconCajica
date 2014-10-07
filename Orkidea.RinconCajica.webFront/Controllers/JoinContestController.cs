@@ -42,7 +42,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                 try
                 {
-                    Partner clubPartner = bizClubPartner.GetClubPartnerbyUser(int.Parse(userCode) );
+                    Partner clubPartner = bizClubPartner.GetClubPartnerbyUser(int.Parse(userCode));
 
                     joinContest.identificacion = clubPartner.docto;
                     joinContest.idSocio = clubPartner.docid;
@@ -67,6 +67,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             return View(joinContest);
         }
 
+        [Authorize]
         [HttpPost, RecaptchaControlMvc.CaptchaValidator]
         public ActionResult join(int id, JoinContest refJoinContest, bool captchaValid)
         {
@@ -113,7 +114,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                         ViewBag.socio = false;
                     }
-                }                
+                }
 
                 return View(joinContest);
             }
@@ -132,7 +133,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     telefonoCelular = refJoinContest.telefonoCelular,
                     telefonoFijo = refJoinContest.telefonoFijo
                 };
-                
+
                 bizJoinContest.SaveJoinContest(newJoinContest);
                 return RedirectToAction("joined");
             }

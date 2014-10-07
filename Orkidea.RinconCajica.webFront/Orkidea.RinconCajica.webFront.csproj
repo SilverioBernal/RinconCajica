@@ -188,6 +188,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountSummaryController.cs" />
     <Compile Include="Controllers\BackendController.cs" />
     <Compile Include="Controllers\ClubPartnerController.cs" />
     <Compile Include="Controllers\DocumentTypeController.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeSGCController.cs" />
     <Compile Include="Controllers\HomeSliderController.cs" />
+    <Compile Include="Controllers\InstitutionalEventController.cs" />
     <Compile Include="Controllers\JoinContestController.cs" />
     <Compile Include="Controllers\NewsPaperController.cs" />
     <Compile Include="Controllers\PageController.cs" />
@@ -216,10 +218,13 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CustomIdentity.cs" />
     <Compile Include="Models\JoinContestReportModel.cs" />
+    <Compile Include="Models\vmAccountSummary.cs" />
     <Compile Include="Models\vmContactMessage.cs" />
     <Compile Include="Models\vmFileUpload.cs" />
     <Compile Include="Models\vmFrontUser.cs" />
+    <Compile Include="Models\vmInstitutionalEvent.cs" />
     <Compile Include="Models\vmJoinContest.cs" />
+    <Compile Include="Models\vmJoinEvent.cs" />
     <Compile Include="Models\vmNews.cs" />
     <Compile Include="Models\vmPage.cs" />
     <Compile Include="Models\vmProcess.cs" />
@@ -281,6 +286,8 @@
     <Content Include="Images\yellowBall.png" />
     <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\maps.js" />
+    <Content Include="MailingTemplates\NotificacionInscripcionEvento.html" />
+    <Content Include="MailingTemplates\NotificacionInscripcionEvento.txt" />
     <Content Include="MailingTemplates\NotificacionInscripcionTorneo.html" />
     <Content Include="MailingTemplates\NotificacionInscripcionTorneo.txt" />
     <Content Include="MailingTemplates\NotificacionNuevoUsuario.html" />
@@ -709,7 +716,9 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -747,7 +756,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutOld.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutBackEnd.cshtml" />
     <Content Include="Views\HomeSlider\Index.cshtml" />
@@ -811,11 +822,21 @@
     <Content Include="Views\Page\comingSoon.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\SportSchedule\IndexOlderSchedule.cshtml" />
+    <Content Include="Views\AccountSummary\Details.cshtml" />
+    <Content Include="Views\AccountSummary\upload.cshtml" />
+    <Content Include="Views\AccountSummary\Index.cshtml" />
+    <Content Include="Views\InstitutionalEvent\Index.cshtml" />
+    <Content Include="Views\InstitutionalEvent\Create.cshtml" />
+    <Content Include="Views\InstitutionalEvent\Edit.cshtml" />
+    <Content Include="Views\InstitutionalEvent\joined.cshtml" />
+    <Content Include="Views\InstitutionalEvent\join.cshtml" />
+    <Content Include="Views\InstitutionalEvent\IndexNextSchedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\themes\base\minified\images\" />
-    <Folder Include="UploadedFiles\" />
+    <Folder Include="UploadedFiles\AccountSummaries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

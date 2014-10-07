@@ -44,5 +44,8 @@ namespace Orkidea.RinconCajica.DataAccessEF
         public DbSet<SideBar> SideBar { get; set; }
         public DbSet<ClubPartner> ClubPartner { get; set; }
         public DbSet<SportSchedule> SportSchedule { get; set; }
+        public DbSet<AccountSummary> AccountSummary { get; set; }
+        public DbSet<InstitutionalEvent> InstitutionalEvent { get; set; }
+        public DbSet<JoinEvent> JoinEvent { get; set; }
     }
 }

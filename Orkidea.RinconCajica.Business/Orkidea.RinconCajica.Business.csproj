@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BizAccountSummary.cs" />
     <Compile Include="BizClubPartner.cs" />
     <Compile Include="BizCommon.cs" />
     <Compile Include="BizDocumentType.cs" />
@@ -54,7 +55,9 @@
     <Compile Include="BizFileUpload.cs" />
     <Compile Include="BizFrontUser.cs" />
     <Compile Include="BizHomeSlider.cs" />
+    <Compile Include="BizInstitutionalEvent.cs" />
     <Compile Include="BizJoinContest.cs" />
+    <Compile Include="BizJoinEvent.cs" />
     <Compile Include="BizNewsPaper.cs" />
     <Compile Include="BizPage.cs" />
     <Compile Include="BizProcess.cs" />
