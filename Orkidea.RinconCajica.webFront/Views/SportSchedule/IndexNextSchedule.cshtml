@@ -132,7 +132,7 @@
                                         foreach (Orkidea.RinconCajica.Entities.SportSchedule item2 in item.lsOtrosEventos)
                                         {                                           
                                             <div class="item">
-                                                <a href="@Url.Action("join", "JoinContest", new { id = item2.id })"><img src="@item2.poster" alt="" width="400px" /></a> 
+                                                <a href="@item2.urlPagina"><img src="@item2.poster" alt="" width="400px" /></a> 
                                                 <div class="carousel-caption">
                                                     @*<h4>@string.Format("{0}, {1} - {2}",item2.inicio.ToString("yyyy-MM-dd"), item2.competencia, ViewBag.titulo) </h4>*@
                                                     <p>@string.Format("{0}, {1}",item2.inicio.ToString("yyyy-MM-dd"), item2.competencia)</p>

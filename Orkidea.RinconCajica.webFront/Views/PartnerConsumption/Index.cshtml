@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.ConsumptopnGlobal>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+<div>
+    <h2>Consumos de socios cargados</h2>
+
+    <p><a href="@Url.Action("Create")" class="btn btn-primary">Subir extractos</a></p>
+    <div class="row-fluid tablaIndex">
+        <div class="span12">
+            <table class="table table-bordered table-striped table_vam" id="dt_gal">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Accion</th>
+                        <th>Fecha</th>
+                        <th>Factura</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        string fecha = item.Fecha.ToString("yyyy-MM-dd");                
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.accion)
+                            </td>
+                            <td>@fecha</td>
+                            <td><a class="detalleFactura" href="javascript:void(0)">@item.Sufijo - @item.Nufactura</a></td>
+                            <td>@Html.DisplayFor(modelItem => item.Total_fac)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal hide fade" id="myModal">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">X</button>
+        <h3 id="msgHeader"></h3>
+    </div>
+    <div class="modal-body" id="msgBody">
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn btn-danger" data-dismiss="modal" id="btnFail">Cerrar</a>
+    </div>
+</div>
+
+<script>
+    $('#dt_gal').dataTable();
+
+    $('.tablaIndex').click(function (e) {
+        if (e.target.tagName == "A") {
+
+            //var item = this;
+            var sufijo = e.target.textContent.split(' - ')[0];
+            var factura = e.target.textContent.split(' - ')[1];
+            var fecha = e.target.parentNode.parentNode.children[2].textContent;
+
+            var link = '@Url.Action("InvoiceDetails", new { id = "-1" })';
+            link = link.replace("-1", sufijo + '|' + factura);
+
+            $.getJSON(link, null, res);
+
+            function res(data) {
+                if (data != null) {
+                    var datos = data;
+                    var htmlHeader = "Detalle de factura " + sufijo + ' - ' + factura;
+
+                    var detailHeader =
+                        '<div class="row-fluid">' +
+                        //'<div class="span2"><span><strong>Factura: </strong><br>' + sufijo + '-' + factura + '</span></div>' +
+                        '<div class="span2"><span><strong>Fecha: </strong>' + fecha + '</span></div>' +
+                        '<div class="span5"><span><strong>Punto de venta:</strong></br>' + datos[0].Punto_venta_a + '</span></div>' +
+                        '<div class="span5"><span><strong>Consumidor:</strong></br>' + datos[0].Consumidor + '</span></div>' +
+                        '</div></br><div class="row-fluid">' +
+                        '<div class="span4"><span><strong>Total Factura: </strong>' + thousands(datos[0].Total_fac) + '</span></div>' +
+                        '<div class="span4"><span><strong>Propina: </strong>' + thousands(datos[0].Propina) + '</span></div>' +
+                        '</div>';//<div class="span4"><span><strong>Consumidor:</strong>' + datos[0].Consumidor + '</span></div>
+                    var tableHeader = '<table class="table table-bordered table-striped table_vam"><thead><tr><th>Producto</th><th>Cantidad</th><th>Valor</th></tr></thead>';
+                    var tableBody = "";
+
+                    datos.forEach(function (a) {
+                        tableBody += '<tbody><tr><td>' + a.Codigo_producto + '-' + a.Producto + '</td><td>' + a.Cantidad + '</td><td style="text-align: right;">' + thousands(a.Valor_producto) + '</td></tr>';
+                    });
+
+                    tableBody += '</tbody></table>'
+                    $('#msgHeader').html(htmlHeader);
+                    $('#msgBody').html(detailHeader + tableHeader + tableBody);
+
+                    $('#myModal').modal('show');
+                }
+
+                function thousands(x) {
+                    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                }
+            }
+        }
+    });
+</script>
+

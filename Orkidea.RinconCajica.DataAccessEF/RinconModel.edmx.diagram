@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d0dd5b960ced400dac5c9f30e893c457" Name="Diagram1" ZoomLevel="80">
         <EntityTypeShape EntityType="RinconModel.Sport" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="RinconModel.Page" Width="1.5" PointX="12" PointY="0.875" />
+        <EntityTypeShape EntityType="RinconModel.Page" Width="1.5" PointX="13" PointY="5.875" />
         <EntityTypeShape EntityType="RinconModel.SportBranch" Width="1.5" PointX="3" PointY="2.375" />
         <EntityTypeShape EntityType="RinconModel.SportModality" Width="1.5" PointX="3" PointY="5" />
         <AssociationConnector Association="RinconModel.FK_SportBranch_Sport" />
@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="RinconModel.JoinContest" Width="1.5" PointX="7.5" PointY="3" />
         <EntityTypeShape EntityType="RinconModel.DocumentType" Width="1.5" PointX="5.75" PointY="10" />
         <EntityTypeShape EntityType="RinconModel.FileType" Width="1.5" PointX="2.75" PointY="8.75" />
-        <EntityTypeShape EntityType="RinconModel.NewsPaper" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="RinconModel.NewsPaper" Width="1.5" PointX="0.75" PointY="11.75" />
         <EntityTypeShape EntityType="RinconModel.Process" Width="1.5" PointX="5.75" PointY="13" />
         <EntityTypeShape EntityType="RinconModel.ProcessDocument" Width="1.5" PointX="8" PointY="9.625" />
         <EntityTypeShape EntityType="RinconModel.Project" Width="1.5" PointX="8.75" PointY="7.125" />
@@ -24,19 +24,23 @@
         <AssociationConnector Association="RinconModel.FK_ProjectDocument_DocumentType" />
         <AssociationConnector Association="RinconModel.FK_ProcessDocument_Process" />
         <AssociationConnector Association="RinconModel.FK_ProjectDocument_Project" />
-        <EntityTypeShape EntityType="RinconModel.FrontUser" Width="1.5" PointX="0.75" PointY="11.75" />
-        <EntityTypeShape EntityType="RinconModel.HomeSlider" Width="1.5" PointX="2.75" PointY="11.75" />
-        <EntityTypeShape EntityType="RinconModel.SideBar" Width="1.5" PointX="9.75" PointY="1" />
+        <EntityTypeShape EntityType="RinconModel.FrontUser" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="RinconModel.HomeSlider" Width="1.5" PointX="7.75" PointY="13.75" />
+        <EntityTypeShape EntityType="RinconModel.SideBar" Width="1.5" PointX="10.75" PointY="6" />
         <AssociationConnector Association="RinconModel.FK_Page_SideBar" />
-        <EntityTypeShape EntityType="RinconModel.ClubPartner" Width="1.5" PointX="13.75" PointY="4.75" />
+        <EntityTypeShape EntityType="RinconModel.ClubPartner" Width="1.5" PointX="13.75" PointY="9.75" />
         <EntityTypeShape EntityType="RinconModel.SportSchedule" Width="1.5" PointX="5.25" PointY="2.5" />
         <AssociationConnector Association="RinconModel.FK_JoinContest_SportSchedule" />
         <AssociationConnector Association="RinconModel.FK_SportsSchedule_Sport" />
         <AssociationConnector Association="RinconModel.FK_SportsSchedule_SportBranch" />
         <AssociationConnector Association="RinconModel.FK_SportsSchedule_SportModality" />
-        <EntityTypeShape EntityType="RinconModel.AccountSummary" Width="1.5" PointX="7.75" PointY="13.75" />
-        <EntityTypeShape EntityType="RinconModel.InstitutionalEvent" Width="1.5" PointX="9.75" PointY="13.75" />
-        <EntityTypeShape EntityType="RinconModel.JoinEvent" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RinconModel.AccountSummary" Width="1.5" PointX="9.75" PointY="13.75" />
+        <EntityTypeShape EntityType="RinconModel.InstitutionalEvent" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RinconModel.JoinEvent" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="RinconModel.MessageActor" Width="1.5" PointX="9.75" PointY="1.5" />
+        <EntityTypeShape EntityType="RinconModel.MessageBitacore" Width="1.5" PointX="12" PointY="1" />
+        <AssociationConnector Association="RinconModel.FK_MessageBitacore_MessageActor" />
+        <EntityTypeShape EntityType="RinconModel.PartnerConsumption" Width="1.5" PointX="2.75" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

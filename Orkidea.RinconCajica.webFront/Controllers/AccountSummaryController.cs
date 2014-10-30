@@ -52,8 +52,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             AccountSummary fileUploadModel = new AccountSummary();
             foreach (var item in model.File)
             {
-                byte[] uploadFile = new byte[item.InputStream.Length];
-                item.InputStream.Read(uploadFile, 0, uploadFile.Length);
+                //byte[] uploadFile = new byte[item.InputStream.Length];
+                //item.InputStream.Read(uploadFile, 0, uploadFile.Length);
 
                 string fileExtension = Path.GetExtension(item.FileName);
                 string fileName = Guid.NewGuid().ToString() + fileExtension;

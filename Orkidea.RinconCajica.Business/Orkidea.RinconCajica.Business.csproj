@@ -58,8 +58,11 @@
     <Compile Include="BizInstitutionalEvent.cs" />
     <Compile Include="BizJoinContest.cs" />
     <Compile Include="BizJoinEvent.cs" />
+    <Compile Include="BizMessageActor.cs" />
+    <Compile Include="BizMessageBitacore.cs" />
     <Compile Include="BizNewsPaper.cs" />
     <Compile Include="BizPage.cs" />
+    <Compile Include="BizPartnerConsumption.cs" />
     <Compile Include="BizProcess.cs" />
     <Compile Include="BizProcessDocument.cs" />
     <Compile Include="BizProject.cs" />

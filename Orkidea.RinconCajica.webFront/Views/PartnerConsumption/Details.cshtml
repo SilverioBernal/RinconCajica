@@ -1,0 +1,66 @@
+﻿@using Orkidea.RinconCajica.Entities
+@model IEnumerable<PartnerConsumption>
+
+@{
+    PartnerConsumption pc = Model.FirstOrDefault();
+}
+
+<div class="row-fluid">
+    <div class="span2">
+        <span><strong>Factura: </strong>@pc.Sufijo - @pc.Nufactura</span>
+    </div>
+    <div class="span4">
+        <span><strong>Punto de venta:</strong> @pc.Punto_venta_a </span>
+    </div>
+    <div class="span2">
+        <span><strong>Fecha: </strong>@pc.Fecha.ToString("yyyy-MM-dd")</span>
+    </div>
+    <div class="span4">
+        <span><strong>Consumidor:</strong> @pc.Consumidor </span>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span2">
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Codigo_producto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cantidad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor_producto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Propina)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo_producto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valor_producto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Propina)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

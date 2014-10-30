@@ -140,11 +140,19 @@
                                     <li class="nav-header">Socios</li>
                                     if (ViewBag.menu == "AccountSummary")
                                     {
-                                    <li class="active"><a href="@Url.Action("Index", "AccountSummary")">Extractos y consumos</a></li>
+                                    <li class="active"><a href="@Url.Action("Index", "AccountSummary")">Extractos</a></li>
                                     }
                                     else
                                     {
-                                    <li><a href="@Url.Action("Index", "AccountSummary")">Extractos y consumos</a></li>
+                                    <li><a href="@Url.Action("Index", "AccountSummary")">Extractos</a></li>
+                                    }
+                                    if (ViewBag.menu == "AccountSummary")
+                                    {
+                                    <li class="active"><a href="@Url.Action("Index", "PartnerConsumption")">Consumos</a></li>
+                                    }
+                                    else
+                                    {
+                                    <li><a href="@Url.Action("Index", "PartnerConsumption")">Consumos</a></li>
                                     }
                                     <li class="divider"></li>
                                     <li class="nav-header">Eventos institucionales</li>

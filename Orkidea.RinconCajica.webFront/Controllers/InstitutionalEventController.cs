@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
 using Orkidea.RinconCajica.webFront.Models;
@@ -329,6 +333,58 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             List<InstitutionalEvent> lsSportSchedule = bizInstitutionalEvent.GetInstitutionalEventList().Where(x => x.inicio < desde).OrderBy(x => x.inicio).ToList();
 
             return View(lsSportSchedule);            
+        }
+
+        public ActionResult EventReport(int id)
+        {
+            BizJoinEvent bizJoinEvent = new BizJoinEvent();
+            List<JoinEvent> lsJoinEvent = bizJoinEvent.GetJoinEventList(new JoinEvent() { idEvento = id });
+            List<vmJoinEventReportModel> lsReport = new List<vmJoinEventReportModel>();
+
+            foreach (JoinEvent item in lsJoinEvent)
+            {
+                lsReport.Add(new vmJoinEventReportModel()
+                {                    
+                    email = item.email,
+                    fechaInscripcion = item.fechaInscripcion,
+                    identificacion = item.identificacion,
+                    idSocio = (int)item.idSocio,
+                    id = item.id,
+                    idEvento = item.idEvento,
+                    nombre = item.nombre,
+                    telefonoCelular = item.telefonoCelular,
+                    telefonoFijo = item.telefonoFijo,
+                    tipoIdentificacion = item.tipoIdentificacion,
+                    campoLibre1 = item.campoLibre1,
+                    campoLibre2 = item.campoLibre2,
+                    campoLibre3 = item.campoLibre3
+                });
+            }
+
+            InstitutionalEvent ie = bizInstitutionalEvent.GetInstitutionalEventbyKey(new InstitutionalEvent() { id = id });            
+
+            string fileName = Regex.Replace(
+                    CultureInfo.CurrentCulture.TextInfo.ToTitleCase(ie.nombreEvento
+                    .ToLower()
+                    .Replace(@"@", "a")
+                    .Replace('á', 'a')
+                    .Replace('é', 'e')
+                    .Replace('í', 'i')
+                    .Replace('ó', 'o')
+                    .Replace('ú', 'u')
+                    .Replace('ñ', 'n')
+                    .Replace('ü', 'u')
+                    ), @"[^\w]", "", RegexOptions.None, TimeSpan.FromSeconds(1.5));
+
+            var stream = new MemoryStream();
+            XmlSerializer serializer = new XmlSerializer(lsReport.GetType());
+
+            serializer.Serialize(stream, lsReport);
+            stream.Position = 0;
+
+
+
+            return File(stream, "application/vnd.ms-excel", fileName + ".xls");
         }
 
     }

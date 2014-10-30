@@ -50,6 +50,8 @@
     <Compile Include="ClubPartner.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ConsumptionResume.cs" />
+    <Compile Include="ConsumptopnGlobal.cs" />
     <Compile Include="DocumentType.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
@@ -76,6 +78,12 @@
     <Compile Include="JoinEvent.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MessageActor.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBitacore.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="NewsPaper.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
@@ -84,6 +92,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Partner.cs" />
+    <Compile Include="PartnerConsumption.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Process.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>

@@ -200,8 +200,10 @@
     <Compile Include="Controllers\HomeSliderController.cs" />
     <Compile Include="Controllers\InstitutionalEventController.cs" />
     <Compile Include="Controllers\JoinContestController.cs" />
+    <Compile Include="Controllers\MessageActorController.cs" />
     <Compile Include="Controllers\NewsPaperController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PartnerConsumptionController.cs" />
     <Compile Include="Controllers\ProcessController.cs" />
     <Compile Include="Controllers\ProcessDocumentController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Models\vmInstitutionalEvent.cs" />
     <Compile Include="Models\vmJoinContest.cs" />
     <Compile Include="Models\vmJoinEvent.cs" />
+    <Compile Include="Models\vmJoinEventReportModel.cs" />
     <Compile Include="Models\vmNews.cs" />
     <Compile Include="Models\vmPage.cs" />
     <Compile Include="Models\vmProcess.cs" />
@@ -832,11 +835,19 @@
     <Content Include="Views\InstitutionalEvent\joined.cshtml" />
     <Content Include="Views\InstitutionalEvent\join.cshtml" />
     <Content Include="Views\InstitutionalEvent\IndexNextSchedule.cshtml" />
+    <Content Include="Views\PartnerConsumption\Create.cshtml" />
+    <Content Include="Views\PartnerConsumption\Index.cshtml" />
+    <Content Include="Views\PartnerConsumption\InvoiceList.cshtml" />
+    <Content Include="Views\PartnerConsumption\Details.cshtml" />
+    <Content Include="Views\MessageActor\IndexDependencias.cshtml" />
+    <Content Include="Views\MessageActor\Create.cshtml" />
+    <Content Include="Views\MessageActor\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="UploadedFiles\AccountSummaries\" />
+    <Folder Include="UploadedFiles\PartnerConsumption\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

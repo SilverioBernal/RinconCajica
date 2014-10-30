@@ -16,8 +16,11 @@
           <EntitySet Name="InstitutionalEvent" EntityType="RinconModel.Store.InstitutionalEvent" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JoinContest" EntityType="RinconModel.Store.JoinContest" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JoinEvent" EntityType="RinconModel.Store.JoinEvent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MessageActor" EntityType="RinconModel.Store.MessageActor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MessageBitacore" EntityType="RinconModel.Store.MessageBitacore" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NewsPaper" EntityType="RinconModel.Store.NewsPaper" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Page" EntityType="RinconModel.Store.Page" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PartnerConsumption" EntityType="RinconModel.Store.PartnerConsumption" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Process" EntityType="RinconModel.Store.Process" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProcessDocument" EntityType="RinconModel.Store.ProcessDocument" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Project" EntityType="RinconModel.Store.Project" store:Type="Tables" Schema="dbo" />
@@ -30,6 +33,10 @@
           <AssociationSet Name="FK_JoinContest_SportSchedule" Association="RinconModel.Store.FK_JoinContest_SportSchedule">
             <End Role="SportSchedule" EntitySet="SportSchedule" />
             <End Role="JoinContest" EntitySet="JoinContest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageBitacore_MessageActor" Association="RinconModel.Store.FK_MessageBitacore_MessageActor">
+            <End Role="MessageActor" EntitySet="MessageActor" />
+            <End Role="MessageBitacore" EntitySet="MessageBitacore" />
           </AssociationSet>
           <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.Store.FK_Page_SideBar">
             <End Role="SideBar" EntitySet="SideBar" />
@@ -238,6 +245,31 @@
           <Property Name="campoLibre3" Type="varchar" MaxLength="1000" />
           <Property Name="fechaInscripcion" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="MessageActor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="nit" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MessageBitacore">
+          <Key>
+            <PropertyRef Name="tipoRegistro" />
+            <PropertyRef Name="idRegistro" />
+          </Key>
+          <Property Name="tipoRegistro" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="idRegistro" Type="bigint" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="origen" Type="int" Nullable="false" />
+          <Property Name="destino" Type="int" Nullable="false" />
+          <Property Name="prioridad" Type="tinyint" Nullable="false" />
+          <Property Name="descripcionCorta" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="descripcionLarga" Type="varchar" MaxLength="500" />
+          <Property Name="direccion" Type="varchar" MaxLength="500" />
+          <Property Name="fechaLimite" Type="date" />
+        </EntityType>
         <EntityType Name="NewsPaper">
           <Key>
             <PropertyRef Name="id" />
@@ -256,6 +288,27 @@
           <Property Name="contenidoPublico" Type="varchar(max)" />
           <Property Name="contenidoPrivado" Type="varchar(max)" />
           <Property Name="idSideBar" Type="int" />
+        </EntityType>
+        <EntityType Name="PartnerConsumption">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Punto_venta_a" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="Producto" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="Punto_venta_b" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Codigo_producto" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Cantidad" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="Valor_producto" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Docid_consumidor" Type="varchar" MaxLength="20" />
+          <Property Name="Nufactura" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Sufijo" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="Propina" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Total_fac" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Consumidor" Type="varchar" MaxLength="250" />
+          <Property Name="Docid_pagador" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Pagador" Type="varchar" Nullable="false" MaxLength="250" />
         </EntityType>
         <EntityType Name="Process">
           <Key>
@@ -353,6 +406,18 @@
             </Principal>
             <Dependent Role="JoinContest">
               <PropertyRef Name="idTorneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessageBitacore_MessageActor">
+          <End Role="MessageActor" Type="RinconModel.Store.MessageActor" Multiplicity="1" />
+          <End Role="MessageBitacore" Type="RinconModel.Store.MessageBitacore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageActor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MessageBitacore">
+              <PropertyRef Name="origen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -546,6 +611,13 @@
           <EntitySet Name="AccountSummary" EntityType="RinconModel.AccountSummary" />
           <EntitySet Name="InstitutionalEvent" EntityType="RinconModel.InstitutionalEvent" />
           <EntitySet Name="JoinEvent" EntityType="RinconModel.JoinEvent" />
+          <EntitySet Name="MessageActor" EntityType="RinconModel.MessageActor" />
+          <EntitySet Name="MessageBitacore" EntityType="RinconModel.MessageBitacore" />
+          <AssociationSet Name="FK_MessageBitacore_MessageActor" Association="RinconModel.FK_MessageBitacore_MessageActor">
+            <End Role="MessageActor" EntitySet="MessageActor" />
+            <End Role="MessageBitacore" EntitySet="MessageBitacore" />
+          </AssociationSet>
+          <EntitySet Name="PartnerConsumption" EntityType="RinconModel.PartnerConsumption" />
           </EntityContainer>
         <EntityType Name="Sport">
           <Key>
@@ -973,6 +1045,66 @@
           <Property Type="String" Name="campoLibre3" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="fechaInscripcion" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="MessageActor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="tipo" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nit" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MessageBitacore" Relationship="RinconModel.FK_MessageBitacore_MessageActor" FromRole="MessageActor" ToRole="MessageBitacore" />
+        </EntityType>
+        <EntityType Name="MessageBitacore">
+          <Key>
+            <PropertyRef Name="tipoRegistro" />
+            <PropertyRef Name="idRegistro" />
+          </Key>
+          <Property Type="String" Name="tipoRegistro" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int64" Name="idRegistro" Nullable="false" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="origen" Nullable="false" />
+          <Property Type="Int32" Name="destino" Nullable="false" />
+          <Property Type="Byte" Name="prioridad" Nullable="false" />
+          <Property Type="String" Name="descripcionCorta" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcionLarga" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="direccion" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="fechaLimite" Precision="0" />
+          <NavigationProperty Name="MessageActor" Relationship="RinconModel.FK_MessageBitacore_MessageActor" FromRole="MessageBitacore" ToRole="MessageActor" />
+        </EntityType>
+        <Association Name="FK_MessageBitacore_MessageActor">
+          <End Type="RinconModel.MessageActor" Role="MessageActor" Multiplicity="1" />
+          <End Type="RinconModel.MessageBitacore" Role="MessageBitacore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageActor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MessageBitacore">
+              <PropertyRef Name="origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PartnerConsumption">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Punto_venta_a" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Producto" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Punto_venta_b" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Codigo_producto" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cantidad" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Valor_producto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="0" />
+          <Property Type="String" Name="Docid_consumidor" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Nufactura" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Sufijo" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Propina" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Total_fac" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="String" Name="Consumidor" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Docid_pagador" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Pagador" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1272,7 +1404,55 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="MessageActor">
+            <EntityTypeMapping TypeName="RinconModel.MessageActor">
+              <MappingFragment StoreEntitySet="MessageActor">
+                <ScalarProperty Name="nit" ColumnName="nit" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageBitacore">
+            <EntityTypeMapping TypeName="RinconModel.MessageBitacore">
+              <MappingFragment StoreEntitySet="MessageBitacore">
+                <ScalarProperty Name="fechaLimite" ColumnName="fechaLimite" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="descripcionLarga" ColumnName="descripcionLarga" />
+                <ScalarProperty Name="descripcionCorta" ColumnName="descripcionCorta" />
+                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idRegistro" ColumnName="idRegistro" />
+                <ScalarProperty Name="tipoRegistro" ColumnName="tipoRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartnerConsumption">
+            <EntityTypeMapping TypeName="RinconModel.PartnerConsumption">
+              <MappingFragment StoreEntitySet="PartnerConsumption">
+                <ScalarProperty Name="Pagador" ColumnName="Pagador" />
+                <ScalarProperty Name="Docid_pagador" ColumnName="Docid_pagador" />
+                <ScalarProperty Name="Consumidor" ColumnName="Consumidor" />
+                <ScalarProperty Name="Total_fac" ColumnName="Total_fac" />
+                <ScalarProperty Name="Propina" ColumnName="Propina" />
+                <ScalarProperty Name="Sufijo" ColumnName="Sufijo" />
+                <ScalarProperty Name="Nufactura" ColumnName="Nufactura" />
+                <ScalarProperty Name="Docid_consumidor" ColumnName="Docid_consumidor" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Valor_producto" ColumnName="Valor_producto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Codigo_producto" ColumnName="Codigo_producto" />
+                <ScalarProperty Name="Punto_venta_b" ColumnName="Punto_venta_b" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Punto_venta_a" ColumnName="Punto_venta_a" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

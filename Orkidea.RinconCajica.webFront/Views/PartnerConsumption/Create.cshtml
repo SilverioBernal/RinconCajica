@@ -8,22 +8,16 @@
 <script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
 
 <div class="span12">
-    <h2>Subir archivo</h2>
+    <h2>Subir archivo de consumo de socios</h2>
     <div>
-        @using (Html.BeginForm("Create", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Create", "PartnerConsumption", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {                    
             <div class="row-fluid">
                 @Html.TextBoxFor(m => m.File, new { type = "file", @class = "btn btn-primary", title = "Seleccione el archivo" })
                 @Html.ValidationMessageFor(m => m.File)
-
+                @Html.HiddenFor(m => m.nombre, new { @class = "span12" })
             </div>
-            <br />
-            <div class="row-fluid">
-                <div class="span6">
-                    <label>Descripcion del archivo</label>
-                    @Html.TextBoxFor(m => m.nombre, new { @class = "span12" })
-                </div>
-            </div>
+            <br />            
             <br />
             <div class="row-fluid">
                 <input type="submit" value="Guardar" class="btn btn-info" />
