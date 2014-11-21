@@ -47,26 +47,29 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 BizClubPartner bizClubPartner = new BizClubPartner();
                 ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { docid = user.idSocio });
 
-                if (clubPartner.idUsuario != null)
-                    frontUser.id = (int)clubPartner.idUsuario;
-
-                if (user.email.Trim() != clubPartner.correo.Trim())
-                    clubPartner.correo = user.email;
-
-
-                int id = 0;
-
-                if (clubPartner.idUsuario != null)
-                    bizFrontUser.SaveFrontUser(frontUser);
-                else
+                if (clubPartner != null)
                 {
-                    id = bizFrontUser.SaveFrontUser(frontUser);
-                    clubPartner.idUsuario = id;
+                    if (clubPartner.idUsuario != null)
+                        frontUser.id = (int)clubPartner.idUsuario;
+
+                    if (user.email.Trim() != clubPartner.correo.Trim())
+                        clubPartner.correo = user.email;
+
+                    int id = 0;
+
+                    if (clubPartner.idUsuario != null)
+                        bizFrontUser.SaveFrontUser(frontUser);
+                    else
+                    {
+                        id = bizFrontUser.SaveFrontUser(frontUser);
+                        clubPartner.idUsuario = id;
+                    }
+
+                    clubPartner.fechaActualizacion = DateTime.Now;
+                    bizClubPartner.SaveClubPartner(clubPartner);
                 }
-
-                clubPartner.fechaActualizacion = DateTime.Now;
-                bizClubPartner.SaveClubPartner(clubPartner);
-
+                else
+                    bizFrontUser.SaveFrontUser(frontUser);
 
                 return RedirectToAction("Index");
             }

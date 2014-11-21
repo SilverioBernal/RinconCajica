@@ -48,7 +48,7 @@ namespace Orkidea.RinconCajica.DataAccessEF
         public DbSet<InstitutionalEvent> InstitutionalEvent { get; set; }
         public DbSet<JoinEvent> JoinEvent { get; set; }
         public DbSet<MessageActor> MessageActor { get; set; }
-        public DbSet<MessageBitacore> MessageBitacore { get; set; }
         public DbSet<PartnerConsumption> PartnerConsumption { get; set; }
+        public DbSet<MessageBitacore> MessageBitacore { get; set; }
     }
 }

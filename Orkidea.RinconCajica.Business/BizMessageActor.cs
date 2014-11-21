@@ -82,6 +82,24 @@ namespace Orkidea.RinconCajica.Business
             return oMessageActor;
         }
 
+        public MessageActor GetMessageActorbyNIT(MessageActor messageActorTarget)
+        {
+            MessageActor oMessageActor = new MessageActor();
+
+            try
+            {
+                using (var ctx = new RinconEntities())
+                {
+                    ctx.Configuration.ProxyCreationEnabled = false;
+
+                    oMessageActor = ctx.MessageActor.Where(x => x.nit == messageActorTarget.nit).FirstOrDefault();
+                }
+            }
+            catch (Exception ex) { throw ex; }
+
+            return oMessageActor;
+        }
+
         /// <summary>
         /// Create or update a MessageActor
         /// </summary>
@@ -93,8 +111,14 @@ namespace Orkidea.RinconCajica.Business
             {
                 using (var ctx = new RinconEntities())
                 {
+
                     //verify if the MessageActor exists
-                    MessageActor oMessageActor = GetMessageActorbyKey(messageActorTarget);
+                    MessageActor oMessageActor = null;
+
+                    if (messageActorTarget.tipo == "D")
+                        oMessageActor = GetMessageActorbyKey(messageActorTarget);
+                    else
+                        oMessageActor = GetMessageActorbyNIT(messageActorTarget);
 
                     if (oMessageActor != null)
                     {

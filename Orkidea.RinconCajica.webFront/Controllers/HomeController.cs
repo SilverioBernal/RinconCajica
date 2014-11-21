@@ -59,5 +59,15 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             return Json(res, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult loginSigmaGolf()
+        {
+            return View();
+        }
+
+        public ActionResult loginSigmaSports()
+        {
+            return View();
+        }
     }
 }

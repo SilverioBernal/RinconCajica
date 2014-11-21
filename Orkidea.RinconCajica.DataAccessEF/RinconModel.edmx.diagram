@@ -37,10 +37,10 @@
         <EntityTypeShape EntityType="RinconModel.AccountSummary" Width="1.5" PointX="9.75" PointY="13.75" />
         <EntityTypeShape EntityType="RinconModel.InstitutionalEvent" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="RinconModel.JoinEvent" Width="1.5" PointX="0.75" PointY="14.75" />
-        <EntityTypeShape EntityType="RinconModel.MessageActor" Width="1.5" PointX="9.75" PointY="1.5" />
+        <EntityTypeShape EntityType="RinconModel.MessageActor" Width="1.5" PointX="9.75" PointY="1.75" />
+        <EntityTypeShape EntityType="RinconModel.PartnerConsumption" Width="1.5" PointX="2.75" PointY="14.75" />
         <EntityTypeShape EntityType="RinconModel.MessageBitacore" Width="1.5" PointX="12" PointY="1" />
         <AssociationConnector Association="RinconModel.FK_MessageBitacore_MessageActor" />
-        <EntityTypeShape EntityType="RinconModel.PartnerConsumption" Width="1.5" PointX="2.75" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -264,11 +264,13 @@
           <Property Name="fecha" Type="datetime" Nullable="false" />
           <Property Name="origen" Type="int" Nullable="false" />
           <Property Name="destino" Type="int" Nullable="false" />
+          <Property Name="entregaPersonal" Type="bit" Nullable="false" />
           <Property Name="prioridad" Type="tinyint" Nullable="false" />
           <Property Name="descripcionCorta" Type="varchar" Nullable="false" MaxLength="150" />
           <Property Name="descripcionLarga" Type="varchar" MaxLength="500" />
           <Property Name="direccion" Type="varchar" MaxLength="500" />
           <Property Name="fechaLimite" Type="date" />
+          <Property Name="enviado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsPaper">
           <Key>
@@ -612,12 +614,12 @@
           <EntitySet Name="InstitutionalEvent" EntityType="RinconModel.InstitutionalEvent" />
           <EntitySet Name="JoinEvent" EntityType="RinconModel.JoinEvent" />
           <EntitySet Name="MessageActor" EntityType="RinconModel.MessageActor" />
+          <EntitySet Name="PartnerConsumption" EntityType="RinconModel.PartnerConsumption" />
           <EntitySet Name="MessageBitacore" EntityType="RinconModel.MessageBitacore" />
           <AssociationSet Name="FK_MessageBitacore_MessageActor" Association="RinconModel.FK_MessageBitacore_MessageActor">
             <End Role="MessageActor" EntitySet="MessageActor" />
             <End Role="MessageBitacore" EntitySet="MessageBitacore" />
           </AssociationSet>
-          <EntitySet Name="PartnerConsumption" EntityType="RinconModel.PartnerConsumption" />
           </EntityContainer>
         <EntityType Name="Sport">
           <Key>
@@ -1055,35 +1057,6 @@
           <Property Type="String" Name="nit" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MessageBitacore" Relationship="RinconModel.FK_MessageBitacore_MessageActor" FromRole="MessageActor" ToRole="MessageBitacore" />
         </EntityType>
-        <EntityType Name="MessageBitacore">
-          <Key>
-            <PropertyRef Name="tipoRegistro" />
-            <PropertyRef Name="idRegistro" />
-          </Key>
-          <Property Type="String" Name="tipoRegistro" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Int64" Name="idRegistro" Nullable="false" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="origen" Nullable="false" />
-          <Property Type="Int32" Name="destino" Nullable="false" />
-          <Property Type="Byte" Name="prioridad" Nullable="false" />
-          <Property Type="String" Name="descripcionCorta" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="descripcionLarga" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="direccion" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="fechaLimite" Precision="0" />
-          <NavigationProperty Name="MessageActor" Relationship="RinconModel.FK_MessageBitacore_MessageActor" FromRole="MessageBitacore" ToRole="MessageActor" />
-        </EntityType>
-        <Association Name="FK_MessageBitacore_MessageActor">
-          <End Type="RinconModel.MessageActor" Role="MessageActor" Multiplicity="1" />
-          <End Type="RinconModel.MessageBitacore" Role="MessageBitacore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MessageActor">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MessageBitacore">
-              <PropertyRef Name="origen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="PartnerConsumption">
           <Key>
             <PropertyRef Name="id" />
@@ -1105,6 +1078,37 @@
           <Property Type="String" Name="Docid_pagador" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Pagador" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="MessageBitacore">
+          <Key>
+            <PropertyRef Name="tipoRegistro" />
+            <PropertyRef Name="idRegistro" />
+          </Key>
+          <Property Type="String" Name="tipoRegistro" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int64" Name="idRegistro" Nullable="false" />
+          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="origen" Nullable="false" />
+          <Property Type="Int32" Name="destino" Nullable="false" />
+          <Property Type="Boolean" Name="entregaPersonal" Nullable="false" />
+          <Property Type="Byte" Name="prioridad" Nullable="false" />
+          <Property Type="String" Name="descripcionCorta" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="descripcionLarga" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="direccion" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="fechaLimite" Precision="0" />
+          <Property Type="Boolean" Name="enviado" Nullable="false" />
+          <NavigationProperty Name="MessageActor" Relationship="RinconModel.FK_MessageBitacore_MessageActor" FromRole="MessageBitacore" ToRole="MessageActor" />
+        </EntityType>
+        <Association Name="FK_MessageBitacore_MessageActor">
+          <End Type="RinconModel.MessageActor" Role="MessageActor" Multiplicity="1" />
+          <End Type="RinconModel.MessageBitacore" Role="MessageBitacore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessageActor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MessageBitacore">
+              <PropertyRef Name="origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1414,22 +1418,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MessageBitacore">
-            <EntityTypeMapping TypeName="RinconModel.MessageBitacore">
-              <MappingFragment StoreEntitySet="MessageBitacore">
-                <ScalarProperty Name="fechaLimite" ColumnName="fechaLimite" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="descripcionLarga" ColumnName="descripcionLarga" />
-                <ScalarProperty Name="descripcionCorta" ColumnName="descripcionCorta" />
-                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
-                <ScalarProperty Name="destino" ColumnName="destino" />
-                <ScalarProperty Name="origen" ColumnName="origen" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="idRegistro" ColumnName="idRegistro" />
-                <ScalarProperty Name="tipoRegistro" ColumnName="tipoRegistro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PartnerConsumption">
             <EntityTypeMapping TypeName="RinconModel.PartnerConsumption">
               <MappingFragment StoreEntitySet="PartnerConsumption">
@@ -1449,6 +1437,24 @@
                 <ScalarProperty Name="Producto" ColumnName="Producto" />
                 <ScalarProperty Name="Punto_venta_a" ColumnName="Punto_venta_a" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessageBitacore">
+            <EntityTypeMapping TypeName="RinconModel.MessageBitacore">
+              <MappingFragment StoreEntitySet="MessageBitacore">
+                <ScalarProperty Name="enviado" ColumnName="enviado" />
+                <ScalarProperty Name="fechaLimite" ColumnName="fechaLimite" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="descripcionLarga" ColumnName="descripcionLarga" />
+                <ScalarProperty Name="descripcionCorta" ColumnName="descripcionCorta" />
+                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+                <ScalarProperty Name="entregaPersonal" ColumnName="entregaPersonal" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idRegistro" ColumnName="idRegistro" />
+                <ScalarProperty Name="tipoRegistro" ColumnName="tipoRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

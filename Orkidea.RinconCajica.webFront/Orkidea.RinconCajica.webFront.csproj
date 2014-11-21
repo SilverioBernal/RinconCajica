@@ -228,6 +228,9 @@
     <Compile Include="Models\vmJoinContest.cs" />
     <Compile Include="Models\vmJoinEvent.cs" />
     <Compile Include="Models\vmJoinEventReportModel.cs" />
+    <Compile Include="Models\vmMessageBitacore.cs" />
+    <Compile Include="Models\vmMessageBitacoreInputReport.cs" />
+    <Compile Include="Models\vmMessageBitacoreReport.cs" />
     <Compile Include="Models\vmNews.cs" />
     <Compile Include="Models\vmPage.cs" />
     <Compile Include="Models\vmProcess.cs" />
@@ -842,6 +845,16 @@
     <Content Include="Views\MessageActor\IndexDependencias.cshtml" />
     <Content Include="Views\MessageActor\Create.cshtml" />
     <Content Include="Views\MessageActor\Edit.cshtml" />
+    <Content Include="Views\MessageActor\Upload.cshtml" />
+    <Content Include="Views\MessageActor\IndexProveedores.cshtml" />
+    <Content Include="Views\MessageActor\RecibeDocumento.cshtml" />
+    <Content Include="Views\MessageActor\IndexRecibidoHoy.cshtml" />
+    <Content Include="Views\MessageActor\ReporteRecibido.cshtml" />
+    <Content Include="Views\MessageActor\EnviaDocumento.cshtml" />
+    <Content Include="Views\MessageActor\GeneraReporteGeneral.cshtml" />
+    <Content Include="Views\Home\loginSigmaGolf.cshtml" />
+    <Content Include="Views\Home\loginSigmaSports.cshtml" />
+    <Content Include="Views\MessageActor\ReporteGeneral.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

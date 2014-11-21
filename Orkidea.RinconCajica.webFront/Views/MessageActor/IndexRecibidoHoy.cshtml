@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmMessageBitacore>
+@{
+    Layout = null;
+}
+<table class="table table-bordered table-striped table_vam" id="dt_gal">
+    <thead>
+        <tr>
+            <th>Id
+            </th>
+            <th>Origen
+            </th>
+            <th>Destino
+            </th>
+            <th>Fecha
+            </th>
+            <th>Tipo
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idRegistro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.strOrigen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.strDestino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcionCorta)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

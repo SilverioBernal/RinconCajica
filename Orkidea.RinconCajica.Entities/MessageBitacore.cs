@@ -19,11 +19,13 @@ namespace Orkidea.RinconCajica.Entities
         public System.DateTime fecha { get; set; }
         public int origen { get; set; }
         public int destino { get; set; }
+        public bool entregaPersonal { get; set; }
         public byte prioridad { get; set; }
         public string descripcionCorta { get; set; }
         public string descripcionLarga { get; set; }
         public string direccion { get; set; }
         public Nullable<System.DateTime> fechaLimite { get; set; }
+        public bool enviado { get; set; }
     
         public virtual MessageActor MessageActor { get; set; }
     }

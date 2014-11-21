@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "loginSigmaGolf";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    System.Security.Principal.IIdentity context = Context.User.Identity;
+    int user = 0;
+    string rol = "U";
+    string userName = "";
+    string idSocio = "";
+    string titular = "";
+    string idAccion = "";
+    bool autenticado = false;
+
+    if (context.IsAuthenticated)
+    {
+        System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)Context.User.Identity;
+        string[] userRole = ci.Ticket.UserData.Split('|');
+        user = int.Parse(userRole[0]);
+        rol = userRole[1];
+
+        if (rol == "S")
+        {
+            idSocio = userRole[2];
+            titular = userRole[3];
+            idAccion = userRole[4];
+        }
+
+        userName = ci.Name;
+        autenticado = (user != null ? true : false);
+    }
+}
+
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+
+<form action="http://www.clubelrincongolf.com/golf/loginDirecto.php" method="post" id="frmLogin">
+    <input type="hidden" value="@idSocio" name="username" />
+    <input type="hidden" value="www.clubelrincongolf.com" name="URL" />
+    <input type="hidden" value="http://www.gandmore.com.whsites.net/sigmacontent/loginextra.php" name="VOLVER" />
+    @*<input type="submit" value="Golf" />*@
+</form>
+
+<script>
+    $(document).ready(function () {
+        $("#frmLogin").submit();
+    });
+</script>

@@ -1,0 +1,141 @@
+﻿@model Orkidea.RinconCajica.webFront.Models.vmMessageBitacore
+
+@{
+    ViewBag.Title = "Enviar Documento";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@Styles.Render("~/css/datepicker.css")
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Scripts.Render("~/js/bootstrap-datepicker.js")
+
+
+@using (Html.BeginForm())
+{
+    <h2>Sistema de mensajeria - Envío de documentos</h2>
+
+    @Html.ValidationSummary(true)
+
+    <div class="row-fluid">
+        <div class="span6">
+            <label class="span12">Origen <span style="color: red; display: none;">Requerido</span></label>
+            @Html.DropDownListFor(c => c.origen, new SelectList(Model.lsDependencias, "id", "descripcion"), new { @class = "span12 req" })
+        </div>
+        <div class="span6">
+            <label class="span12">Destino <span style="color: red; display: none;">Requerido</span></label>
+            @Html.DropDownListFor(c => c.destino, new SelectList(Model.lsProveedores, "id", "descripcion"), new { @class = "span12 req" })
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span3">
+            <label class="span12">Tipo <span style="color: red; display: none;">Requerido</span></label>
+            @Html.DropDownListFor(c => c.descripcionCorta, new SelectList(Model.lsTipoDoc, "key", "value"), new { @class = "span12 req" })
+        </div>
+        <div class="span2">
+            <label class="span12">Prioridad </label>
+            @Html.DropDownListFor(c => c.prioridad, new SelectList(Model.lsPrioridad, "key", "value"), new { @class = "span12" })
+        </div>
+        <div class="span4">
+            <label class="span12">Dirección </label>
+            @Html.TextBoxFor(c => c.direccion, new { @class = "span12" })
+        </div>
+        <div class="span2">
+            <label class="span12">Fecha limite </label>
+            @Html.TextBoxFor(c => c.fechaLimite, new { @class = "span12" })
+        </div>
+        <div class="span1">
+            <label class="span12">Entrega personal</label>
+            @Html.CheckBoxFor(c => c.entregaPersonal)
+        </div>
+    </div>    
+    <div class="row-fluid">
+        <div class="span12">
+            <label class="span12">Observaciones</label>
+            @Html.TextAreaFor(c => c.descripcionLarga, new { @class = "span12" })
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span9">
+            @Html.HiddenFor(c => c.tipoRegistro)
+            @Html.HiddenFor(c => c.fecha)
+        </div>
+    </div>
+    <div class="row-fluid">
+    </div>
+    <p>
+        <input type="button" value="Guardar registro" class="btn btn-success" id="btnGuardar" />        
+    </p>                                                                                     
+   
+}
+
+<div id="myModal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Sistema de Mensajería</h3>
+    </div>
+    <div class="modal-body" id="msgBody">
+    </div>
+    <div class="modal-footer">
+        <a href="@Url.Action("EnviaDocumento")" class="btn btn-primary">Registrar otro</a>
+        <a href="@Url.Action("index", "HomeSGC")" class="btn btn-danger">Salir</a>
+    </div>
+</div>
+
+<script>
+    $('#fechaLimite').datepicker({
+        format: 'yyyy-mm-dd', setDate: new Date(),
+    });
+
+    $('#btnGuardar').click(function () {
+        var socio = '@ViewBag.socio';
+        var mensaje = '';
+        var requeridos = $('.req');
+        var falla = 0;
+        var megBox = $('.megBox');
+        $(requeridos).each(function () {
+
+            var padre = this.parentNode;
+            var etiqueta = $(padre).find('label')
+            var validador = etiqueta.find('span')[0];
+
+            if ($(this).val() == "" || $(this).val() == "0") {
+                $(validador).css("display", "inline")
+                falla++
+            }
+            else {
+                $(validador).css("display", "none")
+            }
+        });
+
+        if (falla > 0) {
+            return false;
+        }
+        else 
+        {
+            var datos = {
+                origen: $('#origen').val(),
+                destino: $('#destino').val(),
+                direccion: $('#direccion').val(),
+                descripcionCorta:$('#descripcionCorta').val(),
+                descripcionLarga: $('#descripcionLarga').val(),
+                prioridad: $('#prioridad').val(),
+                fechaLimite:$('#fechaLimite').val(),
+                entregaPersonal: $('#entregaPersonal').prop('checked'),
+                tipoRegistro:$('#tipoRegistro').val(),
+                fecha: Date.now()
+            };
+
+            $.getJSON("@Url.Action("EnviarDocumento")", datos, res);
+
+            function res(data) {
+                if (data.toString().indexOf("Error")>-1)
+                    mensaje = data;
+                else 
+                    mensaje = "Se creo el documento No. " + data;
+
+                $('#msgBody').html(mensaje);
+                $('#myModal').modal()
+            }
+        }
+    });   
+</script>

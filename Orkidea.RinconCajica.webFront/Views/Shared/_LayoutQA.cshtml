@@ -174,9 +174,35 @@
                                     <li><a href="@Url.Action("Index", "DocumentType")">Tipos de documento</a></li>
                                     <li><a href="@Url.Action("List", "Process")">Procesos</a></li>
                                     <li><a href="@Url.Action("Index", "ProcessDocument")">Documentos por proceso</a></li>
-@*<li><a href="@Url.Action("List", "Project")">Proyectos</a></li>
-                                <li><a href="@Url.Action("Index", "ProjectDocument")">Documentos por proyecto</a></li>*@
                                 }
+                                @if (rol == "A" || rol == "P" || rol == "M")
+                                {
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Mensajeria</li>
+                                    if (rol == "A" || rol == "P")
+                                    {
+                                        if (ViewBag.menu == "Message")
+                                        {
+                                    <li class="active"><a href="@Url.Action("RecibeDocumento", "MessageActor")">Recibir documentos</a></li>
+                                        }
+                                        else
+                                        {
+                                    <li><a href="@Url.Action("RecibeDocumento", "MessageActor")">Recibir documentos</a></li>
+                                        }
+                                    }
+
+                                    if (rol == "A" || rol == "M")
+                                    {
+                                    <li><a href="@Url.Action("ReporteRecibido", "MessageActor")">Reporte de documentos recibidos</a></li>                                        
+                                    <li><a href="@Url.Action("Create", "MessageActor")">Crear dependencias</a></li>                                        
+                                    <li><a href="@Url.Action("Upload", "MessageActor")">Importar terceros</a></li>                                        
+                                    }
+                                    if (rol == "A" || rol == "E")
+                                    {
+                                        <li><a href="@Url.Action("EnviaDocumento", "MessageActor")">Enviar documentos</a></li>
+                                    }
+                                }
+
                             </ul>
                         </li>
                     }
