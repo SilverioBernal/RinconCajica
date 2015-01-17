@@ -17,6 +17,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         BizJoinContest bizJoinContest = new BizJoinContest();
         BizSportSchedule bizSportSchedule = new BizSportSchedule();
 
+        [Authorize]
         public ActionResult join(int id)
         {
             ViewBag.menu = "Deportes";

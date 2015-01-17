@@ -855,6 +855,7 @@
     <Content Include="Views\Home\loginSigmaGolf.cshtml" />
     <Content Include="Views\Home\loginSigmaSports.cshtml" />
     <Content Include="Views\MessageActor\ReporteGeneral.cshtml" />
+    <Content Include="Views\HomeSGC\Suggestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
