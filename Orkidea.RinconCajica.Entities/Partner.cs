@@ -14,19 +14,19 @@ namespace Orkidea.RinconCajica.Entities
         public string carnet { get; set; }
         public string accion { get; set; }
         public string cod_clie { get; set; }
-        public string rel_tit { get; set; }        
+        public string rel_tit { get; set; }
         public string nombre { get; set; }
         public string doreco { get; set; }
         public string celular { get; set; }
         public string teleco { get; set; }
-        public string telefn { get; set; }        
+        public string telefn { get; set; }
         public string correo { get; set; }
         public string ciudad { get; set; }
         public string fec_nac { get; set; }
-        public string estado { get; set; }        
+        public string estado { get; set; }
         public string sexo { get; set; }
         public string fecmatr { get; set; }
-        public string acta { get; set; }                
+        public string acta { get; set; }
         public string cod_est { get; set; }
         public string looker { get; set; }
         public string direcc { get; set; }
@@ -62,3 +62,4 @@ namespace Orkidea.RinconCajica.Entities
         }
     }
 }
+

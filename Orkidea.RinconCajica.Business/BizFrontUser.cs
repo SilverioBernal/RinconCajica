@@ -85,7 +85,7 @@ namespace Orkidea.RinconCajica.Business
         /// Create or update a FrontUser
         /// </summary>
         /// <param name="FrontUserTarget"></param>
-        public int SaveFrontUser(FrontUser FrontUserTarget)
+        public int SaveFrontUser(FrontUser FrontUserTarget, string rootPath)
         {
             int res = -1;
             try
@@ -132,9 +132,9 @@ namespace Orkidea.RinconCajica.Business
                         dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
 
                         MailingHelper.SendMail(to, string.Format("Notificación de {0} de usuario", accion),
-                            ConfigurationManager.AppSettings["emailNewUserNotificationTemplateHTML"].ToString(),
-                            ConfigurationManager.AppSettings["emailNewUserNotificationTemplateText"].ToString(),
-                            ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
+                            rootPath + ConfigurationManager.AppSettings["emailNewUserNotificationTemplateHTML"].ToString(),
+                            rootPath + ConfigurationManager.AppSettings["emailNewUserNotificationTemplateText"].ToString(),
+                            rootPath + ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
                     }
                 }
 

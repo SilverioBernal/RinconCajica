@@ -66,7 +66,7 @@ namespace Orkidea.RinconCajica.Business
                 using (var ctx = new RinconEntities())
                 {
                     ctx.Configuration.ProxyCreationEnabled = false;
-                    lstJoinContest = ctx.JoinContest.Where(x=> x.idTorneo.Equals(joinContestTarget.idTorneo)).ToList();
+                    lstJoinContest = ctx.JoinContest.Where(x => x.idTorneo.Equals(joinContestTarget.idTorneo)).ToList();
                 }
             }
             catch (Exception ex) { throw ex; }
@@ -101,7 +101,7 @@ namespace Orkidea.RinconCajica.Business
         /// Create or update a JoinContest
         /// </summary>
         /// <param name="JoinContestTarget"></param>
-        public void SaveJoinContest(JoinContest JoinContestTarget)
+        public void SaveJoinContest(JoinContest JoinContestTarget, string rootPath)
         {
 
             try
@@ -142,9 +142,9 @@ namespace Orkidea.RinconCajica.Business
                         dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
 
                         MailingHelper.SendMail(to, "Notificación de creacion de usuario",
-                            ConfigurationManager.AppSettings["emailjoinContestNotificationTemplateHTML"].ToString(),
-                            ConfigurationManager.AppSettings["emailjoinContestNotificationTemplateText"].ToString(),
-                            ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
+                            rootPath + ConfigurationManager.AppSettings["emailjoinContestNotificationTemplateHTML"].ToString(),
+                            rootPath + ConfigurationManager.AppSettings["emailjoinContestNotificationTemplateText"].ToString(),
+                            rootPath + ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
                     }
                 }
 

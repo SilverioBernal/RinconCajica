@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Orkidea.RinconCajica.Entities
 {
-    public class ConsumptopnGlobal : ConsumptionResume
+    public class ConsumptionGlobal : ConsumptionResume
     {
         public string Docid_pagador { get; set; }
         public string accion { get; set; }

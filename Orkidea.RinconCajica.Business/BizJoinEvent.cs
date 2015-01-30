@@ -83,7 +83,7 @@ namespace Orkidea.RinconCajica.Business
         /// Create or update a JoinEvent
         /// </summary>
         /// <param name="JoinEventTarget"></param>
-        public void SaveJoinEvent(JoinEvent JoinEventTarget)
+        public void SaveJoinEvent(JoinEvent JoinEventTarget, string rootPath)
         {
 
             try
@@ -124,9 +124,9 @@ namespace Orkidea.RinconCajica.Business
                         dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
 
                         MailingHelper.SendMail(to, "Notificación de creacion de usuario",
-                            ConfigurationManager.AppSettings["emailJoinEventNotificationTemplateHTML"].ToString(),
-                            ConfigurationManager.AppSettings["emailJoinEventNotificationTemplateText"].ToString(),
-                            ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
+                            rootPath + ConfigurationManager.AppSettings["emailJoinEventNotificationTemplateHTML"].ToString(),
+                            rootPath + ConfigurationManager.AppSettings["emailJoinEventNotificationTemplateText"].ToString(),
+                            rootPath + ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
                     }
                 }
 

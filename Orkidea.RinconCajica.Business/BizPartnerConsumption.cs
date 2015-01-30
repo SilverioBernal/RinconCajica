@@ -18,17 +18,17 @@ namespace Orkidea.RinconCajica.Business
         /// </summary>
         /// <param name="schoolTarget"></param>
         /// <returns></returns>
-        public List<ConsumptopnGlobal> GetPartnerConsumptionList()
+        public List<ConsumptionGlobal> GetPartnerConsumptionList()
         {
 
-            List<ConsumptopnGlobal> oPartnerConsumption = new List<ConsumptopnGlobal>();
+            List<ConsumptionGlobal> oPartnerConsumption = new List<ConsumptionGlobal>();
 
             try
             {
                 using (var ctx = new RinconEntities())
                 {
                     ctx.Configuration.ProxyCreationEnabled = false;
-                    oPartnerConsumption = ctx.Database.SqlQuery<ConsumptopnGlobal>("Select distinct a.Fecha, a.Nufactura, a.Sufijo, a.Total_fac, a.Docid_pagador, b.accion, b.nombre from PartnerConsumption a inner join ClubPartner b on a.Docid_pagador = b.docid order by b.nombre, Fecha, Sufijo, NuFactura").ToList();
+                    oPartnerConsumption = ctx.Database.SqlQuery<ConsumptionGlobal>("Select distinct a.Fecha, a.Nufactura, a.Sufijo, a.Total_fac, a.Docid_pagador, b.accion, b.nombre from PartnerConsumption a inner join ClubPartner b on a.Docid_pagador = b.docid order by b.nombre, Fecha, Sufijo, NuFactura").ToList();
                 }
             }
             catch (Exception ex) { throw ex; }

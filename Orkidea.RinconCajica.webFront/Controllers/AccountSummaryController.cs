@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
 using Orkidea.RinconCajica.webFront.Models;
+using Orkidea.RinconCajica.Utilities;
 
 namespace Orkidea.RinconCajica.webFront.Controllers
 {
@@ -16,7 +17,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /AccountSummary/
-
+        [Authorize]
         public ActionResult Index()
         {
             List<AccountSummary> lsAccountSummary = bizAccountSummary.GetAccountSummaryList();
@@ -26,13 +27,35 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /AccountSummary/Details/5
-
+        [Authorize]
         public ActionResult Details(string id)
         {
             List<AccountSummary> lsAccountSummary = bizAccountSummary.GetAccountSummaryList(id);
             return View(lsAccountSummary);
         }
+        
+        [Authorize]
+        public ActionResult AccountSummaryDetail(string archivo)
+        {
+            string mimeType = "";
+            int cuentaPuntos = 0;
 
+            //FileUpload fu = bizFileUpload.GetFileUploadByKey(new FileUpload() { id = id });
+
+            string[] nombreArchivo = archivo.Split('.');
+            cuentaPuntos = nombreArchivo.Length;
+
+            mimeType = BizMimeType.GetMimeType(nombreArchivo[cuentaPuntos - 1]).mimetype1;
+
+            //dynamically generate a file
+            System.IO.MemoryStream ms;
+            ms = AzureStorageHelper.getFile(archivo, "accountSummaries");
+
+            // return the file
+            return File(ms.ToArray(), mimeType);
+        }
+        
+        [Authorize]
         public ActionResult upload()
         {
             vmAccountSummary accountSummaryFiles = new vmAccountSummary() {  ano= DateTime.Now.Year, mes = DateTime.Now.Month};
@@ -40,6 +63,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             return View(accountSummaryFiles);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult upload(vmAccountSummary model)
         {
@@ -47,7 +71,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
                 return View(model);
             }
-            string physicalPath = HttpContext.Server.MapPath("~") + "\\UploadedFiles\\AccountSummaries\\";
+            //string physicalPath = HttpContext.Server.MapPath("~") + "\\UploadedFiles\\AccountSummaries\\";
 
             AccountSummary fileUploadModel = new AccountSummary();
             foreach (var item in model.File)
@@ -60,7 +84,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                 fileUploadModel.archivo = fileName;                
 
-                item.SaveAs(physicalPath + fileName);
+                //item.SaveAs(physicalPath + fileName);
+                AzureStorageHelper.uploadFile(item.InputStream, fileName, "accountSummaries");
 
                 AccountSummary AS = new AccountSummary()
                 {
@@ -76,7 +101,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         }
 
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             AccountSummary As = bizAccountSummary.GetAccountSummarybyKey(new AccountSummary() { id = id });

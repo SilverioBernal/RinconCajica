@@ -4,90 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RinconModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="RinconModelStoreContainer">
-          <EntitySet Name="AccountSummary" EntityType="RinconModel.Store.AccountSummary" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ClubPartner" EntityType="RinconModel.Store.ClubPartner" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="DocumentType" EntityType="RinconModel.Store.DocumentType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="FileType" EntityType="RinconModel.Store.FileType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="FileUpload" EntityType="RinconModel.Store.FileUpload" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="FrontUser" EntityType="RinconModel.Store.FrontUser" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="HomeSlider" EntityType="RinconModel.Store.HomeSlider" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="InstitutionalEvent" EntityType="RinconModel.Store.InstitutionalEvent" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="JoinContest" EntityType="RinconModel.Store.JoinContest" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="JoinEvent" EntityType="RinconModel.Store.JoinEvent" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MessageActor" EntityType="RinconModel.Store.MessageActor" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MessageBitacore" EntityType="RinconModel.Store.MessageBitacore" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="NewsPaper" EntityType="RinconModel.Store.NewsPaper" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Page" EntityType="RinconModel.Store.Page" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PartnerConsumption" EntityType="RinconModel.Store.PartnerConsumption" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Process" EntityType="RinconModel.Store.Process" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ProcessDocument" EntityType="RinconModel.Store.ProcessDocument" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Project" EntityType="RinconModel.Store.Project" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ProjectDocument" EntityType="RinconModel.Store.ProjectDocument" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SideBar" EntityType="RinconModel.Store.SideBar" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Sport" EntityType="RinconModel.Store.Sport" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SportBranch" EntityType="RinconModel.Store.SportBranch" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SportModality" EntityType="RinconModel.Store.SportModality" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SportSchedule" EntityType="RinconModel.Store.SportSchedule" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_JoinContest_SportSchedule" Association="RinconModel.Store.FK_JoinContest_SportSchedule">
-            <End Role="SportSchedule" EntitySet="SportSchedule" />
-            <End Role="JoinContest" EntitySet="JoinContest" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MessageBitacore_MessageActor" Association="RinconModel.Store.FK_MessageBitacore_MessageActor">
-            <End Role="MessageActor" EntitySet="MessageActor" />
-            <End Role="MessageBitacore" EntitySet="MessageBitacore" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.Store.FK_Page_SideBar">
-            <End Role="SideBar" EntitySet="SideBar" />
-            <End Role="Page" EntitySet="Page" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProcessDocument_DocumentType" Association="RinconModel.Store.FK_ProcessDocument_DocumentType">
-            <End Role="DocumentType" EntitySet="DocumentType" />
-            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProcessDocument_Process" Association="RinconModel.Store.FK_ProcessDocument_Process">
-            <End Role="Process" EntitySet="Process" />
-            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectDocument_DocumentType" Association="RinconModel.Store.FK_ProjectDocument_DocumentType">
-            <End Role="DocumentType" EntitySet="DocumentType" />
-            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectDocument_Project" Association="RinconModel.Store.FK_ProjectDocument_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SportBranch_Sport" Association="RinconModel.Store.FK_SportBranch_Sport">
-            <End Role="Sport" EntitySet="Sport" />
-            <End Role="SportBranch" EntitySet="SportBranch" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SportModality_Sport" Association="RinconModel.Store.FK_SportModality_Sport">
-            <End Role="Sport" EntitySet="Sport" />
-            <End Role="SportModality" EntitySet="SportModality" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SportsSchedule_Sport" Association="RinconModel.Store.FK_SportsSchedule_Sport">
-            <End Role="Sport" EntitySet="Sport" />
-            <End Role="SportSchedule" EntitySet="SportSchedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SportsSchedule_SportBranch" Association="RinconModel.Store.FK_SportsSchedule_SportBranch">
-            <End Role="SportBranch" EntitySet="SportBranch" />
-            <End Role="SportSchedule" EntitySet="SportSchedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SportsSchedule_SportModality" Association="RinconModel.Store.FK_SportsSchedule_SportModality">
-            <End Role="SportModality" EntitySet="SportModality" />
-            <End Role="SportSchedule" EntitySet="SportSchedule" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="rinconcajica_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountSummary">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="accion" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ano" Type="int" Nullable="false" />
           <Property Name="mes" Type="int" Nullable="false" />
-          <Property Name="archivo" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="archivo" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="ClubPartner">
           <Key>
@@ -154,33 +80,33 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="FileType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="tipoMIME" Type="varchar" Nullable="false" MaxLength="150" />
-          <Property Name="extension" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipoMIME" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="extension" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="FileUpload">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="fileName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="fileName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="FrontUser">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="usuario" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="contrasena" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="idRol" Type="varchar" Nullable="false" MaxLength="1" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasena" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="idRol" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="HomeSlider">
@@ -188,7 +114,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="urlImagen" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="urlImagen" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="textoBoton1" Type="varchar" MaxLength="50" />
           <Property Name="urlBoton1" Type="varchar" MaxLength="250" />
           <Property Name="textoBoton2" Type="varchar" MaxLength="50" />
@@ -200,10 +126,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="inicio" Type="date" Nullable="false" />
           <Property Name="fin" Type="date" />
-          <Property Name="nombreEvento" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="nombreEvento" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="etiqueta1" Type="varchar" MaxLength="50" />
           <Property Name="etiqueta2" Type="varchar" MaxLength="50" />
           <Property Name="etiqueta3" Type="varchar" MaxLength="50" />
@@ -215,7 +141,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idTorneo" Type="int" Nullable="false" />
           <Property Name="idSocio" Type="int" />
           <Property Name="tipoIdentificacion" Type="varchar" MaxLength="2" />
@@ -224,14 +150,14 @@
           <Property Name="telefonoFijo" Type="varchar" MaxLength="50" />
           <Property Name="telefonoCelular" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" MaxLength="250" />
-          <Property Name="categoria" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="categoria" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fechaInscripcion" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="JoinEvent">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idEvento" Type="int" Nullable="false" />
           <Property Name="idSocio" Type="int" />
           <Property Name="tipoIdentificacion" Type="varchar" MaxLength="2" />
@@ -249,9 +175,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="tipo" Type="char" Nullable="false" MaxLength="1" />
-          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="nit" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MessageBitacore">
@@ -259,33 +185,42 @@
             <PropertyRef Name="tipoRegistro" />
             <PropertyRef Name="idRegistro" />
           </Key>
-          <Property Name="tipoRegistro" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="tipoRegistro" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="idRegistro" Type="bigint" Nullable="false" />
           <Property Name="fecha" Type="datetime" Nullable="false" />
           <Property Name="origen" Type="int" Nullable="false" />
           <Property Name="destino" Type="int" Nullable="false" />
           <Property Name="entregaPersonal" Type="bit" Nullable="false" />
           <Property Name="prioridad" Type="tinyint" Nullable="false" />
-          <Property Name="descripcionCorta" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="descripcionCorta" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="descripcionLarga" Type="varchar" MaxLength="500" />
           <Property Name="direccion" Type="varchar" MaxLength="500" />
           <Property Name="fechaLimite" Type="date" />
           <Property Name="enviado" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="mimetype">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="mimetype" Type="varchar" MaxLength="200" />
+          <Property Name="extension" Type="varchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="NewsPaper">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fecha" Type="datetime" Nullable="false" />
-          <Property Name="titulo" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="titulo" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="contenido" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Page">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="titulo" Type="varchar" MaxLength="50" />
           <Property Name="contenidoPublico" Type="varchar(max)" />
           <Property Name="contenidoPrivado" Type="varchar(max)" />
@@ -295,66 +230,66 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Punto_venta_a" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="Producto" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="Punto_venta_b" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="Codigo_producto" Type="varchar" Nullable="false" MaxLength="10" />
-          <Property Name="Cantidad" Type="varchar" Nullable="false" MaxLength="6" />
-          <Property Name="Valor_producto" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Punto_venta_a" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Producto" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Punto_venta_b" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Codigo_producto" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Cantidad" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Valor_producto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Docid_consumidor" Type="varchar" MaxLength="20" />
-          <Property Name="Nufactura" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="Sufijo" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="Propina" Type="decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="Total_fac" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Nufactura" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Sufijo" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Propina" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Total_fac" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Consumidor" Type="varchar" MaxLength="250" />
-          <Property Name="Docid_pagador" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="Pagador" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="Docid_pagador" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Pagador" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="Process">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="descripcion" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="archivoCaracterizacion" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="ProcessDocument">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idProceso" Type="int" Nullable="false" />
           <Property Name="idTipoDocumento" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="250" />
-          <Property Name="ruta" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ruta" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectDocument">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idProyecto" Type="int" Nullable="false" />
           <Property Name="idTipoDocumento" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="ruta" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ruta" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="SideBar">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="contenidoPublico" Type="varchar(max)" Nullable="false" />
           <Property Name="contenidoPrivado" Type="varchar(max)" />
         </EntityType>
@@ -362,35 +297,35 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="SportBranch">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idDeporte" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="nombre" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="SportModality">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idDeporte" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="SportSchedule">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idDeporte" Type="int" Nullable="false" />
           <Property Name="inicio" Type="date" Nullable="false" />
           <Property Name="fin" Type="date" />
-          <Property Name="competencia" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="categoria" Type="varchar" MaxLength="50" />
+          <Property Name="competencia" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="categoria" Type="varchar" MaxLength="500" />
           <Property Name="idModalidad" Type="int" />
           <Property Name="idRama" Type="int" />
           <Property Name="aireacion" Type="bit" Nullable="false" />
@@ -400,8 +335,8 @@
           <Property Name="urlPagina" Type="varchar" MaxLength="350" />
         </EntityType>
         <Association Name="FK_JoinContest_SportSchedule">
-          <End Role="SportSchedule" Type="RinconModel.Store.SportSchedule" Multiplicity="1" />
-          <End Role="JoinContest" Type="RinconModel.Store.JoinContest" Multiplicity="*" />
+          <End Role="SportSchedule" Type="Self.SportSchedule" Multiplicity="1" />
+          <End Role="JoinContest" Type="Self.JoinContest" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SportSchedule">
               <PropertyRef Name="id" />
@@ -412,8 +347,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MessageBitacore_MessageActor">
-          <End Role="MessageActor" Type="RinconModel.Store.MessageActor" Multiplicity="1" />
-          <End Role="MessageBitacore" Type="RinconModel.Store.MessageBitacore" Multiplicity="*" />
+          <End Role="MessageActor" Type="Self.MessageActor" Multiplicity="1" />
+          <End Role="MessageBitacore" Type="Self.MessageBitacore" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MessageActor">
               <PropertyRef Name="id" />
@@ -424,8 +359,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Page_SideBar">
-          <End Role="SideBar" Type="RinconModel.Store.SideBar" Multiplicity="0..1" />
-          <End Role="Page" Type="RinconModel.Store.Page" Multiplicity="*" />
+          <End Role="SideBar" Type="Self.SideBar" Multiplicity="0..1" />
+          <End Role="Page" Type="Self.Page" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SideBar">
               <PropertyRef Name="id" />
@@ -436,8 +371,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProcessDocument_DocumentType">
-          <End Role="DocumentType" Type="RinconModel.Store.DocumentType" Multiplicity="1" />
-          <End Role="ProcessDocument" Type="RinconModel.Store.ProcessDocument" Multiplicity="*" />
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="ProcessDocument" Type="Self.ProcessDocument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DocumentType">
               <PropertyRef Name="id" />
@@ -448,8 +383,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProcessDocument_Process">
-          <End Role="Process" Type="RinconModel.Store.Process" Multiplicity="1" />
-          <End Role="ProcessDocument" Type="RinconModel.Store.ProcessDocument" Multiplicity="*" />
+          <End Role="Process" Type="Self.Process" Multiplicity="1" />
+          <End Role="ProcessDocument" Type="Self.ProcessDocument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Process">
               <PropertyRef Name="id" />
@@ -460,8 +395,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProjectDocument_DocumentType">
-          <End Role="DocumentType" Type="RinconModel.Store.DocumentType" Multiplicity="1" />
-          <End Role="ProjectDocument" Type="RinconModel.Store.ProjectDocument" Multiplicity="*" />
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="ProjectDocument" Type="Self.ProjectDocument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DocumentType">
               <PropertyRef Name="id" />
@@ -472,8 +407,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProjectDocument_Project">
-          <End Role="Project" Type="RinconModel.Store.Project" Multiplicity="1" />
-          <End Role="ProjectDocument" Type="RinconModel.Store.ProjectDocument" Multiplicity="*" />
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectDocument" Type="Self.ProjectDocument" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Project">
               <PropertyRef Name="id" />
@@ -484,8 +419,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SportBranch_Sport">
-          <End Role="Sport" Type="RinconModel.Store.Sport" Multiplicity="1" />
-          <End Role="SportBranch" Type="RinconModel.Store.SportBranch" Multiplicity="*" />
+          <End Role="Sport" Type="Self.Sport" Multiplicity="1" />
+          <End Role="SportBranch" Type="Self.SportBranch" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sport">
               <PropertyRef Name="id" />
@@ -496,8 +431,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SportModality_Sport">
-          <End Role="Sport" Type="RinconModel.Store.Sport" Multiplicity="1" />
-          <End Role="SportModality" Type="RinconModel.Store.SportModality" Multiplicity="*" />
+          <End Role="Sport" Type="Self.Sport" Multiplicity="1" />
+          <End Role="SportModality" Type="Self.SportModality" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sport">
               <PropertyRef Name="id" />
@@ -508,8 +443,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SportsSchedule_Sport">
-          <End Role="Sport" Type="RinconModel.Store.Sport" Multiplicity="1" />
-          <End Role="SportSchedule" Type="RinconModel.Store.SportSchedule" Multiplicity="*" />
+          <End Role="Sport" Type="Self.Sport" Multiplicity="1" />
+          <End Role="SportSchedule" Type="Self.SportSchedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sport">
               <PropertyRef Name="id" />
@@ -520,8 +455,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SportsSchedule_SportBranch">
-          <End Role="SportBranch" Type="RinconModel.Store.SportBranch" Multiplicity="0..1" />
-          <End Role="SportSchedule" Type="RinconModel.Store.SportSchedule" Multiplicity="*" />
+          <End Role="SportBranch" Type="Self.SportBranch" Multiplicity="0..1" />
+          <End Role="SportSchedule" Type="Self.SportSchedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SportBranch">
               <PropertyRef Name="id" />
@@ -532,8 +467,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SportsSchedule_SportModality">
-          <End Role="SportModality" Type="RinconModel.Store.SportModality" Multiplicity="0..1" />
-          <End Role="SportSchedule" Type="RinconModel.Store.SportSchedule" Multiplicity="*" />
+          <End Role="SportModality" Type="Self.SportModality" Multiplicity="0..1" />
+          <End Role="SportSchedule" Type="Self.SportSchedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SportModality">
               <PropertyRef Name="id" />
@@ -543,563 +478,478 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
-    <!-- CSDL content -->
-    <edmx:ConceptualModels>
-      <Schema Namespace="RinconModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="RinconEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Sport" EntityType="RinconModel.Sport" />
-          <EntitySet Name="Page" EntityType="RinconModel.Page" />
-          <EntitySet Name="SportBranch" EntityType="RinconModel.SportBranch" />
-          <EntitySet Name="SportModality" EntityType="RinconModel.SportModality" />
-          <AssociationSet Name="FK_SportBranch_Sport" Association="RinconModel.FK_SportBranch_Sport">
-            <End Role="Sport" EntitySet="Sport" />
-            <End Role="SportBranch" EntitySet="SportBranch" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SportModality_Sport" Association="RinconModel.FK_SportModality_Sport">
-            <End Role="Sport" EntitySet="Sport" />
-            <End Role="SportModality" EntitySet="SportModality" />
-          </AssociationSet>
-          <EntitySet Name="FileUpload" EntityType="RinconModel.FileUpload" />
-          <EntitySet Name="JoinContest" EntityType="RinconModel.JoinContest" />
-          <EntitySet Name="DocumentType" EntityType="RinconModel.DocumentType" />
-          <EntitySet Name="FileType" EntityType="RinconModel.FileType" />
-          <EntitySet Name="NewsPaper" EntityType="RinconModel.NewsPaper" />
-          <EntitySet Name="Process" EntityType="RinconModel.Process" />
-          <EntitySet Name="ProcessDocument" EntityType="RinconModel.ProcessDocument" />
-          <EntitySet Name="Project" EntityType="RinconModel.Project" />
-          <EntitySet Name="ProjectDocument" EntityType="RinconModel.ProjectDocument" />
-          <AssociationSet Name="FK_ProcessDocument_DocumentType" Association="RinconModel.FK_ProcessDocument_DocumentType">
-            <End Role="DocumentType" EntitySet="DocumentType" />
-            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectDocument_DocumentType" Association="RinconModel.FK_ProjectDocument_DocumentType">
-            <End Role="DocumentType" EntitySet="DocumentType" />
-            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProcessDocument_Process" Association="RinconModel.FK_ProcessDocument_Process">
-            <End Role="Process" EntitySet="Process" />
-            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectDocument_Project" Association="RinconModel.FK_ProjectDocument_Project">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
-          </AssociationSet>
-          <EntitySet Name="FrontUser" EntityType="RinconModel.FrontUser" />
-          <EntitySet Name="HomeSlider" EntityType="RinconModel.HomeSlider" />
-          <EntitySet Name="SideBar" EntityType="RinconModel.SideBar" />
-          <AssociationSet Name="FK_Page_SideBar" Association="RinconModel.FK_Page_SideBar">
-            <End Role="SideBar" EntitySet="SideBar" />
-            <End Role="Page" EntitySet="Page" />
-          </AssociationSet>
-          <EntitySet Name="ClubPartner" EntityType="RinconModel.ClubPartner" />
-          <EntitySet Name="SportSchedule" EntityType="RinconModel.SportSchedule" />
-          <AssociationSet Name="FK_JoinContest_SportSchedule" Association="RinconModel.FK_JoinContest_SportSchedule">
+        <EntityContainer Name="rinconcajica_dbModelStoreContainer">
+          <EntitySet Name="AccountSummary" EntityType="Self.AccountSummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClubPartner" EntityType="Self.ClubPartner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileType" EntityType="Self.FileType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileUpload" EntityType="Self.FileUpload" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FrontUser" EntityType="Self.FrontUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeSlider" EntityType="Self.HomeSlider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InstitutionalEvent" EntityType="Self.InstitutionalEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JoinContest" EntityType="Self.JoinContest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JoinEvent" EntityType="Self.JoinEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageActor" EntityType="Self.MessageActor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessageBitacore" EntityType="Self.MessageBitacore" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mimetype" EntityType="Self.mimetype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsPaper" EntityType="Self.NewsPaper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartnerConsumption" EntityType="Self.PartnerConsumption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Process" EntityType="Self.Process" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessDocument" EntityType="Self.ProcessDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectDocument" EntityType="Self.ProjectDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SideBar" EntityType="Self.SideBar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sport" EntityType="Self.Sport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SportBranch" EntityType="Self.SportBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SportModality" EntityType="Self.SportModality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SportSchedule" EntityType="Self.SportSchedule" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_JoinContest_SportSchedule" Association="Self.FK_JoinContest_SportSchedule">
             <End Role="SportSchedule" EntitySet="SportSchedule" />
             <End Role="JoinContest" EntitySet="JoinContest" />
           </AssociationSet>
-          <AssociationSet Name="FK_SportsSchedule_Sport" Association="RinconModel.FK_SportsSchedule_Sport">
-            <End Role="Sport" EntitySet="Sport" />
-            <End Role="SportSchedule" EntitySet="SportSchedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SportsSchedule_SportBranch" Association="RinconModel.FK_SportsSchedule_SportBranch">
-            <End Role="SportBranch" EntitySet="SportBranch" />
-            <End Role="SportSchedule" EntitySet="SportSchedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SportsSchedule_SportModality" Association="RinconModel.FK_SportsSchedule_SportModality">
-            <End Role="SportModality" EntitySet="SportModality" />
-            <End Role="SportSchedule" EntitySet="SportSchedule" />
-          </AssociationSet>
-          <EntitySet Name="AccountSummary" EntityType="RinconModel.AccountSummary" />
-          <EntitySet Name="InstitutionalEvent" EntityType="RinconModel.InstitutionalEvent" />
-          <EntitySet Name="JoinEvent" EntityType="RinconModel.JoinEvent" />
-          <EntitySet Name="MessageActor" EntityType="RinconModel.MessageActor" />
-          <EntitySet Name="PartnerConsumption" EntityType="RinconModel.PartnerConsumption" />
-          <EntitySet Name="MessageBitacore" EntityType="RinconModel.MessageBitacore" />
-          <AssociationSet Name="FK_MessageBitacore_MessageActor" Association="RinconModel.FK_MessageBitacore_MessageActor">
+          <AssociationSet Name="FK_MessageBitacore_MessageActor" Association="Self.FK_MessageBitacore_MessageActor">
             <End Role="MessageActor" EntitySet="MessageActor" />
             <End Role="MessageBitacore" EntitySet="MessageBitacore" />
           </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Sport">
+          <AssociationSet Name="FK_Page_SideBar" Association="Self.FK_Page_SideBar">
+            <End Role="SideBar" EntitySet="SideBar" />
+            <End Role="Page" EntitySet="Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessDocument_DocumentType" Association="Self.FK_ProcessDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessDocument_Process" Association="Self.FK_ProcessDocument_Process">
+            <End Role="Process" EntitySet="Process" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDocument_DocumentType" Association="Self.FK_ProjectDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDocument_Project" Association="Self.FK_ProjectDocument_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportBranch_Sport" Association="Self.FK_SportBranch_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportBranch" EntitySet="SportBranch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportModality_Sport" Association="Self.FK_SportModality_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportModality" EntitySet="SportModality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_Sport" Association="Self.FK_SportsSchedule_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_SportBranch" Association="Self.FK_SportsSchedule_SportBranch">
+            <End Role="SportBranch" EntitySet="SportBranch" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_SportModality" Association="Self.FK_SportsSchedule_SportModality">
+            <End Role="SportModality" EntitySet="SportModality" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="rinconcajica_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountSummary">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SportBranch" Relationship="RinconModel.FK_SportBranch_Sport" FromRole="Sport" ToRole="SportBranch" />
-          <NavigationProperty Name="SportModality" Relationship="RinconModel.FK_SportModality_Sport" FromRole="Sport" ToRole="SportModality" />
-          <NavigationProperty Name="SportSchedule" Relationship="RinconModel.FK_SportsSchedule_Sport" FromRole="Sport" ToRole="SportSchedule" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ano" Type="Int32" Nullable="false" />
+          <Property Name="mes" Type="Int32" Nullable="false" />
+          <Property Name="archivo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityType Name="Page">
+        <EntityType Name="ClubPartner">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="docid" />
           </Key>
-          <Property Type="String" Name="id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="titulo" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contenidoPublico" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contenidoPrivado" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="idSideBar" />
-          <NavigationProperty Name="SideBar" Relationship="RinconModel.FK_Page_SideBar" FromRole="Page" ToRole="SideBar" />
-        </EntityType>
-        <EntityType Name="SportBranch">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idDeporte" Nullable="false" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Sport" Relationship="RinconModel.FK_SportBranch_Sport" FromRole="SportBranch" ToRole="Sport" />
-          <NavigationProperty Name="SportSchedule" Relationship="RinconModel.FK_SportsSchedule_SportBranch" FromRole="SportBranch" ToRole="SportSchedule" />
-        </EntityType>
-        <EntityType Name="SportModality">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idDeporte" Nullable="false" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Sport" Relationship="RinconModel.FK_SportModality_Sport" FromRole="SportModality" ToRole="Sport" />
-          <NavigationProperty Name="SportSchedule" Relationship="RinconModel.FK_SportsSchedule_SportModality" FromRole="SportModality" ToRole="SportSchedule" />
-        </EntityType>
-        <Association Name="FK_SportBranch_Sport">
-          <End Type="RinconModel.Sport" Role="Sport" Multiplicity="1" />
-          <End Type="RinconModel.SportBranch" Role="SportBranch" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sport">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="SportBranch">
-              <PropertyRef Name="idDeporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SportModality_Sport">
-          <End Type="RinconModel.Sport" Role="Sport" Multiplicity="1" />
-          <End Type="RinconModel.SportModality" Role="SportModality" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sport">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="SportModality">
-              <PropertyRef Name="idDeporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="FileUpload">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Guid" Name="id" Nullable="false" />
-          <Property Type="String" Name="fileName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nombre" MaxLength="250" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="JoinContest">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idTorneo" Nullable="false" />
-          <Property Type="Int32" Name="idSocio" />
-          <Property Type="String" Name="tipoIdentificacion" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="identificacion" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nombre" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="telefonoFijo" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="telefonoCelular" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="email" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="categoria" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="fechaInscripcion" Nullable="false" Precision="3" />
-          <NavigationProperty Name="SportSchedule" Relationship="RinconModel.FK_JoinContest_SportSchedule" FromRole="JoinContest" ToRole="SportSchedule" />
+          <Property Name="docid" Type="Int32" Nullable="false" />
+          <Property Name="doccl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="carnet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="accion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cod_clie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rel_tit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fec_in" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direcc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fec_nac" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="doreco" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aprob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="teleco" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecmatr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="faxres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="faxofi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mailofi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mailres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ciudadr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jur_soc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nacional" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="acta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="traspaso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reingreso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="origen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fec_ret" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="matant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecmat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nomexc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="facdiv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecdiv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nhijos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cod_est" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docides" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docidtit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="socant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="motest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docidpad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="looker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="preferido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="especial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="orden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ciu_nac" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idUsuario" Type="Int32" />
+          <Property Name="fechaActualizacion" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="DocumentType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ProcessDocument" Relationship="RinconModel.FK_ProcessDocument_DocumentType" FromRole="DocumentType" ToRole="ProcessDocument" />
-          <NavigationProperty Name="ProjectDocument" Relationship="RinconModel.FK_ProjectDocument_DocumentType" FromRole="DocumentType" ToRole="ProjectDocument" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ProcessDocument" Relationship="Self.FK_ProcessDocument_DocumentType" FromRole="DocumentType" ToRole="ProcessDocument" />
+          <NavigationProperty Name="ProjectDocument" Relationship="Self.FK_ProjectDocument_DocumentType" FromRole="DocumentType" ToRole="ProjectDocument" />
         </EntityType>
         <EntityType Name="FileType">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="tipoMIME" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="extension" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipoMIME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="extension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityType Name="NewsPaper">
+        <EntityType Name="FileUpload">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="3" />
-          <Property Type="String" Name="titulo" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contenido" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="fileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Process">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="archivoCaracterizacion" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ProcessDocument" Relationship="RinconModel.FK_ProcessDocument_Process" FromRole="Process" ToRole="ProcessDocument" />
-        </EntityType>
-        <EntityType Name="ProcessDocument">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idProceso" Nullable="false" />
-          <Property Type="Int32" Name="idTipoDocumento" Nullable="false" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="descripcion" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ruta" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DocumentType" Relationship="RinconModel.FK_ProcessDocument_DocumentType" FromRole="ProcessDocument" ToRole="DocumentType" />
-          <NavigationProperty Name="Process" Relationship="RinconModel.FK_ProcessDocument_Process" FromRole="ProcessDocument" ToRole="Process" />
-        </EntityType>
-        <EntityType Name="Project">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ProjectDocument" Relationship="RinconModel.FK_ProjectDocument_Project" FromRole="Project" ToRole="ProjectDocument" />
-        </EntityType>
-        <EntityType Name="ProjectDocument">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idProyecto" Nullable="false" />
-          <Property Type="Int32" Name="idTipoDocumento" Nullable="false" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ruta" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DocumentType" Relationship="RinconModel.FK_ProjectDocument_DocumentType" FromRole="ProjectDocument" ToRole="DocumentType" />
-          <NavigationProperty Name="Project" Relationship="RinconModel.FK_ProjectDocument_Project" FromRole="ProjectDocument" ToRole="Project" />
-        </EntityType>
-        <Association Name="FK_ProcessDocument_DocumentType">
-          <End Type="RinconModel.DocumentType" Role="DocumentType" Multiplicity="1" />
-          <End Type="RinconModel.ProcessDocument" Role="ProcessDocument" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DocumentType">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProcessDocument">
-              <PropertyRef Name="idTipoDocumento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectDocument_DocumentType">
-          <End Type="RinconModel.DocumentType" Role="DocumentType" Multiplicity="1" />
-          <End Type="RinconModel.ProjectDocument" Role="ProjectDocument" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DocumentType">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProjectDocument">
-              <PropertyRef Name="idTipoDocumento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProcessDocument_Process">
-          <End Type="RinconModel.Process" Role="Process" Multiplicity="1" />
-          <End Type="RinconModel.ProcessDocument" Role="ProcessDocument" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Process">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProcessDocument">
-              <PropertyRef Name="idProceso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectDocument_Project">
-          <End Type="RinconModel.Project" Role="Project" Multiplicity="1" />
-          <End Type="RinconModel.ProjectDocument" Role="ProjectDocument" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProjectDocument">
-              <PropertyRef Name="idProyecto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="FrontUser">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contrasena" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="idRol" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="email" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasena" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idRol" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="HomeSlider">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Guid" Name="id" Nullable="false" />
-          <Property Type="String" Name="urlImagen" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="textoBoton1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="urlBoton1" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="textoBoton2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="urlBoton2" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="textoSlider" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="activo" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SideBar">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contenidoPublico" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="contenidoPrivado" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Page" Relationship="RinconModel.FK_Page_SideBar" FromRole="SideBar" ToRole="Page" />
-        </EntityType>
-        <Association Name="FK_Page_SideBar">
-          <End Type="RinconModel.SideBar" Role="SideBar" Multiplicity="0..1" />
-          <End Type="RinconModel.Page" Role="Page" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SideBar">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Page">
-              <PropertyRef Name="idSideBar" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ClubPartner">
-          <Key>
-            <PropertyRef Name="docid" />
-          </Key>
-          <Property Type="Int32" Name="docid" Nullable="false" />
-          <Property Type="String" Name="doccl" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="docto" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="carnet" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="accion" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="cod_clie" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="rel_tit" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fec_in" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nombre" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="direcc" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="telefn" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fax" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="correo" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ciudad" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fec_nac" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="estado" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="doreco" MaxLength="350" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="sexo" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="aprob" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="teleco" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fecmatr" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="faxres" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="faxofi" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="mailofi" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="mailres" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ciudadr" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="jur_soc" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nacional" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="acta" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="traspaso" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="reingreso" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="origen" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fec_ret" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="matant" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fecmat" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nomexc" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="facdiv" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fecdiv" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nhijos" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="cod_est" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="docides" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="docidtit" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="socant" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="motest" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="docidpad" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="usuario" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="fecha" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="hora" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="looker" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="celular" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="preferido" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="especial" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="orden" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ciu_nac" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="idUsuario" />
-          <Property Type="DateTime" Name="fechaActualizacion" Precision="3" />
-        </EntityType>
-        <EntityType Name="SportSchedule">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idDeporte" Nullable="false" />
-          <Property Type="DateTime" Name="inicio" Nullable="false" Precision="0" />
-          <Property Type="DateTime" Name="fin" Precision="0" />
-          <Property Type="String" Name="competencia" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="categoria" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="idModalidad" />
-          <Property Type="Int32" Name="idRama" />
-          <Property Type="Boolean" Name="aireacion" Nullable="false" />
-          <Property Type="Boolean" Name="visible" Nullable="false" />
-          <Property Type="String" Name="poster" MaxLength="350" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="privado" Nullable="false" />
-          <Property Type="String" Name="urlPagina" MaxLength="350" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="JoinContest" Relationship="RinconModel.FK_JoinContest_SportSchedule" FromRole="SportSchedule" ToRole="JoinContest" />
-          <NavigationProperty Name="Sport" Relationship="RinconModel.FK_SportsSchedule_Sport" FromRole="SportSchedule" ToRole="Sport" />
-          <NavigationProperty Name="SportBranch" Relationship="RinconModel.FK_SportsSchedule_SportBranch" FromRole="SportSchedule" ToRole="SportBranch" />
-          <NavigationProperty Name="SportModality" Relationship="RinconModel.FK_SportsSchedule_SportModality" FromRole="SportSchedule" ToRole="SportModality" />
-        </EntityType>
-        <Association Name="FK_JoinContest_SportSchedule">
-          <End Type="RinconModel.SportSchedule" Role="SportSchedule" Multiplicity="1" />
-          <End Type="RinconModel.JoinContest" Role="JoinContest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SportSchedule">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="JoinContest">
-              <PropertyRef Name="idTorneo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SportsSchedule_Sport">
-          <End Type="RinconModel.Sport" Role="Sport" Multiplicity="1" />
-          <End Type="RinconModel.SportSchedule" Role="SportSchedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sport">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="SportSchedule">
-              <PropertyRef Name="idDeporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SportsSchedule_SportBranch">
-          <End Type="RinconModel.SportBranch" Role="SportBranch" Multiplicity="0..1" />
-          <End Type="RinconModel.SportSchedule" Role="SportSchedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SportBranch">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="SportSchedule">
-              <PropertyRef Name="idRama" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SportsSchedule_SportModality">
-          <End Type="RinconModel.SportModality" Role="SportModality" Multiplicity="0..1" />
-          <End Type="RinconModel.SportSchedule" Role="SportSchedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SportModality">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="SportSchedule">
-              <PropertyRef Name="idModalidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AccountSummary">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="accion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="ano" Nullable="false" />
-          <Property Type="Int32" Name="mes" Nullable="false" />
-          <Property Type="String" Name="archivo" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="urlImagen" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="textoBoton1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="urlBoton1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="textoBoton2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="urlBoton2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="textoSlider" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="InstitutionalEvent">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="inicio" Nullable="false" Precision="0" />
-          <Property Type="DateTime" Name="fin" Precision="0" />
-          <Property Type="String" Name="nombreEvento" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="etiqueta1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="etiqueta2" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="etiqueta3" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="visible" Nullable="false" />
-          <Property Type="String" Name="poster" MaxLength="350" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="urlPagina" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fin" Type="DateTime" Precision="0" />
+          <Property Name="nombreEvento" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="etiqueta1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="etiqueta2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="etiqueta3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+          <Property Name="poster" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="urlPagina" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="JoinContest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTorneo" Type="Int32" Nullable="false" />
+          <Property Name="idSocio" Type="Int32" />
+          <Property Name="tipoIdentificacion" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoFijo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoCelular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaInscripcion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SportSchedule" Relationship="Self.FK_JoinContest_SportSchedule" FromRole="JoinContest" ToRole="SportSchedule" />
         </EntityType>
         <EntityType Name="JoinEvent">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idEvento" Nullable="false" />
-          <Property Type="Int32" Name="idSocio" />
-          <Property Type="String" Name="tipoIdentificacion" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="identificacion" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nombre" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="telefonoFijo" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="telefonoCelular" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="email" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="campoLibre1" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="campoLibre2" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="campoLibre3" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="fechaInscripcion" Nullable="false" Precision="3" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEvento" Type="Int32" Nullable="false" />
+          <Property Name="idSocio" Type="Int32" />
+          <Property Name="tipoIdentificacion" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoFijo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoCelular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="campoLibre1" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="campoLibre2" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="campoLibre3" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInscripcion" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="MessageActor">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="tipo" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="nit" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MessageBitacore" Relationship="RinconModel.FK_MessageBitacore_MessageActor" FromRole="MessageActor" ToRole="MessageBitacore" />
-        </EntityType>
-        <EntityType Name="PartnerConsumption">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Punto_venta_a" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Producto" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Punto_venta_b" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Codigo_producto" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Cantidad" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="Valor_producto" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="0" />
-          <Property Type="String" Name="Docid_consumidor" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Nufactura" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Sufijo" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Type="Decimal" Name="Propina" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="Decimal" Name="Total_fac" Nullable="false" Precision="10" Scale="2" />
-          <Property Type="String" Name="Consumidor" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Docid_pagador" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Pagador" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MessageBitacore" Relationship="Self.FK_MessageBitacore_MessageActor" FromRole="MessageActor" ToRole="MessageBitacore" />
         </EntityType>
         <EntityType Name="MessageBitacore">
           <Key>
             <PropertyRef Name="tipoRegistro" />
             <PropertyRef Name="idRegistro" />
           </Key>
-          <Property Type="String" Name="tipoRegistro" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Type="Int64" Name="idRegistro" Nullable="false" />
-          <Property Type="DateTime" Name="fecha" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="origen" Nullable="false" />
-          <Property Type="Int32" Name="destino" Nullable="false" />
-          <Property Type="Boolean" Name="entregaPersonal" Nullable="false" />
-          <Property Type="Byte" Name="prioridad" Nullable="false" />
-          <Property Type="String" Name="descripcionCorta" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="descripcionLarga" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="direccion" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="fechaLimite" Precision="0" />
-          <Property Type="Boolean" Name="enviado" Nullable="false" />
-          <NavigationProperty Name="MessageActor" Relationship="RinconModel.FK_MessageBitacore_MessageActor" FromRole="MessageBitacore" ToRole="MessageActor" />
+          <Property Name="tipoRegistro" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="idRegistro" Type="Int64" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="origen" Type="Int32" Nullable="false" />
+          <Property Name="destino" Type="Int32" Nullable="false" />
+          <Property Name="entregaPersonal" Type="Boolean" Nullable="false" />
+          <Property Name="prioridad" Type="Byte" Nullable="false" />
+          <Property Name="descripcionCorta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcionLarga" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="fechaLimite" Type="DateTime" Precision="0" />
+          <Property Name="enviado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MessageActor" Relationship="Self.FK_MessageBitacore_MessageActor" FromRole="MessageBitacore" ToRole="MessageActor" />
         </EntityType>
+        <EntityType Name="mimetype">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="mimetype1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="extension" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NewsPaper">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="titulo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenido" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contenidoPublico" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="contenidoPrivado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idSideBar" Type="Int32" />
+          <NavigationProperty Name="SideBar" Relationship="Self.FK_Page_SideBar" FromRole="Page" ToRole="SideBar" />
+        </EntityType>
+        <EntityType Name="PartnerConsumption">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Punto_venta_a" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Producto" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Punto_venta_b" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Codigo_producto" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cantidad" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor_producto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Docid_consumidor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Nufactura" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sufijo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Propina" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Total_fac" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Consumidor" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Docid_pagador" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pagador" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Process">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="archivoCaracterizacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProcessDocument" Relationship="Self.FK_ProcessDocument_Process" FromRole="Process" ToRole="ProcessDocument" />
+        </EntityType>
+        <EntityType Name="ProcessDocument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProceso" Type="Int32" Nullable="false" />
+          <Property Name="idTipoDocumento" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ruta" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DocumentType" Relationship="Self.FK_ProcessDocument_DocumentType" FromRole="ProcessDocument" ToRole="DocumentType" />
+          <NavigationProperty Name="Process" Relationship="Self.FK_ProcessDocument_Process" FromRole="ProcessDocument" ToRole="Process" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ProjectDocument" Relationship="Self.FK_ProjectDocument_Project" FromRole="Project" ToRole="ProjectDocument" />
+        </EntityType>
+        <EntityType Name="ProjectDocument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="idTipoDocumento" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ruta" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DocumentType" Relationship="Self.FK_ProjectDocument_DocumentType" FromRole="ProjectDocument" ToRole="DocumentType" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_ProjectDocument_Project" FromRole="ProjectDocument" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="SideBar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenidoPublico" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contenidoPrivado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Page" Relationship="Self.FK_Page_SideBar" FromRole="SideBar" ToRole="Page" />
+        </EntityType>
+        <EntityType Name="Sport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SportBranch" Relationship="Self.FK_SportBranch_Sport" FromRole="Sport" ToRole="SportBranch" />
+          <NavigationProperty Name="SportModality" Relationship="Self.FK_SportModality_Sport" FromRole="Sport" ToRole="SportModality" />
+          <NavigationProperty Name="SportSchedule" Relationship="Self.FK_SportsSchedule_Sport" FromRole="Sport" ToRole="SportSchedule" />
+        </EntityType>
+        <EntityType Name="SportBranch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDeporte" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sport" Relationship="Self.FK_SportBranch_Sport" FromRole="SportBranch" ToRole="Sport" />
+          <NavigationProperty Name="SportSchedule" Relationship="Self.FK_SportsSchedule_SportBranch" FromRole="SportBranch" ToRole="SportSchedule" />
+        </EntityType>
+        <EntityType Name="SportModality">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDeporte" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Sport" Relationship="Self.FK_SportModality_Sport" FromRole="SportModality" ToRole="Sport" />
+          <NavigationProperty Name="SportSchedule" Relationship="Self.FK_SportsSchedule_SportModality" FromRole="SportModality" ToRole="SportSchedule" />
+        </EntityType>
+        <EntityType Name="SportSchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDeporte" Type="Int32" Nullable="false" />
+          <Property Name="inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fin" Type="DateTime" Precision="0" />
+          <Property Name="competencia" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="categoria" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="idModalidad" Type="Int32" />
+          <Property Name="idRama" Type="Int32" />
+          <Property Name="aireacion" Type="Boolean" Nullable="false" />
+          <Property Name="visible" Type="Boolean" Nullable="false" />
+          <Property Name="poster" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="privado" Type="Boolean" Nullable="false" />
+          <Property Name="urlPagina" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JoinContest" Relationship="Self.FK_JoinContest_SportSchedule" FromRole="SportSchedule" ToRole="JoinContest" />
+          <NavigationProperty Name="Sport" Relationship="Self.FK_SportsSchedule_Sport" FromRole="SportSchedule" ToRole="Sport" />
+          <NavigationProperty Name="SportBranch" Relationship="Self.FK_SportsSchedule_SportBranch" FromRole="SportSchedule" ToRole="SportBranch" />
+          <NavigationProperty Name="SportModality" Relationship="Self.FK_SportsSchedule_SportModality" FromRole="SportSchedule" ToRole="SportModality" />
+        </EntityType>
+        <Association Name="FK_ProcessDocument_DocumentType">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="ProcessDocument" Type="Self.ProcessDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProcessDocument">
+              <PropertyRef Name="idTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDocument_DocumentType">
+          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
+          <End Role="ProjectDocument" Type="Self.ProjectDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectDocument">
+              <PropertyRef Name="idTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JoinContest_SportSchedule">
+          <End Role="SportSchedule" Type="Self.SportSchedule" Multiplicity="1" />
+          <End Role="JoinContest" Type="Self.JoinContest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportSchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="JoinContest">
+              <PropertyRef Name="idTorneo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MessageBitacore_MessageActor">
-          <End Type="RinconModel.MessageActor" Role="MessageActor" Multiplicity="1" />
-          <End Type="RinconModel.MessageBitacore" Role="MessageBitacore" Multiplicity="*" />
+          <End Role="MessageActor" Type="Self.MessageActor" Multiplicity="1" />
+          <End Role="MessageBitacore" Type="Self.MessageBitacore" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MessageActor">
               <PropertyRef Name="id" />
@@ -1109,356 +959,537 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <Association Name="FK_Page_SideBar">
+          <End Role="SideBar" Type="Self.SideBar" Multiplicity="0..1" />
+          <End Role="Page" Type="Self.Page" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SideBar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Page">
+              <PropertyRef Name="idSideBar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessDocument_Process">
+          <End Role="Process" Type="Self.Process" Multiplicity="1" />
+          <End Role="ProcessDocument" Type="Self.ProcessDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Process">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProcessDocument">
+              <PropertyRef Name="idProceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDocument_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectDocument" Type="Self.ProjectDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProjectDocument">
+              <PropertyRef Name="idProyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportBranch_Sport">
+          <End Role="Sport" Type="Self.Sport" Multiplicity="1" />
+          <End Role="SportBranch" Type="Self.SportBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportBranch">
+              <PropertyRef Name="idDeporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportModality_Sport">
+          <End Role="Sport" Type="Self.Sport" Multiplicity="1" />
+          <End Role="SportModality" Type="Self.SportModality" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportModality">
+              <PropertyRef Name="idDeporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportsSchedule_Sport">
+          <End Role="Sport" Type="Self.Sport" Multiplicity="1" />
+          <End Role="SportSchedule" Type="Self.SportSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sport">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportSchedule">
+              <PropertyRef Name="idDeporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportsSchedule_SportBranch">
+          <End Role="SportBranch" Type="Self.SportBranch" Multiplicity="0..1" />
+          <End Role="SportSchedule" Type="Self.SportSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportBranch">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportSchedule">
+              <PropertyRef Name="idRama" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SportsSchedule_SportModality">
+          <End Role="SportModality" Type="Self.SportModality" Multiplicity="0..1" />
+          <End Role="SportSchedule" Type="Self.SportSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SportModality">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SportSchedule">
+              <PropertyRef Name="idModalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RinconEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountSummary" EntityType="Self.AccountSummary" />
+          <EntitySet Name="ClubPartner" EntityType="Self.ClubPartner" />
+          <EntitySet Name="DocumentType" EntityType="Self.DocumentType" />
+          <EntitySet Name="FileType" EntityType="Self.FileType" />
+          <EntitySet Name="FileUpload" EntityType="Self.FileUpload" />
+          <EntitySet Name="FrontUser" EntityType="Self.FrontUser" />
+          <EntitySet Name="HomeSlider" EntityType="Self.HomeSlider" />
+          <EntitySet Name="InstitutionalEvent" EntityType="Self.InstitutionalEvent" />
+          <EntitySet Name="JoinContest" EntityType="Self.JoinContest" />
+          <EntitySet Name="JoinEvent" EntityType="Self.JoinEvent" />
+          <EntitySet Name="MessageActor" EntityType="Self.MessageActor" />
+          <EntitySet Name="MessageBitacore" EntityType="Self.MessageBitacore" />
+          <EntitySet Name="mimetype" EntityType="Self.mimetype" />
+          <EntitySet Name="NewsPaper" EntityType="Self.NewsPaper" />
+          <EntitySet Name="Page" EntityType="Self.Page" />
+          <EntitySet Name="PartnerConsumption" EntityType="Self.PartnerConsumption" />
+          <EntitySet Name="Process" EntityType="Self.Process" />
+          <EntitySet Name="ProcessDocument" EntityType="Self.ProcessDocument" />
+          <EntitySet Name="Project" EntityType="Self.Project" />
+          <EntitySet Name="ProjectDocument" EntityType="Self.ProjectDocument" />
+          <EntitySet Name="SideBar" EntityType="Self.SideBar" />
+          <EntitySet Name="Sport" EntityType="Self.Sport" />
+          <EntitySet Name="SportBranch" EntityType="Self.SportBranch" />
+          <EntitySet Name="SportModality" EntityType="Self.SportModality" />
+          <EntitySet Name="SportSchedule" EntityType="Self.SportSchedule" />
+          <AssociationSet Name="FK_ProcessDocument_DocumentType" Association="Self.FK_ProcessDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDocument_DocumentType" Association="Self.FK_ProjectDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JoinContest_SportSchedule" Association="Self.FK_JoinContest_SportSchedule">
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+            <End Role="JoinContest" EntitySet="JoinContest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessageBitacore_MessageActor" Association="Self.FK_MessageBitacore_MessageActor">
+            <End Role="MessageActor" EntitySet="MessageActor" />
+            <End Role="MessageBitacore" EntitySet="MessageBitacore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Page_SideBar" Association="Self.FK_Page_SideBar">
+            <End Role="SideBar" EntitySet="SideBar" />
+            <End Role="Page" EntitySet="Page" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessDocument_Process" Association="Self.FK_ProcessDocument_Process">
+            <End Role="Process" EntitySet="Process" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDocument_Project" Association="Self.FK_ProjectDocument_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectDocument" EntitySet="ProjectDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportBranch_Sport" Association="Self.FK_SportBranch_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportBranch" EntitySet="SportBranch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportModality_Sport" Association="Self.FK_SportModality_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportModality" EntitySet="SportModality" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_Sport" Association="Self.FK_SportsSchedule_Sport">
+            <End Role="Sport" EntitySet="Sport" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_SportBranch" Association="Self.FK_SportsSchedule_SportBranch">
+            <End Role="SportBranch" EntitySet="SportBranch" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SportsSchedule_SportModality" Association="Self.FK_SportsSchedule_SportModality">
+            <End Role="SportModality" EntitySet="SportModality" />
+            <End Role="SportSchedule" EntitySet="SportSchedule" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RinconModelStoreContainer" CdmEntityContainer="RinconEntities">
-          <EntitySetMapping Name="Sport">
-            <EntityTypeMapping TypeName="RinconModel.Sport">
-              <MappingFragment StoreEntitySet="Sport">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
+        <EntityContainerMapping StorageEntityContainer="rinconcajica_dbModelStoreContainer" CdmEntityContainer="RinconEntities">
+          <EntitySetMapping Name="AccountSummary">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.AccountSummary">
+              <MappingFragment StoreEntitySet="AccountSummary">
                 <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Page">
-            <EntityTypeMapping TypeName="RinconModel.Page">
-              <MappingFragment StoreEntitySet="Page">
-                <ScalarProperty Name="idSideBar" ColumnName="idSideBar" />
-                <ScalarProperty Name="contenidoPrivado" ColumnName="contenidoPrivado" />
-                <ScalarProperty Name="contenidoPublico" ColumnName="contenidoPublico" />
-                <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SportBranch">
-            <EntityTypeMapping TypeName="RinconModel.SportBranch">
-              <MappingFragment StoreEntitySet="SportBranch">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SportModality">
-            <EntityTypeMapping TypeName="RinconModel.SportModality">
-              <MappingFragment StoreEntitySet="SportModality">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FileUpload">
-            <EntityTypeMapping TypeName="RinconModel.FileUpload">
-              <MappingFragment StoreEntitySet="FileUpload">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="fileName" ColumnName="fileName" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="JoinContest">
-            <EntityTypeMapping TypeName="RinconModel.JoinContest">
-              <MappingFragment StoreEntitySet="JoinContest">
-                <ScalarProperty Name="fechaInscripcion" ColumnName="fechaInscripcion" />
-                <ScalarProperty Name="categoria" ColumnName="categoria" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="telefonoCelular" ColumnName="telefonoCelular" />
-                <ScalarProperty Name="telefonoFijo" ColumnName="telefonoFijo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
-                <ScalarProperty Name="tipoIdentificacion" ColumnName="tipoIdentificacion" />
-                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
-                <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DocumentType">
-            <EntityTypeMapping TypeName="RinconModel.DocumentType">
-              <MappingFragment StoreEntitySet="DocumentType">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FileType">
-            <EntityTypeMapping TypeName="RinconModel.FileType">
-              <MappingFragment StoreEntitySet="FileType">
-                <ScalarProperty Name="extension" ColumnName="extension" />
-                <ScalarProperty Name="tipoMIME" ColumnName="tipoMIME" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NewsPaper">
-            <EntityTypeMapping TypeName="RinconModel.NewsPaper">
-              <MappingFragment StoreEntitySet="NewsPaper">
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-                <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Process">
-            <EntityTypeMapping TypeName="RinconModel.Process">
-              <MappingFragment StoreEntitySet="Process">
-                <ScalarProperty Name="archivoCaracterizacion" ColumnName="archivoCaracterizacion" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProcessDocument">
-            <EntityTypeMapping TypeName="RinconModel.ProcessDocument">
-              <MappingFragment StoreEntitySet="ProcessDocument">
-                <ScalarProperty Name="ruta" ColumnName="ruta" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
-                <ScalarProperty Name="idProceso" ColumnName="idProceso" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Project">
-            <EntityTypeMapping TypeName="RinconModel.Project">
-              <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProjectDocument">
-            <EntityTypeMapping TypeName="RinconModel.ProjectDocument">
-              <MappingFragment StoreEntitySet="ProjectDocument">
-                <ScalarProperty Name="ruta" ColumnName="ruta" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
-                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FrontUser">
-            <EntityTypeMapping TypeName="RinconModel.FrontUser">
-              <MappingFragment StoreEntitySet="FrontUser">
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="idRol" ColumnName="idRol" />
-                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HomeSlider">
-            <EntityTypeMapping TypeName="RinconModel.HomeSlider">
-              <MappingFragment StoreEntitySet="HomeSlider">
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="textoSlider" ColumnName="textoSlider" />
-                <ScalarProperty Name="urlBoton2" ColumnName="urlBoton2" />
-                <ScalarProperty Name="textoBoton2" ColumnName="textoBoton2" />
-                <ScalarProperty Name="urlBoton1" ColumnName="urlBoton1" />
-                <ScalarProperty Name="textoBoton1" ColumnName="textoBoton1" />
-                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SideBar">
-            <EntityTypeMapping TypeName="RinconModel.SideBar">
-              <MappingFragment StoreEntitySet="SideBar">
-                <ScalarProperty Name="contenidoPrivado" ColumnName="contenidoPrivado" />
-                <ScalarProperty Name="contenidoPublico" ColumnName="contenidoPublico" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accion" ColumnName="accion" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClubPartner">
-            <EntityTypeMapping TypeName="RinconModel.ClubPartner">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.ClubPartner">
               <MappingFragment StoreEntitySet="ClubPartner">
-                <ScalarProperty Name="fechaActualizacion" ColumnName="fechaActualizacion" />
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="ciu_nac" ColumnName="ciu_nac" />
-                <ScalarProperty Name="orden" ColumnName="orden" />
-                <ScalarProperty Name="especial" ColumnName="especial" />
-                <ScalarProperty Name="preferido" ColumnName="preferido" />
-                <ScalarProperty Name="celular" ColumnName="celular" />
-                <ScalarProperty Name="looker" ColumnName="looker" />
-                <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="docidpad" ColumnName="docidpad" />
-                <ScalarProperty Name="motest" ColumnName="motest" />
-                <ScalarProperty Name="socant" ColumnName="socant" />
-                <ScalarProperty Name="docidtit" ColumnName="docidtit" />
-                <ScalarProperty Name="docides" ColumnName="docides" />
-                <ScalarProperty Name="cod_est" ColumnName="cod_est" />
-                <ScalarProperty Name="nhijos" ColumnName="nhijos" />
-                <ScalarProperty Name="fecdiv" ColumnName="fecdiv" />
-                <ScalarProperty Name="facdiv" ColumnName="facdiv" />
-                <ScalarProperty Name="nomexc" ColumnName="nomexc" />
-                <ScalarProperty Name="fecmat" ColumnName="fecmat" />
-                <ScalarProperty Name="matant" ColumnName="matant" />
-                <ScalarProperty Name="fec_ret" ColumnName="fec_ret" />
-                <ScalarProperty Name="origen" ColumnName="origen" />
-                <ScalarProperty Name="reingreso" ColumnName="reingreso" />
-                <ScalarProperty Name="traspaso" ColumnName="traspaso" />
-                <ScalarProperty Name="acta" ColumnName="acta" />
-                <ScalarProperty Name="nacional" ColumnName="nacional" />
-                <ScalarProperty Name="jur_soc" ColumnName="jur_soc" />
-                <ScalarProperty Name="ciudadr" ColumnName="ciudadr" />
-                <ScalarProperty Name="mailres" ColumnName="mailres" />
-                <ScalarProperty Name="mailofi" ColumnName="mailofi" />
-                <ScalarProperty Name="faxofi" ColumnName="faxofi" />
-                <ScalarProperty Name="faxres" ColumnName="faxres" />
-                <ScalarProperty Name="fecmatr" ColumnName="fecmatr" />
-                <ScalarProperty Name="teleco" ColumnName="teleco" />
-                <ScalarProperty Name="aprob" ColumnName="aprob" />
-                <ScalarProperty Name="sexo" ColumnName="sexo" />
-                <ScalarProperty Name="doreco" ColumnName="doreco" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fec_nac" ColumnName="fec_nac" />
-                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="fax" ColumnName="fax" />
-                <ScalarProperty Name="telefn" ColumnName="telefn" />
-                <ScalarProperty Name="direcc" ColumnName="direcc" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="fec_in" ColumnName="fec_in" />
-                <ScalarProperty Name="rel_tit" ColumnName="rel_tit" />
-                <ScalarProperty Name="cod_clie" ColumnName="cod_clie" />
-                <ScalarProperty Name="accion" ColumnName="accion" />
-                <ScalarProperty Name="carnet" ColumnName="carnet" />
-                <ScalarProperty Name="docto" ColumnName="docto" />
-                <ScalarProperty Name="doccl" ColumnName="doccl" />
                 <ScalarProperty Name="docid" ColumnName="docid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SportSchedule">
-            <EntityTypeMapping TypeName="RinconModel.SportSchedule">
-              <MappingFragment StoreEntitySet="SportSchedule">
-                <ScalarProperty Name="urlPagina" ColumnName="urlPagina" />
-                <ScalarProperty Name="privado" ColumnName="privado" />
-                <ScalarProperty Name="poster" ColumnName="poster" />
-                <ScalarProperty Name="visible" ColumnName="visible" />
-                <ScalarProperty Name="aireacion" ColumnName="aireacion" />
-                <ScalarProperty Name="idRama" ColumnName="idRama" />
-                <ScalarProperty Name="idModalidad" ColumnName="idModalidad" />
-                <ScalarProperty Name="categoria" ColumnName="categoria" />
-                <ScalarProperty Name="competencia" ColumnName="competencia" />
-                <ScalarProperty Name="fin" ColumnName="fin" />
-                <ScalarProperty Name="inicio" ColumnName="inicio" />
-                <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AccountSummary">
-            <EntityTypeMapping TypeName="RinconModel.AccountSummary">
-              <MappingFragment StoreEntitySet="AccountSummary">
-                <ScalarProperty Name="archivo" ColumnName="archivo" />
-                <ScalarProperty Name="mes" ColumnName="mes" />
-                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="doccl" ColumnName="doccl" />
+                <ScalarProperty Name="docto" ColumnName="docto" />
+                <ScalarProperty Name="carnet" ColumnName="carnet" />
                 <ScalarProperty Name="accion" ColumnName="accion" />
+                <ScalarProperty Name="cod_clie" ColumnName="cod_clie" />
+                <ScalarProperty Name="rel_tit" ColumnName="rel_tit" />
+                <ScalarProperty Name="fec_in" ColumnName="fec_in" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direcc" ColumnName="direcc" />
+                <ScalarProperty Name="telefn" ColumnName="telefn" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="fec_nac" ColumnName="fec_nac" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="doreco" ColumnName="doreco" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="aprob" ColumnName="aprob" />
+                <ScalarProperty Name="teleco" ColumnName="teleco" />
+                <ScalarProperty Name="fecmatr" ColumnName="fecmatr" />
+                <ScalarProperty Name="faxres" ColumnName="faxres" />
+                <ScalarProperty Name="faxofi" ColumnName="faxofi" />
+                <ScalarProperty Name="mailofi" ColumnName="mailofi" />
+                <ScalarProperty Name="mailres" ColumnName="mailres" />
+                <ScalarProperty Name="ciudadr" ColumnName="ciudadr" />
+                <ScalarProperty Name="jur_soc" ColumnName="jur_soc" />
+                <ScalarProperty Name="nacional" ColumnName="nacional" />
+                <ScalarProperty Name="acta" ColumnName="acta" />
+                <ScalarProperty Name="traspaso" ColumnName="traspaso" />
+                <ScalarProperty Name="reingreso" ColumnName="reingreso" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="fec_ret" ColumnName="fec_ret" />
+                <ScalarProperty Name="matant" ColumnName="matant" />
+                <ScalarProperty Name="fecmat" ColumnName="fecmat" />
+                <ScalarProperty Name="nomexc" ColumnName="nomexc" />
+                <ScalarProperty Name="facdiv" ColumnName="facdiv" />
+                <ScalarProperty Name="fecdiv" ColumnName="fecdiv" />
+                <ScalarProperty Name="nhijos" ColumnName="nhijos" />
+                <ScalarProperty Name="cod_est" ColumnName="cod_est" />
+                <ScalarProperty Name="docides" ColumnName="docides" />
+                <ScalarProperty Name="docidtit" ColumnName="docidtit" />
+                <ScalarProperty Name="socant" ColumnName="socant" />
+                <ScalarProperty Name="motest" ColumnName="motest" />
+                <ScalarProperty Name="docidpad" ColumnName="docidpad" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="looker" ColumnName="looker" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="preferido" ColumnName="preferido" />
+                <ScalarProperty Name="especial" ColumnName="especial" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="ciu_nac" ColumnName="ciu_nac" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="fechaActualizacion" ColumnName="fechaActualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentType">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.DocumentType">
+              <MappingFragment StoreEntitySet="DocumentType">
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileType">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.FileType">
+              <MappingFragment StoreEntitySet="FileType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tipoMIME" ColumnName="tipoMIME" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileUpload">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.FileUpload">
+              <MappingFragment StoreEntitySet="FileUpload">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FrontUser">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.FrontUser">
+              <MappingFragment StoreEntitySet="FrontUser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeSlider">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.HomeSlider">
+              <MappingFragment StoreEntitySet="HomeSlider">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="urlImagen" ColumnName="urlImagen" />
+                <ScalarProperty Name="textoBoton1" ColumnName="textoBoton1" />
+                <ScalarProperty Name="urlBoton1" ColumnName="urlBoton1" />
+                <ScalarProperty Name="textoBoton2" ColumnName="textoBoton2" />
+                <ScalarProperty Name="urlBoton2" ColumnName="urlBoton2" />
+                <ScalarProperty Name="textoSlider" ColumnName="textoSlider" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InstitutionalEvent">
-            <EntityTypeMapping TypeName="RinconModel.InstitutionalEvent">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.InstitutionalEvent">
               <MappingFragment StoreEntitySet="InstitutionalEvent">
-                <ScalarProperty Name="urlPagina" ColumnName="urlPagina" />
-                <ScalarProperty Name="poster" ColumnName="poster" />
-                <ScalarProperty Name="visible" ColumnName="visible" />
-                <ScalarProperty Name="etiqueta3" ColumnName="etiqueta3" />
-                <ScalarProperty Name="etiqueta2" ColumnName="etiqueta2" />
-                <ScalarProperty Name="etiqueta1" ColumnName="etiqueta1" />
-                <ScalarProperty Name="nombreEvento" ColumnName="nombreEvento" />
-                <ScalarProperty Name="fin" ColumnName="fin" />
-                <ScalarProperty Name="inicio" ColumnName="inicio" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="fin" ColumnName="fin" />
+                <ScalarProperty Name="nombreEvento" ColumnName="nombreEvento" />
+                <ScalarProperty Name="etiqueta1" ColumnName="etiqueta1" />
+                <ScalarProperty Name="etiqueta2" ColumnName="etiqueta2" />
+                <ScalarProperty Name="etiqueta3" ColumnName="etiqueta3" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="poster" ColumnName="poster" />
+                <ScalarProperty Name="urlPagina" ColumnName="urlPagina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JoinContest">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.JoinContest">
+              <MappingFragment StoreEntitySet="JoinContest">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTorneo" ColumnName="idTorneo" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="tipoIdentificacion" ColumnName="tipoIdentificacion" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefonoFijo" ColumnName="telefonoFijo" />
+                <ScalarProperty Name="telefonoCelular" ColumnName="telefonoCelular" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="fechaInscripcion" ColumnName="fechaInscripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JoinEvent">
-            <EntityTypeMapping TypeName="RinconModel.JoinEvent">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.JoinEvent">
               <MappingFragment StoreEntitySet="JoinEvent">
-                <ScalarProperty Name="fechaInscripcion" ColumnName="fechaInscripcion" />
-                <ScalarProperty Name="campoLibre3" ColumnName="campoLibre3" />
-                <ScalarProperty Name="campoLibre2" ColumnName="campoLibre2" />
-                <ScalarProperty Name="campoLibre1" ColumnName="campoLibre1" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="telefonoCelular" ColumnName="telefonoCelular" />
-                <ScalarProperty Name="telefonoFijo" ColumnName="telefonoFijo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
-                <ScalarProperty Name="tipoIdentificacion" ColumnName="tipoIdentificacion" />
-                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
-                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="tipoIdentificacion" ColumnName="tipoIdentificacion" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefonoFijo" ColumnName="telefonoFijo" />
+                <ScalarProperty Name="telefonoCelular" ColumnName="telefonoCelular" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="campoLibre1" ColumnName="campoLibre1" />
+                <ScalarProperty Name="campoLibre2" ColumnName="campoLibre2" />
+                <ScalarProperty Name="campoLibre3" ColumnName="campoLibre3" />
+                <ScalarProperty Name="fechaInscripcion" ColumnName="fechaInscripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MessageActor">
-            <EntityTypeMapping TypeName="RinconModel.MessageActor">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.MessageActor">
               <MappingFragment StoreEntitySet="MessageActor">
-                <ScalarProperty Name="nit" ColumnName="nit" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PartnerConsumption">
-            <EntityTypeMapping TypeName="RinconModel.PartnerConsumption">
-              <MappingFragment StoreEntitySet="PartnerConsumption">
-                <ScalarProperty Name="Pagador" ColumnName="Pagador" />
-                <ScalarProperty Name="Docid_pagador" ColumnName="Docid_pagador" />
-                <ScalarProperty Name="Consumidor" ColumnName="Consumidor" />
-                <ScalarProperty Name="Total_fac" ColumnName="Total_fac" />
-                <ScalarProperty Name="Propina" ColumnName="Propina" />
-                <ScalarProperty Name="Sufijo" ColumnName="Sufijo" />
-                <ScalarProperty Name="Nufactura" ColumnName="Nufactura" />
-                <ScalarProperty Name="Docid_consumidor" ColumnName="Docid_consumidor" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Valor_producto" ColumnName="Valor_producto" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Codigo_producto" ColumnName="Codigo_producto" />
-                <ScalarProperty Name="Punto_venta_b" ColumnName="Punto_venta_b" />
-                <ScalarProperty Name="Producto" ColumnName="Producto" />
-                <ScalarProperty Name="Punto_venta_a" ColumnName="Punto_venta_a" />
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nit" ColumnName="nit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MessageBitacore">
-            <EntityTypeMapping TypeName="RinconModel.MessageBitacore">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.MessageBitacore">
               <MappingFragment StoreEntitySet="MessageBitacore">
-                <ScalarProperty Name="enviado" ColumnName="enviado" />
-                <ScalarProperty Name="fechaLimite" ColumnName="fechaLimite" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="descripcionLarga" ColumnName="descripcionLarga" />
-                <ScalarProperty Name="descripcionCorta" ColumnName="descripcionCorta" />
-                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
-                <ScalarProperty Name="entregaPersonal" ColumnName="entregaPersonal" />
-                <ScalarProperty Name="destino" ColumnName="destino" />
-                <ScalarProperty Name="origen" ColumnName="origen" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="idRegistro" ColumnName="idRegistro" />
                 <ScalarProperty Name="tipoRegistro" ColumnName="tipoRegistro" />
+                <ScalarProperty Name="idRegistro" ColumnName="idRegistro" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="origen" ColumnName="origen" />
+                <ScalarProperty Name="destino" ColumnName="destino" />
+                <ScalarProperty Name="entregaPersonal" ColumnName="entregaPersonal" />
+                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+                <ScalarProperty Name="descripcionCorta" ColumnName="descripcionCorta" />
+                <ScalarProperty Name="descripcionLarga" ColumnName="descripcionLarga" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="fechaLimite" ColumnName="fechaLimite" />
+                <ScalarProperty Name="enviado" ColumnName="enviado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+          <EntitySetMapping Name="mimetype">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.mimetype">
+              <MappingFragment StoreEntitySet="mimetype">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="mimetype1" ColumnName="mimetype" />
+                <ScalarProperty Name="extension" ColumnName="extension" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsPaper">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.NewsPaper">
+              <MappingFragment StoreEntitySet="NewsPaper">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="contenido" ColumnName="contenido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Page">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="contenidoPublico" ColumnName="contenidoPublico" />
+                <ScalarProperty Name="contenidoPrivado" ColumnName="contenidoPrivado" />
+                <ScalarProperty Name="idSideBar" ColumnName="idSideBar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartnerConsumption">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.PartnerConsumption">
+              <MappingFragment StoreEntitySet="PartnerConsumption">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Punto_venta_a" ColumnName="Punto_venta_a" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Punto_venta_b" ColumnName="Punto_venta_b" />
+                <ScalarProperty Name="Codigo_producto" ColumnName="Codigo_producto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Valor_producto" ColumnName="Valor_producto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Docid_consumidor" ColumnName="Docid_consumidor" />
+                <ScalarProperty Name="Nufactura" ColumnName="Nufactura" />
+                <ScalarProperty Name="Sufijo" ColumnName="Sufijo" />
+                <ScalarProperty Name="Propina" ColumnName="Propina" />
+                <ScalarProperty Name="Total_fac" ColumnName="Total_fac" />
+                <ScalarProperty Name="Consumidor" ColumnName="Consumidor" />
+                <ScalarProperty Name="Docid_pagador" ColumnName="Docid_pagador" />
+                <ScalarProperty Name="Pagador" ColumnName="Pagador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Process">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.Process">
+              <MappingFragment StoreEntitySet="Process">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="archivoCaracterizacion" ColumnName="archivoCaracterizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessDocument">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.ProcessDocument">
+              <MappingFragment StoreEntitySet="ProcessDocument">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idProceso" ColumnName="idProceso" />
+                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectDocument">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.ProjectDocument">
+              <MappingFragment StoreEntitySet="ProjectDocument">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SideBar">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.SideBar">
+              <MappingFragment StoreEntitySet="SideBar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="contenidoPublico" ColumnName="contenidoPublico" />
+                <ScalarProperty Name="contenidoPrivado" ColumnName="contenidoPrivado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sport">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.Sport">
+              <MappingFragment StoreEntitySet="Sport">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SportBranch">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.SportBranch">
+              <MappingFragment StoreEntitySet="SportBranch">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SportModality">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.SportModality">
+              <MappingFragment StoreEntitySet="SportModality">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SportSchedule">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.SportSchedule">
+              <MappingFragment StoreEntitySet="SportSchedule">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idDeporte" ColumnName="idDeporte" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="fin" ColumnName="fin" />
+                <ScalarProperty Name="competencia" ColumnName="competencia" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="idModalidad" ColumnName="idModalidad" />
+                <ScalarProperty Name="idRama" ColumnName="idRama" />
+                <ScalarProperty Name="aireacion" ColumnName="aireacion" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="poster" ColumnName="poster" />
+                <ScalarProperty Name="privado" ColumnName="privado" />
+                <ScalarProperty Name="urlPagina" ColumnName="urlPagina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -1472,9 +1503,10 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

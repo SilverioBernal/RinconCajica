@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
 using Orkidea.RinconCajica.webFront.Models;
+using Orkidea.RinconCajica.Utilities;
 
 namespace Orkidea.RinconCajica.webFront.Controllers
 {
@@ -233,6 +234,24 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
+
+        public ActionResult Details(string id)
+        {
+            string mimeType = "";
+            int cuentaPuntos = 0;            
+
+            string[] nombreArchivo = id.Split('.');
+            cuentaPuntos = nombreArchivo.Length;
+
+            mimeType = BizMimeType.GetMimeType(nombreArchivo[cuentaPuntos - 1]).mimetype1;
+
+            //dynamically generate a file
+            System.IO.MemoryStream ms;
+            ms = AzureStorageHelper.getFile(id, "uploadedFiles");
+
+            // return the file
+            return File(ms.ToArray(), mimeType);
         }
     }
 }

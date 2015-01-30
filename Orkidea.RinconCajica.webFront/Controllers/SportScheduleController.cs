@@ -422,7 +422,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             
 
-            return File(stream, "application/vnd.ms-excel", fileName + ".xls");
+            return File(stream, "application/vnd.res-excel", fileName + ".xls");
         }
 
 

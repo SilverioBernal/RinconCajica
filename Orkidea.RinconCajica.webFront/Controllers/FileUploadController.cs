@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
 using Orkidea.RinconCajica.webFront.Models;
+using Orkidea.RinconCajica.Utilities;
 
 namespace Orkidea.RinconCajica.webFront.Controllers
 {
@@ -52,10 +53,25 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         //
         // GET: /FileUpload/Details/5
 
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        public ActionResult Details(Guid id)
+        {
+            string mimeType = "";
+            int cuentaPuntos = 0;
+
+            FileUpload fu = bizFileUpload.GetFileUploadByKey(new FileUpload() { id = id });
+
+            string[] nombreArchivo = fu.fileName.Split('.');
+            cuentaPuntos = nombreArchivo.Length;
+
+            mimeType = BizMimeType.GetMimeType(nombreArchivo[cuentaPuntos - 1]).mimetype1;
+            
+            //dynamically generate a file
+            System.IO.MemoryStream ms;
+            ms = AzureStorageHelper.getFile(fu.fileName, "uploadedFiles");
+
+            // return the file
+            return File(ms.ToArray(), mimeType);
+        }
 
         //
         // GET: /FileUpload/Create
@@ -90,14 +106,14 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         {
             if (ModelState.IsValid)
             {
-                string physicalPath = HttpContext.Server.MapPath("~") + "\\UploadedFiles\\";
+                //string physicalPath = HttpContext.Server.MapPath("~") + "\\UploadedFiles\\";
                 string fileExtension = Path.GetExtension(model.File.FileName);
                 string fileName = Guid.NewGuid().ToString() + fileExtension;
 
-                model.File.SaveAs(physicalPath + fileName);
+                //model.File.SaveAs(physicalPath + fileName);
 
-
-
+                AzureStorageHelper.uploadFile(model.File.InputStream, fileName, "uploadedFiles");
+                
                 bizFileUpload.SaveFileUpload(new FileUpload() { id = Guid.NewGuid(), fileName = fileName, nombre = model.nombre });                
             }
 

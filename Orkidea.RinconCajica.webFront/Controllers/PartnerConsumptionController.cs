@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
 using Orkidea.RinconCajica.webFront.Models;
+using Orkidea.RinconCajica.Utilities;
 
 namespace Orkidea.RinconCajica.webFront.Controllers
 {
@@ -19,7 +20,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         public ActionResult Index()
         {
-            List<ConsumptopnGlobal> lsConsumos = bizPartnerConsumption.GetPartnerConsumptionList();
+            List<ConsumptionGlobal> lsConsumos = bizPartnerConsumption.GetPartnerConsumptionList();
             return View(lsConsumos);
         }
 
@@ -155,7 +156,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 string fileExtension = Path.GetExtension(model.File.FileName);
                 string fileName = Guid.NewGuid().ToString() + fileExtension;
 
-                model.File.SaveAs(physicalPath + fileName);
+                //model.File.SaveAs(physicalPath + fileName);
+
+                AzureStorageHelper.uploadFile(model.File.InputStream, fileName, "partnerComsumption");
 
                 string[] oStreamDataValues = null;
                 List<PartnerConsumption> lsPartnerConsumption = new List<PartnerConsumption>();

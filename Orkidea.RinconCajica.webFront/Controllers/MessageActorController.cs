@@ -100,7 +100,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             serializer.Serialize(stream, lsReportExport);
             stream.Position = 0;
 
-            return File(stream, "application/vnd.ms-excel", fileName + ".xls");
+            return File(stream, "application/vnd.res-excel", fileName + ".xls");
         }
 
         public ActionResult GeneraReporteGeneral()

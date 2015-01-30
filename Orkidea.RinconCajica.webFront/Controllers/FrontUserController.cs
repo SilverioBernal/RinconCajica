@@ -47,8 +47,10 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 BizClubPartner bizClubPartner = new BizClubPartner();
                 ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { docid = user.idSocio });
 
+                string rootPath = Server.MapPath("~"); 
+
                 if (clubPartner != null)
-                {
+                {                       
                     if (clubPartner.idUsuario != null)
                         frontUser.id = (int)clubPartner.idUsuario;
 
@@ -58,10 +60,10 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     int id = 0;
 
                     if (clubPartner.idUsuario != null)
-                        bizFrontUser.SaveFrontUser(frontUser);
+                        bizFrontUser.SaveFrontUser(frontUser, rootPath);
                     else
                     {
-                        id = bizFrontUser.SaveFrontUser(frontUser);
+                        id = bizFrontUser.SaveFrontUser(frontUser, rootPath);
                         clubPartner.idUsuario = id;
                     }
 
@@ -69,7 +71,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     bizClubPartner.SaveClubPartner(clubPartner);
                 }
                 else
-                    bizFrontUser.SaveFrontUser(frontUser);
+                    bizFrontUser.SaveFrontUser(frontUser, rootPath);
 
                 return RedirectToAction("Index");
             }
@@ -114,11 +116,13 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             try
             {
                 FrontUser currentUser = bizFrontUser.GetFrontUserbyKey(new FrontUser() { id = id });
+                
+                string rootPath = Server.MapPath("~"); 
 
                 if (user.email.Trim() != currentUser.email)
                 {
                     currentUser.email = user.email;
-                    bizFrontUser.SaveFrontUser(currentUser);
+                    bizFrontUser.SaveFrontUser(currentUser, rootPath);
 
                     BizClubPartner bizClubPartner = new BizClubPartner();
                     ClubPartner clubPartner = bizClubPartner.GetClubPartnerbyKey(new ClubPartner() { docid = user.idSocio });

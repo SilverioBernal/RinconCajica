@@ -135,7 +135,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     telefonoFijo = refJoinContest.telefonoFijo
                 };
 
-                bizJoinContest.SaveJoinContest(newJoinContest);
+                string rootPath = Server.MapPath("~");                
+
+                bizJoinContest.SaveJoinContest(newJoinContest, rootPath);
                 return RedirectToAction("joined");
             }
 

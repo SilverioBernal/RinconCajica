@@ -64,7 +64,8 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.mes)
                                 </td>
-                                <td><a href="@Url.Content("~/UploadedFiles/AccountSummaries/" + item.archivo)" target="_blank">Ver</a></td>                                
+                                @*<td><a href="@Url.Content("~/UploadedFiles/AccountSummaries/" + item.archivo)" target="_blank">Ver</a></td>*@                                
+                                <td><a href="@Url.Action("AccountSummaryDetail", new { archivo = item.archivo })" target="_blank">Ver</a></td>                                
                             </tr>
                         }
                     </tbody>

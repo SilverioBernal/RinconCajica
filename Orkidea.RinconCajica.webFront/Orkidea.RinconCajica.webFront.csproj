@@ -39,6 +39,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Recaptcha">
       <HintPath>..\packages\recaptcha.1.0.5.0\lib\.NetFramework 4.0\Recaptcha.dll</HintPath>
@@ -48,7 +55,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -66,9 +72,6 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -292,10 +295,12 @@
     <Content Include="Images\yellowBall.png" />
     <Content Include="js\bootstrap-datepicker.js" />
     <Content Include="js\maps.js" />
+    <Content Include="MailingTemplates\MailContacto.html" />
     <Content Include="MailingTemplates\NotificacionInscripcionEvento.html" />
     <Content Include="MailingTemplates\NotificacionInscripcionEvento.txt" />
     <Content Include="MailingTemplates\NotificacionInscripcionTorneo.html" />
     <Content Include="MailingTemplates\NotificacionInscripcionTorneo.txt" />
+    <Content Include="MailingTemplates\MailContacto.txt" />
     <Content Include="MailingTemplates\NotificacionNuevoUsuario.html" />
     <Content Include="MailingTemplates\NotificacionNuevoUsuario.txt" />
     <Content Include="Scripts\datepicker\bootstrap-datepicker.js" />
@@ -322,6 +327,11 @@
     <Content Include="Scripts\datepicker\locales\bootstrap-datepicker.zh-CN.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="wysihtml5\.gitignore" />
     <Content Include="wysihtml5\index.html" />
     <Content Include="wysihtml5\lib\css\bootstrap-responsive.css" />
@@ -660,7 +670,6 @@
     <Content Include="font\fontawesome-webfont.ttf" />
     <Content Include="font\fontawesome-webfont.woff" />
     <Content Include="font\FontAwesome.otf" />
-    <Content Include="img\Thumbs.db" />
     <Content Include="datatables\extras\AutoFill\media\docs\media\license\Syntax Highlighter" />
     <Content Include="datatables\extras\AutoFill\media\js\AutoFill.min.js.gz" />
     <Content Include="datatables\extras\ColReorder\media\docs\media\license\Syntax Highlighter" />
@@ -693,7 +702,7 @@
     <Content Include="wysihtml5\VERSION" />
     <None Include="Properties\PublishProfiles\Rincon.pubxml" />
     <Content Include="Scripts\datepicker\LICENSE" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <None Include="Properties\PublishProfiles\rinconcajica.pubxml" />
     <Content Include="img\bg-pattern.png" />
     <Content Include="img\logo.png" />
     <Content Include="img\logo_white.png" />
@@ -708,13 +717,10 @@
     <Content Include="js\magnific.js" />
     <Content Include="js\responsiveslides.min.js" />
     <Content Include="js\bootstrap.file-input.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -872,7 +878,7 @@
       <Name>Orkidea.RinconCajica.Business</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orkidea.RinconCajica.Entities\Orkidea.RinconCajica.Entities.csproj">
-      <Project>{41dad7cb-ad32-49e0-b02f-8e644fbc2252}</Project>
+      <Project>{957073b5-e10a-40a4-9559-4948a0e0777b}</Project>
       <Name>Orkidea.RinconCajica.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orkidea.RinconCajica.Utilities\Orkidea.RinconCajica.Utilities.csproj">

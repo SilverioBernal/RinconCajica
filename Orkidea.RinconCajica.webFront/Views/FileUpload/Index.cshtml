@@ -35,7 +35,8 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.nombre)
                     </td>
-                    <td><a href="@Url.Content("~/UploadedFiles/" + item.fileName)" target="_blank">Ver mas</a></td>
+                    @*<td><a href="@Url.Content("~/UploadedFiles/" + item.fileName)" target="_blank">Ver mas</a></td>*@
+                    <td><a href="@Url.Action("Details", new { id = item.id })" target="_blank">Ver mas</a></td>
                     <td>
                         <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
                     </td>

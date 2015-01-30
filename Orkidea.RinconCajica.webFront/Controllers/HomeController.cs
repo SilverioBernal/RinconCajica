@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
 using Orkidea.RinconCajica.webFront.Models;
+using System.Text;
+using System.Configuration;
 
 namespace Orkidea.RinconCajica.webFront.Controllers
 {    
@@ -48,7 +50,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             try
             {
-                bizCommon.sendContactMessage(email, name + " se ha contactado con el Club", message);
+                string rootPath = Server.MapPath("~");                
+
+                bizCommon.sendContactMessage(email, name,  string.Format("{0} se ha contactado con el Club a traves de la página de contacto", name), message, rootPath);
 
                 res = "OK";
             }

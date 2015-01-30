@@ -4,43 +4,44 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d0dd5b960ced400dac5c9f30e893c457" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="RinconModel.Sport" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="RinconModel.Page" Width="1.5" PointX="13" PointY="5.875" />
-        <EntityTypeShape EntityType="RinconModel.SportBranch" Width="1.5" PointX="3" PointY="2.375" />
-        <EntityTypeShape EntityType="RinconModel.SportModality" Width="1.5" PointX="3" PointY="5" />
-        <AssociationConnector Association="RinconModel.FK_SportBranch_Sport" />
-        <AssociationConnector Association="RinconModel.FK_SportModality_Sport" />
-        <EntityTypeShape EntityType="RinconModel.FileUpload" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="RinconModel.JoinContest" Width="1.5" PointX="7.5" PointY="3" />
-        <EntityTypeShape EntityType="RinconModel.DocumentType" Width="1.5" PointX="5.75" PointY="10" />
-        <EntityTypeShape EntityType="RinconModel.FileType" Width="1.5" PointX="2.75" PointY="8.75" />
-        <EntityTypeShape EntityType="RinconModel.NewsPaper" Width="1.5" PointX="0.75" PointY="11.75" />
-        <EntityTypeShape EntityType="RinconModel.Process" Width="1.5" PointX="5.75" PointY="13" />
-        <EntityTypeShape EntityType="RinconModel.ProcessDocument" Width="1.5" PointX="8" PointY="9.625" />
-        <EntityTypeShape EntityType="RinconModel.Project" Width="1.5" PointX="8.75" PointY="7.125" />
-        <EntityTypeShape EntityType="RinconModel.ProjectDocument" Width="1.5" PointX="11" PointY="9.75" />
-        <AssociationConnector Association="RinconModel.FK_ProcessDocument_DocumentType" />
-        <AssociationConnector Association="RinconModel.FK_ProjectDocument_DocumentType" />
-        <AssociationConnector Association="RinconModel.FK_ProcessDocument_Process" />
-        <AssociationConnector Association="RinconModel.FK_ProjectDocument_Project" />
-        <EntityTypeShape EntityType="RinconModel.FrontUser" Width="1.5" PointX="2.75" PointY="11.75" />
-        <EntityTypeShape EntityType="RinconModel.HomeSlider" Width="1.5" PointX="7.75" PointY="13.75" />
-        <EntityTypeShape EntityType="RinconModel.SideBar" Width="1.5" PointX="10.75" PointY="6" />
-        <AssociationConnector Association="RinconModel.FK_Page_SideBar" />
-        <EntityTypeShape EntityType="RinconModel.ClubPartner" Width="1.5" PointX="13.75" PointY="9.75" />
-        <EntityTypeShape EntityType="RinconModel.SportSchedule" Width="1.5" PointX="5.25" PointY="2.5" />
-        <AssociationConnector Association="RinconModel.FK_JoinContest_SportSchedule" />
-        <AssociationConnector Association="RinconModel.FK_SportsSchedule_Sport" />
-        <AssociationConnector Association="RinconModel.FK_SportsSchedule_SportBranch" />
-        <AssociationConnector Association="RinconModel.FK_SportsSchedule_SportModality" />
-        <EntityTypeShape EntityType="RinconModel.AccountSummary" Width="1.5" PointX="9.75" PointY="13.75" />
-        <EntityTypeShape EntityType="RinconModel.InstitutionalEvent" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="RinconModel.JoinEvent" Width="1.5" PointX="0.75" PointY="14.75" />
-        <EntityTypeShape EntityType="RinconModel.MessageActor" Width="1.5" PointX="9.75" PointY="1.75" />
-        <EntityTypeShape EntityType="RinconModel.PartnerConsumption" Width="1.5" PointX="2.75" PointY="14.75" />
-        <EntityTypeShape EntityType="RinconModel.MessageBitacore" Width="1.5" PointX="12" PointY="1" />
-        <AssociationConnector Association="RinconModel.FK_MessageBitacore_MessageActor" />
+      <Diagram DiagramId="c11d7e163a074a8aa6f7e07bb0a96cbc" Name="Diagram1">
+        <EntityTypeShape EntityType="rinconcajica_dbModel.AccountSummary" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.ClubPartner" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.DocumentType" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.FileType" Width="1.5" PointX="7.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.FileUpload" Width="1.5" PointX="13.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.FrontUser" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.HomeSlider" Width="1.5" PointX="11.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.InstitutionalEvent" Width="1.5" PointX="13.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.JoinContest" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.JoinEvent" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.MessageActor" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.MessageBitacore" Width="1.5" PointX="13" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.mimetype" Width="1.5" PointX="4.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.NewsPaper" Width="1.5" PointX="15.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.Page" Width="1.5" PointX="12" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.PartnerConsumption" Width="1.5" PointX="15.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.Process" Width="1.5" PointX="5.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.ProcessDocument" Width="1.5" PointX="8" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.Project" Width="1.5" PointX="8.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.ProjectDocument" Width="1.5" PointX="11" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.SideBar" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.Sport" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.SportBranch" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.SportModality" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.SportSchedule" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_ProcessDocument_DocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_ProjectDocument_DocumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_JoinContest_SportSchedule" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_MessageBitacore_MessageActor" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_Page_SideBar" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_ProcessDocument_Process" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_ProjectDocument_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_SportBranch_Sport" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_SportModality_Sport" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_SportsSchedule_Sport" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_SportsSchedule_SportBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="rinconcajica_dbModel.FK_SportsSchedule_SportModality" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

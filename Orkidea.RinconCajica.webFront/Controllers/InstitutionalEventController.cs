@@ -303,8 +303,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     campoLibre2 = refJoinEvent.campoLibre2,
                     campoLibre3 = refJoinEvent.campoLibre3,
                 };
-
-                bizJoinEvent.SaveJoinEvent(newJoinEvent);
+                string rootPath = Server.MapPath("~");    
+                bizJoinEvent.SaveJoinEvent(newJoinEvent, rootPath);
                 return RedirectToAction("joined");
             }
 
@@ -384,7 +384,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
 
 
-            return File(stream, "application/vnd.ms-excel", fileName + ".xls");
+            return File(stream, "application/vnd.res-excel", fileName + ".xls");
         }
 
     }

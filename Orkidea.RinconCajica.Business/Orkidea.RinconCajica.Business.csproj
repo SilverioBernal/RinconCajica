@@ -31,13 +31,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -60,6 +62,7 @@
     <Compile Include="BizJoinEvent.cs" />
     <Compile Include="BizMessageActor.cs" />
     <Compile Include="BizMessageBitacore.cs" />
+    <Compile Include="BizMimeType.cs" />
     <Compile Include="BizNewsPaper.cs" />
     <Compile Include="BizPage.cs" />
     <Compile Include="BizPartnerConsumption.cs" />
@@ -76,11 +79,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orkidea.RinconCajica.DataAccessEF\Orkidea.RinconCajica.DataAccessEF.csproj">
-      <Project>{19adcc9f-5036-4128-8e7f-bcd4dcebb3d7}</Project>
+      <Project>{52463483-37a5-4ee1-ab08-4859d1b2f470}</Project>
       <Name>Orkidea.RinconCajica.DataAccessEF</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orkidea.RinconCajica.Entities\Orkidea.RinconCajica.Entities.csproj">
-      <Project>{41dad7cb-ad32-49e0-b02f-8e644fbc2252}</Project>
+      <Project>{957073b5-e10a-40a4-9559-4948a0e0777b}</Project>
       <Name>Orkidea.RinconCajica.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orkidea.RinconCajica.Utilities\Orkidea.RinconCajica.Utilities.csproj">

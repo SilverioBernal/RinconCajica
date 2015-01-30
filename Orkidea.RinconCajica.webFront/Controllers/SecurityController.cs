@@ -208,8 +208,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                 if (string.IsNullOrEmpty(frontUser.contrasena))
                     frontUser.contrasena = oCrypto.Encrypt(frontUser.usuario.Trim() + DateTime.Now.Year.ToString());
-
-                bizFrontUser.SaveFrontUser(frontUser);
+                
+                string rootPath = Server.MapPath("~");    
+                bizFrontUser.SaveFrontUser(frontUser, rootPath);
 
                 //if (frontUser.idRol == 3 || frontUser.idRol == 4)
                 //{

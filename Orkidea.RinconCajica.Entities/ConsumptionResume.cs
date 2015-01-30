@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +8,7 @@ namespace Orkidea.RinconCajica.Entities
 {
     public class ConsumptionResume
     {
-        public System.DateTime Fecha { get; set; }        
+        public System.DateTime Fecha { get; set; }
         public string Nufactura { get; set; }
         public string Sufijo { get; set; }
         public decimal Total_fac { get; set; }
