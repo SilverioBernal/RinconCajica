@@ -41,7 +41,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.desTipo)
                         </td>
-                        <td><a href="@Url.Content("~/UploadedFiles/" +item.ruta)" target="_blank">Url</a></td>
+                        <td><a href="@Url.Action("Details", new {archivo = item.ruta })" target="_blank">Url</a></td>
                         <td>
                             @Html.DisplayFor(modelItem => item.nombre)
                         </td>

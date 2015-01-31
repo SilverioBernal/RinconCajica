@@ -39,7 +39,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.accion)
                     </td>
-                    <td><a href="@Url.Content("~/UploadedFiles/AccountSummaries/" + item.archivo)" target="_blank">Ver</a></td>
+                    <td><a href="@Url.Action("AccountSummaryDetail", new { archivo = item.archivo })" target="_blank">Ver</a></td>
                     <td>
                         <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>
                     </td>
