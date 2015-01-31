@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orkidea.RinconCajica.DataAc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orkidea.RinconCajica.Entities", "Orkidea.RinconCajica.Entities\Orkidea.RinconCajica.Entities.csproj", "{957073B5-E10A-40A4-9559-4948A0E0777B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orkidea.Utilities.AzureStorageFileUploader", "Orkidea.Utilities.AzureStorageFileUploader\Orkidea.Utilities.AzureStorageFileUploader.csproj", "{5259837D-74B6-4358-8CB4-A00C239441B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorageFileUploader", "Orkidea.Utilities.AzureStorageFileUploader\AzureStorageFileUploader.csproj", "{5259837D-74B6-4358-8CB4-A00C239441B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
