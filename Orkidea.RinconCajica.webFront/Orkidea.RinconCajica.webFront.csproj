@@ -866,6 +866,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\themes\base\minified\images\" />
+    <Folder Include="UploadedFiles\AccountSummaries\" />
+    <Folder Include="UploadedFiles\PartnerConsumption\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
