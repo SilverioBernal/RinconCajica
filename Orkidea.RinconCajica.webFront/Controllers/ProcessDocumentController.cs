@@ -236,22 +236,22 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             }
         }
 
-        public ActionResult Details(string id)
+        public ActionResult Details(string archivo)
         {
             string mimeType = "";
             int cuentaPuntos = 0;            
 
-            string[] nombreArchivo = id.Split('.');
+            string[] nombreArchivo = archivo.Split('.');
             cuentaPuntos = nombreArchivo.Length;
 
             mimeType = BizMimeType.GetMimeType(nombreArchivo[cuentaPuntos - 1]).mimetype1;
 
             //dynamically generate a file
             System.IO.MemoryStream ms;
-            ms = AzureStorageHelper.getFile(id, "uploadedFiles");
+            ms = AzureStorageHelper.getFile(archivo, "uploadedFiles");
 
             // return the file
-            return File(ms.ToArray(), mimeType);
+            return File(ms.ToArray(), mimeType, archivo);
         }
     }
 }
