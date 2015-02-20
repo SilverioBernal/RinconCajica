@@ -141,7 +141,7 @@ namespace Orkidea.RinconCajica.Business
                         dynamicValues.Add("[torneo]", ss.competencia);
                         dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
 
-                        MailingHelper.SendMail(to, "Notificación de creacion de usuario",
+                        MailingHelper.SendMail(to, "Inscripcion a torneo",
                             rootPath + ConfigurationManager.AppSettings["emailjoinContestNotificationTemplateHTML"].ToString(),
                             rootPath + ConfigurationManager.AppSettings["emailjoinContestNotificationTemplateText"].ToString(),
                             rootPath + ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
