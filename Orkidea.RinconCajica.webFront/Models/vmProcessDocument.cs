@@ -15,13 +15,13 @@ namespace Orkidea.RinconCajica.webFront.Models
         [Required(ErrorMessage = "Required")]
         public int idProceso { get; set; }
 
-        [Display(Name = "Tipo de documento")]
+        [Display(Name = "Subproceso")]
         [Required(ErrorMessage = "Required")]
         public int idTipoDocumento { get; set; }
 
-        [Display(Name = "Nombre del documento")]
-        [Required(ErrorMessage = "Required")]
-        public string nombre { get; set; }
+        //[Display(Name = "Nombre del documento")]
+        //[Required(ErrorMessage = "Required")]
+        //public string nombre { get; set; }
 
         [Display(Name = "Descripción")]
         public string descripcion { get; set; }
@@ -33,7 +33,7 @@ namespace Orkidea.RinconCajica.webFront.Models
         [Display(Name = "Proceso")]
         public string desProceso { get; set; }
 
-        [Display(Name = "Tipo de documento")]
+        [Display(Name = "Subproceso")]
         public string desTipo { get; set; }
 
         [Required]

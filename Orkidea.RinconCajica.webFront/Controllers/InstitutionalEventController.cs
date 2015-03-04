@@ -330,7 +330,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             ViewBag.menu = "Eventos";
 
             DateTime desde = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
-            List<InstitutionalEvent> lsSportSchedule = bizInstitutionalEvent.GetInstitutionalEventList().Where(x => x.inicio < desde).OrderBy(x => x.inicio).ToList();
+            List<InstitutionalEvent> lsSportSchedule = bizInstitutionalEvent.GetInstitutionalEventList().Where(x => x.inicio < desde).OrderByDescending(x => x.inicio).ToList();
 
             return View(lsSportSchedule);            
         }

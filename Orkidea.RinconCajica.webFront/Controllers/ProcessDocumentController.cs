@@ -39,7 +39,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     descripcion = item.descripcion,
                     idProceso = item.idProceso,
                     idTipoDocumento = item.idTipoDocumento,
-                    nombre = item.nombre,
+                    //nombre = item.nombre,
                     ruta = item.ruta
                 };
 
@@ -58,7 +58,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             List<ProcessDocument> lstProcessDocument =
                 processDocumentBiz.GetProcessDocumentListByProcessDocumentType(processDocument)
-                .OrderBy(x => x.nombre).ToList();
+                .OrderBy(x => x.ruta).ToList();
 
             return View(lstProcessDocument);
         }
@@ -82,24 +82,24 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         // POST: /ProcessDocument/Create
         [Authorize]
         [HttpPost]
-        public ActionResult Create(vmProcessDocument oProcessDocument, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create(vmProcessDocument oProcessDocument)
         {
-
+            //public ActionResult Create(vmProcessDocument oProcessDocument, IEnumerable<HttpPostedFileBase> files)
             try
             {
-                string physicalPath = HttpContext.Server.MapPath("~") + "\\UploadedFiles\\";
-                string fileExtension = Path.GetExtension(oProcessDocument.File.FileName);
-                string fileName = Guid.NewGuid().ToString() + fileExtension;
+                //string physicalPath = HttpContext.Server.MapPath("~") + "\\UploadedFiles\\";
+                //string fileExtension = Path.GetExtension(oProcessDocument.File.FileName);
+                //string fileName = Guid.NewGuid().ToString() + fileExtension;
 
-                oProcessDocument.File.SaveAs(physicalPath + fileName);
+                //oProcessDocument.File.SaveAs(physicalPath + fileName);
 
                 processDocumentBiz.SaveProcessDocument(new ProcessDocument()
                 {
-                    descripcion = "",
+                    descripcion = string.IsNullOrEmpty(oProcessDocument.descripcion)?"":oProcessDocument.descripcion,
                     idTipoDocumento = oProcessDocument.idTipoDocumento,
                     idProceso = oProcessDocument.idProceso,
-                    nombre = oProcessDocument.nombre,
-                    ruta = fileName
+                    //nombre = oProcessDocument.nombre,
+                    ruta = oProcessDocument.ruta
                 });
 
 
@@ -116,11 +116,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                 vmProcessDocument processDocument = new vmProcessDocument()
                 {
-                    descripcion = oProcessDocument.descripcion,
-                    desProceso = oProcessDocument.descripcion,
+                    descripcion = oProcessDocument.descripcion,                    
                     idProceso = oProcessDocument.idProceso,
-                    idTipoDocumento = oProcessDocument.idTipoDocumento,
-                    nombre = oProcessDocument.nombre,
+                    idTipoDocumento = oProcessDocument.idTipoDocumento,                    
                     ruta = oProcessDocument.ruta
                 };
 
@@ -146,11 +144,10 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
                 id = id,
                 descripcion = oProcessDocument.descripcion,
-                desProceso = process.nombre,
+                //desProceso = process.nombre,
                 idProceso = oProcessDocument.idProceso,
                 idTipoDocumento = oProcessDocument.idTipoDocumento,
-                desTipo = documentType.nombre,
-                nombre = oProcessDocument.nombre,
+                //desTipo = documentType.nombre,                
                 ruta = oProcessDocument.ruta
             };
 
@@ -205,10 +202,10 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 {
                     id = id,
                     descripcion = oProcessDocument.descripcion,
-                    desProceso = oProcessDocument.descripcion,
+                    //desProceso = oProcessDocument.descripcion,
                     idProceso = oProcessDocument.idProceso,
                     idTipoDocumento = oProcessDocument.idTipoDocumento,
-                    nombre = oProcessDocument.nombre,
+                    //nombre = oProcessDocument.nombre,
                     ruta = oProcessDocument.ruta
                 };
 

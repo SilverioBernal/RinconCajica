@@ -862,6 +862,8 @@
     <Content Include="Views\Home\loginSigmaSports.cshtml" />
     <Content Include="Views\MessageActor\ReporteGeneral.cshtml" />
     <Content Include="Views\HomeSGC\Suggestion.cshtml" />
+    <Content Include="Views\InstitutionalEvent\IndexOlderSchedule.cshtml" />
+    <Content Include="Views\ClubPartner\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

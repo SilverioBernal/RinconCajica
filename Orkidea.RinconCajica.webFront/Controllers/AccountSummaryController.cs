@@ -30,7 +30,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         [Authorize]
         public ActionResult Details(string id)
         {
-            List<AccountSummary> lsAccountSummary = bizAccountSummary.GetAccountSummaryList(id);
+            string accion = Serialization.FromHexString(id);
+            List<AccountSummary> lsAccountSummary = bizAccountSummary.GetAccountSummaryList(accion);
             return View(lsAccountSummary);
         }
         

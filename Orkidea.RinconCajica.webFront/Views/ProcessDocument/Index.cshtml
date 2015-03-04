@@ -26,7 +26,7 @@
                     </th>
                     <th>Link</th>
                     <th>
-                        @Html.DisplayNameFor(model => model.nombre)
+                        @Html.DisplayNameFor(model => model.ruta)
                     </th>
                     <th></th>
                 </tr>
@@ -43,7 +43,7 @@
                         </td>
                         <td><a href="@Url.Action("Details", new {archivo = item.ruta })" target="_blank">Url</a></td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.nombre)
+                            @Html.DisplayFor(modelItem => item.ruta)
                         </td>
                         <td>                            
                             <a href="@Url.Action("Edit", "ProcessDocument", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>                            

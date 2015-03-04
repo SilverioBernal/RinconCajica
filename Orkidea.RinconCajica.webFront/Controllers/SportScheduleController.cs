@@ -149,6 +149,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     idRama = item.idRama != null && item.idRama != 0 ? item.idRama : null,
                     aireacion = item.aireacion,
                     visible = item.visible,
+                    categoria = item.categoria,
                     //nombreCategoria = item.idCategoria != null && item.idCategoria != 0 ? lsCategoria.Where(x => x.id.Equals(item.idCategoria)).Select(x => x.nombre).FirstOrDefault() : null,
                     nombreDeporte = lsDeporte.Where(x => x.id.Equals(item.idDeporte)).Select(x => x.nombre).FirstOrDefault(),
                     nombreModalidad = item.idModalidad != null && item.idModalidad != 0 ? lsModalidad.Where(x => x.id.Equals(item.idModalidad)).Select(x => x.nombre).FirstOrDefault() : null,
@@ -170,7 +171,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             int sport = bizSport.GetSportList().Where(x => x.nombre.ToUpper() == id.ToUpper()).Select(x => x.id).FirstOrDefault();
             DateTime desde = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
             //List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio >= desde && x.visible).OrderBy(x => x.inicio).ToList();
-            List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio < desde).OrderBy(x => x.inicio).ToList();
+            List<SportSchedule> lsSportSchedule = bizSportSchedule.GetSportScheduleList().Where(x => x.idDeporte.Equals(sport) && x.inicio < desde).OrderByDescending(x => x.inicio).ToList();
             List<vmSportSchedule> lsCalendario = new List<vmSportSchedule>();
             //List<SportSchedule> lsOtrosEventos = bizSportSchedule.GetSportScheduleList().Where(x => !x.aireacion && x.inicio >= desde && !string.IsNullOrEmpty(x.poster)).OrderBy(x => x.inicio).ToList();
             List<SportModality> lsModalidad = bizSportModality.GetSportModalityList();
@@ -187,6 +188,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     inicio = item.inicio,
                     fin = item.fin,
                     competencia = item.competencia,
+                    categoria = item.categoria,
                     //idCategoria = item.idCategoria != null && item.idCategoria != 0 ? item.idCategoria : null,
                     idModalidad = item.idModalidad != null && item.idModalidad != 0 ? item.idModalidad : null,
                     idRama = item.idRama != null && item.idRama != 0 ? item.idRama : null,
@@ -389,13 +391,13 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     email = item.email,
                     fechaInscripcion = item.fechaInscripcion,
                     identificacion = item.identificacion,
-                    idSocio = (int)item.idSocio,
+                    idSocio = item.idSocio== null?0: (int)item.idSocio,
                     id = item.id,
                     idTorneo = item.idTorneo,
                     nombre = item.nombre,
                     telefonoCelular = item.telefonoCelular,
                     telefonoFijo = item.telefonoFijo,
-                    tipoIdentificacion = item.tipoIdentificacion
+                    tipoIdentificacion = string.IsNullOrEmpty(item.tipoIdentificacion) ? "" : item.tipoIdentificacion
                 });
             }
 

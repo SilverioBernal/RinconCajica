@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="rinconcajica_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="rinconcajica_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountSummary">
           <Key>
             <PropertyRef Name="id" />
@@ -263,7 +263,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idProceso" Type="int" Nullable="false" />
           <Property Name="idTipoDocumento" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="250" />
           <Property Name="ruta" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
@@ -553,8 +552,7 @@
             <End Role="SportSchedule" EntitySet="SportSchedule" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="rinconcajica_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -635,8 +633,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ProcessDocument" Relationship="Self.FK_ProcessDocument_DocumentType" FromRole="DocumentType" ToRole="ProcessDocument" />
           <NavigationProperty Name="ProjectDocument" Relationship="Self.FK_ProjectDocument_DocumentType" FromRole="DocumentType" ToRole="ProjectDocument" />
+          <NavigationProperty Name="ProcessDocument" Relationship="rinconcajica_dbModel.FK_ProcessDocument_DocumentType" FromRole="DocumentType" ToRole="ProcessDocument" />
         </EntityType>
         <EntityType Name="FileType">
           <Key>
@@ -814,20 +812,7 @@
           <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="archivoCaracterizacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ProcessDocument" Relationship="Self.FK_ProcessDocument_Process" FromRole="Process" ToRole="ProcessDocument" />
-        </EntityType>
-        <EntityType Name="ProcessDocument">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idProceso" Type="Int32" Nullable="false" />
-          <Property Name="idTipoDocumento" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ruta" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="DocumentType" Relationship="Self.FK_ProcessDocument_DocumentType" FromRole="ProcessDocument" ToRole="DocumentType" />
-          <NavigationProperty Name="Process" Relationship="Self.FK_ProcessDocument_Process" FromRole="ProcessDocument" ToRole="Process" />
+          <NavigationProperty Name="ProcessDocument" Relationship="rinconcajica_dbModel.FK_ProcessDocument_Process" FromRole="Process" ToRole="ProcessDocument" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -911,18 +896,6 @@
           <NavigationProperty Name="SportBranch" Relationship="Self.FK_SportsSchedule_SportBranch" FromRole="SportSchedule" ToRole="SportBranch" />
           <NavigationProperty Name="SportModality" Relationship="Self.FK_SportsSchedule_SportModality" FromRole="SportSchedule" ToRole="SportModality" />
         </EntityType>
-        <Association Name="FK_ProcessDocument_DocumentType">
-          <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
-          <End Role="ProcessDocument" Type="Self.ProcessDocument" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DocumentType">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProcessDocument">
-              <PropertyRef Name="idTipoDocumento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProjectDocument_DocumentType">
           <End Role="DocumentType" Type="Self.DocumentType" Multiplicity="1" />
           <End Role="ProjectDocument" Type="Self.ProjectDocument" Multiplicity="*" />
@@ -968,18 +941,6 @@
             </Principal>
             <Dependent Role="Page">
               <PropertyRef Name="idSideBar" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProcessDocument_Process">
-          <End Role="Process" Type="Self.Process" Multiplicity="1" />
-          <End Role="ProcessDocument" Type="Self.ProcessDocument" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Process">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ProcessDocument">
-              <PropertyRef Name="idProceso" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1073,7 +1034,6 @@
           <EntitySet Name="Page" EntityType="Self.Page" />
           <EntitySet Name="PartnerConsumption" EntityType="Self.PartnerConsumption" />
           <EntitySet Name="Process" EntityType="Self.Process" />
-          <EntitySet Name="ProcessDocument" EntityType="Self.ProcessDocument" />
           <EntitySet Name="Project" EntityType="Self.Project" />
           <EntitySet Name="ProjectDocument" EntityType="Self.ProjectDocument" />
           <EntitySet Name="SideBar" EntityType="Self.SideBar" />
@@ -1081,10 +1041,6 @@
           <EntitySet Name="SportBranch" EntityType="Self.SportBranch" />
           <EntitySet Name="SportModality" EntityType="Self.SportModality" />
           <EntitySet Name="SportSchedule" EntityType="Self.SportSchedule" />
-          <AssociationSet Name="FK_ProcessDocument_DocumentType" Association="Self.FK_ProcessDocument_DocumentType">
-            <End Role="DocumentType" EntitySet="DocumentType" />
-            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProjectDocument_DocumentType" Association="Self.FK_ProjectDocument_DocumentType">
             <End Role="DocumentType" EntitySet="DocumentType" />
             <End Role="ProjectDocument" EntitySet="ProjectDocument" />
@@ -1100,10 +1056,6 @@
           <AssociationSet Name="FK_Page_SideBar" Association="Self.FK_Page_SideBar">
             <End Role="SideBar" EntitySet="SideBar" />
             <End Role="Page" EntitySet="Page" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProcessDocument_Process" Association="Self.FK_ProcessDocument_Process">
-            <End Role="Process" EntitySet="Process" />
-            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectDocument_Project" Association="Self.FK_ProjectDocument_Project">
             <End Role="Project" EntitySet="Project" />
@@ -1129,7 +1081,52 @@
             <End Role="SportModality" EntitySet="SportModality" />
             <End Role="SportSchedule" EntitySet="SportSchedule" />
           </AssociationSet>
+          <EntitySet Name="ProcessDocument" EntityType="rinconcajica_dbModel.ProcessDocument" />
+          <AssociationSet Name="FK_ProcessDocument_DocumentType" Association="rinconcajica_dbModel.FK_ProcessDocument_DocumentType">
+            <End Role="DocumentType" EntitySet="DocumentType" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessDocument_Process" Association="rinconcajica_dbModel.FK_ProcessDocument_Process">
+            <End Role="Process" EntitySet="Process" />
+            <End Role="ProcessDocument" EntitySet="ProcessDocument" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ProcessDocument">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProceso" Type="Int32" Nullable="false" />
+          <Property Name="idTipoDocumento" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ruta" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentType" Relationship="rinconcajica_dbModel.FK_ProcessDocument_DocumentType" FromRole="ProcessDocument" ToRole="DocumentType" />
+          <NavigationProperty Name="Process" Relationship="rinconcajica_dbModel.FK_ProcessDocument_Process" FromRole="ProcessDocument" ToRole="Process" />
+        </EntityType>
+        <Association Name="FK_ProcessDocument_DocumentType">
+          <End Type="rinconcajica_dbModel.DocumentType" Role="DocumentType" Multiplicity="1" />
+          <End Type="rinconcajica_dbModel.ProcessDocument" Role="ProcessDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProcessDocument">
+              <PropertyRef Name="idTipoDocumento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessDocument_Process">
+          <End Type="rinconcajica_dbModel.Process" Role="Process" Multiplicity="1" />
+          <End Type="rinconcajica_dbModel.ProcessDocument" Role="ProcessDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Process">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ProcessDocument">
+              <PropertyRef Name="idProceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1403,18 +1400,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProcessDocument">
-            <EntityTypeMapping TypeName="rinconcajica_dbModel.ProcessDocument">
-              <MappingFragment StoreEntitySet="ProcessDocument">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idProceso" ColumnName="idProceso" />
-                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="ruta" ColumnName="ruta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Project">
             <EntityTypeMapping TypeName="rinconcajica_dbModel.Project">
               <MappingFragment StoreEntitySet="Project">
@@ -1486,6 +1471,17 @@
                 <ScalarProperty Name="poster" ColumnName="poster" />
                 <ScalarProperty Name="privado" ColumnName="privado" />
                 <ScalarProperty Name="urlPagina" ColumnName="urlPagina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessDocument">
+            <EntityTypeMapping TypeName="rinconcajica_dbModel.ProcessDocument">
+              <MappingFragment StoreEntitySet="ProcessDocument">
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idTipoDocumento" ColumnName="idTipoDocumento" />
+                <ScalarProperty Name="idProceso" ColumnName="idProceso" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

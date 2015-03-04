@@ -95,10 +95,10 @@ $(window).load(function(){
     });
     
     /* Search Toggle */
-    $('#search_toggle').click(function(){
-        $('#search_form').toggleClass('show');
-        $(this).toggleClass('active');
-    });
+    //$('#search_toggle').click(function(){
+    //    $('#search_form').toggleClass('show');
+    //    $(this).toggleClass('active');
+    //});
     
     /* Sticky menu */
     if(stickyMenu){

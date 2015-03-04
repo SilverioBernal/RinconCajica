@@ -11,23 +11,23 @@
     <h2>Subir archvo</h2>
     <div class="span12">
         @using (Html.BeginForm("Create", "ProcessDocument", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {                    
-            <div class="row-fluid">
-                @Html.TextBoxFor(m => m.File, new { type = "file", @class = "btn btn-primary", title = "Seleccione el archivo" })
-                @Html.ValidationMessageFor(m => m.File)
+        {
+            @*<div class="row-fluid">
+                    @Html.TextBoxFor(m => m.File, new { type = "file", @class = "btn btn-primary", title = "Seleccione el archivo" })
+                    @Html.ValidationMessageFor(m => m.File)
 
-            </div>
-            <br />
-            <div class="row-fluid">
-                <div class="span6">
-                    <label>Descripcion del archivo</label>
-                    @Html.TextBoxFor(m => m.nombre, new { @class = "span12" })
                 </div>
-            </div>
+                <br />*@
             <div class="row-fluid">
-                @Html.LabelFor(model => model.nombre)
-                @Html.TextBoxFor(model => model.nombre, new { @class = "span4" })
-                @Html.ValidationMessageFor(model => model.nombre)
+                    <div class="span6">
+                        <label>Descripcion del archivo</label>
+                        @Html.TextBoxFor(m => m.descripcion, new { @class = "span12" })
+                    </div>
+                </div>
+            <div class="row-fluid">
+                @Html.LabelFor(model => model.ruta)
+                @Html.TextBoxFor(model => model.ruta, new { @class = "span4" })
+                @Html.ValidationMessageFor(model => model.ruta)
             </div>
             <div class="row-fluid">
                 @Html.LabelFor(model => model.idProceso)
@@ -38,7 +38,7 @@
                 @Html.LabelFor(model => model.idTipoDocumento)
                 @Html.DropDownListFor(model => model.idTipoDocumento, new SelectList(Model.lstDocType, "id", "nombre"))
                 @Html.ValidationMessageFor(model => model.idTipoDocumento)
-            </div> 
+            </div>
             <br />
             <div class="row-fluid">
                 <input type="submit" value="Guardar" class="btn btn-info" />
@@ -54,7 +54,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
 
-<script>//<![CDATA[
+@*<script>
+//<![CDATA[
     $(function () {
         $.fn.bootstrapFileInput = function () {
             this.each(function (i, elem) {
@@ -72,4 +73,4 @@
         }; var cssHtml = '<style>' + '.file-input-wrapper { overflow: hidden; position: relative; cursor: pointer; z-index: 1; }' + '.file-input-wrapper input[type=file], .file-input-wrapper input[type=file]:focus, .file-input-wrapper input[type=file]:hover { position: absolute; top: 0; left: 0; cursor: pointer; opacity: 0; filter: alpha(opacity=0); z-index: 99; outline: 0; }' + '.file-input-name { margin-left: 8px; }' + '</style>'; $('link[rel=stylesheet]').eq(0).before(cssHtml);
     });
     //]]></script>
-<script>$(document).ready(function () { $('input[type=file]').bootstrapFileInput(); });</script>
+<script>$(document).ready(function () { $('input[type=file]').bootstrapFileInput(); });</script>*@

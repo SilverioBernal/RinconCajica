@@ -71,6 +71,7 @@
     <Compile Include="MailingHelper.cs" />
     <Compile Include="PasswordHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization.cs" />
     <Compile Include="UserNameHelper.cs" />
   </ItemGroup>
   <ItemGroup>

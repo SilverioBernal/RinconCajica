@@ -34,20 +34,24 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            Partner partner = new Partner();
+            return View(partner);
         }
 
         //
         // POST: /ClubPartner/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Partner partner)
         {
             try
-            {
-                // TODO: Add insert logic here
+            {                
+                // TODO: Add update logic here                
+                partner.fechaActualizacion = DateTime.Now;
+                bizClubPartner.SaveClubPartner(partner);
 
                 return RedirectToAction("Index");
+
             }
             catch
             {
@@ -86,10 +90,10 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             #endregion
 
             Partner partner = new Partner();
-
+            int serializatedSocio = int.Parse(id, System.Globalization.NumberStyles.HexNumber);
             // busqueda de socio por usuario
             if (titular)
-                partner = bizClubPartner.GetPartnerbyKey(id, int.Parse(idSocio));
+                partner = bizClubPartner.GetPartnerbyKey(serializatedSocio.ToString(), int.Parse(idSocio));
             else
                 partner = bizClubPartner.GetPartnerbyKey(id);
 
@@ -100,7 +104,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         // POST: /ClubPartner/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, Partner partner)
+        public ActionResult Edit(string id, Partner partner)
         {
             #region Partner identification
             System.Security.Principal.IIdentity context = HttpContext.User.Identity;
@@ -128,13 +132,14 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             #endregion
             try
             {
+                int serializatedSocio = int.Parse(id, System.Globalization.NumberStyles.HexNumber);
                 // TODO: Add update logic here
-                partner.docid = id;
+                partner.docid = serializatedSocio;
                 partner.fechaActualizacion = DateTime.Now;
                 bizClubPartner.SaveClubPartner(partner);
 
 
-                return RedirectToAction("Edit", new { id = idSocio });
+                return RedirectToAction("Edit", new { id = id });
 
             }
             catch

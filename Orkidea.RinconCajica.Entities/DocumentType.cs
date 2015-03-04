@@ -16,14 +16,14 @@ namespace Orkidea.RinconCajica.Entities
     {
         public DocumentType()
         {
-            this.ProcessDocument = new HashSet<ProcessDocument>();
             this.ProjectDocument = new HashSet<ProjectDocument>();
+            this.ProcessDocument = new HashSet<ProcessDocument>();
         }
     
         public int id { get; set; }
         public string nombre { get; set; }
     
-        public virtual ICollection<ProcessDocument> ProcessDocument { get; set; }
         public virtual ICollection<ProjectDocument> ProjectDocument { get; set; }
+        public virtual ICollection<ProcessDocument> ProcessDocument { get; set; }
     }
 }

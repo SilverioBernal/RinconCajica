@@ -43,7 +43,6 @@ namespace Orkidea.RinconCajica.DataAccessEF
         public virtual DbSet<Page> Page { get; set; }
         public virtual DbSet<PartnerConsumption> PartnerConsumption { get; set; }
         public virtual DbSet<Process> Process { get; set; }
-        public virtual DbSet<ProcessDocument> ProcessDocument { get; set; }
         public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<ProjectDocument> ProjectDocument { get; set; }
         public virtual DbSet<SideBar> SideBar { get; set; }
@@ -51,5 +50,6 @@ namespace Orkidea.RinconCajica.DataAccessEF
         public virtual DbSet<SportBranch> SportBranch { get; set; }
         public virtual DbSet<SportModality> SportModality { get; set; }
         public virtual DbSet<SportSchedule> SportSchedule { get; set; }
+        public virtual DbSet<ProcessDocument> ProcessDocument { get; set; }
     }
 }

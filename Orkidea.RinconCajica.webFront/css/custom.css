@@ -666,14 +666,15 @@ body.padding .navbar
 {
     position: absolute;
     top: 100%;
-    right: -590px;
-    transition: all 0.2s ease-out;
+    right: 1px/*-590px*/;
+    /*transition: all 0.2s ease-out;
     -webkit-transition: all 0.2s ease-out;
     -ms-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
-    -o-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;*/
     background: #ff5252;
     padding: 20px;
+    display:none;
 }
 
     #search_form.show
@@ -1972,4 +1973,13 @@ body.padding .navbar
     
     background-color: yellowgreen;
     color:white;
+}
+
+#search_form:target {  
+  transition: all 0.2s ease-out;
+    -webkit-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    display:block;
 }

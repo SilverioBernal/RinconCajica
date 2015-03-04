@@ -7,7 +7,7 @@
     @foreach (var item in Model)
     {
         @*<li><a href="@Url.Content("~/UploadedFiles/" +item.ruta)" target="_blank">@item.nombre</a></li>*@
-        <li><a href="@Url.Action("Details", new {archivo = item.ruta })" target="_blank">@item.nombre</a></li>
+        <li><a href="@Url.Action("Details", new {archivo = item.ruta })" target="_blank">@item.descripcion</a></li>
     }
 </ul>
 

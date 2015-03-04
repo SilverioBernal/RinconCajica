@@ -17,7 +17,6 @@ namespace Orkidea.RinconCajica.Entities
         public int id { get; set; }
         public int idProceso { get; set; }
         public int idTipoDocumento { get; set; }
-        public string nombre { get; set; }
         public string descripcion { get; set; }
         public string ruta { get; set; }
     

@@ -23,7 +23,7 @@
 <div class="row-fluid">
     <h2>Sistema de gestión</h2>
     <h3>@Model.nombre</h3>
-    <button id='showCaracterizacion' class="btn btn-info">Caracterización</button>
+    @*<button id='showCaracterizacion' class="btn btn-info">Caracterización</button>*@
     <div class="row-fluid">
         <div class="span12">
             <h4>Documentos relacionados</h4>            
@@ -90,7 +90,7 @@
 
     });
 
-    $(document).ready(function () {
+    @*$(document).ready(function () {
         $('#showCaracterizacion').click(function () {
             var url = "@nombreArchivo";
 
@@ -100,7 +100,7 @@
         });
 
         $($('.accordion-toggle')[0]).click();
-    });
+    });*@
 
     $('.documento').click(function (e) {
         e.preventDefault();  //stop the browser from following

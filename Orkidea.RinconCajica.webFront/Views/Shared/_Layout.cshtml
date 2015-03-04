@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Orkidea.RinconCajica.Utilities
+<!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en">
@@ -41,6 +42,8 @@
         string titular = "";
         string idAccion = "";
         bool autenticado = false;
+        string hexSocio = "";
+        string hexAccion = "";
 
         if (context.IsAuthenticated)
         {
@@ -54,6 +57,8 @@
                 idSocio = userRole[2];
                 titular = userRole[3];
                 idAccion = userRole[4];
+                hexSocio = int.Parse(idSocio).ToString("X");
+                hexAccion = Serialization.ToHexString(idAccion);
             }
 
             userName = ci.Name;
@@ -323,7 +328,7 @@
                             @if (!context.IsAuthenticated)
                             {
                                 <li>
-                                    <a id="search_toggle"><span style="color: white;">.</span>Socios</a>
+                                    <a id="search_toggle" class="loginToggle"><span style="color: white;">.</span>Socios</a>
                                 </li>
                             }
                             else
@@ -337,12 +342,12 @@
                                         {
                                             if (titular == "T")
                                             {
-                                            <li class="pepa"><a href="@Url.Action("Details", "AccountSummary", new { id = idAccion })">Extractos</a></li>      
+                                            <li class="pepa"><a href="@Url.Action("Details", "AccountSummary", new { id = hexSocio })">Extractos</a></li>      
                                             <li class="pepa"><a href="@Url.Action("InvoiceList", "PartnerConsumption")">Consumos</a></li>                                                                                  
                                             }
                                             <li><a href="@Url.Action("Details", "Page", new { id = "Socios" })">Documentos y circulares</a></li>
                                             <li><a href="@Url.Action("Details", "Page", new { id = "Canjes" })">Canjes</a></li>                                            
-                                            <li><a href="@Url.Action("Edit", "ClubPartner", new { id = idSocio })">Actualizacion de datos</a></li>                                            
+                                            <li><a href="@Url.Action("Edit", "ClubPartner", new { id = hexSocio })">Actualizacion de datos</a></li>                                            
                                             <li class="dropdown-submenu">
                                                 <a href="#">Reservas</a>
                                                 <ul class="dropdown-menu">
@@ -367,12 +372,12 @@
                                         {
                                             if (titular == "T")
                                             {
-                                            <li class="pepa"><a href="@Url.Action("Details", "AccountSummary", new { id = idAccion })">Extractos</a></li>   
+                                            <li class="pepa"><a href="@Url.Action("Details", "AccountSummary", new { id = hexAccion })">Extractos</a></li>   
                                             <li class="pepa"><a href="@Url.Action("InvoiceList", "PartnerConsumption")">Consumos</a></li>                                                                                     
                                             }
                                             <li><a href="@Url.Action("Details", "Page", new { id = "Socios" })">Documentos y circulares</a></li>
                                             <li><a href="@Url.Action("Details", "Page", new { id = "Canjes" })">Canjes</a></li>                                            
-                                            <li><a href="@Url.Action("Edit", "ClubPartner", new { id = idSocio })">Actualizacion de datos</a></li>                                            
+                                            <li><a href="@Url.Action("Edit", "ClubPartner", new { id = hexSocio })">Actualizacion de datos</a></li>                                            
                                             <li class="dropdown-submenu">
                                                 <a href="#">Reservas</a>
                                                 <ul class="dropdown-menu">
@@ -521,6 +526,7 @@
 
                     function res(data) {
                         if (data == "OK") {
+                            url = url.replace("#search_form", "")
                             window.open(url, '_self');
                         }
                     }
@@ -546,7 +552,7 @@
                     $.getJSON("@Url.Action("BarChangePassword", "Security")", datos, res);
 
                     function res(data) {
-                        if (data == "OK") {
+                        if (data == "OK") {                            
                             window.open(url, '_self');
                         }
                     }

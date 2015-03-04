@@ -215,7 +215,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {                
                 FrontUser frontUser = bizFrontUser.GetFrontUserbyKey(new FrontUser() { id = id });
 
-                bizFrontUser.SaveFrontUser(frontUser,true, Server.MapPath("~"));
+                bizFrontUser.SaveFrontUser(frontUser, Server.MapPath("~"));
 
                 res = "Ok";
             }
