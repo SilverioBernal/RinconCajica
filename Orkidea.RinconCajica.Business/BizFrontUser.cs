@@ -100,12 +100,31 @@ namespace Orkidea.RinconCajica.Business
 
                     if (oFrontUser != null)
                     {
-                        // if exists then edit                         
+                        // if exists then edit         
+                        FrontUserTarget.contrasena = oCrypto.Encrypt(PasswordHelper.Generate());
                         ctx.FrontUser.Attach(oFrontUser);
                         EntityFrameworkHelper.EnumeratePropertyDifferences(oFrontUser, FrontUserTarget);
                         ctx.SaveChanges();
                         res = oFrontUser.id;
                         accion = "modificación";
+
+                        // send notification
+                        List<System.Net.Mail.MailAddress> to = new List<System.Net.Mail.MailAddress>();
+
+                        if (ConfigurationManager.AppSettings["testMail"].ToString() == "N")
+                            to.Add(new System.Net.Mail.MailAddress(FrontUserTarget.email));
+                        else
+                            to.Add(new System.Net.Mail.MailAddress("silverio.bernal@orkidea.co"));
+
+                        Dictionary<string, string> dynamicValues = new Dictionary<string, string>();
+                        dynamicValues.Add("[usuario]", FrontUserTarget.usuario);
+                        dynamicValues.Add("[clave]", oCrypto.Decrypt(FrontUserTarget.contrasena));
+                        dynamicValues.Add("[urlSitio]", ConfigurationManager.AppSettings["UrlApp"].ToString());
+
+                        MailingHelper.SendMail(to, string.Format("Notificación de {0} de usuario", accion),
+                            rootPath + ConfigurationManager.AppSettings["emailNewUserNotificationTemplateHTML"].ToString(),
+                            rootPath + ConfigurationManager.AppSettings["emailNewUserNotificationTemplateText"].ToString(),
+                            rootPath + ConfigurationManager.AppSettings["emailLogoPath"].ToString(), dynamicValues);
                     }
                     else
                     {

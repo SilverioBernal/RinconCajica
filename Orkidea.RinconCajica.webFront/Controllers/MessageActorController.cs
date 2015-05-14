@@ -313,7 +313,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         public ActionResult RecibeDocumento()
         {
-            vmMessageBitacore messageBitacore = new vmMessageBitacore() { tipoRegistro = "I", fecha = DateTime.Now };
+            vmMessageBitacore messageBitacore = new vmMessageBitacore() { tipoRegistro = "I", fecha = DateTime.Now.AddHours(7) };
             return View(messageBitacore);
         }
 

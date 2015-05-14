@@ -288,8 +288,8 @@ namespace Orkidea.RinconCajica.Business
                     modifiedClubPartner.correo = ClubPartnerTarget.correo;
                     modifiedClubPartner.celular = ClubPartnerTarget.celular;
                     modifiedClubPartner.direcc = ClubPartnerTarget.direcc;
-                    modifiedClubPartner.fechaActualizacion = ClubPartnerTarget.fechaActualizacion;
-
+                    modifiedClubPartner.fechaActualizacion = DateTime.Now;
+                    modifiedClubPartner.idUsuario = ClubPartnerTarget.idUsuario;
 
 
                     if (modifiedClubPartner != null)

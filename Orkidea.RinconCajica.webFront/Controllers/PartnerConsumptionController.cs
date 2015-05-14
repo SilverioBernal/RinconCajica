@@ -8,6 +8,7 @@ using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
 using Orkidea.RinconCajica.webFront.Models;
 using Orkidea.RinconCajica.Utilities;
+using System.Threading;
 
 namespace Orkidea.RinconCajica.webFront.Controllers
 {
@@ -20,8 +21,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         public ActionResult Index()
         {
-            List<ConsumptionGlobal> lsConsumos = bizPartnerConsumption.GetPartnerConsumptionList();
+            List<ConsumptionGlobal> lsConsumos = bizPartnerConsumption.GetPartnerConsumptionList2M();
             return View(lsConsumos);
+            //return View();
         }
 
         //
@@ -152,18 +154,20 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         {
             if (ModelState.IsValid)
             {
-                string physicalPath = HttpContext.Server.MapPath("~") + "\\UploadedFiles\\PartnerConsumption\\";
-                string fileExtension = Path.GetExtension(model.File.FileName);
-                string fileName = Guid.NewGuid().ToString() + fileExtension;
+                //string physicalPath = HttpContext.Server.MapPath("~") + "\\UploadedFiles\\PartnerConsumption\\";
+                //string fileExtension = Path.GetExtension(model.File.FileName);
+                //string fileName = Guid.NewGuid().ToString() + fileExtension;
 
                 //model.File.SaveAs(physicalPath + fileName);
 
-                AzureStorageHelper.uploadFile(model.File.InputStream, fileName, "partnerComsumption");
+                //AzureStorageHelper.uploadFile(model.File.InputStream, fileName, "partnerComsumption");
 
-                string[] oStreamDataValues = null;
-                List<PartnerConsumption> lsPartnerConsumption = new List<PartnerConsumption>();
+                
+                //List<PartnerConsumption> lsPartnerConsumption = new List<PartnerConsumption>();
 
-                using (StreamReader reader = new StreamReader(physicalPath + fileName))
+
+
+                using (StreamReader reader = new StreamReader(model.File.InputStream))
                 {
 
                     int lines = 0;
@@ -174,28 +178,30 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                             lines++;
                         else
                         {
-                            oStreamDataValues = line.Split('\t');
+                            
+                                string[] oStreamDataValues = line.Split('\t');
 
-                            PartnerConsumption partnerConsumption = new PartnerConsumption()
-                            {
-                                Punto_venta_a = oStreamDataValues[0].Trim(),
-                                Producto = oStreamDataValues[1].Trim(),
-                                Punto_venta_b = oStreamDataValues[2].Trim(),
-                                Codigo_producto = oStreamDataValues[3].Trim(),
-                                Cantidad = oStreamDataValues[4].Trim(),
-                                Valor_producto = decimal.Parse(oStreamDataValues[5]),
-                                Fecha = ArmaFecha(oStreamDataValues[6]),
-                                Docid_consumidor = string.IsNullOrEmpty(oStreamDataValues[7]) ? "" : oStreamDataValues[7].Trim(),
-                                Nufactura = oStreamDataValues[8].Trim(),
-                                Sufijo = oStreamDataValues[9].Trim(),
-                                Propina = decimal.Parse(oStreamDataValues[10]),
-                                Total_fac = decimal.Parse(oStreamDataValues[11]),
-                                Consumidor = string.IsNullOrEmpty(oStreamDataValues[12]) ? "" : oStreamDataValues[12].Trim(),
-                                Docid_pagador = oStreamDataValues[13].Trim(),
-                                Pagador = oStreamDataValues[14].Trim()
-                            };
+                                PartnerConsumption partnerConsumption = new PartnerConsumption()
+                                {
+                                    Punto_venta_a = oStreamDataValues[0].Trim(),
+                                    Producto = oStreamDataValues[1].Trim(),
+                                    Punto_venta_b = oStreamDataValues[2].Trim(),
+                                    Codigo_producto = oStreamDataValues[3].Trim(),
+                                    Cantidad = oStreamDataValues[4].Trim(),
+                                    Valor_producto = decimal.Parse(oStreamDataValues[5]),
+                                    Fecha = ArmaFecha(oStreamDataValues[6]),
+                                    Docid_consumidor = string.IsNullOrEmpty(oStreamDataValues[7]) ? "" : oStreamDataValues[7].Trim(),
+                                    Nufactura = oStreamDataValues[8].Trim(),
+                                    Sufijo = oStreamDataValues[9].Trim(),
+                                    Propina = decimal.Parse(oStreamDataValues[10]),
+                                    Total_fac = decimal.Parse(oStreamDataValues[11]),
+                                    Consumidor = string.IsNullOrEmpty(oStreamDataValues[12]) ? "" : oStreamDataValues[12].Trim(),
+                                    Docid_pagador = oStreamDataValues[13].Trim(),
+                                    Pagador = oStreamDataValues[14].Trim()
+                                };
 
-                            bizPartnerConsumption.SavePartnerConsumption(partnerConsumption);
+                                bizPartnerConsumption.SavePartnerConsumption(partnerConsumption);
+                            
                         }
                     }
                 }

@@ -36,6 +36,24 @@ namespace Orkidea.RinconCajica.Business
             return oPartnerConsumption;
         }
 
+        public List<ConsumptionGlobal> GetPartnerConsumptionList2M()
+        {
+
+            List<ConsumptionGlobal> oPartnerConsumption = new List<ConsumptionGlobal>();
+
+            try
+            {
+                using (var ctx = new RinconEntities())
+                {
+                    ctx.Configuration.ProxyCreationEnabled = false;
+                    oPartnerConsumption = ctx.Database.SqlQuery<ConsumptionGlobal>("Select distinct a.Fecha, a.Nufactura, a.Sufijo, a.Total_fac, a.Docid_pagador, b.accion, b.nombre from PartnerConsumption a inner join ClubPartner b on a.Docid_pagador = b.docid where datediff(m,a.fecha, getdate()) <= 2 order by Fecha desc,b.nombre, Sufijo, NuFactura").ToList();
+                }
+            }
+            catch (Exception ex) { throw ex; }
+
+            return oPartnerConsumption;
+        }
+
         /// <summary>
         /// Retrieve course information based in the primary key
         /// </summary>
