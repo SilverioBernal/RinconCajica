@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 
-<h2>Reporte de correspondencia recibida</h2>
+<h2>Reporte de recibidos</h2>
 
 @Styles.Render("~/css/datepicker.css")
 @Scripts.Render("~/scripts/jquery-1.9.1.min.js")
@@ -21,8 +21,9 @@
 
 </div>
 <div class="row-fluid">
-    <div class="span2">
-        <input type="button" value="Generar" id="btnSubmit" class="btn btn-info" />
+    <div class="span12">
+        <input type="button" value="Generar reporte correspondencia" id="btnSubmit" class="btn btn-info" />
+        <input type="button" value="Generar reporte mensajería" id="btnMensajeriaSubmit" class="btn btn-info" />
     </div>
 </div>
 
@@ -45,5 +46,17 @@
         link = link.replace("-1", parametro);
 
         window.location.href =link;
+    });
+
+    $('#btnMensajeriaSubmit').click(function () {
+        var desde = $('#desde').val();
+        var hasta = $('#hasta').val();
+
+        var parametro = desde + "|" + hasta + "|M";
+
+        var link = '@Url.Action("exportaMensajeriaRecibida", new { id = "-1" })';
+        link = link.replace("-1", parametro);
+
+        window.location.href = link;
     });
 </script>

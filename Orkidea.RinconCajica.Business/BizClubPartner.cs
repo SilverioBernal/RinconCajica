@@ -277,23 +277,23 @@ namespace Orkidea.RinconCajica.Business
                 {
                     //verify if the ClubPartner exists
                     ClubPartner modifiedClubPartner = GetClubPartnerbyKey(new ClubPartner() { docid = ClubPartnerTarget.docid });
-                    ClubPartner originalClubPartner = GetClubPartnerbyKey(new ClubPartner() { docid = ClubPartnerTarget.docid });
-
-                    modifiedClubPartner.doreco = ClubPartnerTarget.doreco;
-                    modifiedClubPartner.teleco = ClubPartnerTarget.teleco;
-                    modifiedClubPartner.telefn = ClubPartnerTarget.telefn;
-                    modifiedClubPartner.fec_nac = ClubPartnerTarget.fec_nac;
-                    modifiedClubPartner.fecmatr = ClubPartnerTarget.fecmatr;
-                    modifiedClubPartner.ciudad = ClubPartnerTarget.ciudad;
-                    modifiedClubPartner.correo = ClubPartnerTarget.correo;
-                    modifiedClubPartner.celular = ClubPartnerTarget.celular;
-                    modifiedClubPartner.direcc = ClubPartnerTarget.direcc;
-                    modifiedClubPartner.fechaActualizacion = DateTime.Now;
-                    modifiedClubPartner.idUsuario = ClubPartnerTarget.idUsuario;
-
 
                     if (modifiedClubPartner != null)
                     {
+
+                        ClubPartner originalClubPartner = GetClubPartnerbyKey(new ClubPartner() { docid = ClubPartnerTarget.docid });
+
+                        modifiedClubPartner.doreco = ClubPartnerTarget.doreco;
+                        modifiedClubPartner.teleco = ClubPartnerTarget.teleco;
+                        modifiedClubPartner.telefn = ClubPartnerTarget.telefn;
+                        modifiedClubPartner.fec_nac = ClubPartnerTarget.fec_nac;
+                        modifiedClubPartner.fecmatr = ClubPartnerTarget.fecmatr;
+                        modifiedClubPartner.ciudad = ClubPartnerTarget.ciudad;
+                        modifiedClubPartner.correo = ClubPartnerTarget.correo;
+                        modifiedClubPartner.celular = ClubPartnerTarget.celular;
+                        modifiedClubPartner.direcc = ClubPartnerTarget.direcc;
+                        modifiedClubPartner.fechaActualizacion = DateTime.Now;
+                        modifiedClubPartner.idUsuario = ClubPartnerTarget.idUsuario;
                         // if exists then edit 
                         ctx.ClubPartner.Attach(originalClubPartner);
                         EntityFrameworkHelper.EnumeratePropertyDifferences(originalClubPartner, modifiedClubPartner);
@@ -301,8 +301,31 @@ namespace Orkidea.RinconCajica.Business
                     }
                     else
                     {
+                        ClubPartner newClubPartner = new ClubPartner()
+                        {
+                            doreco = ClubPartnerTarget.doreco,
+                            teleco = ClubPartnerTarget.teleco,
+                            telefn = ClubPartnerTarget.telefn,
+                            fec_nac = ClubPartnerTarget.fec_nac,
+                            fecmatr = ClubPartnerTarget.fecmatr,
+                            ciudad = ClubPartnerTarget.ciudad,
+                            correo = ClubPartnerTarget.correo,
+                            celular = ClubPartnerTarget.celular,
+                            direcc = ClubPartnerTarget.direcc,
+                            fechaActualizacion = DateTime.Now,
+                            //idUsuario = null,
+                            docid = (int)ClubPartnerTarget.idUsuario,
+                            nombre = ClubPartnerTarget.nombre,
+                            accion = ClubPartnerTarget.accion,
+                            carnet = ClubPartnerTarget.carnet,
+                            doccl = ClubPartnerTarget.doccl,
+                            docto = ClubPartnerTarget.docto,
+                            sexo = ClubPartnerTarget.sexo,
+                            estado = ClubPartnerTarget.estado,
+
+                        };
                         // else create
-                        ctx.ClubPartner.Add(modifiedClubPartner);
+                        ctx.ClubPartner.Add(newClubPartner);
                         ctx.SaveChanges();
                     }
                 }

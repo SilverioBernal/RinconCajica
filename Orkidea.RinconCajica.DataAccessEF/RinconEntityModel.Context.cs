@@ -37,7 +37,6 @@ namespace Orkidea.RinconCajica.DataAccessEF
         public virtual DbSet<JoinContest> JoinContest { get; set; }
         public virtual DbSet<JoinEvent> JoinEvent { get; set; }
         public virtual DbSet<MessageActor> MessageActor { get; set; }
-        public virtual DbSet<MessageBitacore> MessageBitacore { get; set; }
         public virtual DbSet<mimetype> mimetype { get; set; }
         public virtual DbSet<NewsPaper> NewsPaper { get; set; }
         public virtual DbSet<Page> Page { get; set; }
@@ -51,5 +50,6 @@ namespace Orkidea.RinconCajica.DataAccessEF
         public virtual DbSet<SportModality> SportModality { get; set; }
         public virtual DbSet<SportSchedule> SportSchedule { get; set; }
         public virtual DbSet<ProcessDocument> ProcessDocument { get; set; }
+        public virtual DbSet<MessageBitacore> MessageBitacore { get; set; }
     }
 }

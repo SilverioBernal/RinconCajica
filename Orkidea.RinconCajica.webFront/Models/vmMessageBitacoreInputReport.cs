@@ -19,9 +19,13 @@ namespace Orkidea.RinconCajica.webFront.Models
         public string origen { get; set; }
         [XmlAttribute("Destino")]
         public string destino { get; set; }
+        [XmlAttribute("Direccion")]
+        public string direccion { get; set; }
         [XmlAttribute("Tipo")]
         public string descripcionCorta { get; set; }
         [XmlAttribute("Observaciones")]
-        public string descripcionLarga { get; set; }        
+        public string descripcionLarga { get; set; }
+        [XmlAttribute("Documento relacionado")]
+        public int documentoRelacionado { get; set; }
     }
 }

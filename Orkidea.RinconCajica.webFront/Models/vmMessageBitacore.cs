@@ -14,6 +14,7 @@ namespace Orkidea.RinconCajica.webFront.Models
 
         public List<MessageActor> lsProveedores { get; set; }
         public List<MessageActor> lsDependencias { get; set; }
+        public List<MessageBitacore> lsDocRelacionados { get; set; }
         public SortedDictionary<string, string> lsTipoDoc { get; set; }
         public SortedDictionary<byte, string> lsPrioridad { get; set; }
         public string strOrigen { get; set; }
@@ -46,6 +47,32 @@ namespace Orkidea.RinconCajica.webFront.Models
             lsPrioridad.Add(2, "Alta");
         }
 
+        //public vmMessageBitacore(bool mensajeria)
+        //{
+        //    lsProveedores = new List<MessageActor>();
+        //    lsDependencias = new List<MessageActor>();
+
+        //    lsProveedores.Add(new MessageActor());
+        //    lsDependencias.Add(new MessageActor());
+
+        //    lsProveedores.AddRange(bizMessageActor.GetMessageActorListByType("P").OrderBy(x => x.descripcion).ToList());
+        //    lsDependencias.AddRange(bizMessageActor.GetMessageActorListByType("D").OrderBy(x => x.descripcion).ToList());
+
+        //    lsTipoDoc = new SortedDictionary<string, string>();
+        //    lsPrioridad = new SortedDictionary<byte, string>();
+
+        //    string[] tiposDoc = ConfigurationManager.AppSettings["tipoDocumento"].ToString().Split('|');
+
+        //    lsTipoDoc.Add("", "");
+
+        //    foreach (string item in tiposDoc)
+        //    {
+        //        lsTipoDoc.Add(item, item);
+        //    }
+
+        //    lsPrioridad.Add(1, "Normal");
+        //    lsPrioridad.Add(2, "Alta");
+        //}
 
         public vmMessageBitacore(MessageBitacore messageBitacore)
         {
@@ -55,6 +82,8 @@ namespace Orkidea.RinconCajica.webFront.Models
             descripcionCorta = messageBitacore.descripcionCorta;
             descripcionLarga = messageBitacore.descripcionLarga;
             idRegistro = messageBitacore.idRegistro;
+            direccion = messageBitacore.direccion;
+            documentoRelacionado = messageBitacore.documentoRelacionado;
         }
     }
 }

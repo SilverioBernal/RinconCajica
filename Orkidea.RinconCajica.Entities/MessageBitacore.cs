@@ -26,6 +26,8 @@ namespace Orkidea.RinconCajica.Entities
         public string direccion { get; set; }
         public Nullable<System.DateTime> fechaLimite { get; set; }
         public bool enviado { get; set; }
+        public Nullable<int> documentoRelacionado { get; set; }
+        public string imagenDocumento { get; set; }
     
         public virtual MessageActor MessageActor { get; set; }
     }

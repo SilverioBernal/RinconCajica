@@ -67,10 +67,10 @@ namespace Orkidea.RinconCajica.Business
                 using (var ctx = new RinconEntities())
                 {
                     DateTime desde = fechaDesde.Date;
-                    DateTime hasta = fechaHasta.Date.AddDays(1);
+                    DateTime hasta = (fechaHasta.Date.AddDays(1)).AddMinutes(-5);
 
                     ctx.Configuration.ProxyCreationEnabled = false;
-                    lstMessageBitacore = ctx.MessageBitacore.Where(x => x.tipoRegistro == tipo && x.fecha >= desde && x.fecha < hasta).ToList();
+                    lstMessageBitacore = ctx.MessageBitacore.Where(x => x.tipoRegistro == tipo && x.fecha >= desde && x.fecha <= hasta).ToList();
                 }
             }
             catch (Exception ex) { throw ex; }
@@ -81,6 +81,8 @@ namespace Orkidea.RinconCajica.Business
         public List<MessageBitacore> GetMessageBitacoreList(MessageBitacore messageBitacore)
         {
             List<MessageBitacore> lstMessageBitacore = new List<MessageBitacore>();
+            List<MessageBitacore> lstMessageBitacoreRep = new List<MessageBitacore>();
+
 
             try
             {
@@ -89,17 +91,18 @@ namespace Orkidea.RinconCajica.Business
                     ctx.Configuration.ProxyCreationEnabled = false;
                     lstMessageBitacore = ctx.MessageBitacore.Where(x => x.entregaPersonal.Equals(messageBitacore.entregaPersonal)).ToList();
 
-                    if (messageBitacore.fecha.Year != 1)
-                    {
-                        DateTime fechaDesde = messageBitacore.fecha;
-                        DateTime fechaHasta = messageBitacore.fecha;
+                    /**/
 
-                        lstMessageBitacore = lstMessageBitacore.Where(x => x.fecha >= fechaDesde && x.fecha < fechaHasta).ToList();
-                    }
+                    DateTime fechaDesde = messageBitacore.fecha.Year != 1 ? messageBitacore.fecha : new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                    DateTime fechaHasta = messageBitacore.fechaLimite != null ? ((DateTime)messageBitacore.fechaLimite).AddMinutes(1439) : DateTime.Now.AddMinutes(1439);
 
+                    lstMessageBitacore = lstMessageBitacore.Where(x => x.fecha >= fechaDesde && x.fecha < fechaHasta).ToList();
+
+                    /**/
+                    
                     if (messageBitacore.descripcionCorta != null)
                     {
-                        lstMessageBitacore = lstMessageBitacore.Where(x => x.descripcionCorta == messageBitacore.descripcionCorta).ToList();
+                        lstMessageBitacore = lstMessageBitacore.Where(x => x.descripcionCorta.ToUpper() == messageBitacore.descripcionCorta.ToUpper()).ToList();
                     }
 
                     if (messageBitacore.prioridad != 0)
@@ -107,12 +110,9 @@ namespace Orkidea.RinconCajica.Business
                         lstMessageBitacore = lstMessageBitacore.Where(x => x.prioridad.Equals(messageBitacore.prioridad)).ToList();
                     }
 
-                    if (messageBitacore.fechaLimite != null)
+                    if (!string.IsNullOrEmpty(messageBitacore.tipoRegistro))
                     {
-                        DateTime fechaDesde = (DateTime)messageBitacore.fechaLimite;
-                        DateTime fechaHasta = (DateTime)messageBitacore.fechaLimite;
-
-                        lstMessageBitacore = lstMessageBitacore.Where(x => x.fechaLimite >= fechaDesde && x.fechaLimite < fechaHasta).ToList();
+                        lstMessageBitacore = lstMessageBitacore.Where(x => x.tipoRegistro == messageBitacore.tipoRegistro).ToList();
                     }                    
                 }
             }

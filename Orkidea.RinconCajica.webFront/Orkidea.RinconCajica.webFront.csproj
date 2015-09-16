@@ -290,6 +290,30 @@
     <Content Include="Images\adobe.jpg" />
     <Content Include="Images\blackBall.png" />
     <Content Include="Images\blueBall.png" />
+    <Content Include="Images\off01.png" />
+    <Content Include="Images\off02.png" />
+    <Content Include="Images\off03.png" />
+    <Content Include="Images\off04.png" />
+    <Content Include="Images\off05.png" />
+    <Content Include="Images\off06.png" />
+    <Content Include="Images\off07.png" />
+    <Content Include="Images\off08.png" />
+    <Content Include="Images\off09.png" />
+    <Content Include="Images\off10.png" />
+    <Content Include="Images\off11.png" />
+    <Content Include="Images\off12.png" />
+    <Content Include="Images\on01.png" />
+    <Content Include="Images\on02.png" />
+    <Content Include="Images\on03.png" />
+    <Content Include="Images\on04.png" />
+    <Content Include="Images\on05.png" />
+    <Content Include="Images\on06.png" />
+    <Content Include="Images\on07.png" />
+    <Content Include="Images\on08.png" />
+    <Content Include="Images\on09.png" />
+    <Content Include="Images\on10.png" />
+    <Content Include="Images\on11.png" />
+    <Content Include="Images\on12.png" />
     <Content Include="Images\redBall.png" />
     <Content Include="Images\whiteBall.png" />
     <Content Include="Images\yellowBall.png" />
@@ -864,6 +888,11 @@
     <Content Include="Views\HomeSGC\Suggestion.cshtml" />
     <Content Include="Views\InstitutionalEvent\IndexOlderSchedule.cshtml" />
     <Content Include="Views\ClubPartner\Create.cshtml" />
+    <Content Include="Views\MessageActor\Index.cshtml" />
+    <Content Include="Views\MessageActor\Mensajeria.cshtml" />
+    <Content Include="Views\MessageActor\MensajeriaAbiertos.cshtml" />
+    <Content Include="Views\MessageActor\AdjuntaArchivoDocumento.cshtml" />
+    <Content Include="Views\ClubPartner\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -873,6 +902,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AzureUtilities\AzureUtilities.csproj">
+      <Project>{d26dfc5a-4714-4c96-9b68-48e87f7ec84b}</Project>
+      <Name>AzureUtilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orkidea.RinconCajica.Business\Orkidea.RinconCajica.Business.csproj">
       <Project>{733f066d-b0dc-43dc-96df-3d91600b46f0}</Project>
       <Name>Orkidea.RinconCajica.Business</Name>

@@ -14,9 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- [if lt IE 9]
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
     <!-- Stylesheets -->
     <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" />
     <link href="@Url.Content("~/css/bootstrap-responsive.min.css")" rel="stylesheet" />
@@ -25,8 +24,8 @@
     <link href="@Url.Content("~/css/backend.css")" rel="stylesheet" />
 
     <!-- [if IE 7]>
-		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
-		<![endif] -->
+        <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
+        <![endif] -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 
     @{
@@ -53,7 +52,8 @@
         <div class="navbar">
             <div class="navbar-inner navbar-fixed-top">
                 <a class="brand" href="@Url.Action("index", "Home")">
-                    <img src="~/img/logo.png" width="100px" /></a>
+                    <img src="~/img/logo.png" width="100px" />
+                </a>
                 <ul class="nav customNav">
                     <li><a href="@Url.Action("index", "HomeSGC")">Home</a></li>
                     <li class="dropdown">
@@ -66,146 +66,100 @@
                     </li>
                     <li><a href="@Url.Action("Index", "Process")">Sistema de Gestión</a></li>
                     <li><a href="@Url.Action("Suggestion", "HomeSGC")">Sugerencias</a></li>
-                    @if (rol == "A" || rol == "C")
-                    {
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                @if (rol == "A")
+                    @*@if (rol == "A" || rol == "C" || rol == "P" || rol == "M" || rol == "E")
+                        {*@
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            @if (rol == "A")
+                            {
+
+                                <li class="dropdown-submenu">
+                                    <a href="#">General</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Index", "FrontUser")">Usuarios</a></li>
+                                        <li><a href="@Url.Action("Index", "NewsPaper")">Noticias</a></li>
+                                        <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
+                                        <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
+                                        <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
+                                        <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown-submenu">
+                                    <a href="#">Deportes</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
+                                        <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
+                                        <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="#">Socios</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Index", "ClubPartner")">Socios</a></li>
+                                        <li><a href="@Url.Action("Index", "AccountSummary")">Extractos</a></li>
+                                        <li><a href="@Url.Action("Index", "PartnerConsumption")">Consumos</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="divider"></li>
+                                <li class="nav-header">Eventos institucionales</li>
+
+                                if (ViewBag.menu == "SportModality")
                                 {
-                                    <li class="nav-header">General</li>
-                                    <li><a href="@Url.Action("Index", "FrontUser")">Usuarios</a></li>
-                                    <li><a href="@Url.Action("Index", "NewsPaper")">Noticias</a></li>
-                            
-                                    if (ViewBag.menu == "medios")
-                                    {
-                                    <li class="active"><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>                                
-                                    }
-                                    else
-                                    {
-                                    <li><a href="@Url.Action("Index", "FileUpload")">Medios</a></li>
-                                    }
-                                    if (ViewBag.menu == "HomeSlider")
-                                    {
-                                    <li class="active"><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
-                                    }
-                                    else
-                                    {
-                                    <li><a href="@Url.Action("Index", "HomeSlider")">Página de inicio</a></li>
-                                    }
-                                    if (ViewBag.menu == "Page")
-                                    {
-                                    <li class="active"><a href="@Url.Action("Index", "Page")">Páginas</a></li>
-                                    }
-                                    else
-                                    {
-                                    <li><a href="@Url.Action("Index", "Page")">Páginas</a></li>
-                                    }
-                                    if (ViewBag.menu == "SideBar")
-                                    {
-                                    <li class="active"><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
-                                    }
-                                    else
-                                    {
-                                    <li><a href="@Url.Action("Index", "SideBar")">Side Bars</a></li>
-                                    }
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Deportes</li>
-
-                                    if (ViewBag.menu == "SportModality")
-                                    {
-                                    <li class="active"><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
-                                    }
-                                    else
-                                    {
-                                    <li><a href="@Url.Action("Index", "SportModality")">Modalidades</a></li>
-                                    }
-                                    if (ViewBag.menu == "SportBranch")
-                                    {
-                                    <li class="active"><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
-                                    }
-                                    else
-                                    {
-                                    <li><a href="@Url.Action("Index", "SportBranch")">Ramas</a></li>
-                                    }
-                                    if (ViewBag.menu == "SportSchedule")
-                                    {
-                                    <li class="active"><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
-                                    }
-                                    else
-                                    {
-                                    <li><a href="@Url.Action("Index", "SportSchedule")">Calendario</a></li>
-                                    }
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Socios</li>
-                                    if (ViewBag.menu == "AccountSummary")
-                                    {
-                                    <li class="active"><a href="@Url.Action("Index", "AccountSummary")">Extractos</a></li>
-                                    }
-                                    else
-                                    {
-                                    <li><a href="@Url.Action("Index", "AccountSummary")">Extractos</a></li>
-                                    }
-                                    if (ViewBag.menu == "AccountSummary")
-                                    {
-                                    <li class="active"><a href="@Url.Action("Index", "PartnerConsumption")">Consumos</a></li>
-                                    }
-                                    else
-                                    {
-                                    <li><a href="@Url.Action("Index", "PartnerConsumption")">Consumos</a></li>
-                                    }
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Eventos institucionales</li>
-
-                                    if (ViewBag.menu == "SportModality")
-                                    {
                                     <li class="active"><a href="@Url.Action("Index", "InstitutionalEvent")">Calendario</a></li>
-                                    }
-                                    else
-                                    {
+                                }
+                                else
+                                {
                                     <li><a href="@Url.Action("Index", "InstitutionalEvent")">Calendario</a></li>
-                                    }
                                 }
-                                @if (rol == "A" || rol == "C")
-                                {
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Calidad</li>
+                            }
+                            @if (rol == "A" || rol == "C")
+                            {
+                                <li class="divider"></li>
+                                <li class="dropdown-submenu">
+                                    <a href="#">Calidad</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Index", "DocumentType")">Tipos de documento</a></li>
+                                        <li><a href="@Url.Action("List", "Process")">Procesos</a></li>
+                                        <li><a href="@Url.Action("Index", "ProcessDocument")">Documentos por proceso</a></li>
+                                    </ul>
+                                </li>
 
-                                    <li><a href="@Url.Action("Index", "DocumentType")">Tipos de documento</a></li>
-                                    <li><a href="@Url.Action("List", "Process")">Procesos</a></li>
-                                    <li><a href="@Url.Action("Index", "ProcessDocument")">Documentos por proceso</a></li>
-                                }
-                                @if (rol == "A" || rol == "P" || rol == "M")
-                                {
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Mensajeria</li>
-                                    if (rol == "A" || rol == "P")
-                                    {
-                                        if (ViewBag.menu == "Message")
-                                        {
-                                    <li class="active"><a href="@Url.Action("RecibeDocumento", "MessageActor")">Recibir documentos</a></li>
-                                        }
-                                        else
-                                        {
-                                    <li><a href="@Url.Action("RecibeDocumento", "MessageActor")">Recibir documentos</a></li>
-                                        }
-                                    }
 
-                                    if (rol == "A" || rol == "M")
+
+                            }
+                            @*@if (rol == "A" || rol == "P" || rol == "M")
+                                {*@
+                            <li class="divider"></li>
+
+                            <li class="dropdown-submenu">
+                                <a href="#">Mensajeria</a>
+                                <ul class="dropdown-menu">
+                                    @if (rol == "A" || rol == "P")
                                     {
-                                    <li><a href="@Url.Action("ReporteRecibido", "MessageActor")">Reporte de documentos recibidos</a></li>                                        
-                                    <li><a href="@Url.Action("Create", "MessageActor")">Crear dependencias</a></li>                                        
-                                    <li><a href="@Url.Action("Upload", "MessageActor")">Importar terceros</a></li>                                        
+                                        <li><a href="@Url.Action("RecibeDocumento", "MessageActor")">Recibir documentos</a></li>
                                     }
-                                    if (rol == "A" || rol == "E")
+                                    @if (rol == "A" || rol == "M")
+                                    {
+                                        <li><a href="@Url.Action("ReporteRecibido", "MessageActor")">Reporte de documentos recibidos</a></li>
+                                        <li><a href="@Url.Action("GeneraReporteGeneral", "MessageActor")">Reporte general</a></li>
+                                        <li><a href="@Url.Action("Create", "MessageActor")">Crear dependencias</a></li>
+                                        <li><a href="@Url.Action("Upload", "MessageActor")">Importar terceros</a></li>
+                                    }
+                                    @if (rol == "A" || rol == "W" || rol == "P")
                                     {
                                         <li><a href="@Url.Action("EnviaDocumento", "MessageActor")">Enviar documentos</a></li>
+                                        <li><a href="@Url.Action("Mensajeria", "MessageActor")">Mensajeria</a></li>
                                     }
-                                }
+                                </ul>
+                            </li>
+                            @*}*@
 
-                            </ul>
-                        </li>
-                    }
+                        </ul>
+                    </li>
+                    @*}*@
                 </ul>
                 <ul class="nav pull-right customNav">
                     <li><a href="javascript:void(0);">@userName</a></li>
@@ -226,7 +180,6 @@
         </div>
     </div>
     <!-- /.container -->
-
     <!-- Scripts -->
 
     <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>

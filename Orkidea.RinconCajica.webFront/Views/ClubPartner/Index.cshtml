@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.ClubPartner>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+<h2>Listado general de usuarios</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Nuevo Socio</a>
+</p>
+<table class="table table-bordered table-striped table_vam" id="dt_gal">
+    <thead>
+        <tr>
+            <th>DocID</th>
+            <th>Nombre</th>
+            <th>Derecho</th>
+            <th>Usuario</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.docid)</td>
+                <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.accion)</td>
+                <td>@Html.DisplayFor(modelItem => item.faxres)</td>
+                <td>                    
+                    <a href="@Url.Action("Delete", new { id = item.docid })" title="Eliminar"><i class="icon-trash"></i></a>                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $('#dt_gal').dataTable();
+</script>

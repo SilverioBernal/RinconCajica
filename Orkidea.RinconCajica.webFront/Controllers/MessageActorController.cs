@@ -10,6 +10,8 @@ using System.Xml.Serialization;
 using Orkidea.RinconCajica.Business;
 using Orkidea.RinconCajica.Entities;
 using Orkidea.RinconCajica.webFront.Models;
+using Orkidea.RinconCajica.Utilities;
+using AzureUtilities;
 
 namespace Orkidea.RinconCajica.webFront.Controllers
 {
@@ -20,6 +22,11 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         //
         // GET: /MessageActor/
+
+        public ActionResult Index()
+        {
+            return View();
+        }
 
         public ActionResult IndexDependencias()
         {
@@ -35,7 +42,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         public ActionResult IndexRecibidoHoy()
         {
-            List<MessageBitacore> lsRecibido = bizMessageBitacore.GetMessageBitacoreList("I", DateTime.Now);
+            List<MessageBitacore> lsRecibido = bizMessageBitacore.GetMessageBitacoreList("I", TimeZoneOrgHelper.GetZoneNowDateTime("4.1711", "-74.00639"));
             List<vmMessageBitacore> lsRecibidoHoy = new List<vmMessageBitacore>();
 
             foreach (MessageBitacore item in lsRecibido)
@@ -103,6 +110,60 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             return File(stream, "application/vnd.res-excel", fileName + ".xls");
         }
 
+        public ActionResult exportaMensajeriaRecibida(string id)
+        {
+            string[] parametros = id.Split('|');
+
+            DateTime desde = DateTime.Parse(parametros[0]);
+            DateTime hasta = DateTime.Parse(parametros[1]);
+            string tipo = parametros[2];
+
+            List<MessageBitacore> lsRecibido = bizMessageBitacore.GetMessageBitacoreList(tipo, desde, hasta);
+            List<vmMessageBitacore> lsReport = new List<vmMessageBitacore>();
+            List<vmMessageBitacoreInputReport> lsReportExport = new List<vmMessageBitacoreInputReport>();
+
+            foreach (MessageBitacore item in lsRecibido)
+            {
+                lsReport.Add(new vmMessageBitacore(item));
+            }
+
+            foreach (vmMessageBitacore item in lsReport)
+            {
+                lsReportExport.Add(new vmMessageBitacoreInputReport()
+                {
+                    descripcionCorta = item.descripcionCorta,
+                    descripcionLarga = item.descripcionLarga,
+                    destino = item.strDestino,
+                    direccion = item.direccion == null ? "" : item.direccion,
+                    fecha = item.fecha,
+                    origen = item.strOrigen,
+                    idRegistro = item.idRegistro,
+                    documentoRelacionado = item.documentoRelacionado == null ? 0 : (int)item.documentoRelacionado
+                });
+            }
+
+            string fileName = Regex.Replace(
+                    CultureInfo.CurrentCulture.TextInfo.ToTitleCase("Mensajeria_desde_" + parametros[0] + "_hasta_" + parametros[1]
+                    .ToLower()
+                    .Replace(@"@", "a")
+                    .Replace('á', 'a')
+                    .Replace('é', 'e')
+                    .Replace('í', 'i')
+                    .Replace('ó', 'o')
+                    .Replace('ú', 'u')
+                    .Replace('ñ', 'n')
+                    .Replace('ü', 'u')
+                    ), @"[^\w]", "", RegexOptions.None, TimeSpan.FromSeconds(1.5));
+
+            var stream = new MemoryStream();
+            XmlSerializer serializer = new XmlSerializer(lsReportExport.GetType());
+
+            serializer.Serialize(stream, lsReportExport);
+            stream.Position = 0;
+
+            return File(stream, "application/vnd.res-excel", fileName + ".xls");
+        }
+
         public ActionResult GeneraReporteGeneral()
         {
             vmMessageBitacore messageBitacore = new vmMessageBitacore();
@@ -124,7 +185,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             if (!string.IsNullOrEmpty(parametros[1]))
                 mb.prioridad = byte.Parse(parametros[1]);
             //else
-                //mb.prioridad = 1;
+            //mb.prioridad = 1;
 
             if (!string.IsNullOrEmpty(parametros[2]))
                 mb.descripcionCorta = parametros[2];
@@ -135,7 +196,10 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             if (!string.IsNullOrEmpty(parametros[4]))
                 mb.entregaPersonal = bool.Parse(parametros[4]);
 
-            lsMB = bizMessageBitacore.GetMessageBitacoreList(mb);
+            if (!string.IsNullOrEmpty(parametros[5]))
+                mb.enviado = bool.Parse(parametros[5]);
+
+            lsMB = bizMessageBitacore.GetMessageBitacoreList(mb).Where(x => x.tipoRegistro != "I").ToList();
 
             foreach (MessageBitacore item in lsMB)
             {
@@ -154,7 +218,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     prioridad = ObtienePrioridad(item.prioridad),
                     tipoRegistro = item.tipoRegistro
                 };
-                
+
                 lsMessageBitacore.Add(mbr);
             }
 
@@ -200,16 +264,13 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         {
             if (ModelState.IsValid)
             {
-                string physicalPath = HttpContext.Server.MapPath("~") + "\\UploadedFiles\\PartnerConsumption\\";
                 string fileExtension = Path.GetExtension(model.File.FileName);
                 string fileName = Guid.NewGuid().ToString() + fileExtension;
-
-                model.File.SaveAs(physicalPath + fileName);
 
                 string[] oStreamDataValues = null;
                 List<PartnerConsumption> lsPartnerConsumption = new List<PartnerConsumption>();
 
-                using (StreamReader reader = new StreamReader(physicalPath + fileName))
+                using (StreamReader reader = new StreamReader(model.File.InputStream))
                 {
 
                     int lines = 0;
@@ -313,21 +374,43 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         public ActionResult RecibeDocumento()
         {
-            vmMessageBitacore messageBitacore = new vmMessageBitacore() { tipoRegistro = "I", fecha = DateTime.Now.AddHours(7) };
+            vmMessageBitacore messageBitacore = new vmMessageBitacore() { tipoRegistro = "I", fecha = TimeZoneOrgHelper.GetZoneNowDateTime("4.1711", "-74.00639") };
             return View(messageBitacore);
         }
 
         [HttpPost]
         public ActionResult RecibeDocumento(MessageBitacore messageBitacore)
         {
+            messageBitacore.fecha = TimeZoneOrgHelper.GetZoneNowDateTime("4.1711", "-74.00639");
             bizMessageBitacore.SaveMessageBitacore(messageBitacore);
             return RedirectToAction("RecibeDocumento");
         }
 
         public ActionResult EnviaDocumento()
         {
-            vmMessageBitacore messageBitacore = new vmMessageBitacore() { tipoRegistro = "O", fecha = DateTime.Now };
+            vmMessageBitacore messageBitacore = new vmMessageBitacore() { tipoRegistro = "O", fecha = TimeZoneOrgHelper.GetZoneNowDateTime("4.1711", "-74.00639") };
             return View(messageBitacore);
+        }
+
+        public ActionResult AdjuntaArchivoDocumento(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AdjuntaArchivoDocumento(int id, vmFileUpload model)
+        {
+            string fileExtension = Path.GetExtension(model.File.FileName);
+            string fileName = Guid.NewGuid().ToString() + fileExtension;
+
+            AzureStorageHelper.uploadFile(model.File.InputStream, fileName, "uploadedFiles");
+
+            MessageBitacore mb = bizMessageBitacore.GetMessageBitacorebyKey(new MessageBitacore() { tipoRegistro = "O", idRegistro = id });
+            mb.imagenDocumento = fileName;
+
+            bizMessageBitacore.SaveMessageBitacore(mb);
+
+            return RedirectToAction("EnviaDocumento");
         }
 
         public JsonResult EnviarDocumento(MessageBitacore messageBitacore)
@@ -336,7 +419,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             try
             {
-                messageBitacore.fecha = DateTime.Now;
+                messageBitacore.fecha = TimeZoneOrgHelper.GetZoneNowDateTime("4.1711", "-74.00639");
                 res = bizMessageBitacore.SaveMessageBitacore(messageBitacore).ToString();
 
             }
@@ -361,6 +444,38 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 mb.enviado = true;
                 if (bizMessageBitacore.SaveMessageBitacore(mb) != 0)
                     res = "OK";
+
+            }
+            catch (Exception ex)
+            {
+                res = string.Format("Error - no se pudo guardar debido a un error inesperado {0}", ex.Message);
+            }
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult MensajeriaAbiertos()
+        {
+            List<MessageBitacore> lsMensajeria = new List<MessageBitacore>();
+            lsMensajeria = bizMessageBitacore.GetMessageBitacoreList().Where(x => x.tipoRegistro == "M" && x.enviado == false).ToList();
+
+            return View(lsMensajeria);
+        }
+
+        public ActionResult Mensajeria()
+        {
+            vmMessageBitacore messageBitacore = new vmMessageBitacore() { tipoRegistro = "M", fecha = TimeZoneOrgHelper.GetZoneNowDateTime("4.1711", "-74.00639") };
+            return View(messageBitacore);
+        }
+
+        public JsonResult ObtenerDocumentosSinRelacion(string tipoDoc)
+        {
+            string res = "";
+
+            try
+            {
+                List<MessageBitacore> mb = bizMessageBitacore.GetMessageBitacoreList(new MessageBitacore() { descripcionCorta = tipoDoc, tipoRegistro = "O" });
+
+                return Json(mb, JsonRequestBehavior.AllowGet);
 
             }
             catch (Exception ex)

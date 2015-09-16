@@ -1,7 +1,5 @@
-﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmMessageBitacoreReport>
-
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.MessageBitacore>
 @{
-    ViewBag.Title = "ReporteGeneral";
     Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 
@@ -23,11 +21,11 @@
                     <th>ID</th>
                     <th>Fecha tramite</th>
                     <th>Origen</th>
-                    <th>Destino</th>                    
-                    <th>Direccion</th>                    
-                    <th>Observaciones</th>                    
+                    <th>Destino</th>
+                    <th>Direccion</th>
+                    <th>Observaciones</th>
                     <th>Prioridad</th>
-                    <th>Documento</th>                    
+                    <th>Documento</th>
                     <th>Fecha Limite</th>
                     <th>Enviado</th>
                     <th></th>
@@ -37,39 +35,41 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@{ string tipo = item.tipoRegistro == "I" ? "In" : item.tipoRegistro == "O" ? "Out" :"Mensajeria";}
-                            @tipo
-                        </td>
-                        <td>@Html.DisplayFor(modelItem => item.idRegistro)</td>
-                        <td>@item.fecha.ToString("yyyy-MM-dd")</td>
-                        <td>@Html.DisplayFor(modelItem => item.origen)</td>
-                        <td>@Html.DisplayFor(modelItem => item.destino)</td>                        
-                        <td>@Html.DisplayFor(modelItem => item.direccion)</td>                         
-                        <td>@Html.DisplayFor(modelItem => item.descripcionLarga)</td>                        
-                        <td>@Html.DisplayFor(modelItem => item.prioridad)</td>
-                        <td>@Html.DisplayFor(modelItem => item.descripcionCorta)</td>                                                
-                        <td>@{string fecha = item.fechaLimite == null ? "" : ((DateTime)item.fechaLimite).ToString("yyyy-MM-dd");}
-                            @fecha
-                        </td>
                         <td>
-                            @{string enviado = "";}
-                            @if (item.tipoRegistro != "I")
-                            {
-                                enviado = item.enviado ? "Si" : "No";
-                            }
-                            @enviado
-                        </td>
-                        <td>
-                            @if (item.tipoRegistro != "I")
-                            {
-                                if (!item.enviado)
-                                {
-                                <a href="javascript:void(0)" title="Marcar como enviado"><i class="icon-ok"></i></a>
-                                }
-                            }
-                        </td>
-                    </tr>
- 
+                            @{ string tipo = item.tipoRegistro == "I" ? "In" : item.tipoRegistro == "O" ? "Out" : "Mensajeria";}
+                        @tipo
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.idRegistro)</td>
+                    <td>@item.fecha.ToString("yyyy-MM-dd")</td>
+                    <td>@Html.DisplayFor(modelItem => item.origen)</td>
+                    <td>@Html.DisplayFor(modelItem => item.destino)</td>
+                    <td>@Html.DisplayFor(modelItem => item.direccion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.descripcionLarga)</td>
+                    <td>@Html.DisplayFor(modelItem => item.prioridad)</td>
+                    <td>@Html.DisplayFor(modelItem => item.descripcionCorta)</td>
+                    <td>
+                        @{string fecha = item.fechaLimite == null ? "" : ((DateTime)item.fechaLimite).ToString("yyyy-MM-dd");}
+                    @fecha
+                </td>
+                <td>
+                    @{string enviado = "";}
+                    @if (item.tipoRegistro != "I")
+                    {
+                        enviado = item.enviado ? "Si" : "No";
+                    }
+                    @enviado
+                </td>
+                <td>
+                    @if (item.tipoRegistro != "I")
+                    {
+                        if (!item.enviado)
+                        {
+                            <a href="javascript:void(0)" title="Marcar como enviado"><i class="icon-ok"></i></a>
+                        }
+                    }
+                </td>
+            </tr>
+
                 }
             </tbody>
         </table>
@@ -115,3 +115,4 @@
         }
     });
 </script>
+

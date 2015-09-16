@@ -101,7 +101,7 @@ namespace Orkidea.RinconCajica.Business
                     if (oFrontUser != null)
                     {
                         // if exists then edit         
-                        FrontUserTarget.contrasena = oCrypto.Encrypt(PasswordHelper.Generate());
+                        //FrontUserTarget.contrasena = oCrypto.Encrypt(PasswordHelper.Generate());
                         ctx.FrontUser.Attach(oFrontUser);
                         EntityFrameworkHelper.EnumeratePropertyDifferences(oFrontUser, FrontUserTarget);
                         ctx.SaveChanges();

@@ -18,7 +18,16 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            List<ClubPartner> socios = bizClubPartner.GetClubPartnerList();
+            List<FrontUser> usuarios = bizFrontUser.GetFrontUserList();
+
+            foreach (ClubPartner socio in socios)
+            {
+                if (socio.idUsuario != null)
+                    socio.faxres = usuarios.Where(x => x.id.Equals(socio.idUsuario)).Select(x => x.usuario).FirstOrDefault();
+            }
+
+            return View(socios);
         }
 
         //
@@ -45,7 +54,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
         public ActionResult Create(Partner partner)
         {
             try
-            {                
+            {
                 // TODO: Add update logic here                
                 partner.fechaActualizacion = DateTime.Now;
                 bizClubPartner.SaveClubPartner(partner);
@@ -54,8 +63,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             }
             catch
-            {
-                return View();
+            {                
+                return View(partner);
             }
         }
 
@@ -146,6 +155,13 @@ namespace Orkidea.RinconCajica.webFront.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult delete(int id)
+        {            
+            bizClubPartner.DeleteClubPartner(new ClubPartner() { docid = id });
+
+            return RedirectToAction("Index");
         }
     }
 }
