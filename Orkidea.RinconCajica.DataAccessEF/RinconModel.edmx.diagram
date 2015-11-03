@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c11d7e163a074a8aa6f7e07bb0a96cbc" Name="Diagram1">
+      <Diagram DiagramId="c11d7e163a074a8aa6f7e07bb0a96cbc" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="rinconcajica_dbModel.AccountSummary" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="rinconcajica_dbModel.ClubPartner" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="rinconcajica_dbModel.DocumentType" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
@@ -42,6 +42,13 @@
         <AssociationConnector Association="rinconcajica_dbModel.FK_ProcessDocument_Process" />
         <EntityTypeShape EntityType="rinconcajica_dbModel.MessageBitacore" Width="1.5" PointX="13" PointY="4.75" />
         <AssociationConnector Association="rinconcajica_dbModel.FK_MessageBitacore_MessageActor" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.CorrespondenceIn" Width="1.5" PointX="7.375" PointY="16.75" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.Messenger" Width="1.5" PointX="13.375" PointY="17.75" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.Priority" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.Dependence" Width="1.5" PointX="15.375" PointY="17.75" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.Supplier" Width="1.5" PointX="17.375" PointY="17.75" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.CorrespondenceOut" Width="1.5" PointX="16.375" PointY="13.75" />
+        <EntityTypeShape EntityType="rinconcajica_dbModel.Messaging" Width="1.5" PointX="9.375" PointY="17.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

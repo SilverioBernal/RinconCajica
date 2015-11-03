@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmMessaging>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+<div>
+
+    <h2>Mensajería abierta</h2>
+    <table class="table table-bordered table-striped table_vam" id="dt_gal">
+        <thead>
+            <tr>
+                <th>Creado en</th>
+                <th>Creado por</th>
+                <th>Dependencia Origen</th>
+                <th>Dependencia Destino</th>
+                <th>Dirección</th>
+                <th>Descripcion</th>
+                <th>Mensajero</th>
+                <th>Prioridad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.fecha.ToString("yyyy-MM-dd hh:mm tt")</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreAutor)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreDependenciaOrigen)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreDependenciaDestino)</td>
+                    <td>@Html.DisplayFor(modelItem => item.direccion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.descripcion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreMensajero)</td>
+                    <td>@Html.DisplayFor(modelItem => item.prioridad)</td>
+                    <td>
+                        @if (item.mensajero == null)
+                        {
+                            <a href="@Url.Action("AttachMessenger", new { id = item.id })" class="sepV_a" title="Asignar Mensajero"><i class="icon-user"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("CloseMessage", new { id = item.id })" class="sepV_a" title="Cerrar"><i class="icon-ok-circle"></i></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('#dt_gal').dataTable();
+
+</script>

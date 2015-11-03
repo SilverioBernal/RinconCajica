@@ -328,7 +328,8 @@
                             @if (!context.IsAuthenticated)
                             {
                                 <li>
-                                    <a id="search_toggle" class="loginToggle"><span style="color: white;">.</span>Socios</a>
+                                    <a href="#search_form"><span style="color: white;">.</span>Socios</a>
+                                    @*<a id="search_toggle" class="loginToggle"><span style="color: white;">.</span>Socios</a>*@
                                 </li>
                             }
                             else
@@ -446,20 +447,9 @@
                 <!-- /.navbar-inner -->
             </div>
             <!-- /.container -->
-            <form id="search_form">
-                @if (autenticado == false)
-                {
-                    <input type="text" placeholder="Usuario" id="txtUsuario" />
-                    <input type="password" placeholder="Contraseña" id="txtContrasena" />
-                    <button type="button" class="btn btn-default" id="btnLogin">Ingresar</button>
-                }
-@*else
-                {
-                    <span style="color: white;"><strong>Bienvenido @userName | </strong></span>
-                    <a href="@Url.Action("Logout", "Security")" style="color: white;"><strong>Cerrar sesión | </strong></a>                    
-                    <a href="javascript:void(0);" style="color: white;" id="lnkCambioContrasena"><strong>Cambiar contraseña</strong></a>                    
-                }*@
-            </form>
+            <div id="search_form">
+                @Html.Action("login", "security")
+            </div>
         </div>
         <!-- /.navbar -->
 
@@ -510,7 +500,7 @@
         <script src="@Url.Content("~/js/custom.js")"></script>
         <script>
 
-            $('#btnLogin').click(function () {
+            @*$('#btnLogin').click(function () {
                 var url = document.URL;
                 var usuario = $('#txtUsuario').val();
                 var contrasena = $('#txtContrasena').val();
@@ -531,7 +521,7 @@
                         }
                     }
                 }
-            });
+            });*@           
 
             $('.lnkCambioContrasena').click(function () {
                 $('#logoutModal').modal()

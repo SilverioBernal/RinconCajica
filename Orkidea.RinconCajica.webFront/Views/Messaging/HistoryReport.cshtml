@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmMessaging>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+@Styles.Render("~/content/DataTables")
+<div>
+    <div id="pdfTarget" style=" font-size:10px" @*[595.28, 841.89]*@>
+        <div class="row-fluid">
+            <div class="span3">
+                <img src="@Url.Content("~/img/logo.png")" alt="Round" />
+            </div>
+            <div class="span9">
+                <h4>Reporte de mensajería</h4>
+                <span><strong>Desde</strong> @ViewBag.desde <strong>Hasta</strong> @ViewBag.hasta</span>
+            </div>
+
+
+        </div>
+        <table class="table table-bordered table-striped table_vam" style="font-size: 9px;" id="dt_gal">
+            <thead>
+                <tr>
+                    <th>Creado en</th>
+                    <th>Creado por</th>
+                    <th>Dep. Origen</th>
+                    <th>Dep. Destino</th>
+                    <th>Dirección</th>
+                    <th>Descripcion</th>
+                    <th>Mensajero</th>
+                    <th>Prioridad</th>
+                    <th>Fecha cierre</th>
+                    <th>Estatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.fecha.ToString("yyyy-MM-dd hh:mm tt")</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreAutor)</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreDependenciaOrigen)</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreDependenciaDestino)</td>
+                        <td>@Html.DisplayFor(modelItem => item.direccion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.descripcion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreMensajero)</td>
+                        <td>@Html.DisplayFor(modelItem => item.prioridad)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fechaRealizado)</td>
+                        <td>
+                            @if (item.mensajero == null)
+                            {
+                                <span>Sin tratamiento</span>
+                            }
+                            else if (item.fechaRealizado == null)
+                            {
+                                <span>Asignado</span>
+                            }
+                            else
+                            {
+                                <span>Cerrado</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -35,6 +35,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
 
                 if (frontUserTarget == null)
+
                     return View(model);
 
                 string contraseñaDesencriptada = oCrypto.Decrypt(frontUserTarget.contrasena);
@@ -46,7 +47,11 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
                     int id = frontUserTarget.id;
                     string idRole = frontUserTarget.idRol;
+
+
+
                     string idSocio = "";
+                    string titular = "";
                     string idAccion = "";
                     if (idRole == "S")
                     {
@@ -54,6 +59,7 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                         Partner partner = bizClubPartner.GetClubPartnerbyUser(id);
 
                         idSocio = partner.docid.ToString();
+                        titular = partner.rel_tit;
                         idAccion = partner.accion;
                     }
 
@@ -63,9 +69,14 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                     if (idRole != "S")
                         //userData = id.ToString().Trim() + "|" + idRole.ToString().Trim() + "|";
                         userData = string.Format("{0}|{1}", id.ToString(), idRole.ToString().Trim());
+
                     else
-                        userData = string.Format("{0}|{1}|{2}|{3}", id.ToString(), idRole.ToString().Trim(), idSocio, idAccion);
-                        //userData = id.ToString().Trim() + "|" + idRole.ToString().Trim() + "|" + idSocio;
+                        userData = string.Format("{0}|{1}|{2}|{3}|{4}", id.ToString().Trim(), idRole.ToString().Trim(), idSocio, titular, idAccion);
+
+
+                    //userData = id.ToString().Trim() + "|" + idRole.ToString().Trim() + "|" + idSocio;
+
+
 
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(30), false, userData);
 
@@ -81,11 +92,21 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                         CustomIdentity identity = new CustomIdentity(authTicket.Name, userData);
                         GenericPrincipal newUser = new GenericPrincipal(identity, new string[] { });
                         HttpContext.User = newUser;
+
+
                     }
+                    if (string.IsNullOrEmpty(returnUrl))
+                        return RedirectToAction("index", "home");
 
                     return RedirectToLocal(returnUrl);
                 }
+                else
+                {
+                    ViewBag.loginFail = "Nombre de usuario o contraseña incorrectos";
+                    return RedirectToLocal(Url.Action("index", "home") + @"/#search_form");//RedirectToAction("index", "home");
+                }
             }
+
 
             return View(model);
         }

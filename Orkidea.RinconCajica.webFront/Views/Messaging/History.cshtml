@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "ReporteRecibido";
+    ViewBag.Title = "Reporte Mensajeria";
     Layout = "~/Views/Shared/_LayoutQA.cshtml";
 }
 
-<h2>Reporte de recibidos</h2>
+<h2>Reporte de correspondencia enviada</h2>
 
 @Styles.Render("~/css/datepicker.css")
 @Scripts.Render("~/scripts/jquery-1.9.1.min.js")
@@ -22,8 +22,7 @@
 </div>
 <div class="row-fluid">
     <div class="span12">
-        <input type="button" value="Generar reporte correspondencia" id="btnSubmit" class="btn btn-info" />
-        <input type="button" value="Generar reporte mensajería" id="btnMensajeriaSubmit" class="btn btn-info" />
+        <input type="button" value="Imprimir reporte" id="btnSubmit" class="btn btn-info" />        
     </div>
 </div>
 
@@ -40,23 +39,17 @@
         var desde = $('#desde').val();
         var hasta = $('#hasta').val();
 
-        var parametro = desde + "|" + hasta + "|I";
+        var parametro = desde + "|" + hasta ;
 
-        var link = '@Url.Action("exportaRecibido", new { id = "-1" })';
+        var link = '@Url.Action("HistoryReport", new { id = "-1" })';
         link = link.replace("-1", parametro);
 
-        window.location.href =link;
-    });
+        var wLeft = window.screenLeft ? window.screenLeft : window.screenX;
+        var wTop = window.screenTop ? window.screenTop : window.screenY;
 
-    $('#btnMensajeriaSubmit').click(function () {
-        var desde = $('#desde').val();
-        var hasta = $('#hasta').val();
+        var left = wLeft + (window.innerWidth / 2) - (720 / 2);
+        var top = wTop + (window.innerHeight / 2) - (600 / 2);
 
-        var parametro = desde + "|" + hasta + "|M";
-
-        var link = '@Url.Action("exportaMensajeriaRecibida", new { id = "-1" })';
-        link = link.replace("-1", parametro);
-
-        window.location.href = link;
-    });
+        window.open(link, this.target, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + 720 + 'height=' + 600 + ', top=' + top + ', left=' + left);
+    });    
 </script>

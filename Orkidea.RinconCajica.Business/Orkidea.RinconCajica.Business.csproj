@@ -52,6 +52,9 @@
     <Compile Include="BizAccountSummary.cs" />
     <Compile Include="BizClubPartner.cs" />
     <Compile Include="BizCommon.cs" />
+    <Compile Include="BizCorrespondenceIn.cs" />
+    <Compile Include="BizCorrespondenceOut.cs" />
+    <Compile Include="BizDependence.cs" />
     <Compile Include="BizDocumentType.cs" />
     <Compile Include="BizFileType.cs" />
     <Compile Include="BizFileUpload.cs" />
@@ -60,12 +63,13 @@
     <Compile Include="BizInstitutionalEvent.cs" />
     <Compile Include="BizJoinContest.cs" />
     <Compile Include="BizJoinEvent.cs" />
-    <Compile Include="BizMessageActor.cs" />
-    <Compile Include="BizMessageBitacore.cs" />
+    <Compile Include="BizMessaging.cs" />
+    <Compile Include="BizMessenger.cs" />
     <Compile Include="BizMimeType.cs" />
     <Compile Include="BizNewsPaper.cs" />
     <Compile Include="BizPage.cs" />
     <Compile Include="BizPartnerConsumption.cs" />
+    <Compile Include="BizPriority.cs" />
     <Compile Include="BizProcess.cs" />
     <Compile Include="BizProcessDocument.cs" />
     <Compile Include="BizProject.cs" />
@@ -75,6 +79,7 @@
     <Compile Include="BizSportBranch.cs" />
     <Compile Include="BizSportModality.cs" />
     <Compile Include="BizSportSchedule.cs" />
+    <Compile Include="BizSupplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +99,7 @@
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
+    <None Include="Views\Messenger\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -54,6 +54,15 @@
     </Compile>
     <Compile Include="ConsumptionGlobal.cs" />
     <Compile Include="ConsumptionResume.cs" />
+    <Compile Include="CorrespondenceIn.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CorrespondenceOut.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dependence.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DocumentType.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
@@ -84,6 +93,12 @@
     <Compile Include="MessageBitacore.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Messaging.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="mimetype.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
@@ -95,6 +110,9 @@
     </Compile>
     <Compile Include="Partner.cs" />
     <Compile Include="PartnerConsumption.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Priority.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Process.cs">
@@ -128,6 +146,9 @@
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SportSchedule.cs">
+      <DependentUpon>RinconEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
       <DependentUpon>RinconEntityModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

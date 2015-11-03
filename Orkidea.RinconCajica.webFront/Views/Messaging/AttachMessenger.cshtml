@@ -1,0 +1,108 @@
+﻿@model Orkidea.RinconCajica.webFront.Models.vmMessaging
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+
+@using (Html.BeginForm("AttachMessenger", "Messaging", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <h2>Sistema de mensajeria - Envío de correspondencia</h2>
+
+    @Html.ValidationSummary(true)
+
+    <div class="row-fluid">
+        <div class="span6">
+            <label class="span12">Dependencia origen</label>
+            @Html.TextBoxFor(c => c.nombreDependenciaOrigen, new { @class = "span12", readOnly = true })
+        </div>
+        <div class="span6">
+            <label class="span12">Dependencia destino</label>
+            @Html.TextBoxFor(c => c.nombreDependenciaDestino, new { @class = "span12", readOnly = true })
+        </div>
+    </div>
+    <div class="row-fluid">
+        <label class="span12">Destinatario </label>
+        @Html.TextBoxFor(c => c.destinatario, new { @class = "span12", readOnly = true })
+    </div>
+    <div class="row-fluid">
+        <label class="span12">Descripción </label>
+        @Html.TextBoxFor(c => c.descripcion, new { @class = "span12", readOnly = true })
+    </div>
+    <div class="row-fluid">
+        <div class="span8">
+            <label class="span12">Dirección</label>
+            @Html.TextBoxFor(c => c.direccion, new { @class = "span12", readOnly = true })
+        </div>
+        <div class="span2">
+            <label class="span12">Prioridad </label>
+            @Html.TextBoxFor(c => c.prioridad, new { @class = "span12", readOnly = true })
+        </div>
+        <div class="span2">
+            <label class="span12">Fecha limite</label>
+            @{
+                string fecha = Model.fecha.ToString("yyyy-MM-dd");
+            }
+            <input type="text" value="@fecha" class="span12" readonly />
+        </div>
+    </div>
+    <div class="row-fluid">
+            <label class="span12">Mensajero <span style="color: red; display: none;">Requerido</span></label>
+            @Html.DropDownListFor(model => model.mensajero, new SelectList(Enumerable.Empty<SelectListItem>()), " ", new { @class = "span6 required", style = "max-width:100%" })
+        </div>
+    <br />
+    <p>
+        <input type="submit" value="Actualizar registro" class="btn btn-success" id="btnGuardar" />
+    </p>
+}
+
+
+<script>
+    $(document).ready(function () {
+        var mensajero = $("#mensajero");
+
+        mensajero.empty();
+
+        mensajero.append(
+                $('<option/>', {
+                    value: ''
+                }).html('')
+            );
+
+        $.getJSON('@Url.Action("GetAsyncMessenger", "Messenger")', function (result) {
+            $(result).each(function () {
+                mensajero.append(
+                    $('<option/>', {
+                        value: this.id
+                    }).html(this.nombre)
+                );
+            });
+        });
+    });
+
+    $('#btnGuardar').click(function () {
+        var requeridos = $('.required');
+        var falla = 0;
+
+        $(requeridos).each(function () {
+
+            var padre = this.parentNode;
+            var etiqueta = $(padre).find('label')
+            var validador = etiqueta.find('span')[0];
+
+            if ($(this).val() == "" || $(this).val() == "0") {
+                $(validador).css("display", "inline")
+                falla++
+            }
+            else {
+                $(validador).css("display", "none")
+            }
+        });
+
+        if (falla > 0) {
+            return false;
+        }
+    });
+</script>

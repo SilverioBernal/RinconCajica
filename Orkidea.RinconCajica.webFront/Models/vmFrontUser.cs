@@ -34,7 +34,7 @@ namespace Orkidea.RinconCajica.webFront.Models
             lstRol.Add("E", "Empleado operativo");
             lstRol.Add("C", "Calidad");
             lstRol.Add("P", "Porteria");
-            lstRol.Add("M", "Administracion Mensajería");
+            lstRol.Add("M", "Administracion Correspondencia y Mensajería");
             lstRol.Add("W", "Empleado administrativo");
 
             lstSocio = new Dictionary<int, string>();

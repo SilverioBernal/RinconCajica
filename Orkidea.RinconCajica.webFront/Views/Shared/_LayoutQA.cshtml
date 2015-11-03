@@ -65,9 +65,7 @@
                         </ul>
                     </li>
                     <li><a href="@Url.Action("Index", "Process")">Sistema de Gestión</a></li>
-                    <li><a href="@Url.Action("Suggestion", "HomeSGC")">Sugerencias</a></li>
-                    @*@if (rol == "A" || rol == "C" || rol == "P" || rol == "M" || rol == "E")
-                        {*@
+                    <li><a href="@Url.Action("Suggestion", "HomeSGC")">Sugerencias</a></li>                    
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -130,33 +128,56 @@
 
 
                             }
-                            @*@if (rol == "A" || rol == "P" || rol == "M")
-                                {*@
+                            
                             <li class="divider"></li>
 
+                            @*-------------*@
+
                             <li class="dropdown-submenu">
-                                <a href="#">Mensajeria</a>
+                                <a href="#">Correspondencia</a>
                                 <ul class="dropdown-menu">
-                                    @if (rol == "A" || rol == "P")
+                                    @if (rol == "A" || rol == "P" || rol == "M")
                                     {
-                                        <li><a href="@Url.Action("RecibeDocumento", "MessageActor")">Recibir documentos</a></li>
+                                        <li><a href="@Url.Action("Create", "CorrespondenceIn")">Recibir documentos</a></li>
+                                        <li><a href="@Url.Action("Index", "Supplier")">Administrar proveedores</a></li>                                                                                
                                     }
                                     @if (rol == "A" || rol == "M")
-                                    {
-                                        <li><a href="@Url.Action("ReporteRecibido", "MessageActor")">Reporte de documentos recibidos</a></li>
-                                        <li><a href="@Url.Action("GeneraReporteGeneral", "MessageActor")">Reporte general</a></li>
-                                        <li><a href="@Url.Action("Create", "MessageActor")">Crear dependencias</a></li>
-                                        <li><a href="@Url.Action("Upload", "MessageActor")">Importar terceros</a></li>
+                                    {                                        
+                                        <li><a href="@Url.Action("IndexRoller", "CorrespondenceIn")">Patinar documentos</a></li>
+                                        <li><a href="@Url.Action("History", "CorrespondenceIn")">Historico de correspondencia recibida</a></li>                                        
+                                        <li><a href="@Url.Action("Index", "Dependence")">Administrar Dependencias</a></li>                                                                              
                                     }
-                                    @if (rol == "A" || rol == "W" || rol == "P")
+                                    
+                                    @if (rol == "A" || rol == "W" || rol == "M")
                                     {
-                                        <li><a href="@Url.Action("EnviaDocumento", "MessageActor")">Enviar documentos</a></li>
-                                        <li><a href="@Url.Action("Mensajeria", "MessageActor")">Mensajeria</a></li>
+                                        <li><a href="@Url.Action("Create", "CorrespondenceOut")">Enviar documentos</a></li>
                                     }
+                                    
+                                    @if (rol == "A" || rol == "M")
+                                    {                                        
+                                        <li><a href="@Url.Action("History", "CorrespondenceOut")">Historico de correspondencia enviada</a></li>
+                                    }                                    
                                 </ul>
                             </li>
-                            @*}*@
 
+                            <li class="dropdown-submenu">
+                                <a href="#">Mensajería</a>
+                                <ul class="dropdown-menu">
+                                    @if (rol == "A" || rol == "W")
+                                    {
+                                        <li><a href="@Url.Action("Create", "Messaging")">Enviar</a></li>
+                                    }
+                                    
+                                    @if (rol == "A" || rol == "M")
+                                    {
+                                        <li><a href="@Url.Action("IndexOpenMessages", "Messaging")">Gestionar mensajes</a></li>                                       
+                                        <li><a href="@Url.Action("History", "Messaging")">Histórico de mensajería</a></li>
+                                        <li><a href="@Url.Action("Index", "Messenger")">Administrar Mensajeros</a></li>                                                                                  
+                                    }                                   
+                                </ul>
+                            </li>
+
+                            @*-------------*@                            
                         </ul>
                     </li>
                     @*}*@

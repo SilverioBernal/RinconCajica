@@ -170,6 +170,8 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                 using (StreamReader reader = new StreamReader(model.File.InputStream))
                 {
 
+                    List<PartnerConsumption> consumos = new List<PartnerConsumption>();
+
                     int lines = 0;
                     string line;
                     while ((line = reader.ReadLine()) != null)
@@ -200,7 +202,9 @@ namespace Orkidea.RinconCajica.webFront.Controllers
                                     Pagador = oStreamDataValues[14].Trim()
                                 };
 
-                                bizPartnerConsumption.SavePartnerConsumption(partnerConsumption);
+                                consumos.Add(partnerConsumption);
+
+                                bizPartnerConsumption.SaveAsyncPartnerConsumption(consumos);//.SavePartnerConsumption(partnerConsumption);
                             
                         }
                     }
@@ -211,6 +215,32 @@ namespace Orkidea.RinconCajica.webFront.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult UploadConsupmtionFile()
+        {
+            return View();
+        }
+
+        public JsonResult AsyncGuardaConsumo(PartnerConsumption consumo)
+        {           
+            string res = "Fail";
+            try
+            {
+                string[] tmpSufijo = consumo.Sufijo.Split('|');
+                
+                consumo.Sufijo = tmpSufijo[0];
+                consumo.Fecha = ArmaFecha(tmpSufijo[1]);
+                bizPartnerConsumption.SavePartnerConsumption(consumo);
+                res = "OK";
+            }
+            catch (Exception ex)
+            {
+                res = string.Format("{0} Factura: {1}, Fecha: {2}, producto: {3}",ex.Message, consumo.Nufactura, consumo.Fecha.ToString("yyyy-MM-dd"), consumo.Codigo_producto);
+            }
+
+            return Json(res, JsonRequestBehavior.AllowGet); 
+        }
+
 
         private DateTime ArmaFecha (string fecha)
         {            

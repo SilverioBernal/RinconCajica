@@ -56,7 +56,7 @@ $(window).load(function(){
     //}
     
     /* Init tolltips */
-    $('.tt').tooltip();
+    //$('.tt').tooltip();
     
     /* Background slider */
    	function sliderTimer(){

@@ -28,9 +28,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- [if lt IE 9]
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
     <!-- Stylesheets -->
     <link rel="stylesheet" href="@Url.Content("~/css/bootstrap.min.css")" />
     <link rel="stylesheet" href="@Url.Content("~/css/bootstrap-responsive.min.css")" />
@@ -41,9 +40,8 @@
     <link rel="stylesheet" href="@Url.Content("~/css/responsive.css")" />
 
     <!-- [if IE 7]>
-		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
-		<![endif] -->
-
+        <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
+        <![endif] -->
     @*<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900' rel='stylesheet' type='text/css'>*@
     <link href='http://fonts.googleapis.com/css?family=Roboto:100,200,300' rel='stylesheet' type='text/css'>
 
@@ -78,7 +76,7 @@
             userName = ci.Name;
             autenticado = (user != null ? true : false);
         }
-    }    
+    }
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -104,7 +102,7 @@
                     <li>
                         <img src="@Url.Content(item.urlImagen)" alt="">
                     </li>
-                    
+
                 }
             </ul>
             <div class="pattern"></div>
@@ -115,14 +113,15 @@
                 <div class="navbar-inner">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
                     <a class="brand" href="@Url.Action("Index", "Home")">
-                        <img src="img/logo.png" alt="Round"></a>
+                        <img src="img/logo.png" alt="Round">
+                    </a>
                     @*<div class="right-icons pull-right">
-                        <ul>
-                            <li class="search tt" data-container="body" data-toggle="tooltip" data-placement="left" title="Zona de usuarios">
-                                <a id="search_toggle" class="icon-user"></a>
-                            </li>
-                        </ul>
-                    </div>*@
+                            <ul>
+                                <li class="search tt" data-container="body" data-toggle="tooltip" data-placement="left" title="Zona de usuarios">
+                                    <a id="search_toggle" class="icon-user"></a>
+                                </li>
+                            </ul>
+                        </div>*@
 
                     <div class="nav-collapse">
                         <ul class="nav pull-right" style="font-family: 'Roboto'">
@@ -164,56 +163,56 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Deportes<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                        <li class="dropdown-submenu">
-                                            <a href="#">Golf</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "Hoyo1" })">Campo</a></li>
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelasDeportivasDeGolf" })">Escuelas</a></li>
-                                                <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Golf" })">Torneos</a></li>
-                                                @*<li><a href="@Url.Action("Details", "Page", new { id = "TorneosGolf" })">Torneos</a></li>*@
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingGolf" })">Ranking</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="#">Tenis</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "Tenis" })">Campos</a></li>
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaTenis" })">Escuelas</a></li>
-                                                <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Tenis" })">Torneos</a></li>
-                                                @*<li><a href="@Url.Action("Details", "Page", new { id = "TorneosTenis" })">Torneos</a></li>*@
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "RankingTenis" })">Ranking</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="#">Natación</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "NatacionPiscina" })">Piscina</a></li>
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivasNatacion" })">Escuelas</a></li>
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "EquipoDeNatacion" })">Equipo de Natación</a></li>
-                                                <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Natacion" })">Torneos</a></li>
-                                                @*<li><a href="@Url.Action("Details", "Page", new { id = "RankingNatacion" })">Ranking</a></li>*@
-                                                @*<li><a href="#">Ranking</a></li>*@
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="#">Futbol</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "Futbol" })">Campo</a></li>
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaFutbol" })">Escuelas</a></li>
-                                                <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Futbol" })">Eventos</a></li>
-                                                @*<li><a href="#">Ranking</a></li>*@
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="#">C.E.F.</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="@Url.Action("Details", "Page", new { id = "Gimnasio" })">Instalaciones</a></li>
-                                                <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Gimnasio" })">Eventos C.E.F</a></li>
-                                                @*<li><a href="@Url.Action("Details", "Page", new { id = "TorneosCef" })">Torneos</a></li>*@
-                                                @*<li><a href="#">Ranking</a></li>*@
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Golf</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Hoyo1" })">Campo</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelasDeportivasDeGolf" })">Escuelas</a></li>
+                                            <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Golf" })">Torneos</a></li>
+                                            @*<li><a href="@Url.Action("Details", "Page", new { id = "TorneosGolf" })">Torneos</a></li>*@
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "RankingGolf" })">Ranking</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Tenis</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Tenis" })">Campos</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaTenis" })">Escuelas</a></li>
+                                            <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Tenis" })">Torneos</a></li>
+                                            @*<li><a href="@Url.Action("Details", "Page", new { id = "TorneosTenis" })">Torneos</a></li>*@
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "RankingTenis" })">Ranking</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Natación</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "NatacionPiscina" })">Piscina</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivasNatacion" })">Escuelas</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "EquipoDeNatacion" })">Equipo de Natación</a></li>
+                                            <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Natacion" })">Torneos</a></li>
+                                            @*<li><a href="@Url.Action("Details", "Page", new { id = "RankingNatacion" })">Ranking</a></li>*@
+                                            @*<li><a href="#">Ranking</a></li>*@
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Futbol</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Futbol" })">Campo</a></li>
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "EscuelaDeportivaFutbol" })">Escuelas</a></li>
+                                            <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Futbol" })">Eventos</a></li>
+                                            @*<li><a href="#">Ranking</a></li>*@
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">C.E.F.</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("Details", "Page", new { id = "Gimnasio" })">Instalaciones</a></li>
+                                            <li><a href="@Url.Action("IndexNextSchedule", "SportSchedule", new { id = "Gimnasio" })">Eventos C.E.F</a></li>
+                                            @*<li><a href="@Url.Action("Details", "Page", new { id = "TorneosCef" })">Torneos</a></li>*@
+                                            @*<li><a href="#">Ranking</a></li>*@
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Eventos<b class="caret"></b></a>
@@ -235,71 +234,71 @@
                             @if (!context.IsAuthenticated)
                             {
                                 <li>
-                                    
-                                    <a href="#search_form" ><span style="color: white;">.</span>Socios</a>
+
+                                    <a href="#search_form"><span style="color: white;">.</span>Socios</a>
                                 </li>
                             }
                             else
                             {
                                 if (ViewBag.menu == "Socios")
                                 {
-                                <li class="dropdown active">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Socios<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        @if (rol == "S")
-                                        {
-                                            if (titular == "T")
+                                    <li class="dropdown active">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Socios<b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            @if (rol == "S")
                                             {
-                                            <li class="pepa"><a href="@Url.Action("Details", "AccountSummary", new { id = hexAccion })">Extractos</a></li>                                            
-                                            <li class="pepa"><a href="@Url.Action("InvoiceList", "PartnerConsumption")">Consumos</a></li>                                            
+                                                if (titular == "T")
+                                                {
+                                                    <li class="pepa"><a href="@Url.Action("Details", "AccountSummary", new { id = hexAccion })">Extractos</a></li>
+                                                    <li class="pepa"><a href="@Url.Action("InvoiceList", "PartnerConsumption")">Consumos</a></li>
+                                                }
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Socios" })">Documentos y circulares</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Canjes" })">Canjes</a></li>
+                                                <li><a href="@Url.Action("Edit", "ClubPartner", new { id = hexSocio })">Actualizacion de datos</a></li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">Reservas</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="@Url.Action("loginSigmaGolf", "home")">Estadisticas Golf</a></li>
+                                                        <li><a href="@Url.Action("loginSigmaSports", "home")">Reservas Deportivas</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="divider"></li>
                                             }
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "Socios" })">Documentos y circulares</a></li>
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "Canjes" })">Canjes</a></li>                                            
-                                            <li><a href="@Url.Action("Edit", "ClubPartner", new { id = hexSocio })">Actualizacion de datos</a></li>                                            
-                                            <li class="dropdown-submenu">
-                                                <a href="#">Reservas</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="@Url.Action("loginSigmaGolf", "home")">Estadisticas Golf</a></li>
-                                                    <li><a href="@Url.Action("loginSigmaSports", "home")">Reservas Deportivas</a></li>                                                    
-                                                </ul>
-                                            </li>
-                                            <li class="divider"></li>
-                                        }
-                                        <li class="nav-header">Cuenta</li>
-                                        <li class="lnkCambioContrasena"><a href="javascript:void(0);">Cambiar Clave</a></li>
-                                        <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
-                                    </ul>
-                                </li>
+                                            <li class="nav-header">Cuenta</li>
+                                            <li class="lnkCambioContrasena"><a href="javascript:void(0);">Cambiar Clave</a></li>
+                                            <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
+                                        </ul>
+                                    </li>
                                 }
                                 else
                                 {
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Socios<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        @if (rol == "A" || rol == "S")
-                                        {
-                                            if (titular == "T")
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color: white;">.</span>Socios<b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            @if (rol == "A" || rol == "S")
                                             {
-                                            <li class="pepa"><a href="@Url.Action("Details", "AccountSummary", new { id = hexAccion })">Extractos</a></li>                                            
-                                            <li class="pepa"><a href="@Url.Action("InvoiceList", "PartnerConsumption")">Consumos</a></li>                                            
+                                                if (titular == "T")
+                                                {
+                                                    <li class="pepa"><a href="@Url.Action("Details", "AccountSummary", new { id = hexAccion })">Extractos</a></li>
+                                                    <li class="pepa"><a href="@Url.Action("InvoiceList", "PartnerConsumption")">Consumos</a></li>
+                                                }
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Socios" })">Documentos y circulares</a></li>
+                                                <li><a href="@Url.Action("Details", "Page", new { id = "Canjes" })">Canjes</a></li>
+                                                <li><a href="@Url.Action("Edit", "ClubPartner", new { id = hexSocio })">Actualizacion de datos</a></li>
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">Reservas</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="@Url.Action("loginSigmaGolf", "home")">Estadisticas Golf</a></li>
+                                                        <li><a href="@Url.Action("loginSigmaSports", "home")">Reservas Deportivas</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="divider"></li>
                                             }
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "Socios" })">Documentos y circulares</a></li>
-                                            <li><a href="@Url.Action("Details", "Page", new { id = "Canjes" })">Canjes</a></li>                                            
-                                            <li><a href="@Url.Action("Edit", "ClubPartner", new { id = hexSocio })">Actualizacion de datos</a></li>                                            
-                                            <li class="dropdown-submenu">
-                                                <a href="#">Reservas</a>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="@Url.Action("loginSigmaGolf", "home")">Estadisticas Golf</a></li>
-                                                    <li><a href="@Url.Action("loginSigmaSports", "home")">Reservas Deportivas</a></li>                                                    
-                                                </ul>
-                                            </li>
-                                            <li class="divider"></li>                                     
-                                        }
-                                        <li class="nav-header">Cuenta</li>
-                                        <li class="lnkCambioContrasena"><a href="javascript:void(0);">Cambiar Clave</a></li>
-                                        <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
-                                    </ul>
-                                </li>
+                                            <li class="nav-header">Cuenta</li>
+                                            <li class="lnkCambioContrasena"><a href="javascript:void(0);">Cambiar Clave</a></li>
+                                            <li class="pepa"><a href="@Url.Action("Logout", "Security")">Cerrar sesión</a></li>
+                                        </ul>
+                                    </li>
                                 }
                             }
                             <li class="dropdown">
@@ -333,20 +332,11 @@
                 <!-- /.navbar-inner -->
             </div>
             <!-- /.container -->
-            <form id="search_form">
-                @if (autenticado == false)
-                {
-                    <input type="text" placeholder="Usuario" id="txtUsuario" />
-                    <input type="password" placeholder="Contraseña" id="txtContrasena" />
-                    <button type="button" class="btn btn-default" id="btnLogin">Ingresar</button>
-                }
-                else
-                {
-                    <span style="color: white;"><strong>Bienvenido @userName | </strong></span>
-                    <a href="@Url.Action("Logout", "Security")" style="color: white;"><strong>Cerrar sesión | </strong></a>                    
-@*<a href="javascript:void(0);" style="color: white;" id="lnkCambioContrasena"><strong>Cambiar contraseña</strong></a>*@                    
-                }
-            </form>
+
+            <div id="search_form">
+                @Html.Action("login", "security")
+            </div>
+
         </div>
         <!-- /.navbar -->
 
@@ -373,26 +363,27 @@
                             {
                                 if (!string.IsNullOrEmpty(item.textoSlider))
                                 {
-                            
-                                <mark>
-                                    @item.textoSlider
 
-                                    @if (!string.IsNullOrEmpty(item.textoBoton1))
-                                    {
-                                        <span style='padding-top: 50px; width: 500px;'><a href='@item.urlBoton1' class='work'>@item.textoBoton1</a>
-                                            @if (!string.IsNullOrEmpty(item.textoBoton2))
-                                            {
-                                                <a href="@item.urlBoton2" class='work'>@item.textoBoton2</a>
-                                            }
-                                        </span>   
-                                    }
-                                </mark>
-                            
+                                    <mark>
+                                        @item.textoSlider
+
+                                        @if (!string.IsNullOrEmpty(item.textoBoton1))
+                                        {
+                                            <span style='padding-top: 50px; width: 500px;'>
+                                                <a href='@item.urlBoton1' class='work'>@item.textoBoton1</a>
+                                                @if (!string.IsNullOrEmpty(item.textoBoton2))
+                                                {
+                                                    <a href="@item.urlBoton2" class='work'>@item.textoBoton2</a>
+                                                }
+                                            </span>
+                                        }
+                                    </mark>
+
                                 }
                             }
-                        </h1>                   
+                        </h1>
                     }
-                    
+
                 </div>
             </div>
             <!-- /.row-fluid -->
@@ -400,7 +391,7 @@
         </div>
         <!-- /.container -->
         <div class="footer">
-            <span>Cajicá, Colombia. Km. 26 Carretera Central Norte Via Sopó .::. Tel: 866 4901 Ext 100 .::. <a href="@Url.Action("contact")" style="color:white;" >Contactenos</a> .::. <a href="@Url.Action("Details", "Page", new { id = "legal" })" style="color:white;" >Política de privacidad</a></span>
+            <span>Cajicá, Colombia. Km. 26 Carretera Central Norte Via Sopó .::. Tel: 866 4901 Ext 100 .::. <a href="@Url.Action("contact")" style="color:white;">Contactenos</a> .::. <a href="@Url.Action("Details", "Page", new { id = "legal" })" style="color:white;">Política de privacidad</a></span>
         </div>
         <div id="logoutModal" class="modal hide fade">
             <div class="modal-header">
@@ -431,7 +422,7 @@
         <script>
             window.jQuery || document.write('<script src="@Url.Content("~/js/jquery.min.js")">\x3C/script>')
 
-            $('#btnLogin').click(function () {
+            @*$('#btnLogin').click(function () {
                 var url = document.URL;
 
                 var sPageURL = window.location.search.substring(1);
@@ -462,7 +453,11 @@
                         }
                     }
                 }
-            });
+            });*@
+
+            @*$(document).ready(function () {
+                $("#search_form").load("@Url.Action("login", "security")")
+            });*@
 
             $('.lnkCambioContrasena').click(function () {
                 $('#logoutModal').modal()
@@ -483,7 +478,7 @@
                     $.getJSON("@Url.Action("BarChangePassword", "Security")", datos, res);
 
                     function res(data) {
-                        if (data == "OK") {                            
+                        if (data == "OK") {
                             window.open(url, '_self');
                         }
                     }
