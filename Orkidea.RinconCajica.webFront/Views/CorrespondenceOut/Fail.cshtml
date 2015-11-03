@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+<br />
+<div class="alert alert-danger">
+    <h4>Oh oh!</h4>
+    <p>El envio de correspondencia no pudo realizarse. </p>
+    <a href="@Url.Action("Create")" class="btn btn-info">Interntarlo de nuevo</a> | <a href="@Url.Action("Index", "Home")">Ir al inicio</a>
+</div>

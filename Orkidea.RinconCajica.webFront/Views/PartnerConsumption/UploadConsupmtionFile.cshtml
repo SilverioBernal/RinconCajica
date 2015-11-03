@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "UploadConsupmtionFile";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+<script src="@Url.Content("~/scripts/jquery-1.9.1.min.js")"></script>
+
+
+<h2>Cargue de consumos</h2>
+
+<div class="row-fluid">
+    <input type=file id=files />
+    <button id=upload>Procesar archivo</button> | @Html.ActionLink("Volver a la lista", "Index")
+</div>
+<div class="row-fluid">
+    <div class="progress progress-striped active">
+        <div class="bar" style="width: 0%;"></div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <p id="exitos" style="color:blue;"></p>
+    <p id="fallos" style="color:red;"></p>
+    <div id="log"></div>
+</div>
+
+@*<style>
+        .container {
+            margin-top: 30px;
+            width: 400px;
+        }
+    </style>*@
+
+<script type="text/javascript">
+    var fileInput = $('#files');
+    var uploadButton = $('#upload');
+
+    uploadButton.on('click', function () {
+        if (!window.FileReader) {
+            alert('Your browser is not supported')
+        }
+        var input = fileInput.get(0);
+
+        // Create a reader object
+        var reader = new FileReader();
+        if (input.files.length) {
+            var textFile = input.files[0];
+            reader.readAsText(textFile);
+            $(reader).on('load', processFile);
+        } else {
+            alert('Please upload a file before continuing')
+        }
+    });
+
+    function processFile(e) {
+        var file = e.target.result, results;
+        var $bar = $('.bar');
+        if (file && file.length) {
+            results = file.split("\n");
+
+            var total = results.length;
+            var procesado = 0;
+
+            for (var i = 1; i < total; i++) {
+                //procesado = (i * 100) / total
+                var avance = 0;
+                var errores = 0;
+                var actual = results[i].split("\t");
+                var contenidoFila = results[i];
+                //var fechaPart = actual[6].split('/');
+
+                if (actual[0] != "") {
+                    var datos = {
+                        Punto_venta_a: actual[0].trim(),
+                        Producto: actual[1].trim(),
+                        Punto_venta_b: actual[2].trim(),
+                        Codigo_producto: actual[3].trim(),
+                        Cantidad: actual[4].trim(),
+                        Valor_producto: actual[5].trim(),
+                        Fecha: '',//new Date(fechaPart[2], fechaPart[1], fechaPart[0], 0, 0, 0, 0),
+                        Docid_consumidor: actual[7].trim(),
+                        Nufactura: actual[8].trim(),
+                        Sufijo: actual[9].trim() + '|' + actual[6].trim(),
+                        Propina: actual[10].trim(),
+                        Total_fac: actual[11].trim(),
+                        Consumidor: actual[12].trim(),
+                        Docid_pagador: actual[13].trim(),
+                        Pagador: actual[14].trim(),
+                    };
+
+                    $.getJSON("@Url.Action("AsyncGuardaConsumo")", datos, function (data) {
+                        var log = $("#log");
+                        if (data == "OK") {
+                            $('#exitos').html("Se han procesado " + avance + " registros");
+                            //$("#log").append("<li style='color:blue;'>Fila " + avance + " Procesada exitosamente</li>");
+                            avance++;
+
+                            procesado = Math.round((avance * 100) / total);
+                            $bar.css("width", procesado + "%");
+
+                            if(avance == total-1)
+                                $('#exitos').html("Se han procesado " + avance + " registros. Proceso terminado");
+                        } else {
+
+                            errores++;
+                            $('#exitos').html("Se han procesado " + avance + " registros");
+                            $('#fallos').html(errores + " registros han fallado");
+                            //$("#log").append("<div class='alert alert-block'><h4>Error!</h4>Fila " + JSON.stringify(datos) + " <br /> <strong>Descripción del error:</strong> " + data + "</div>");
+                            $("#log").append("<div class='alert alert-block'><h4>Error!</h4><strong>Descripción del error:</strong> " + data + "</div>");
+
+                            avance++;
+                            procesado = Math.round((avance * 100) / total);
+                            $bar.css("width", procesado + "%");
+
+                            if (avance == total - 1)
+                                $('#exitos').html("Se han procesado " + avance + " registros. Proceso terminado");
+                        }
+                    });
+                } else {
+                    avance++;                    
+                }
+            }
+
+            //console.log(results)
+            //$('#name').val(results[0]);
+            //$('#age').val(results[1]);
+        }
+    }
+</script>
+

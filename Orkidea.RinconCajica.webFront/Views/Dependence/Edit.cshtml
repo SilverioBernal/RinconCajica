@@ -1,0 +1,55 @@
+﻿@model Orkidea.RinconCajica.Entities.Dependence
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+
+@using (Html.BeginForm())
+{
+    <h2>Sistema de mensajeria - Modificación de dependencias</h2>
+
+    @Html.ValidationSummary(true)
+
+
+    <div class="row-fluid">
+
+        <label class="span12">Nombre dependencia <span style="color: red; display: none;">Requerido</span></label>
+        @Html.TextBoxFor(c => c.nombre, new { @class = "span12 required" })
+    </div>
+    <p>
+        <input type="submit" value="Guardar registro" class="btn btn-success" id="btnGuardar" />
+    </p>
+
+}
+
+<script>
+    $('#btnGuardar').click(function () {
+        var socio = '@ViewBag.socio';
+
+        var requeridos = $('.required');
+        var falla = 0;
+
+        $(requeridos).each(function () {
+
+            var padre = this.parentNode;
+            var etiqueta = $(padre).find('label')
+            var validador = etiqueta.find('span')[0];
+
+            if ($(this).val() == "" || $(this).val() == "0") {
+                $(validador).css("display", "inline")
+                falla++
+            }
+            else {
+                $(validador).css("display", "none")
+            }
+        });
+
+        if (falla > 0) {
+            return false;
+        }
+    });
+</script>
+

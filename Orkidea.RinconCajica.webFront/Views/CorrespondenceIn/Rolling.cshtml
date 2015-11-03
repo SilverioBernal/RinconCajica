@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmCorrespondenceIn>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+@Styles.Render("~/content/DataTables")
+<div>
+    <div id="pdfTarget" style=" font-size:10px" @*[595.28, 841.89]*@>
+        <div class="row-fluid">
+            <div class="span3">
+                <img src="@Url.Content("~/img/logo.png")" alt="Round" />
+            </div>
+            <div class="span9">
+                <h4>Correspondencia recibida</h4>
+            </div>
+            
+
+        </div>
+        <table class="table table-bordered table-striped table_vam" style="font-size: 9px;" id="dt_gal">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Remitente</th>
+                    <th>Dependencia</th>
+                    <th>Descripcion</th>
+                    <th>Usuario</th>
+                    <th>firma</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fecha)</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreRemitente)</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreDependencia)</td>
+                        <td>@Html.DisplayFor(modelItem => item.descripcion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreUsuarioRecibe)</td>
+                        <td>_______________________</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

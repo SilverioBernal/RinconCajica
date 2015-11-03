@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmCorrespondenceIn>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+<div>
+
+    <h2>Patinar correo recibido</h2>
+
+    <p>
+        <input type="button" class="btn btn-success" value="Patinar seleccionadas" id="btnRolling"/>
+    </p>
+    <table class="table table-bordered table-striped table_vam" id="dt_gal">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Remitente</th>
+                <th>Dependencia</th>
+                <th>Descripcion</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><label class="checkbox"><input type="checkbox" checked class="mailRolling" /> @Html.DisplayFor(modelItem => item.id)</label></td>
+                    <td>@Html.DisplayFor(modelItem => item.fecha)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreRemitente)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreDependencia)</td>
+                    <td>@Html.DisplayFor(modelItem => item.descripcion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreUsuarioRecibe)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $("#btnRolling").click(function () {
+        var ids = "";
+
+        var seleccionados = $(".mailRolling");
+
+        $(seleccionados).each(function () {
+            if (this.checked) {
+                ids += this.parentNode.textContent + "-"
+            }
+            
+        });
+
+        ids = ids.substring(0, ids.length - 1);
+
+        var wLeft = window.screenLeft ? window.screenLeft : window.screenX;
+        var wTop = window.screenTop ? window.screenTop : window.screenY;
+
+        var left = wLeft + (window.innerWidth / 2) - (720 / 2);
+        var top = wTop + (window.innerHeight / 2) - (600 / 2);
+
+        window.open('@Url.Action("Rolling")' + "/" + ids, this.target, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + 720 + 'height=' + 600 + ', top=' + top + ', left=' + left);
+        
+    })
+</script>

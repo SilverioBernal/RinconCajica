@@ -1,0 +1,75 @@
+﻿@model Orkidea.RinconCajica.webFront.Models.LoginModel
+@{
+    Layout = null;
+}
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+
+@{
+    System.Security.Principal.IIdentity context = Context.User.Identity;
+    int user = 0;
+    string userName = "";
+    bool autenticado = false;
+
+    if (context.IsAuthenticated)
+    {
+        System.Web.Security.FormsIdentity ci = (System.Web.Security.FormsIdentity)Context.User.Identity;
+        string[] userRole = ci.Ticket.UserData.Split('|');
+        user = int.Parse(userRole[0]);
+        userName = ci.Name;
+        autenticado = (user != null ? true : false);
+    }
+}
+
+@using (Html.BeginForm("Login", "Security", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new
+{
+    id = "frmLogin" @*@class = "form-horizontal", role = "form"*@ }))
+{
+    if (autenticado == false)
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Usuario", new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control loginRequired" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Contraseña", new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control loginRequired" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Iniciar sesión" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="form-group" id="message">
+            <span id="mensajeLogin" style="color:red"></span>
+        </div>
+    }
+    else
+    {
+        <span style="color: white;"><strong>Bienvenido @userName | </strong></span>
+        <a href="@Url.Action("Logout", "Security")" style="color: white;"><strong>Cerrar sesión | </strong></a>
+    }
+}
+
+<script>
+    $("#frmLogin").submit(function (e) {
+        var loginFields = $(".loginRequired");
+        var error = 0;
+        $(loginFields).each(function () {
+            if (this.value == '')
+                error++;
+        });
+
+        if (error > 0) {
+            $("#mensajeLogin").html("El usuario y la contraseña son obligatorios");
+            return false;
+        }
+    });
+</script>

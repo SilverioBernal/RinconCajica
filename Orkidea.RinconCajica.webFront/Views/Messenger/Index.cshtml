@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.Entities.Messenger>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+<div>
+
+    <h2>Mensajeros</h2>
+
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-primary">Crear mensajero</a>
+    </p>
+    <table class="table table-bordered table-striped table_vam" id="dt_gal">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Activo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.activo)</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.id })" class="sepV_a" title="Editar"><i class="icon-pencil"></i></a>|
+                        <a href="@Url.Action("Delete", new { id = item.id })" title="Eliminar"><i class="icon-trash"></i></a>|                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('#dt_gal').dataTable();
+
+</script>

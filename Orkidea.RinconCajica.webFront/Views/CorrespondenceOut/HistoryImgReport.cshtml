@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmCorrespondenceOut>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+<div>
+    <div id="pdfTarget">
+        <div class="row-fluid">
+            <div class="span3">
+                <img src="@Url.Content("~/img/logo.png")" alt="Round" />
+            </div>
+            <div class="span9">
+                <h4>Historico de correspondencia enviada</h4>
+                <span><strong>Desde</strong> @ViewBag.desde <strong>Hasta</strong> @ViewBag.hasta</span>
+            </div>
+
+
+        </div>
+        <table class="table table-bordered table-striped table_vam" @*style="font-size: 9px;"*@ id="dt_gal">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Origen</th>
+                    <th>Destino</th>
+                    <th>Destinatario</th>
+                    <th>Direccion</th>
+                    <th>Tipo documento</th>
+                    <th>Usuario envia</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.fecha)</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreOrigen)</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreDestino)</td>
+                        <td>@Html.DisplayFor(modelItem => item.destinatario)</td>
+                        <td>@Html.DisplayFor(modelItem => item.direccion)</td>
+                        <td>@Html.DisplayFor(modelItem => item.tipoDocumento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.nombreUsuarioEnvia)</td>
+                        <td><a href="@Url.Action("GetImage", new { archivo = item.imagen })" target="_blank">Ver</a></td> 
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $('#dt_gal').dataTable();
+
+</script>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Orkidea.RinconCajica.webFront.Models.vmCorrespondenceIn>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutQA.cshtml";
+}
+
+@Scripts.Render("~/scripts/jquery-1.9.1.min.js")
+@Styles.Render("~/content/DataTables")
+@Scripts.Render("~/bundles/DataTables")
+
+<div>
+
+    <h2>Correo recibido</h2>
+
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-primary">Recibir documento</a>
+    </p>
+    <table class="table table-bordered table-striped table_vam" id="dt_gal">
+        <thead>
+            <tr>
+                <th>Fecha</th>                
+                <th>Remitente</th>
+                <th>Dependencia</th>
+                <th>Descripcion</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.fecha)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreRemitente)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreDependencia)</td>
+                    <td>@Html.DisplayFor(modelItem => item.descripcion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.nombreUsuarioRecibe)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('#dt_gal').dataTable();
+
+</script>
